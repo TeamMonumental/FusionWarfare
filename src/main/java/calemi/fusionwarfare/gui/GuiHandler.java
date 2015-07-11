@@ -63,15 +63,7 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerOneInput(player, (TileEntityOreEnricher) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDInfusionTable) {
-			return new ContainerTwoInputs(player, (TileEntityTwoInputs) tileentity);
-		}
-
-		if (ID == FusionWarfare.guiIDInfusionFoundry) {
-			return new ContainerTwoInputs(player, (TileEntityTwoInputs) tileentity);
-		}
-		
-		if (ID == FusionWarfare.guiIDMissileFactory) {
+		if (ID == FusionWarfare.guiIDTwoInputs) {
 			return new ContainerTwoInputs(player, (TileEntityTwoInputs) tileentity);
 		}
 
@@ -163,20 +155,8 @@ public class GuiHandler implements IGuiHandler {
 			return new GuiOneInput(player, (TileEntityOreEnricher) tileentity, "Ore Enricher");
 		}
 
-		if (ID == FusionWarfare.guiIDInfusionTable) {
-			return new GuiTwoInputs(player, (TileEntityTwoInputs) tileentity, EnumRecipeType.INFUSION_TABLE, "Infusion Table");
-		}
-
-		if (ID == FusionWarfare.guiIDInfusionFoundry) {
-			return new GuiTwoInputs(player, (TileEntityTwoInputs) tileentity, EnumRecipeType.INFUSION_FOUNDRY, "Infusion Foundry");
-		}
-
-		if (ID == FusionWarfare.guiIDMissileFactory) {
-			return new GuiTwoInputs(player, (TileEntityTwoInputs) tileentity, EnumRecipeType.MISSILE_FACTORY, "Missile Factory");
-		}
-
-		if (ID == FusionWarfare.guiIDMiningUnit) {
-			return new GuiMiningUnit(player, (TileEntityMiningUnit) tileentity);
+		if (ID == FusionWarfare.guiIDTwoInputs) {
+			return new GuiTwoInputs(player, (TileEntityTwoInputs) tileentity, ((TileEntityTwoInputs)tileentity).recipeType);
 		}
 
 		if (ID == FusionWarfare.guiIDGeothermalGenerator) {

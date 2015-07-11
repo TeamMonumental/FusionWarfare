@@ -29,9 +29,8 @@ public class GuiTwoInputs extends GuiContainerBase {
 	private String name;
 	private EnumRecipeType recipeType;
 	
-	public GuiTwoInputs(EntityPlayer player, TileEntityBase tileEntity, EnumRecipeType recipeType, String name) {
+	public GuiTwoInputs(EntityPlayer player, TileEntityBase tileEntity, EnumRecipeType recipeType) {
 		super(new ContainerTwoInputs(player, tileEntity), player, tileEntity);
-		this.name = name;
 		this.recipeType = recipeType;
 	}
 
@@ -59,7 +58,7 @@ public class GuiTwoInputs extends GuiContainerBase {
 
 	@Override
 	public String getGuiTitle() {
-		return name;
+		return recipeType.name;
 	}
 	
 	@Override

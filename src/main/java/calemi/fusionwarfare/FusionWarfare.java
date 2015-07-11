@@ -62,10 +62,8 @@ public class FusionWarfare {
 
 	public static int guiIDEnergeticFurnace = nextGuiID++;
 	public static int guiIDOreEnricher = nextGuiID++;
-	public static int guiIDInfusionTable = nextGuiID++;
-	public static int guiIDInfusionFoundry = nextGuiID++;
+	public static int guiIDTwoInputs = nextGuiID++;
 	public static int guiIDMiningUnit = nextGuiID++;
-	public static int guiIDMissileFactory = nextGuiID++;
 	public static int guiIDMissileLauncher = nextGuiID++;
 	public static int guiIDEXPFabricator = nextGuiID++;		
 	
