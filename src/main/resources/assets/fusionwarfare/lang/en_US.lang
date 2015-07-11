@@ -1,0 +1,194 @@
+#-#-#-#-#-ITEMS-#-#-#-#-#
+
+#-#-#-#-#-RESOURCES-#-#-#-#-#
+
+item.infused_crystal.name=Infused Crystal
+item.infused_catalyst.name=Infused Catalyst
+item.advanced_infused_catalyst.name=Advanced Infused Catalyst
+item.infused_azurite.name=Infused Azurite
+item.sulfur_dust.name=Sulfur Dust
+item.fusion_fish.name=Fusion Fish
+item.charged_seeds.name=Charged Seeds
+
+#-#-#-#-#-INGOTS-#-#-#-#-#
+
+item.steel_ingot.name=Steel Ingot
+item.infused_steel_ingot.name=Infused Steel Ingot
+item.infused_redstone.name=Infused Redstone
+
+#-#-#-#-#-INGREDIENTS-#-#-#-#-#
+
+item.steel_mixture.name=Steel Mixture
+item.evaporation_cell.name=Evaporation Cell
+item.steel_plate.name=Steel Plate
+item.lightning_rod.name=Lightning Rod
+item.sturdy_handle.name=Sturdy Handle
+item.solar_panel.name=Solar Panel
+
+item.missile_module_1.name=Missile Module
+item.missile_module_2.name=Missile Module
+item.missile_module_3.name=Missile Module
+
+item.basic_chip.name=Basic Chip
+item.advanced_chip.name=Advanced Chip
+item.hyper_chip.name=Hyper Chip
+
+item.gun_core.name=Gun Core
+item.gun_barrel.name=Gun Barrel
+item.gun_handle.name=Gun Handle
+
+#-#-#-#-#-BATTERIES-#-#-#-#-#
+
+item.battery.name=Battery
+item.creative_battery.name=Creative Battery
+
+#-#-#-#-#-GUNS-#-#-#-#-#
+
+item.fusion_ammo.name=Fusion Ammo
+
+item.fusion_pistol.name=Fusion Pistol
+item.fusion_auto_pistol.name=Auto Fusion Pistol
+item.fusion_shotgun.name=Fusion Shotgun
+item.fusion_smg.name=Fusion SMG
+item.fusion_sniper_rifle.name=Fusion Sniper Rifle
+item.fusion_gatling_gun.name=Alt-F4
+ 
+#-#-#-#-#-MISSILES-#-#-#-#-#
+
+item.velocity_missile_1.name=Velocity Missile
+item.velocity_missile_2.name=Velocity Missile
+item.velocity_missile_3.name=Velocity Missile
+
+item.breaching_missile_1.name=Breaching Missile
+item.breaching_missile_2.name=Breaching Missile
+item.breaching_missile_3.name=Breaching Missile
+
+item.emp_missile_1.name=EMP Missile
+item.emp_missile_2.name=EMP Missile
+item.emp_missile_3.name=EMP Missile
+
+item.pyroblast_missile_2.name=PyroBlast Missile
+item.dudley_missile_1.name=Dudley Missile
+
+#-#-#-#-#-TOOLS-#-#-#-#-#
+
+item.steel_sword.name=Steel Sword
+item.steel_pickaxe.name=Steel Pickaxe
+item.steel_shovel.name=Steel Shovel
+item.steel_axe.name=Steel Axe
+
+item.infused_steel_sword.name=Infused Steel Sword
+item.infused_steel_pickaxe.name=Infused Steel Pickaxe
+item.infused_steel_shovel.name=Infused Steel Shovel
+item.infused_steel_axe.name=Infused Steel Axe
+
+item.infused_steel_red_sword.name=Red Infused Steel Sword
+item.infused_steel_red_pickaxe.name=Red Infused Steel Pickaxe
+item.infused_steel_red_shovel.name=Red Infused Steel Shovel
+item.infused_steel_red_axe.name=Red Infused Steel Axe
+
+item.fusion_matter_deconstructor.name=Fusion Matter Deconstructor
+
+item.debugger.name=Debugger
+item.location_linker.name=Location Linker
+item.sprayer.name=Sprayer
+
+#-#-#-#-#-ARMOR-#-#-#-#-#
+
+item.steel_helmet.name=Steel Helmet
+item.steel_chestplate.name=Steel Chestplate
+item.steel_leggings.name=Steel Leggings
+item.steel_boots.name=Steel Boots
+
+item.infused_steel_helmet.name=Infused Steel Helmet
+item.infused_steel_chestplate.name=Infused Steel Chestplate
+item.infused_steel_leggings.name=Infused Steel Leggings
+item.infused_steel_boots.name=Infused Steel Boots
+
+item.infused_steel_red_helmet.name=Red Infused Steel Helmet
+item.infused_steel_red_chestplate.name=Red Infused Steel Chestplate
+item.infused_steel_red_leggings.name=Red Infused Steel Leggings
+item.infused_steel_red_boots.name=Red Infused Steel Boots
+
+#-#-#-#-#-TEAMS-#-#-#-#-#
+
+item.team_card.name=Team Card
+
+#-#-#-#-#-MISC_ITEMS-#-#-#-#-#
+
+item.overclocking_chip.name=Overclocking Chip
+
+#-#-#-#-#-BLOCKS-#-#-#-#-#
+
+#-#-#-#-#-ORE-#-#-#-#-#
+
+tile.infused_crystal_ore.name=Infused Crystal Ore
+tile.infused_catalyst_ore.name=Infused Catalyst Ore
+tile.infused_azurite_ore.name=Infused Azurite Ore
+
+#-#-#-#-#-BUILDING-#-#-#-#-#
+
+tile.fusion_torch.name=Fusion Torch
+tile.concrete.name=Concrete
+tile.reinforced_glass.name=Reinforced Glass
+
+tile.black_brick.name=Black Brick
+tile.blue_brick.name=Blue Brick
+tile.red_brick.name=Red Brick
+
+#-#-#-#-#-NETWORK-#-#-#-#-#
+
+tile.network_controller_1.name=Basic Network Controller
+tile.network_controller_2.name=Advanced Network Controller
+tile.network_controller_3.name=Hyper Network Controller
+tile.network_cable.name=Network Cable
+tile.network_gate.name=Network Gate
+
+#-#-#-#-#-GENERATORS-#-#-#-#-#
+
+tile.aqua_generator.name=Aqua Generator
+tile.geothermal_generator.name=Geothermal Generator
+tile.solar_generator.name=Solar Generator
+tile.wind_turbine.name=Wind Turbine
+
+#-#-#-#-#-REACTOR-#-#-#-#-#
+
+tile.reactor_core.name=Reactor Core
+tile.reactor_casing.name=Reactor Casing
+tile.reactor_cooling_unit.name=Reactor Cooling Unit
+
+tile.advanced_hydro_reactor_core.name= Advanced Hydro Reactor Core
+tile.capsule_core.name=Capsule Core
+
+#-#-#-#-#-MACHINES-#-#-#-#-#
+
+tile.fusion_crucible.name=Fusion Crucible
+tile.energetic_furnace.name=Energetic Furnace
+tile.ore_enricher.name=Ore Enricher
+tile.infusion_table.name=Infusion Table
+tile.infusion_foundry.name=Infusion Foundry
+tile.mining_unit.name=Mining Unit
+tile.missile_factory.name=Missile Factory
+tile.missile_launcher.name=Missile Launcher
+tile.exp_fabricator.name=EXP Fabricator
+
+tile.fusion_matter_reinforcer.name=Fusion Matter Reinforcer
+tile.anti_mob_beacon.name=Anti-Mob Beacon
+tile.player_healing_beacon.name=Player Healing Beacon
+
+tile.energy_transmitter.name=Energy Transmitter
+tile.energy_receiver.name=Energy Receiver
+
+#-#-#-#-#-MISC-#-#-#-#-#
+
+tile.supply_crate.name=Supply Crate
+
+#-#-#-#-#-KEYS-#-#-#-#-#
+
+keys.fusionwarfare.catagory=Fusion Warfare
+keys.fusionwarfare.recipe=Recipe
+
+#-#-#-#-#-CONFIG-#-#-#-#-#
+
+category.general_options.name=General Options
+category.ores.name=Ores

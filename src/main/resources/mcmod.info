@@ -1,0 +1,13 @@
+[
+{
+  "modid": "FusionWarfare",
+  "name": "Fusion Warfare",
+  "description": "An independent futuristic warfare mod that adds missiles, guns and advanced machinery into your game.",
+  "version": "1.7.10-1.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "authorList": ["Calemi","Kryto627","Flakeybisquik"],
+  "logoFile": "logo.png",
+  "screenshots": []
+}
+]

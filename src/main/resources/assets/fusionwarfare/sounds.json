@@ -1,0 +1,5 @@
+{
+   "gun_shot": {"category": "master","sounds": [{"name": "gun_shot","stream": false}]},
+   "fart": {"category": "master","sounds": [{"name": "fart","stream": false}]},
+   "missile_launch": {"category": "master","sounds": [{"name": "missile_launch","stream": false}]}
+   }
