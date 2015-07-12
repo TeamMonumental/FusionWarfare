@@ -7,7 +7,7 @@ An independent futuristic warfare mod that adds missiles, guns and advanced mach
 * [X] Team System
 * Turrets
 * Rocket Launcher
-* Secure Door
+* [X] Secure Door
 * Missile Silo
 * Armor Missile
 
