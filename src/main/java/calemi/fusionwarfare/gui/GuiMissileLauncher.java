@@ -36,7 +36,7 @@ public class GuiMissileLauncher extends GuiContainerBase {
 
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
-		if (((TileEntitySecurity)tileEntity).team != null) drawLeftInfoTextBar(((TileEntitySecurity)tileEntity).team.getRegisteredName(), 0);
+		if (((TileEntitySecurity)tileEntity).getTeam() != null) drawLeftInfoTextBar(((TileEntitySecurity)tileEntity).teamName, 0);
 		drawRightInfoTextBar("Target X: " + ((TileEntityMissileLauncher)tileEntity).targetX, 0);
 		drawRightInfoTextBar("Target Z: " + ((TileEntityMissileLauncher)tileEntity).targetZ, 1);
 		drawSmallFuelBar(8, 65);

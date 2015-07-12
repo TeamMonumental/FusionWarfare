@@ -11,6 +11,7 @@ import calemi.fusionwarfare.block.BlockOreBase;
 import calemi.fusionwarfare.block.BlockReactorCasing;
 import calemi.fusionwarfare.block.BlockReactorCoolingUnit;
 import calemi.fusionwarfare.block.BlockReinforceable;
+import calemi.fusionwarfare.block.BlockReinforcedDoor;
 import calemi.fusionwarfare.block.BlockSupplyCrate;
 import calemi.fusionwarfare.block.BlockTwoInputs;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
@@ -51,6 +52,8 @@ public class InitBlocks {
 	public static Block black_brick;
 	public static Block blue_brick;
 	public static Block red_brick;
+	
+	public static Block reinforced_door;
 	
 	//#-#-#-#-#-NETWORK-#-#-#-#-#\\
 	
@@ -112,10 +115,12 @@ public class InitBlocks {
 		fusion_torch = new BlockFusionTorch();
 		concrete = new BlockReinforceable("concrete", 5, true);
 		reinforced_glass = new BlockReinforceable("reinforced_glass", 3, false);
-		
+				
 		black_brick = new BlockReinforceable("black_brick", 5, true);
 		blue_brick = new BlockReinforceable("blue_brick", 5, true);
 		red_brick = new BlockReinforceable("red_brick", 5, true);
+		
+		reinforced_door = new BlockReinforcedDoor();
 		
 		//#-#-#-#-#-NETWORK-#-#-#-#-#\\
 	

@@ -10,6 +10,7 @@ import calemi.fusionwarfare.item.ItemFusionGatlingGun;
 import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.item.ItemMissile;
 import calemi.fusionwarfare.item.ItemMissileModule;
+import calemi.fusionwarfare.item.ItemReinforcedDoor;
 import calemi.fusionwarfare.item.ItemTest;
 import calemi.fusionwarfare.item.tool.ItemDebugger;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
@@ -100,13 +101,10 @@ public class InitItems {
 	public static Item location_linker;
 	public static Item sprayer;
 		
-	//#-#-#-#-#-TEAMS-#-#-#-#-#\\
-	
-	public static Item team_card;	
-	
 	//#-#-#-#-#-MISC-#-#-#-#-#\\
 	
-	public static Item overclocking_chip;
+	public static Item reinforced_door;
+	public static Item overclocking_chip;	
 	public static Item test;
 	
 	public static void init() {
@@ -192,12 +190,9 @@ public class InitItems {
 		location_linker = new ItemLocationLinker();
 		sprayer = new ItemSprayer();
 		
-		//#-#-#-#-#-TEAMS-#-#-#-#-#\\
-		
-		//team_card = new ItemTeamCard();
-		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		
+		reinforced_door = new ItemReinforcedDoor();
 		overclocking_chip = new ItemBase("overclocking_chip").setMaxStackSize(15);
 		test = new ItemTest();		
 	}

@@ -147,7 +147,7 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 			if (hasSecurity) {
 				
 				if (player.getTeam() != null) {
-					((TileEntitySecurity)w.getTileEntity(x, y, z)).team = player.getTeam();
+					((TileEntitySecurity)w.getTileEntity(x, y, z)).teamName = player.getTeam().getRegisteredName();
 				}
 				
 				else {

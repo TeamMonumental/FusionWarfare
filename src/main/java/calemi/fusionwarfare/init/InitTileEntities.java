@@ -3,6 +3,7 @@ package calemi.fusionwarfare.init;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.tileentity.TileEntityEnergyReceiver;
 import calemi.fusionwarfare.tileentity.TileEntityEnergyTransmitter;
+import calemi.fusionwarfare.tileentity.TileEntityReinforcedDoor;
 import calemi.fusionwarfare.tileentity.TileEntitySupplyCrate;
 import calemi.fusionwarfare.tileentity.gen.TileEntityAquaGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityGeothermalGenerator;
@@ -60,5 +61,7 @@ public class InitTileEntities {
 		GameRegistry.registerTileEntity(TileEntityPlayerHealingBeacon.class, Reference.MOD_ID + ":tileEntityPlayerHealingBeacon");
 		
 		GameRegistry.registerTileEntity(TileEntitySupplyCrate.class, Reference.MOD_ID + ":tileEntitySupplyCrate");
+		
+		GameRegistry.registerTileEntity(TileEntityReinforcedDoor.class, Reference.MOD_ID + ":tileEntityReinforcedDoor");
 	}
 }

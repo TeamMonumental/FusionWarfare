@@ -15,35 +15,30 @@ import net.minecraft.tileentity.TileEntity;
 
 public abstract class TileEntitySecurity extends TileEntityBase {
 
-	public Team team;
+	public String teamName;
 	public boolean running;
-	
-	@Override
-	public void updateEntity() {
-		System.out.println(team);
-	}
 	
 	public boolean isSameTeam(EntityPlayer player) {
 		
-		if (team != null) {
-			return team.isSameTeam(player.getTeam());
+		if (getTeam() != null) {
+			return getTeam().isSameTeam(player.getTeam());
 		}
 		
 		return true;
+	}
+	
+	public Team getTeam() {
+		return worldObj.getScoreboard().getTeam(teamName);
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		
-		if (team != null) {
-			nbt.setString("team", team.getRegisteredName());
-		}	
-		
-		else {
-			nbt.removeTag("team");
-		}
-		
+		if (teamName != null) {
+			nbt.setString("team", teamName);
+		}		
+					
 		nbt.setBoolean("running", running);
 	}
 	
@@ -51,10 +46,12 @@ public abstract class TileEntitySecurity extends TileEntityBase {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		
+		System.out.println(nbt.getString("team"));
+		
 		if (nbt.hasKey("team")) {
-			team = worldObj.getScoreboard().getTeam(nbt.getString("team"));
-		}
-				
+			teamName = nbt.getString("team");
+		}		
+			
 		running = nbt.getBoolean("running");
 	}	
 }
