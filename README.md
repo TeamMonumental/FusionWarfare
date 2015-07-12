@@ -13,6 +13,6 @@ An independent futuristic warfare mod that adds missiles, guns and advanced mach
 
 #Developers
 
-* Calemi
-* Kryto627
-* Flakey
+* Calemi (Lead Programmer)
+* Kryto627 (API Programmer)
+* Flakey (Assets & Balancing)
