@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import org.lwjgl.input.Keyboard;
 
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.command.server.CommandScoreboard;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.util.ChatComponentText;
 
 public class GuiTeam extends GuiScreenBase {
 
@@ -18,6 +22,7 @@ public class GuiTeam extends GuiScreenBase {
 	private int currentTeamIndex;
 	
 	private GuiTextField teamNameField;
+	private GuiTextField playerNameField;
 	
 	private GuiFusionButton addButton1, addButton2;
 	private GuiFusionButton subButton1, subButton2;
@@ -62,7 +67,7 @@ public class GuiTeam extends GuiScreenBase {
 		teamNameField.setTextColor(-1);
 		teamNameField.setDisabledTextColour(-1);
 		teamNameField.setEnableBackgroundDrawing(false);
-		teamNameField.setMaxStringLength(20);
+		teamNameField.setMaxStringLength(16);
 		
 		addButton1 = new GuiFusionButton(nextButtonID++, getScreenX() + offsetX, getScreenY() + 16, 16, "+");
 		buttonList.add(addButton1);		
@@ -87,7 +92,13 @@ public class GuiTeam extends GuiScreenBase {
 		doneButton = new GuiFusionButton(nextButtonID++, getScreenX() + offsetX, getScreenY() + 152, 74, "Done");
 		buttonList.add(doneButton);
 	}
-
+	
+	@Override
+	public void updateScreen() {
+		super.updateScreen();
+		refresh();
+	}
+	
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
 		drawCenteredStringWithoutShadow("Teams", 47, 6);
@@ -125,15 +136,39 @@ public class GuiTeam extends GuiScreenBase {
 		if (upButton1.id == button.id) currentTeamIndex--;
 		if (downButton1.id == button.id) currentTeamIndex++;		
 		
+		if (addButton1.id == button.id) {
+			
+			if (!teamNameField.getText().isEmpty()) {			
+				
+				((EntityClientPlayerMP)player).sendChatMessage("/scoreboard teams add " + teamNameField.getText());	
+			}
+		}
+		
+		if (subButton1.id == button.id) {
+						
+			if (getSelectedTeam() != null) {
+				
+				((EntityClientPlayerMP)player).sendChatMessage("/scoreboard teams remove " + getSelectedTeam().getRegisteredName());
+			}
+		}
+		
 		if (doneButton.id == button.id) {
 			player.closeScreen();
 		}	
 		
-		if (currentTeamIndex < 0) {
-			currentTeamIndex = teams.size() - 1;
-		}
-
-		currentTeamIndex %= teams.size();
+		if (teams.size() != 0) {
+			
+			currentTeamIndex %= teams.size();
+			
+			if (currentTeamIndex < 0) {
+				currentTeamIndex = teams.size() - 1;
+			}
+		}	
+	}
+	
+	@Override
+	public boolean doesGuiPauseGame() {
+		return false;
 	}
 	
 	@Override

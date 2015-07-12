@@ -1,0 +1,16 @@
+THINGS NEEDED FOR RELEASE
+-------------------------
+         WARFARE
+-------------------------
+Team System
+Turrets
+Rocket Launcher
+Secure Door
+Missile Silo(IMPORTANT)
+Armor Missile
+-------------------------
+     EVERYTHING ELSE
+-------------------------
+Check for all names
+Set up git bug page
+change alt f4 recipes
