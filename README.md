@@ -15,5 +15,5 @@ An independent futuristic warfare mod that adds missiles, guns and advanced mach
 
 * Calemi (Lead Programmer)
 * Kryto627 (API Programmer)
-* Robo (Assets & Modeling)
 * Flakey (Assets & Balancing)
+* Robo (Assets & Modeling)
