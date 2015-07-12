@@ -4,7 +4,7 @@ A minecraft warfare mod.
 
 #Todo for release
 
-* Team System
+* [X] Team System
 * Turrets
 * Rocket Launcher
 * Secure Door
@@ -13,6 +13,6 @@ A minecraft warfare mod.
 
 #Developers
 
-* Kryto627
 * Calemi
+* Kryto627
 * Flakey
