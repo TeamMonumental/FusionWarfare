@@ -1,6 +1,6 @@
 # FusionWarfare
 
-A minecraft warfare mod. 
+An independent futuristic warfare mod that adds missiles, guns and advanced machinery into your game.
 
 #Todo for release
 
