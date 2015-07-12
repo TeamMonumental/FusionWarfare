@@ -10,6 +10,7 @@ import calemi.fusionwarfare.event.FusionGunRenderEvent;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.key.KeyBindings;
+import calemi.fusionwarfare.key.KeyInputHandler;
 import calemi.fusionwarfare.renderer.RenderBeacon;
 import calemi.fusionwarfare.renderer.RenderBlock;
 import calemi.fusionwarfare.renderer.RenderFallingSupplyCrate;
@@ -36,8 +37,10 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkCable;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -50,8 +53,10 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenders() {
 		
 		ClientRegistry.registerKeyBinding(KeyBindings.recipeButton);
+		ClientRegistry.registerKeyBinding(KeyBindings.teamGuiButton);
 		
 		MinecraftForge.EVENT_BUS.register(new FusionGunRenderEvent());
+		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
 		MinecraftForge.EVENT_BUS.register(new FOVEvent());
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityFusionBullet.class, new RenderFusionBullet());			

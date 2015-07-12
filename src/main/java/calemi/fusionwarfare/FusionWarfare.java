@@ -3,6 +3,7 @@ package calemi.fusionwarfare;
 import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.event.CraftingEvent;
 import calemi.fusionwarfare.event.EntitySpawnEvent;
+import calemi.fusionwarfare.event.LivingEntityEvent;
 import calemi.fusionwarfare.event.SupplyCrateEvent;
 import calemi.fusionwarfare.event.TooltipEvent;
 import calemi.fusionwarfare.gui.GuiHandler;
@@ -91,6 +92,7 @@ public class FusionWarfare {
 		
 		MinecraftForge.EVENT_BUS.register(new TooltipEvent());
 		MinecraftForge.EVENT_BUS.register(new EntitySpawnEvent());
+		MinecraftForge.EVENT_BUS.register(new LivingEntityEvent());
 		
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		FWConfig.syncConfig();
@@ -98,7 +100,7 @@ public class FusionWarfare {
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());	
 		FMLCommonHandler.instance().bus().register(new SupplyCrateEvent());	
 		FMLCommonHandler.instance().bus().register(new FWConfig());
-		
+				
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("fusionwarfare");

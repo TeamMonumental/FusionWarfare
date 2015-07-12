@@ -11,4 +11,5 @@ public class Reference {
 	
 	public static final String KEY_CATAGORY = "keys.fusionwarfare.catagory";
 	public static final String KEY_RECIPE_NAME = "keys.fusionwarfare.recipe";
+	public static final String KEY_TEAM_GUI = "keys.fusionwarfare.teamgui";
 }

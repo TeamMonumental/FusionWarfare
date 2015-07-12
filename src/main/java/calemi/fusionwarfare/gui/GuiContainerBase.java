@@ -87,6 +87,20 @@ public abstract class GuiContainerBase extends GuiContainer {
 		mc.fontRenderer.drawString(text, getScreenX() + (getGuiSizeX() + 1), (getScreenY() + 8) + (index * 19), 0xffffff);		
 	}
 	
+	public void drawLeftInfoTextBar(String text, int index) {
+		
+		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
+		
+		int stringWidth = Minecraft.getMinecraft().fontRenderer.getStringWidth(text);
+		
+		//Long Piece
+		drawTexturedModalRect((getScreenX() - stringWidth), (getScreenY() + 3) + (index * 19), 2, 238, stringWidth + 1, 18);
+		//End
+		drawTexturedModalRect((getScreenX() - stringWidth) - 2, (getScreenY() + 3) + (index * 19), 0, 238, 2, 18);
+		
+		mc.fontRenderer.drawString(text, (getScreenX() - stringWidth) + 1, (getScreenY() + 8) + (index * 19), 0xffffff);		
+	}
+	
 	public void drawSmallFuelBar(int x, int y) {
 		
 		int xPos = getScreenX() + x;

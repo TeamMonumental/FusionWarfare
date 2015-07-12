@@ -11,7 +11,7 @@ public class BlockTwoInputs extends BlockBasicMachineBase {
 	public EnumRecipeType recipeType;	
 	
 	public BlockTwoInputs(String imagePath, EnumRecipeType recipeType, int guiID, String topImage, String sideImage1, String sideImage2, String sideImage3, String sideImage4) {
-		super(imagePath, null, guiID, recipeType == EnumRecipeType.INFUSION_FOUNDRY, topImage, "mech_blank", sideImage1, sideImage2, sideImage3, sideImage4);
+		super(imagePath, null, guiID, recipeType == EnumRecipeType.INFUSION_FOUNDRY, topImage, "mech_blank", sideImage1, sideImage2, sideImage3, sideImage4, false);
 		this.recipeType = recipeType;
 	}
 		

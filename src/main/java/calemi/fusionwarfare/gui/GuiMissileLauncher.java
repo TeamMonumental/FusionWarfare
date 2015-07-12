@@ -6,6 +6,7 @@ import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.inventory.ContainerMissileLauncher;
 import calemi.fusionwarfare.inventory.ContainerOneInput;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
@@ -35,6 +36,7 @@ public class GuiMissileLauncher extends GuiContainerBase {
 
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
+		if (((TileEntitySecurity)tileEntity).team != null) drawLeftInfoTextBar(((TileEntitySecurity)tileEntity).team.getRegisteredName(), 0);
 		drawRightInfoTextBar("Target X: " + ((TileEntityMissileLauncher)tileEntity).targetX, 0);
 		drawRightInfoTextBar("Target Z: " + ((TileEntityMissileLauncher)tileEntity).targetZ, 1);
 		drawSmallFuelBar(8, 65);

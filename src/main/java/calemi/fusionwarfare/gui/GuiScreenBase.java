@@ -87,6 +87,26 @@ public abstract class GuiScreenBase extends GuiScreen {
 		mc.fontRenderer.drawString(text, xPos - (fontRendererObj.getStringWidth(text) / 2), yPos, 4210752);
 	}
 	
+	public void drawLimitedString(String text, int x, int y, int maxWidth, int mouseX, int mouseY, boolean isWhite) {
+		
+		int xPos = getScreenX() + x;
+		int yPos = getScreenY() + y;
+		
+		String temp = text;
+		
+		if (temp.length() > 13) {
+			
+			temp = temp.substring(0, 12);
+			temp += "...";
+		}	
+		
+		mc.fontRenderer.drawString(temp, xPos, yPos, isWhite ? 0xffffff : 4210752);				
+	}
+	
+	public void drawSelectedStringOverBox(String text, int x, int y, int width, int mouseX, int mouseY) {
+		drawStringOverBox(text, x, y, width, 8, mouseX, mouseY);
+	}
+	
 	protected boolean isMouseOverBox(int x, int y, int boxX, int boxY, int mouseX, int mouseY) {
 		
 		int posX = getScreenX() + x;

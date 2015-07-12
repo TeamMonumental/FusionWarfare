@@ -77,6 +77,13 @@ public class ServerPacketHandler implements IMessage {
 					}
 				}				
 			}
+			
+			if (data[0].equalsIgnoreCase("update")) {
+				
+				System.out.println("Sent");
+				player.fallDistance = 0;
+				player.setPositionAndUpdate(Double.parseDouble(data[1]), Double.parseDouble(data[2]), Double.parseDouble(data[3]));
+			}
 
 			return null;
 		}

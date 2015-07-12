@@ -7,6 +7,7 @@ import calemi.fusionwarfare.entity.EntityMissile;
 import calemi.fusionwarfare.item.ItemMissile;
 import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.explosion.VelocityEvent;
 import net.minecraft.item.ItemStack;
@@ -17,7 +18,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 
-public class TileEntityMissileLauncher extends TileEntityBase {
+public class TileEntityMissileLauncher extends TileEntitySecurity {
 
 	public int targetX;
 	public int targetZ;
@@ -131,6 +132,7 @@ public class TileEntityMissileLauncher extends TileEntityBase {
 
 	@Override
 	public Packet getDescriptionPacket() {
+		
 		NBTTagCompound syncData = new NBTTagCompound();
 
 		writeToNBT(syncData);
