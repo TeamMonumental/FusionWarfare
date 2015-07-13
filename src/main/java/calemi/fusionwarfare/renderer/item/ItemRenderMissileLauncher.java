@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
@@ -26,7 +27,7 @@ public class ItemRenderMissileLauncher implements IItemRenderer {
 
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-		return type == ItemRenderType.INVENTORY;
+		return type == ItemRenderType.INVENTORY || type == ItemRenderType.ENTITY;
 	}
 
 	@Override

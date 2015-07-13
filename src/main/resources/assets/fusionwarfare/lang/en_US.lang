@@ -117,6 +117,7 @@ item.team_card.name=Team Card
 #-#-#-#-#-MISC_ITEMS-#-#-#-#-#
 
 item.overclocking_chip.name=Overclocking Chip
+item.reinforced_door_placer.name=Reinforced Door
 
 #-#-#-#-#-BLOCKS-#-#-#-#-#
 
@@ -171,6 +172,7 @@ tile.mining_unit.name=Mining Unit
 tile.missile_factory.name=Missile Factory
 tile.missile_launcher.name=Missile Launcher
 tile.exp_fabricator.name=EXP Fabricator
+tile.emp_tower.name=EMP Tower
 
 tile.fusion_matter_reinforcer.name=Fusion Matter Reinforcer
 tile.anti_mob_beacon.name=Anti-Mob Beacon

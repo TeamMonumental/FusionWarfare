@@ -301,13 +301,13 @@ public class BlockReinforcedDoor extends BlockContainerBase {
 				if (!p_149695_1_.isRemote) {
 					this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, l, 0);
 				}
-			} else {
-				boolean flag1 = p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_, p_149695_4_) || p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_ + 1, p_149695_4_);
+			} //else {
+				//boolean flag1 = p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_, p_149695_4_) || p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_ + 1, p_149695_4_);
 
-				if ((flag1 || p_149695_5_.canProvidePower()) && p_149695_5_ != this) {
-					this.func_150014_a(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, flag1);
-				}
-			}
+				//if ((flag1 || p_149695_5_.canProvidePower()) && p_149695_5_ != this) {
+				//	this.func_150014_a(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, flag1);
+				//}
+			//}
 		} else {
 			if (p_149695_1_.getBlock(p_149695_2_, p_149695_3_ - 1, p_149695_4_) != this) {
 				p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);

@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -41,7 +42,16 @@ public class ItemReinforcedDoor extends ItemBase {
 					ItemDoor.placeDoorBlock(world, x, y, z, i1, block);
 					
 					TileEntityReinforcedDoor tileEntity = (TileEntityReinforcedDoor)world.getTileEntity(x, y, z);
-					if (player.getTeam() != null) tileEntity.teamName = player.getTeam().getRegisteredName();
+					
+					if (!world.isRemote) {
+						if (player.getTeam() != null) {
+							tileEntity.teamName = player.getTeam().getRegisteredName();
+						}
+					
+						else {
+							player.addChatMessage(new ChatComponentText("You are not on a team. No security will be added"));	
+						}
+					}										
 					
 					--itemStack.stackSize;
 					return true;

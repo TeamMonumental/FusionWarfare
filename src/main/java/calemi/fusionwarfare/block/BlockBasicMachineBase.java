@@ -62,7 +62,7 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean hasSecurity) {
 		this(imagePath, tileEntity, guiID, false, "", "", "", hasSecurity);
 		this.hasCustomModel = true;
-		setBlockBounds(1 * pixel, 0, 1 * pixel, 15 * pixel, 4 * pixel, 15 * pixel);
+		setBlockBounds(xStart * pixel, yStart * pixel, zStart * pixel, xEnd * pixel, yEnd * pixel, zEnd * pixel);
 	}
 	
 	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, String sideImage, boolean hasSecurity) {

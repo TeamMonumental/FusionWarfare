@@ -27,7 +27,7 @@ public class ItemRenderFusionMatterDeconstructor implements IItemRenderer {
 
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-		return type == ItemRenderType.INVENTORY;
+		return type == ItemRenderType.INVENTORY || type == ItemRenderType.ENTITY;
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityCapsuleCore;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCasing;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
+import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
 import calemi.fusionwarfare.tileentity.machine.TileEntityFusionMatterReinforcer;
@@ -52,6 +53,7 @@ public class InitTileEntities {
 		GameRegistry.registerTileEntity(TileEntityMiningUnit.class, Reference.MOD_ID + ":tileEntityMiningUnit");	
 		GameRegistry.registerTileEntity(TileEntityMissileLauncher.class, Reference.MOD_ID + ":tileEntityMissileLauncher");
 		GameRegistry.registerTileEntity(TileEntityEXPFabricator.class, Reference.MOD_ID + ":tileEntityEXPFabricator");
+		GameRegistry.registerTileEntity(TileEntityEMPTower.class, Reference.MOD_ID + ":tileEntityEMPTower");
 		
 		GameRegistry.registerTileEntity(TileEntityEnergyTransmitter.class, Reference.MOD_ID + ":tileEntityEnergyTransmitter");
 		GameRegistry.registerTileEntity(TileEntityEnergyReceiver.class, Reference.MOD_ID + ":tileEntityEnergyReceiver");

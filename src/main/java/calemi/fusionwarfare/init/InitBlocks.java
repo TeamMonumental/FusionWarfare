@@ -25,6 +25,7 @@ import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityAdvancedHydroReacto
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityCapsuleCore;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
+import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
 import calemi.fusionwarfare.tileentity.machine.TileEntityFusionMatterReinforcer;
@@ -88,7 +89,8 @@ public class InitBlocks {
 	public static Block mining_unit;
 	public static Block missile_factory;
 	public static Block missile_launcher;	
-	public static Block exp_fabricator;		
+	public static Block exp_fabricator;	
+	public static Block emp_tower;
 		
 	public static Block fusion_matter_reinforcer;
 	public static Block anti_mob_beacon;
@@ -157,6 +159,7 @@ public class InitBlocks {
 		mining_unit = new BlockBasicMachineBase("mining_unit", TileEntityMiningUnit.class, FusionWarfare.guiIDMiningUnit, false, "mech_top_1", "mining_unit_bottom", "mining_unit_side", false);	
 		missile_launcher = new BlockBasicMachineBase("missile_launcher", TileEntityMissileLauncher.class, FusionWarfare.guiIDMissileLauncher, 1, 0, 1, 15, 4, 15, true);
 		exp_fabricator = new BlockBasicMachineBase("exp_fabricator", TileEntityEXPFabricator.class, FusionWarfare.guiIDEXPFabricator, false, "exp_fabricator_top", "mech_blank", "exp_fabricator_side", false);
+		emp_tower = new BlockBasicMachineBase("emp_tower", TileEntityEMPTower.class, FusionWarfare.guiIDEMPTower, 2, 0, 2, 14, 16, 14, false);
 		
 		fusion_matter_reinforcer = new BlockBasicMachineBase("fusion_matter_reinforcer", TileEntityFusionMatterReinforcer.class, FusionWarfare.guiIDFusionMatterReinforcer, false, "fusion_matter_reinforcer_side", false);	
 		anti_mob_beacon = new BlockBasicMachineBase("anti_mob_beacon", TileEntityAntiMobBeacon.class, FusionWarfare.guiIDAntiMobBeacon, false, "anti_mob_beacon_side", false);	

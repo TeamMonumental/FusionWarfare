@@ -40,11 +40,11 @@ public abstract class GuiContainerBase extends GuiContainer {
 		return 0;
 	}
 	
-	private int getGuiSizeX() {	
+	public int getGuiSizeX() {	
 		return 176 + getScreenXOffset();
 	}
 	
-	private int getGuiSizeY() {	
+	public int getGuiSizeY() {	
 		return 166 + getScreenYOffset();
 	}
 	
