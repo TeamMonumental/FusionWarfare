@@ -1,28 +1,72 @@
 package calemi.fusionwarfare.tileentity.machine;
 
+import calemi.fusionwarfare.entity.EntityMissile;
 import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.item.ItemStack;
 
 public class TileEntityEMPTower extends TileEntityBase {
 
+	private int energyCost = 100000;
+	
 	public TileEntityEMPTower() {
 		maxEnergy = 100000;
 		maxProgress = 100;
 	}
 	
 	@Override
-	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
-		return null;
+	public void updateEntity() {
+		if (energy >= energyCost) {
+			
+			if (progress < maxProgress) {
+				progress++;
+			}
+			
+			if (progress >= maxProgress && worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
+				
+				for (Object entity : worldObj.loadedEntityList) {
+					
+					if (entity instanceof EntityMissile) {
+						
+						EntityMissile missile = (EntityMissile) entity;
+						
+						if (missile.motionY < 0 && missile.getDistanceSq(xCoord, yCoord + 16, zCoord) <= 16) {
+							
+							progress = 0;
+							energy -= energyCost;
+							missile.setDead();
+							
+							//worldObj.playSound(xCoord, yCoord, zCoord, "mob.wither.spawn", 1, 1, false);
+							
+							EntityLightningBolt bolt = new EntityLightningBolt(worldObj, missile.posX, missile.posY, missile.posZ);
+							
+							worldObj.spawnEntityInWorld(bolt);
+							
+							break;
+						}		
+					}
+				}				
+			}
+		} else {
+			progress = 0;
+		}
+	}
+	
+	//----------------------------------------------------------------------------------------------------------
+	
+	@Override
+	public int[] getAccessibleSlotsFromSide(int side) {
+		return new int[0];
 	}
 
 	@Override
-	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
+	public boolean canInsertItem(int slot, ItemStack stack, int side) {
 		return false;
 	}
 
 	@Override
-	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
+	public boolean canExtractItem(int slot, ItemStack stack, int side) {
 		return false;
 	}
 
@@ -32,7 +76,7 @@ public class TileEntityEMPTower extends TileEntityBase {
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
+	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return false;
 	}
 

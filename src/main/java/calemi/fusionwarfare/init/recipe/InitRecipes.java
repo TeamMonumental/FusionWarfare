@@ -135,6 +135,11 @@ public class InitRecipes {
 			"III", "CEC", "III", 'I', InitItems.infused_steel_ingot, 'C', InitItems.advanced_chip, 'E', Items.ender_pearl
 		});
 		
+		//EMP
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.emp_tower), new Object[] {
+			"SLS", "SCS", "SCS", 'S', InitItems.steel_plate, 'C', InitItems.hyper_chip, 'L', InitItems.lightning_rod
+		});
+		
 		//#-#-#-#-#-ITEMS-#-#-#-#-#\\
 		
 		//#-#-#-#-#-INGREDIENTS-#-#-#-#-#\\
