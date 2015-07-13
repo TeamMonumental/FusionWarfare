@@ -10,6 +10,7 @@ An independent futuristic warfare mod that adds missiles, guns and advanced mach
 * [X] Secure Door
 * Missile Silo
 * Armor Missile
+* EMP Tower
 
 #Developers
 
