@@ -13,8 +13,11 @@ import net.minecraft.world.World;
 
 public class ItemBattery extends ItemEnergyBase {
 
-	public ItemBattery() {
-		super("battery");
+	int energy;
+	
+	public ItemBattery(String type, int energy) {
+		super(type + "_battery");
+		this.energy = energy;
 		setMaxDamage(getMaxEnergy());
 		setMaxStackSize(1);
 	}
@@ -83,6 +86,6 @@ public class ItemBattery extends ItemEnergyBase {
 	
 	@Override
 	public int getMaxEnergy() {
-		return 5000;
+		return energy;
 	}
 }

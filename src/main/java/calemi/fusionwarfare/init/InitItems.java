@@ -59,7 +59,9 @@ public class InitItems {
 	
 	//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 	
-	public static Item battery;
+	public static Item basic_battery;
+	public static Item advanced_battery;
+	public static Item hyper_battery;
 	public static Item creative_battery;
 	
 	//#-#-#-#-#-GUNS-#-#-#-#-#\\
@@ -147,7 +149,10 @@ public class InitItems {
 		
 		//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 			
-		battery = new ItemBattery();
+		basic_battery = new ItemBattery("basic", 5000);
+		advanced_battery = new ItemBattery("advanced", 10000);
+		hyper_battery = new ItemBattery("hyper", 20000);
+		
 		creative_battery = new ItemCreativeBattery();	
 		
 		//#-#-#-#-#-GUNS-#-#-#-#-#\\

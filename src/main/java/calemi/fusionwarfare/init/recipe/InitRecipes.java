@@ -186,7 +186,7 @@ public class InitRecipes {
 			
 		//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitItems.battery), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.basic_battery), new Object[] {
 			"SIS", "SIS", "SIS", 'S', InitItems.steel_ingot, 'I', InitItems.infused_steel_ingot
 		});
 		
