@@ -4,12 +4,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.util.ToolSet;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class InitRecipes {
+	
+	 public static final int WILDCARD_VALUE = Integer.MAX_VALUE;
 	
 	public static void init() {
 
@@ -189,6 +192,9 @@ public class InitRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.basic_battery), new Object[] {
 			"SIS", "SIS", "SIS", 'S', InitItems.steel_ingot, 'I', InitItems.infused_steel_ingot
 		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.advanced_battery), new Object[]{new ItemStack(InitItems.basic_battery, 1, WILDCARD_VALUE), InitItems.basic_chip});
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.hyper_battery), new Object[]{new ItemStack(InitItems.advanced_battery, 1, WILDCARD_VALUE), InitItems.advanced_chip});
 		
 		//#-#-#-#-#-GUNS-#-#-#-#-#\\		
 		
