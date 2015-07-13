@@ -165,8 +165,8 @@ public class InitBlocks {
 		anti_mob_beacon = new BlockBasicMachineBase("anti_mob_beacon", TileEntityAntiMobBeacon.class, FusionWarfare.guiIDAntiMobBeacon, false, "anti_mob_beacon_side", false);	
 		player_healing_beacon = new BlockBasicMachineBase("player_healing_beacon", TileEntityPlayerHealingBeacon.class, FusionWarfare.guiIDPlayerHealingBeacon, false, "player_healing_beacon_side", false);	
 		
-		energy_transmitter = new BlockBasicMachineBase("energy_transmitter",TileEntityEnergyTransmitter.class, FusionWarfare.guiIDEnergyTransmitter, false, "energy_transmitter_side", false);	
-		energy_receiver = new BlockBasicMachineBase("energy_receiver", TileEntityEnergyReceiver.class, FusionWarfare.guiIDEnergyReceiver, false, "energy_receiver_side", false);		
+		energy_transmitter = new BlockBasicMachineBase("energy_transmitter",TileEntityEnergyTransmitter.class, FusionWarfare.guiIDEnergyTransmitter, false, "energy_transmitter_side", true);	
+		energy_receiver = new BlockBasicMachineBase("energy_receiver", TileEntityEnergyReceiver.class, FusionWarfare.guiIDEnergyReceiver, false, "energy_receiver_side", true);		
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		

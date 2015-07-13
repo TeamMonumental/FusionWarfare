@@ -10,7 +10,9 @@ import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerEnergyTransmitter;
 import calemi.fusionwarfare.inventory.ContainerNetworkController;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.TileEntityEnergyReceiver;
 import calemi.fusionwarfare.tileentity.TileEntityEnergyTransmitter;
+import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 
 public class GuiEnergyTransmitter extends GuiContainerBase {
@@ -37,21 +39,24 @@ public class GuiEnergyTransmitter extends GuiContainerBase {
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
 		
-		TileEntityEnergyTransmitter tileEntityEnergyTransmitter = (TileEntityEnergyTransmitter) tileEntity;
+		TileEntityEnergyTransmitter tileEntityTransmitter = (TileEntityEnergyTransmitter) tileEntity;
+		TileEntityEnergyReceiver tileEntityReciever = (TileEntityEnergyReceiver) player.worldObj.getTileEntity(tileEntityTransmitter.targetX, tileEntityTransmitter.targetY, tileEntityTransmitter.targetZ);
 		
-		drawRightInfoTextBar("Target X: " + tileEntityEnergyTransmitter.targetX, 0);
-		drawRightInfoTextBar("Target Y: " + tileEntityEnergyTransmitter.targetY, 1);
-		drawRightInfoTextBar("Target Z: " + tileEntityEnergyTransmitter.targetZ, 2);
+		if (((TileEntitySecurity)tileEntity).getTeam() != null) drawLeftInfoTextBar(((TileEntitySecurity)tileEntity).teamName, 0);
 		
-		if (tileEntityEnergyTransmitter.target == null) {
-			drawRightInfoTextBar(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "Receiver Not Found!", 3);
-		}
-		
-		else {
-			drawRightInfoTextBar("Receiver Found", 3);
-		}
+		drawRightInfoTextBar("Target X: " + tileEntityTransmitter.targetX, 0);
+		drawRightInfoTextBar("Target Y: " + tileEntityTransmitter.targetY, 1);
+		drawRightInfoTextBar("Target Z: " + tileEntityTransmitter.targetZ, 2);
 		
 		drawLargeFuelBar(63, 80);
+		
+		if (tileEntityReciever == null || tileEntityTransmitter.target == null || !tileEntityTransmitter.compare(tileEntityReciever)) {
+			drawRightInfoTextBar(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "Receiver Not Found!", 3);
+		}
+				
+		else {
+			drawRightInfoTextBar("Receiver Found", 3);
+		}	
 	}
 
 	@Override	

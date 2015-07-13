@@ -2,18 +2,36 @@ package calemi.fusionwarfare.tileentity;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 
-public class TileEntityEnergyReceiver extends TileEntityBase {
+public class TileEntityEnergyReceiver extends TileEntitySecurity {
 
 	public TileEntityEnergyReceiver() {
 		maxEnergy = 5000;
 	}
-
+		
 	@Override
 	public EnumIO getIOType() {
 		return EnumIO.OUTPUT;
 	}
 
+	@Override
+	public Packet getDescriptionPacket() {
+		NBTTagCompound syncData = new NBTTagCompound();
+
+		writeToNBT(syncData);
+
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+		readFromNBT(pkt.func_148857_g());
+	}
+	
 	@Override
 	public int getSizeInventory() {
 		return 0;

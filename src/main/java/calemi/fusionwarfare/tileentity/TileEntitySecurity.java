@@ -27,6 +27,22 @@ public abstract class TileEntitySecurity extends TileEntityBase {
 		return true;
 	}
 	
+	public boolean compare(TileEntitySecurity tileEntity) {
+		
+		if (getTeam() == null && tileEntity.getTeam() == null) {
+			return true;
+		}
+		
+		if (getTeam() != null && tileEntity.getTeam() != null) {
+			
+			if (getTeam().isSameTeam(tileEntity.getTeam())) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	public Team getTeam() {
 		return worldObj.getScoreboard().getTeam(teamName);
 	}

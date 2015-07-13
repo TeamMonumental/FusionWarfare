@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 
 public class GuiEnergyTank extends GuiContainerBase {
 
@@ -36,6 +37,8 @@ public class GuiEnergyTank extends GuiContainerBase {
 
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
+		
+		if (tileEntity instanceof TileEntitySecurity && ((TileEntitySecurity)tileEntity).getTeam() != null) drawLeftInfoTextBar(((TileEntitySecurity)tileEntity).teamName, 0);
 		
 		drawLargeFuelBar(63, 80);	
 		

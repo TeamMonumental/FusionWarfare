@@ -8,7 +8,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 
-public class TileEntityEnergyTransmitter extends TileEntityBase {
+public class TileEntityEnergyTransmitter extends TileEntitySecurity {
 
 	public int targetX;
 	public int targetY;
@@ -30,16 +30,18 @@ public class TileEntityEnergyTransmitter extends TileEntityBase {
 			TileEntityEnergyReceiver tileEntity = (TileEntityEnergyReceiver) worldObj.getTileEntity(targetX, targetY, targetZ);
 
 			target = tileEntity;
-
+					
 			if (!worldObj.isRemote) {
-				EnergyUtil.transferEnergy(this, tileEntity, transferRate);
+				
+				if (compare(tileEntity)) {
+					EnergyUtil.transferEnergy(this, tileEntity, transferRate);
+				}
 			}
 		}
 
 		else {
 			target = null;
 		}
-
 	}
 
 	public void update() {

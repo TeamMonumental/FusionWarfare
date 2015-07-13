@@ -18,7 +18,7 @@ public class ItemRenderVelocityMissile implements IItemRenderer {
 
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-		return type == ItemRenderType.INVENTORY || type == ItemRenderType.ENTITY;
+		return type == ItemRenderType.INVENTORY;
 	}
 
 	@Override
