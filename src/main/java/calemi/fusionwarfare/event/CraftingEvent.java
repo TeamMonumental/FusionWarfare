@@ -3,7 +3,7 @@ package calemi.fusionwarfare.event;
 import java.util.List;
 
 import sun.net.www.content.text.plain;
-import calemi.fusionwarfare.item.ItemTeamCard;
+import calemi.fusionwarfare.item.ItemBattery;
 import calemi.fusionwarfare.util.ToolSet;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
@@ -16,39 +16,19 @@ public class CraftingEvent {
 
 	@SubscribeEvent
 	public void onCrafted(ItemCraftedEvent event) {
-		
-		if (event.crafting.getItem() instanceof ItemTeamCard) {			
 			
-			ItemStack tempCard = doesContainCard(event.craftMatrix);
+		for (int i = 0; i < 8; i++) {		
 			
-			if (tempCard != null) {
-				
-				ItemTeamCard item = (ItemTeamCard)tempCard.getItem();
-				
-				List<String> list =	item.getNames(tempCard);
-				
-				item.setNames(event.crafting, list);
-				EntityItem entity = new EntityItem(event.player.worldObj, event.player.posX, event.player.posY, event.player.posZ, tempCard);
-				
-				if (!event.player.worldObj.isRemote) {
-					event.player.worldObj.spawnEntityInWorld(entity);
-					if (!(event.player instanceof FakePlayer)) entity.onCollideWithPlayer(event.player);	
-				}							
-			}
-		}			
-	}
-	
-	private ItemStack doesContainCard(IInventory inventory) {
-		
-		for (int i = 0; i < inventory.getSizeInventory(); i++) {
+			ItemStack stack = event.craftMatrix.getStackInSlot(i);
 			
-			if (inventory.getStackInSlot(i) != null && inventory.getStackInSlot(i).getItem() instanceof ItemTeamCard) {			
+			if (stack != null && stack.getItem() instanceof ItemBattery) {
 				
-				return inventory.getStackInSlot(i);				
+				int energy = ((ItemBattery)stack.getItem()).getNBT(stack).getInteger("energy");
+				
+				if (event.crafting != null) {			
+					((ItemBattery)event.crafting.getItem()).getNBT(event.crafting).setInteger("energy", energy);
+				}
 			}
 		}
-		
-		return null;
 	}
-
 }

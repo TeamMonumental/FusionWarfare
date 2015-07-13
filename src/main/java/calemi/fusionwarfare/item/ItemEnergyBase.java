@@ -24,7 +24,6 @@ public abstract class ItemEnergyBase extends ItemBase implements IEnergyItem {
 
 	@Override
 	public int getEnergy(ItemStack stack) {
-		stack.setItemDamage(getMaxEnergy() - getNBT(stack).getInteger("energy"));
 		return getNBT(stack).getInteger("energy");
 	}
 
