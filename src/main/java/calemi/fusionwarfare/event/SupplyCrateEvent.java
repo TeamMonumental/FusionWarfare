@@ -40,9 +40,10 @@ public class SupplyCrateEvent {
 				if (randomInt < 10) meta = 2;
 				else if (randomInt < 40) meta = 1;
 				else meta = 0;
-
-				if (!event.world.isRemote) {
-					EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(meta, event.world, randX, randZ);
+				
+				EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(meta, event.world, randX, randZ);
+				
+				if (!event.world.isRemote) {					
 					event.world.playBroadcastSound(1013, (int) entityCrate.posX, (int) entityCrate.posY, (int) entityCrate.posZ, 0);
 					event.world.spawnEntityInWorld(entityCrate);
 				}

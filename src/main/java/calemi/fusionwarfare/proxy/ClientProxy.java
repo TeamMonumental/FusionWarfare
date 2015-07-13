@@ -7,6 +7,7 @@ import calemi.fusionwarfare.entity.EntityFusionBullet;
 import calemi.fusionwarfare.entity.EntityMissile;
 import calemi.fusionwarfare.event.FOVEvent;
 import calemi.fusionwarfare.event.FusionGunRenderEvent;
+import calemi.fusionwarfare.event.TooltipEvent;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.key.KeyBindings;
@@ -58,6 +59,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerKeyBinding(KeyBindings.recipeButton);
 		ClientRegistry.registerKeyBinding(KeyBindings.teamGuiButton);
 		
+		MinecraftForge.EVENT_BUS.register(new TooltipEvent());
 		MinecraftForge.EVENT_BUS.register(new FusionGunRenderEvent());
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
 		MinecraftForge.EVENT_BUS.register(new FOVEvent());

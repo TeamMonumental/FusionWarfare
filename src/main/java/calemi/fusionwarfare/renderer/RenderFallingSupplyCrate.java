@@ -31,19 +31,19 @@ public class RenderFallingSupplyCrate extends Render {
 	@Override
 	public void doRender(Entity entity, double x, double y, double z, float f1, float f2) {
 		
-		EntityFallingSupplyCrate entityCrate = (EntityFallingSupplyCrate) entity;
-				
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.50F, (float)z + 0.5F);
 		GL11.glRotatef(180, 1, 0, 0);
 		
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/models/falling_supply_crate_" + BlockSupplyCrate.textureNames[entityCrate.meta] + ".png"));
+		Minecraft.getMinecraft().renderEngine.bindTexture(getEntityTexture(entity));
 		model.render(null, 0, 0, 0, 0, 0, 0.0625F);		
 		GL11.glPopMatrix();
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
-		return null;
+		EntityFallingSupplyCrate entityCrate = (EntityFallingSupplyCrate) entity;
+		
+		return new ResourceLocation(Reference.MOD_ID + ":textures/models/falling_supply_crate_" + BlockSupplyCrate.textureNames[entityCrate.meta] + ".png");
 	}
 }

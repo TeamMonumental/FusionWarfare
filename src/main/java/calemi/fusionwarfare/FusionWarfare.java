@@ -91,7 +91,6 @@ public class FusionWarfare {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {	
 		
-		MinecraftForge.EVENT_BUS.register(new TooltipEvent());
 		MinecraftForge.EVENT_BUS.register(new EntitySpawnEvent());
 		MinecraftForge.EVENT_BUS.register(new LivingEntityEvent());
 		
