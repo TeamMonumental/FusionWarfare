@@ -28,7 +28,7 @@ public class TileEntityWindTurbine extends TileEntityBase {
 			if (worldObj.getTotalWorldTime() % 40L == 0L) {
 
 				if (!worldObj.isRemote)
-					EnergyUtil.addEnergy(this, 25);
+					EnergyUtil.addEnergy(this, 30);
 
 				if (worldObj.getBiomeGenForCoords(xCoord, zCoord) instanceof BiomeGenOcean) {
 					speed = 8F;

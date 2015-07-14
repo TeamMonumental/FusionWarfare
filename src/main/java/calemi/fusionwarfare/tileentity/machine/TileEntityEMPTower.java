@@ -8,11 +8,11 @@ import net.minecraft.item.ItemStack;
 
 public class TileEntityEMPTower extends TileEntityBase {
 
-	private int energyCost = 50000;
+	private int energyCost = 25000;
 	
 	public TileEntityEMPTower() {
 		maxEnergy = 50000;
-		maxProgress = 200;
+		maxProgress = 100;
 	}
 	
 	@Override

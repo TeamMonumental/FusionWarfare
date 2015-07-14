@@ -7,6 +7,6 @@ import net.minecraft.client.settings.KeyBinding;
 
 public class KeyBindings {
 
-	public static KeyBinding recipeButton = new KeyBinding(Reference.KEY_RECIPE_NAME, Keyboard.KEY_F, Reference.KEY_CATAGORY);
+	public static KeyBinding recipeButton = new KeyBinding(Reference.KEY_RECIPE_NAME, Keyboard.KEY_MINUS, Reference.KEY_CATAGORY);
 	public static KeyBinding teamGuiButton = new KeyBinding(Reference.KEY_TEAM_GUI, Keyboard.KEY_G, Reference.KEY_CATAGORY);	
 }
