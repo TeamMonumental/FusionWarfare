@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 public class TileEntityGeothermalGenerator extends TileEntityBase {
 
 	public TileEntityGeothermalGenerator() {
-		maxEnergy = 750;
+		maxEnergy = 500;
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class TileEntityGeothermalGenerator extends TileEntityBase {
 				Location location = new Location(worldObj, x, yCoord, z);
 
 				if (location.getBlock() == Blocks.lava && location.getBlockMetadata() == 0 ) {
-					EnergyUtil.addEnergy(this, 5);
+					EnergyUtil.addEnergy(this, 3);
 				}
 			}
 		}

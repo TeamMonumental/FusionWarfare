@@ -36,7 +36,7 @@ public class TileEntityReactorCore extends TileEntityBase {
 				
 				isAssembled = isCorrectStructure();
 
-				if (isAssembled) {
+				if (isAssembled && hasEnoughWater()) {
 
 					for (Location l : ShapeUtil.getCube(worldObj, xCoord, yCoord, zCoord, 1, 1, 1)) {
 
@@ -48,9 +48,9 @@ public class TileEntityReactorCore extends TileEntityBase {
 
 				for (Location l : ShapeUtil.getCube(worldObj, xCoord, yCoord, zCoord, r, r, r)) {
 
-					if (l.getTileEntity() instanceof TileEntityReactorCasing) {
+					if (l.getTileEntity() instanceof TileEntitySteelCasing) {
 
-						TileEntityReactorCasing tileEntity = (TileEntityReactorCasing) l.getTileEntity();
+						TileEntitySteelCasing tileEntity = (TileEntitySteelCasing) l.getTileEntity();
 
 						if (isAssembled) {
 							tileEntity.x = xCoord;
@@ -120,14 +120,14 @@ public class TileEntityReactorCore extends TileEntityBase {
 
 			if (l.y == top || l.y == bottom) {
 
-				if (l.getBlock() != InitBlocks.reactor_casing) {
+				if (l.getBlock() != InitBlocks.steel_casing) {
 					return false;
 				}
 			}
 
 			else if ((l.x == minX || l.x == maxX) && (l.z == minZ || l.z == maxZ)) {
 
-				if (l.getBlock() != InitBlocks.reactor_casing) {
+				if (l.getBlock() != InitBlocks.steel_casing) {
 					return false;
 				}
 			}

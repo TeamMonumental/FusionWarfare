@@ -11,7 +11,7 @@ import calemi.fusionwarfare.tileentity.gen.TileEntitySolarGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityAdvancedHydroReactorCore;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityCapsuleCore;
-import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCasing;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntitySteelCasing;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
@@ -42,7 +42,7 @@ public class InitTileEntities {
 		GameRegistry.registerTileEntity(TileEntityWindTurbine.class, Reference.MOD_ID + ":tileEntityWindTurbine");
 		
 		GameRegistry.registerTileEntity(TileEntityReactorCore.class, Reference.MOD_ID + ":tileEntityReactorCore");
-		GameRegistry.registerTileEntity(TileEntityReactorCasing.class, Reference.MOD_ID + ":tileEntityReactorCasing");
+		GameRegistry.registerTileEntity(TileEntitySteelCasing.class, Reference.MOD_ID + ":tileEntityReactorCasing");
 		
 		GameRegistry.registerTileEntity(TileEntityAdvancedHydroReactorCore.class, Reference.MOD_ID + ":tileEntityAdvancedHydroReactorCore");		
 		GameRegistry.registerTileEntity(TileEntityCapsuleCore.class, Reference.MOD_ID + ":tileEntityCapsuleCore");		

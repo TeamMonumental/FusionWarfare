@@ -81,9 +81,9 @@ public class TileEntityAdvancedHydroReactorCore extends TileEntityBase {
 				
 				if (i < (dis - 1)) {
 					
-					if (!temp.compareBlocks(InitBlocks.reactor_casing)) {
+					if (!temp.compareBlocks(InitBlocks.steel_casing)) {
 						break;
-					}				
+					}
 				}	
 				
 				else {
@@ -100,26 +100,6 @@ public class TileEntityAdvancedHydroReactorCore extends TileEntityBase {
 				}
 			}
 		}
-//		
-//		Location c1 = getCurrentLocation().add(ForgeDirection.NORTH, dis);
-//		Location c2 = getCurrentLocation().add(ForgeDirection.EAST, dis);
-//		Location c3 = getCurrentLocation().add(ForgeDirection.SOUTH, dis);
-//		Location c4 = getCurrentLocation().add(ForgeDirection.WEST, dis);
-//
-//		Location[] capsules = { c1, c2, c3, c4 };
-//
-//		for (Location loc : capsules) {
-//
-//			if (loc.getTileEntity() instanceof TileEntityCapsuleCore) {
-//
-//				TileEntityCapsuleCore tileEntity = (TileEntityCapsuleCore) loc.getTileEntity();
-//
-//				if (tileEntity.isAssembled) {
-//
-//					this.capsules++;
-//				}
-//			}
-//		}
 	}
 
 	@Override

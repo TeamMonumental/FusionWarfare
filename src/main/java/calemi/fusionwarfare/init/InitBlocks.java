@@ -8,7 +8,7 @@ import calemi.fusionwarfare.block.BlockNetworkCable;
 import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.block.BlockNetworkGate;
 import calemi.fusionwarfare.block.BlockOreBase;
-import calemi.fusionwarfare.block.BlockReactorCasing;
+import calemi.fusionwarfare.block.BlockSteelCasing;
 import calemi.fusionwarfare.block.BlockReactorCoolingUnit;
 import calemi.fusionwarfare.block.BlockReinforceable;
 import calemi.fusionwarfare.block.BlockReinforcedDoor;
@@ -54,6 +54,8 @@ public class InitBlocks {
 	public static Block blue_brick;
 	public static Block red_brick;
 	
+	public static Block steel_casing;
+	
 	public static Block reinforced_door;
 	
 	//#-#-#-#-#-NETWORK-#-#-#-#-#\\
@@ -74,7 +76,6 @@ public class InitBlocks {
 	//#-#-#-#-#-REACTORS-#-#-#-#-#\\
 	
 	public static Block reactor_core;
-	public static Block reactor_casing;
 	public static Block reactor_cooling_unit;
 	
 	public static Block advanced_hydro_reactor_core;
@@ -100,7 +101,7 @@ public class InitBlocks {
 	public static Block energy_receiver;
 		
 	//#-#-#-#-#-MISC-#-#-#-#-#\\
-	
+		
 	public static Block charged_plant;
 	public static Block supply_crate;
 	
@@ -122,6 +123,8 @@ public class InitBlocks {
 		blue_brick = new BlockReinforceable("blue_brick", 5, true);
 		red_brick = new BlockReinforceable("red_brick", 5, true);
 		
+		steel_casing = new BlockSteelCasing();
+		
 		reinforced_door = new BlockReinforcedDoor();
 		
 		//#-#-#-#-#-NETWORK-#-#-#-#-#\\
@@ -142,7 +145,6 @@ public class InitBlocks {
 		//#-#-#-#-#-REACTORS-#-#-#-#-#\\
 		
 		reactor_core = new BlockBasicMachineBase("reactor_core", TileEntityReactorCore.class, FusionWarfare.guiIDReactorCore, false, "reactor_core_side", false);
-		reactor_casing = new BlockReactorCasing();
 		reactor_cooling_unit = new BlockReactorCoolingUnit();
 		
 		advanced_hydro_reactor_core = new BlockBasicMachineBase("advanced_hydro_reactor_core", TileEntityAdvancedHydroReactorCore.class, FusionWarfare.guiIDAdvancedHydroReactorCore, false, true, "advanced_hydro_reactor_core_top", "mech_blank", "advanced_hydro_reactor_core_side", false);

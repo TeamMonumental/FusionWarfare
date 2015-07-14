@@ -53,7 +53,7 @@ public class TileEntityCapsuleCore extends TileEntityBase {
 			return false;
 		}
 		
-		if (!bottom.compareBlocks(InitBlocks.reactor_casing)) {
+		if (!bottom.compareBlocks(InitBlocks.steel_casing)) {
 			return false;
 		}
 		
@@ -71,7 +71,7 @@ public class TileEntityCapsuleCore extends TileEntityBase {
 				
 				if (i == 0 || i == 4) {
 					
-					if (!side.compareBlocks(InitBlocks.reactor_casing)) {					
+					if (!side.compareBlocks(InitBlocks.steel_casing)) {					
 						return false;
 					}
 				}
@@ -85,7 +85,7 @@ public class TileEntityCapsuleCore extends TileEntityBase {
 				
 				if (i == 2) {
 					
-					if (!side.compareBlocks(InitBlocks.reactor_casing, InitBlocks.reinforced_glass)) {					
+					if (!side.compareBlocks(InitBlocks.steel_casing, InitBlocks.reinforced_glass)) {					
 						return false;
 					}					
 				}
@@ -109,7 +109,7 @@ public class TileEntityCapsuleCore extends TileEntityBase {
 	
 	private boolean hasEnoughWater() {
 
-		for (int y = yCoord + 4; y < (yCoord + 4) + 15; y++) {
+		for (int y = yCoord + 4; y < (yCoord + 4) + 20; y++) {
 
 			Location loc = new Location(worldObj, xCoord, y, zCoord);
 

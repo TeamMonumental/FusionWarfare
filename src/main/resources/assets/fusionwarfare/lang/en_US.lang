@@ -141,6 +141,8 @@ tile.black_brick.name=Black Brick
 tile.blue_brick.name=Blue Brick
 tile.red_brick.name=Red Brick
 
+tile.steel_casing.name=Steel Casing
+
 #-#-#-#-#-NETWORK-#-#-#-#-#
 
 tile.network_controller_1.name=Basic Network Controller
@@ -159,7 +161,6 @@ tile.wind_turbine.name=Wind Turbine
 #-#-#-#-#-REACTOR-#-#-#-#-#
 
 tile.reactor_core.name=Reactor Core
-tile.reactor_casing.name=Reactor Casing
 tile.reactor_cooling_unit.name=Reactor Cooling Unit
 
 tile.advanced_hydro_reactor_core.name= Advanced Hydro Reactor Core
