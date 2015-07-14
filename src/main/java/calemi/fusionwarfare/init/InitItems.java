@@ -166,7 +166,7 @@ public class InitItems {
 		fusion_shotgun = new ItemFusionGun("fusion_shotgun", 30, 6, 25, 10, 0.1F, false);
 		fusion_smg = new ItemFusionGun("fusion_smg", 0, 1, 10, 2, 0.04F, false);
 		fusion_sniper_rifle = new ItemFusionGun("fusion_sniper_rifle", 100, 1, 80, 0, 0.002F, true);	
-		fusion_gatling_gun = new ItemFusionGatlingGun("fusion_gatling_gun", 1, 2, 2, 0.04F);
+		fusion_gatling_gun = new ItemFusionGatlingGun("fusion_gatling_gun", 1, 10, 1, 0.08F);
 		
 		//#-#-#-#-#-MISSILES-#-#-#-#-#\\
 		
