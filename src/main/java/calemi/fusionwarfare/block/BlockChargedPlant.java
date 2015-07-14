@@ -21,13 +21,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockChargedPlant extends BlockBase {
 
-	private static final String[] textureNames = new String[] { "tallgrass", "fern", "deadbush" };
+	private static final String[] textureNames = new String[] { "growing_grass", "tallgrass", "fern", "growing_deadbush", "deadbush" };
 	
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
@@ -36,9 +37,29 @@ public class BlockChargedPlant extends BlockBase {
 	
 	public BlockChargedPlant() {
 		super("charged_plant", 0, Material.vine, 0, 0, Block.soundTypeGrass, false);
+		
 		float f = 0.4F;
-		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
+		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
+		
+		setTickRandomly(true);
 		GameRegistry.registerBlock(this, ItemBlockMeta.class, imagePath);
+	}
+	
+	@Override
+	public void updateTick(World w, int x, int y, int z, Random r) {
+		
+		if (!w.isRemote) {
+			
+			System.out.println("tick");
+			
+			if (w.getBlockMetadata(x, y, z) == 3) {		
+				w.setBlockMetadataWithNotify(x, y, z, 4, 2);
+			}	
+			
+			if (w.getBlockMetadata(x, y, z) == 0) {		
+				w.setBlockMetadataWithNotify(x, y, z, MathHelper.getRandomIntegerInRange(r, 1, 2), 2);
+			}	
+		}
 	}
 	
 	@Override
@@ -46,19 +67,18 @@ public class BlockChargedPlant extends BlockBase {
 		
 		if (!world.isRemote) {
 			
-			if (entity instanceof EntityPlayer) {		
+			if (world.getBlockMetadata(x, y, z) != 0 && world.getBlockMetadata(x, y, z) != 3 && entity instanceof EntityPlayer) {		
 			
 				world.createExplosion(null, x, y, z, 10, false);
 				world.setBlockToAir(x, y, z);				
 			}
-		}	
+		}
 	}
 	
 	@SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z)
-    {
+    public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z) {
         int meta = blockAccess.getBlockMetadata(x, y, z);
-        return meta == 0 || meta == 1 ? blockAccess.getBiomeGenForCoords(x, z).getBiomeGrassColor(x, y, z) : 16777215;
+        return meta == 0 || meta == 1 || meta == 2 ? blockAccess.getBiomeGenForCoords(x, z).getBiomeGrassColor(x, y, z) : 16777215;
     }
 	
 	@Override
@@ -106,7 +126,7 @@ public class BlockChargedPlant extends BlockBase {
 		this.icons = new IIcon[textureNames.length];
 
 		for (int i = 0; i < this.icons.length; ++i) {
-			this.icons[i] = iconReg.registerIcon(textureNames[i]);
+			this.icons[i] = iconReg.registerIcon((i == 0 || i == 3 ? (Reference.MOD_ID + ":") : "") + textureNames[i]);
 		}
 	}
 }

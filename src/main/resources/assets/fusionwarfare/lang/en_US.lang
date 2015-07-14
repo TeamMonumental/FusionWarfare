@@ -92,6 +92,7 @@ item.infused_steel_red_axe.name=Red Infused Steel Axe
 
 item.fusion_matter_deconstructor.name=Fusion Matter Deconstructor
 
+item.wrench.name=Wrench
 item.debugger.name=Debugger
 item.location_linker.name=Location Linker
 item.sprayer.name=Sprayer

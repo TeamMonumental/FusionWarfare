@@ -9,9 +9,9 @@ public class ContainerMiningUnit extends ContainerBase {
 	public ContainerMiningUnit(EntityPlayer player, TileEntityBase tileentity) {
 		super(player, tileentity);
 		
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 7; j++) {
-				this.addSlotToContainer(new Slot(tileentity, j + i * 7, 26 + (j * 18), 19 + (i * 18)));
+		for (int y = 0; y < 4; y++) {
+			for (int x = 0; x < 8; x++) {
+				this.addSlotToContainer(new Slot(tileentity, x + (y * 8), 26 + (x * 18), 19 + (y * 18)));
 			}
 		}
 		

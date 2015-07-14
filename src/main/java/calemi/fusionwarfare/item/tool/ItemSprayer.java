@@ -31,8 +31,8 @@ public class ItemSprayer extends ItemBase {
 		
 		for (Location loc : ShapeUtil.getSphere(world, x, y, z, 4)) {		
 			
-			if (rand.nextInt(2) == 0) {
-				
+			if (rand.nextInt(3) == 0) {
+					
 				if (player.inventory.hasItem(InitItems.charged_seeds)) {
 					
 					if (ItemChargedSeeds.checkAndPlaceSeed(itemStack, world, loc.x, loc.y + 1, loc.z)) {
@@ -40,8 +40,8 @@ public class ItemSprayer extends ItemBase {
 					}
 				}
 			}
-		}
+		}	
 		
-		return false;
+		return true;
 	}
 }

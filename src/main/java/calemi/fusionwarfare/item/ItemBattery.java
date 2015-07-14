@@ -46,11 +46,11 @@ public class ItemBattery extends ItemEnergyBase {
 				return 0x110093FF;
 			}
 			
-			if (is.getItem() == InitItems.hyper_battery) {
+			if (is.getItem() == InitItems.advanced_battery) {
 				return 0x11FA9600;
 			}	
 			
-			if (is.getItem() == InitItems.advanced_battery) {
+			if (is.getItem() == InitItems.hyper_battery) {
 				return 0x11FA2A00;
 			}
 		}

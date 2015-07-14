@@ -71,9 +71,9 @@ public class ItemChargedSeeds extends ItemBase {
 			if (world.getBlock(x, y - 1, z) == Blocks.grass) {
 
 				if (!world.isRemote) {
-					world.setBlock(x, y, z, InitBlocks.charged_plant);
-					world.setBlockMetadataWithNotify(x, y, z, MathHelper.getRandomIntegerInRange(rand, 0, 3), 2);
-				}
+					world.setBlock(x, y, z, InitBlocks.charged_plant);	
+					world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+				}				
 				
 				--itemStack.stackSize;
 				return true;
@@ -83,7 +83,7 @@ public class ItemChargedSeeds extends ItemBase {
 
 				if (!world.isRemote) {
 					world.setBlock(x, y, z, InitBlocks.charged_plant);
-					world.setBlockMetadataWithNotify(x, y, z, 4, 2);
+					world.setBlockMetadataWithNotify(x, y, z, 3, 2);
 				}	
 				
 				--itemStack.stackSize;

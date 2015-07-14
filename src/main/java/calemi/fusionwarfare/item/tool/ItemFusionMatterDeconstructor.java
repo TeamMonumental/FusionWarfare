@@ -70,7 +70,7 @@ public class ItemFusionMatterDeconstructor extends ItemTool implements IEnergyIt
 
 		if ((double) block.getBlockHardness(world, x, y, z) != 0.0D) {
 			
-			is.damageItem(10, entity);
+			subtractEnergy(is, 10);
 		}
 
 		return true;
@@ -82,7 +82,7 @@ public class ItemFusionMatterDeconstructor extends ItemTool implements IEnergyIt
 	}
 	
 	public boolean hitEntity(ItemStack is, EntityLivingBase hitEntity, EntityLivingBase entity) {
-		is.damageItem(10, entity);
+		subtractEnergy(is, 10);
 		return false;
 	}
 	

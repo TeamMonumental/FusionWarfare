@@ -164,6 +164,10 @@ public class GuiHandler implements IGuiHandler {
 			return new GuiTwoInputs(player, (TileEntityTwoInputs) tileentity, ((TileEntityTwoInputs)tileentity).recipeType);
 		}
 
+		if (ID == FusionWarfare.guiIDMiningUnit) {
+			return new GuiMiningUnit(player, (TileEntityMiningUnit) tileentity);
+		}
+		
 		if (ID == FusionWarfare.guiIDGeothermalGenerator) {
 			return new GuiEnergyTank(player, (TileEntityGeothermalGenerator) tileentity, "Thermal Generator", false);
 		}

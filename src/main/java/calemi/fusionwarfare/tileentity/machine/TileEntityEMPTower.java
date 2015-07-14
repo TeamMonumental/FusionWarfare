@@ -31,13 +31,11 @@ public class TileEntityEMPTower extends TileEntityBase {
 						
 						EntityMissile missile = (EntityMissile) entity;
 						
-						if (missile.motionY < 0 && missile.getDistanceSq(xCoord, yCoord + 16, zCoord) <= 16) {
+						if (missile.motionY < 0 && missile.getDistance(xCoord, yCoord + 8, zCoord) <= 16) {
 							
 							progress = 0;
 							energy -= energyCost;
 							missile.setDead();
-							
-							//worldObj.playSound(xCoord, yCoord, zCoord, "mob.wither.spawn", 1, 1, false);
 							
 							EntityLightningBolt bolt = new EntityLightningBolt(worldObj, missile.posX, missile.posY, missile.posZ);
 							

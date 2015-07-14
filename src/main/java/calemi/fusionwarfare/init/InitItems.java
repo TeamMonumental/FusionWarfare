@@ -16,6 +16,7 @@ import calemi.fusionwarfare.item.tool.ItemDebugger;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
 import calemi.fusionwarfare.item.tool.ItemLocationLinker;
 import calemi.fusionwarfare.item.tool.ItemSprayer;
+import calemi.fusionwarfare.item.tool.ItemWrench;
 import calemi.fusionwarfare.util.ToolSet;
 import calemi.fusionwarfare.util.missile.MissileTypeRegistry;
 
@@ -99,6 +100,7 @@ public class InitItems {
 	
 	public static Item fusion_matter_deconstructor;
 	
+	public static Item wrench;
 	public static Item debugger;
 	public static Item location_linker;
 	public static Item sprayer;
@@ -191,6 +193,7 @@ public class InitItems {
 		
 		fusion_matter_deconstructor = new ItemFusionMatterDeconstructor();
 		
+		wrench = new ItemWrench();
 		debugger = new ItemDebugger();
 		location_linker = new ItemLocationLinker();
 		sprayer = new ItemSprayer();

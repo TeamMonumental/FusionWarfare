@@ -39,8 +39,8 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 	@SideOnly(Side.CLIENT)
 	private IIcon block_top, block_bottom, block_front, block_side_2, block_side_3, block_side_4;
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, String topImage, String bottomImage, String sideImage1, String sideImage2, String sideImage3, String sideImage4, boolean hasSecurity) {
-		super(imagePath, 2, Material.iron, 3F, 3F, Block.soundTypeMetal);
+	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, boolean isRegistered, String topImage, String bottomImage, String sideImage1, String sideImage2, String sideImage3, String sideImage4, boolean hasSecurity) {
+		super(imagePath, 2, Material.iron, 3F, 3F, Block.soundTypeMetal, isRegistered);
 		this.tileEntity = tileEntity;
 		this.guiID = guiID;
 		this.isDirectional = isDirectional;
@@ -54,24 +54,24 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 		this.sideImage4 = sideImage4;
 	}
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, String topImage, String bottomImage, String sideImage, boolean hasSecurity) {
-		this(imagePath, tileEntity, guiID, isDirectional, topImage, bottomImage, sideImage, sideImage, sideImage, sideImage, hasSecurity);
+	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, boolean isRegistered, String topImage, String bottomImage, String sideImage, boolean hasSecurity) {
+		this(imagePath, tileEntity, guiID, isDirectional, isRegistered, topImage, bottomImage, sideImage, sideImage, sideImage, sideImage, hasSecurity);
 		this.hasCustomModel = false;
 	}
 	
 	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean hasSecurity) {
-		this(imagePath, tileEntity, guiID, false, "", "", "", hasSecurity);
+		this(imagePath, tileEntity, guiID, false, true, "", "", "", hasSecurity);
 		this.hasCustomModel = true;
 		setBlockBounds(xStart * pixel, yStart * pixel, zStart * pixel, xEnd * pixel, yEnd * pixel, zEnd * pixel);
 	}
 	
 	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, String sideImage, boolean hasSecurity) {
-		this(imagePath, tileEntity, guiID, isDirectional, "mech_top_1", "mech_blank", sideImage, hasSecurity);
+		this(imagePath, tileEntity, guiID, isDirectional, true, "mech_top_1", "mech_blank", sideImage, hasSecurity);
 		this.hasCustomModel = false;
 	}
 	
 	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, boolean hasSecurity) {
-		this(imagePath, tileEntity, guiID, isDirectional, "mech_top_1", "mech_blank", "mech_side", hasSecurity);
+		this(imagePath, tileEntity, guiID, isDirectional, true, "mech_top_1", "mech_blank", "mech_side", hasSecurity);
 		this.hasCustomModel = false;
 	}
 	
