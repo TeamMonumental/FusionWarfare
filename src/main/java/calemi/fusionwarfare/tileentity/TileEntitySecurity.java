@@ -62,8 +62,6 @@ public abstract class TileEntitySecurity extends TileEntityBase {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		
-		System.out.println(nbt.getString("team"));
-		
 		if (nbt.hasKey("team")) {
 			teamName = nbt.getString("team");
 		}		

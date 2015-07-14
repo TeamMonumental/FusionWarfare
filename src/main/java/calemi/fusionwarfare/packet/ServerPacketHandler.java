@@ -5,6 +5,7 @@ import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
+import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.util.EnergyUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -78,11 +79,28 @@ public class ServerPacketHandler implements IMessage {
 				}				
 			}
 			
-			if (data[0].equalsIgnoreCase("update")) {
+			if (data[0].equalsIgnoreCase("currentDelay")) {
 				
-				System.out.println("Sent");
-				player.fallDistance = 0;
-				player.setPositionAndUpdate(Double.parseDouble(data[1]), Double.parseDouble(data[2]), Double.parseDouble(data[3]));
+				int x = Integer.parseInt(data[1]);
+				int y = Integer.parseInt(data[2]);
+				int z = Integer.parseInt(data[3]);
+				
+				TileEntityMissileSiloCore tileEntity = (TileEntityMissileSiloCore)player.worldObj.getTileEntity(x, y, z);
+				
+				if (tileEntity.currentDelay >= 5) tileEntity.currentDelay = 0;
+				else tileEntity.currentDelay++;				
+			}
+			
+			if (data[0].equalsIgnoreCase("sprayMode")) {
+				
+				int x = Integer.parseInt(data[1]);
+				int y = Integer.parseInt(data[2]);
+				int z = Integer.parseInt(data[3]);
+				
+				TileEntityMissileSiloCore tileEntity = (TileEntityMissileSiloCore)player.worldObj.getTileEntity(x, y, z);
+				
+				if (tileEntity.sprayMode) tileEntity.sprayMode = false;
+				else tileEntity.sprayMode = true;
 			}
 
 			return null;

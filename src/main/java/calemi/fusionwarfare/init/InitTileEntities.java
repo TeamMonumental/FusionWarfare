@@ -20,6 +20,7 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
 import calemi.fusionwarfare.tileentity.machine.TileEntityFusionMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMiningUnit;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
+import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
@@ -52,6 +53,7 @@ public class InitTileEntities {
 		GameRegistry.registerTileEntity(TileEntityTwoInputs.class, Reference.MOD_ID + ":tileEntityInfusionTable");
 		GameRegistry.registerTileEntity(TileEntityMiningUnit.class, Reference.MOD_ID + ":tileEntityMiningUnit");	
 		GameRegistry.registerTileEntity(TileEntityMissileLauncher.class, Reference.MOD_ID + ":tileEntityMissileLauncher");
+		GameRegistry.registerTileEntity(TileEntityMissileSiloCore.class, Reference.MOD_ID + ":tileEntityMissileSiloCore");
 		GameRegistry.registerTileEntity(TileEntityEXPFabricator.class, Reference.MOD_ID + ":tileEntityEXPFabricator");
 		GameRegistry.registerTileEntity(TileEntityEMPTower.class, Reference.MOD_ID + ":tileEntityEMPTower");
 		

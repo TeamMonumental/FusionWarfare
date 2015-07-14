@@ -16,7 +16,7 @@ public class BlockUtil {
 		
 		if (loc.getBlock() instanceof BlockReinforceable) {
 			
-			if ((loc.getBlockMetadata() - degrade) <= 0) {			
+			if ((loc.getBlockMetadata() - degrade) < 0) {			
 				
 				BlockUtil.spawnGhostBlock(loc);				
 			}

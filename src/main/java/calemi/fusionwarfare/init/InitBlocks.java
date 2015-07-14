@@ -31,6 +31,7 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
 import calemi.fusionwarfare.tileentity.machine.TileEntityFusionMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMiningUnit;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
+import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
 import net.minecraft.block.Block;
@@ -89,7 +90,8 @@ public class InitBlocks {
 	public static Block ore_enricher;
 	public static Block mining_unit;
 	public static Block missile_factory;
-	public static Block missile_launcher;	
+	public static Block missile_launcher;
+	public static Block missile_silo_core;
 	public static Block exp_fabricator;	
 	public static Block emp_tower;
 		
@@ -160,6 +162,7 @@ public class InitBlocks {
 		ore_enricher = new BlockBasicMachineBase("ore_enricher", TileEntityOreEnricher.class, FusionWarfare.guiIDOreEnricher, true, false);			
 		mining_unit = new BlockBasicMachineBase("mining_unit", TileEntityMiningUnit.class, FusionWarfare.guiIDMiningUnit, false, true, "mech_top_1", "mining_unit_bottom", "mining_unit_side", false);	
 		missile_launcher = new BlockBasicMachineBase("missile_launcher", TileEntityMissileLauncher.class, FusionWarfare.guiIDMissileLauncher, 1, 0, 1, 15, 4, 15, true);
+		missile_silo_core = new BlockBasicMachineBase("missile_silo_core", TileEntityMissileSiloCore.class, FusionWarfare.guiIDMissileSiloCore, false, true, "", "", "", true);
 		exp_fabricator = new BlockBasicMachineBase("exp_fabricator", TileEntityEXPFabricator.class, FusionWarfare.guiIDEXPFabricator, false, true, "exp_fabricator_top", "mech_blank", "exp_fabricator_side", false);
 		emp_tower = new BlockBasicMachineBase("emp_tower", TileEntityEMPTower.class, FusionWarfare.guiIDEMPTower, 2, 0, 2, 14, 16, 14, false);
 		

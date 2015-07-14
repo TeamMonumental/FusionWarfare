@@ -6,6 +6,7 @@ import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerEnergyTransmitter;
 import calemi.fusionwarfare.inventory.ContainerMiningUnit;
 import calemi.fusionwarfare.inventory.ContainerMissileLauncher;
+import calemi.fusionwarfare.inventory.ContainerMissileSiloCore;
 import calemi.fusionwarfare.inventory.ContainerNetworkController;
 import calemi.fusionwarfare.inventory.ContainerOneInput;
 import calemi.fusionwarfare.inventory.ContainerReactorCore;
@@ -28,6 +29,7 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
 import calemi.fusionwarfare.tileentity.machine.TileEntityFusionMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMiningUnit;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
+import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
@@ -98,6 +100,10 @@ public class GuiHandler implements IGuiHandler {
 
 		if (ID == FusionWarfare.guiIDMissileLauncher) {
 			return new ContainerMissileLauncher(player, (TileEntityMissileLauncher) tileentity);
+		}
+		
+		if (ID == FusionWarfare.guiIDMissileSiloCore) {
+			return new ContainerMissileSiloCore(player, (TileEntityMissileSiloCore) tileentity);
 		}
 
 		if (ID == FusionWarfare.guiIDEXPFabricator) {
@@ -194,6 +200,10 @@ public class GuiHandler implements IGuiHandler {
 
 		if (ID == FusionWarfare.guiIDMissileLauncher) {
 			return new GuiMissileLauncher(player, (TileEntityMissileLauncher) tileentity);
+		}
+		
+		if (ID == FusionWarfare.guiIDMissileSiloCore) {
+			return new GuiMissileSiloCore(player, (TileEntityMissileSiloCore) tileentity);
 		}
 
 		if (ID == FusionWarfare.guiIDEXPFabricator) {
