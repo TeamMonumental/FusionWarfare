@@ -2,16 +2,6 @@
 
 An independent futuristic warfare mod that adds missiles, guns and advanced machinery into your game.
 
-#Todo for release
-
-* [X] Team System
-* [X] Secure Door
-* [X] EMP Tower
-* Turrets
-* Rocket Launcher
-* Missile Silo
-* Armor Missile
-
 #Developers
 
 * Calemi (Lead Programmer)
