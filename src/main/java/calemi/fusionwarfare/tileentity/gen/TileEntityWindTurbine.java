@@ -12,7 +12,7 @@ public class TileEntityWindTurbine extends TileEntityBase {
 	public float speed, rotation;
 
 	public TileEntityWindTurbine() {
-		maxEnergy = 500;
+		maxEnergy = 750;
 	}
 
 	@Override
@@ -28,12 +28,12 @@ public class TileEntityWindTurbine extends TileEntityBase {
 			if (worldObj.getTotalWorldTime() % 40L == 0L) {
 
 				if (!worldObj.isRemote)
-					EnergyUtil.addEnergy(this, 15);
+					EnergyUtil.addEnergy(this, 25);
 
 				if (worldObj.getBiomeGenForCoords(xCoord, zCoord) instanceof BiomeGenOcean) {
 					speed = 8F;
 					if (!worldObj.isRemote)
-					EnergyUtil.addEnergy(this, 5);
+					EnergyUtil.addEnergy(this, 10);
 				}
 			}
 		}
