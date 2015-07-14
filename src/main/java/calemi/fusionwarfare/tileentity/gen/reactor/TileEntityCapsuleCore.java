@@ -109,7 +109,7 @@ public class TileEntityCapsuleCore extends TileEntityBase {
 	
 	private boolean hasEnoughWater() {
 
-		for (int y = yCoord + 4; y < (yCoord + 4) + 20; y++) {
+		for (int y = yCoord + 4; y < (yCoord + 4) + 15; y++) {
 
 			Location loc = new Location(worldObj, xCoord, y, zCoord);
 
