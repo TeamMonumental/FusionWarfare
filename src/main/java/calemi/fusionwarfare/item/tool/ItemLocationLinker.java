@@ -9,6 +9,7 @@ import calemi.fusionwarfare.item.ItemBase;
 import calemi.fusionwarfare.tileentity.TileEntityEnergyReceiver;
 import calemi.fusionwarfare.tileentity.TileEntityEnergyTransmitter;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
+import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -43,7 +44,7 @@ public class ItemLocationLinker extends ItemBase {
 			list.add(EnumChatFormatting.GOLD + "Z: " + EnumChatFormatting.AQUA + getNBT(is).getInteger("Z"));
 			list.add("");
 			list.add("Binds locations to");
-			list.add("Missile Launcher and Energy Transmitter.");
+			list.add("Missile Launcher/Silo and Energy Transmitter.");
 			list.add("Sneak Right-click to send coords to machine.");
 			list.add("Right-click to link a location.");
 			
@@ -64,6 +65,14 @@ public class ItemLocationLinker extends ItemBase {
 					((TileEntityMissileLauncher)world.getTileEntity(x, y, z)).targetX = getNBT(is).getInteger("X");
 					((TileEntityMissileLauncher)world.getTileEntity(x, y, z)).targetZ = getNBT(is).getInteger("Z");
 					((TileEntityMissileLauncher)world.getTileEntity(x, y, z)).update();
+					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);	
+					return true;
+				}
+				
+				if (world.getTileEntity(x, y, z) instanceof TileEntityMissileSiloCore) {
+					
+					((TileEntityMissileSiloCore)world.getTileEntity(x, y, z)).targetX = getNBT(is).getInteger("X");
+					((TileEntityMissileSiloCore)world.getTileEntity(x, y, z)).targetZ = getNBT(is).getInteger("Z");
 					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);	
 					return true;
 				}

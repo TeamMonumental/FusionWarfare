@@ -44,7 +44,7 @@ public class GuiMissileSiloCore extends GuiContainerBase {
 	@Override
 	protected void actionPerformed(GuiButton button) {		
 		super.actionPerformed(button);
-			
+		
 		TileEntityMissileSiloCore tileEntityMissileSiloCore = (TileEntityMissileSiloCore)tileEntity;
 		
 		if (button.id == buttons[0].id) {			
@@ -53,7 +53,7 @@ public class GuiMissileSiloCore extends GuiContainerBase {
 		
 		if (button.id == buttons[1].id) {
 			FusionWarfare.network.sendToServer(new ServerPacketHandler("sprayMode%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
-		}	
+		}
 	}
 	
 	@Override

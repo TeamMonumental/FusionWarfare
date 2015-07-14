@@ -162,7 +162,7 @@ public class InitBlocks {
 		ore_enricher = new BlockBasicMachineBase("ore_enricher", TileEntityOreEnricher.class, FusionWarfare.guiIDOreEnricher, true, false);			
 		mining_unit = new BlockBasicMachineBase("mining_unit", TileEntityMiningUnit.class, FusionWarfare.guiIDMiningUnit, false, true, "mech_top_1", "mining_unit_bottom", "mining_unit_side", false);	
 		missile_launcher = new BlockBasicMachineBase("missile_launcher", TileEntityMissileLauncher.class, FusionWarfare.guiIDMissileLauncher, 1, 0, 1, 15, 4, 15, true);
-		missile_silo_core = new BlockBasicMachineBase("missile_silo_core", TileEntityMissileSiloCore.class, FusionWarfare.guiIDMissileSiloCore, false, true, "", "", "", true);
+		missile_silo_core = new BlockBasicMachineBase("missile_silo_core", TileEntityMissileSiloCore.class, FusionWarfare.guiIDMissileSiloCore, false, true, "steel_casing", "steel_casing", "missile_silo_core", true);
 		exp_fabricator = new BlockBasicMachineBase("exp_fabricator", TileEntityEXPFabricator.class, FusionWarfare.guiIDEXPFabricator, false, true, "exp_fabricator_top", "mech_blank", "exp_fabricator_side", false);
 		emp_tower = new BlockBasicMachineBase("emp_tower", TileEntityEMPTower.class, FusionWarfare.guiIDEMPTower, 2, 0, 2, 14, 16, 14, false);
 		
