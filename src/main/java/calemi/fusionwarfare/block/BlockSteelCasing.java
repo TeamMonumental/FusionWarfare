@@ -5,6 +5,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.init.InitCreativeTabs;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCore;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntitySteelCasing;
 
 public class BlockSteelCasing extends BlockBasicMachineBase {
@@ -26,9 +27,14 @@ public class BlockSteelCasing extends BlockBasicMachineBase {
 		
 			if (tileEntity.getMaster() != null) {
 				
-				FMLNetworkHandler.openGui(p, FusionWarfare.instance, FusionWarfare.guiIDReactorCore, w, tileEntity.x, tileEntity.y, tileEntity.z);		
+				tileEntity.getMaster().getBlockType().onBlockActivated(w, tileEntity.getMaster().xCoord, tileEntity.getMaster().yCoord, tileEntity.getMaster().zCoord, p, i, f, f2, f3);
+				
 				return true;
-			}			
+			}	
+			
+			else {
+				
+			}
 						
 			return canPlaceBlockAt(w, x, y, z);
 		} 	

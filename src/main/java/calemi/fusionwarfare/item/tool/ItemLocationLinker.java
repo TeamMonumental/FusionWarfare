@@ -8,6 +8,7 @@ import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.item.ItemBase;
 import calemi.fusionwarfare.tileentity.TileEntityEnergyReceiver;
 import calemi.fusionwarfare.tileentity.TileEntityEnergyTransmitter;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntitySteelCasing;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import net.minecraft.entity.player.EntityPlayer;
@@ -69,10 +70,25 @@ public class ItemLocationLinker extends ItemBase {
 					return true;
 				}
 				
+				if (world.getTileEntity(x, y, z) instanceof TileEntitySteelCasing) {
+					
+					if (((TileEntitySteelCasing)world.getTileEntity(x, y, z)).getMaster() instanceof TileEntityMissileSiloCore) {
+						
+						TileEntityMissileSiloCore tileEntity = (TileEntityMissileSiloCore) ((TileEntitySteelCasing)world.getTileEntity(x, y, z)).getMaster();
+						
+						tileEntity.targetX = getNBT(is).getInteger("X");
+						tileEntity.targetZ = getNBT(is).getInteger("Z");
+						tileEntity.update();
+						player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);							
+						return true;
+					}				
+				}
+				
 				if (world.getTileEntity(x, y, z) instanceof TileEntityMissileSiloCore) {
 					
 					((TileEntityMissileSiloCore)world.getTileEntity(x, y, z)).targetX = getNBT(is).getInteger("X");
 					((TileEntityMissileSiloCore)world.getTileEntity(x, y, z)).targetZ = getNBT(is).getInteger("Z");
+					((TileEntityMissileSiloCore)world.getTileEntity(x, y, z)).update();
 					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);	
 					return true;
 				}
