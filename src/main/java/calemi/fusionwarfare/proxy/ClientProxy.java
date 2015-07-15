@@ -5,8 +5,9 @@ import calemi.fusionwarfare.entity.EntityBlock;
 import calemi.fusionwarfare.entity.EntityFallingSupplyCrate;
 import calemi.fusionwarfare.entity.EntityFusionBullet;
 import calemi.fusionwarfare.entity.EntityMissile;
+import calemi.fusionwarfare.entity.EntityRocket;
 import calemi.fusionwarfare.event.FOVEvent;
-import calemi.fusionwarfare.event.FusionGunRenderEvent;
+import calemi.fusionwarfare.event.GunRenderEvent;
 import calemi.fusionwarfare.event.TooltipEvent;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
@@ -21,6 +22,7 @@ import calemi.fusionwarfare.renderer.RenderFusionBullet;
 import calemi.fusionwarfare.renderer.RenderMissile;
 import calemi.fusionwarfare.renderer.RenderMissileLauncher;
 import calemi.fusionwarfare.renderer.RenderNetworkCable;
+import calemi.fusionwarfare.renderer.RenderRocket;
 import calemi.fusionwarfare.renderer.RenderTurbine;
 import calemi.fusionwarfare.renderer.item.ItemRenderEMPTower;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionAutoPistol;
@@ -32,6 +34,7 @@ import calemi.fusionwarfare.renderer.item.ItemRenderFusionShotgun;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionSniperRifle;
 import calemi.fusionwarfare.renderer.item.ItemRenderMissileLauncher;
 import calemi.fusionwarfare.renderer.item.ItemRenderNetworkCable;
+import calemi.fusionwarfare.renderer.item.ItemRenderRocketLauncher;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
@@ -60,11 +63,12 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerKeyBinding(KeyBindings.teamGuiButton);
 		
 		MinecraftForge.EVENT_BUS.register(new TooltipEvent());
-		MinecraftForge.EVENT_BUS.register(new FusionGunRenderEvent());
+		MinecraftForge.EVENT_BUS.register(new GunRenderEvent());
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
 		MinecraftForge.EVENT_BUS.register(new FOVEvent());
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityFusionBullet.class, new RenderFusionBullet());			
+		RenderingRegistry.registerEntityRenderingHandler(EntityRocket.class, new RenderRocket());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMissile.class, new RenderMissile());	
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlock.class, new RenderBlock());	
 		RenderingRegistry.registerEntityRenderingHandler(EntityFallingSupplyCrate.class, new RenderFallingSupplyCrate());
@@ -75,6 +79,8 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_smg, new ItemRenderFusionSMG());
 		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_sniper_rifle, new ItemRenderFusionSniperRifle());		
 		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_gatling_gun, new ItemRenderFusionGatlingGun());
+		
+		MinecraftForgeClient.registerItemRenderer(InitItems.rocket_launcher, new ItemRenderRocketLauncher());
 		
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.network_cable), new ItemRenderNetworkCable(new RenderNetworkCable(), new TileEntityNetworkCable()));
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.missile_launcher), new ItemRenderMissileLauncher());

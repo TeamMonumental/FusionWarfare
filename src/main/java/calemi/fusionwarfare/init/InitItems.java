@@ -11,6 +11,7 @@ import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.item.ItemMissile;
 import calemi.fusionwarfare.item.ItemMissileModule;
 import calemi.fusionwarfare.item.ItemReinforcedDoor;
+import calemi.fusionwarfare.item.ItemRocketLauncher;
 import calemi.fusionwarfare.item.ItemTest;
 import calemi.fusionwarfare.item.tool.ItemDebugger;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
@@ -76,6 +77,8 @@ public class InitItems {
 	public static Item fusion_sniper_rifle;
 	public static Item fusion_grenade_launcher;
 	public static Item fusion_gatling_gun;
+	
+	public static Item rocket_launcher;
 	
 	//#-#-#-#-#-MISSILES-#-#-#-#-#\\
 	
@@ -167,6 +170,8 @@ public class InitItems {
 		fusion_smg = new ItemFusionGun("fusion_smg", 0, 1, 10, 2, 0.04F, false);
 		fusion_sniper_rifle = new ItemFusionGun("fusion_sniper_rifle", 100, 1, 80, 0, 0.002F, true);	
 		fusion_gatling_gun = new ItemFusionGatlingGun("fusion_gatling_gun", 1, 10, 1, 0.08F);
+		
+		rocket_launcher = new ItemRocketLauncher();
 		
 		//#-#-#-#-#-MISSILES-#-#-#-#-#\\
 		

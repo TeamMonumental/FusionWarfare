@@ -30,8 +30,6 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 	public void updateEntity() {
 		markDirty();
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-		System.out.println(currentDelay);
-		System.out.println(sprayMode);
 	}
 	
 	@Override
