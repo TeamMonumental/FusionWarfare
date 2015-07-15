@@ -12,7 +12,8 @@ public class FWConfig {
 	public static Configuration config = FusionWarfare.config;
 	
 	public static boolean disableFallingCrates;
-	public static boolean disableTooltips;	
+	public static boolean disableRocketLauncherRecipe;
+	public static boolean disableTooltips;
 	
 	public static boolean disableInfusedCrystalOre;
 	public static boolean disableInfusedCatalystOre;
@@ -34,6 +35,7 @@ public class FWConfig {
 		config.addCustomCategoryComment(GENERAL_OPTIONS, "General options for Fusion Warfare.");
 		
 		disableFallingCrates = config.getBoolean("Disable Falling Supply Crates", GENERAL_OPTIONS, false, "Disables Supply Crates from falling");
+		disableRocketLauncherRecipe = config.getBoolean("Disable Rocket Launcher Recipe", GENERAL_OPTIONS, false, "Disables Rocket Launcher Recipe. Recommended false if Supply Crates are enabled.");
 		disableTooltips = config.getBoolean("Disable Custom Tooltips", GENERAL_OPTIONS, false, "Disables custom tooltips on armor and tools.");
 		
 		final String ORES = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "Ores";

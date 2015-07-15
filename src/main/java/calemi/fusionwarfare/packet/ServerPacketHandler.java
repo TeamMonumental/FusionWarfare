@@ -87,6 +87,8 @@ public class ServerPacketHandler implements IMessage {
 				
 				TileEntityMissileSiloCore tileEntity = (TileEntityMissileSiloCore)player.worldObj.getTileEntity(x, y, z);
 				
+				tileEntity.update();
+				
 				if (tileEntity.currentDelay >= 5) tileEntity.currentDelay = 0;
 				else tileEntity.currentDelay++;				
 			}
@@ -98,6 +100,8 @@ public class ServerPacketHandler implements IMessage {
 				int z = Integer.parseInt(data[3]);
 				
 				TileEntityMissileSiloCore tileEntity = (TileEntityMissileSiloCore)player.worldObj.getTileEntity(x, y, z);
+				
+				tileEntity.update();
 				
 				if (tileEntity.sprayMode) tileEntity.sprayMode = false;
 				else tileEntity.sprayMode = true;

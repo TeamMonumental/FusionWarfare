@@ -28,6 +28,10 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 
 	@Override
 	public void updateEntity() {
+		
+	}
+	
+	public void update() {
 		markDirty();
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
