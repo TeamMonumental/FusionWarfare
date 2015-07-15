@@ -21,6 +21,7 @@ import calemi.fusionwarfare.renderer.RenderFloatingItem;
 import calemi.fusionwarfare.renderer.RenderFusionBullet;
 import calemi.fusionwarfare.renderer.RenderMissile;
 import calemi.fusionwarfare.renderer.RenderMissileLauncher;
+import calemi.fusionwarfare.renderer.RenderMissileSilo;
 import calemi.fusionwarfare.renderer.RenderNetworkCable;
 import calemi.fusionwarfare.renderer.RenderRocket;
 import calemi.fusionwarfare.renderer.RenderTurbine;
@@ -42,6 +43,7 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityFusionMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
+import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkCable;
@@ -99,7 +101,8 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEXPFabricator.class, new RenderFloatingItem(new ItemStack(Items.experience_bottle), 0.5F, 1.1F, 0.5F, 1F));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTwoInputs.class, new RenderFloatingItem(new ItemStack(InitItems.velocity_missile_T1), 0.5F, 1.1F, 0.5F, 0.7F));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEMPTower.class, new RenderEMPTower());
-		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMissileSiloCore.class, new RenderMissileSilo());
+			
 		FusionWarfare.armorIDSteel = addArmor("steel");
 		FusionWarfare.armorIDInfusedSteel = addArmor("infused_steel");
 		FusionWarfare.armorIDInfusedSteelRed = addArmor("infused_steel_red");

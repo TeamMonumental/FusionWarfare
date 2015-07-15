@@ -72,7 +72,7 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 	}
 
 	private boolean canLaunch() {
-		return worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord) && slots[0] != null && energy >= energyCost;
+		return worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord) && slots[0] != null && EnergyUtil.canSubtractEnergy(this, energyCost);
 	}
 
 	public void update() {
