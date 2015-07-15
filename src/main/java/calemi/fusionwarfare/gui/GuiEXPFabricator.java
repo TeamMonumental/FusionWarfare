@@ -32,7 +32,7 @@ public class GuiEXPFabricator extends GuiContainerBase {
 		super.initGui();
 		
 		for (int i = 0; i < buttons.length; i++) {
-			buttons[i] = new GuiFusionButton(i, getScreenX() + 20, (getScreenY() + 21) + (i * 21), 64, "Add " + (10 + (i * 20)) + " EXP");
+			buttons[i] = new GuiFusionButton(i, getScreenX() + 20, (getScreenY() + 21) + (i * 21), 64, "Add " + (30 + (i * 30)) + " EXP");
 			buttonList.add(buttons[i]);
 		}
 	}
@@ -44,7 +44,7 @@ public class GuiEXPFabricator extends GuiContainerBase {
 		for (int i = 0; i < buttons.length; i++) {
 			
 			if (button.id == i) {
-				FusionWarfare.network.sendToServer(new ServerPacketHandler("addEXP%" + (10 + (i * 20)) + "%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
+				FusionWarfare.network.sendToServer(new ServerPacketHandler("addEXP%" + (30 + (i * 30)) + "%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
 			}			
 		}		
 	}

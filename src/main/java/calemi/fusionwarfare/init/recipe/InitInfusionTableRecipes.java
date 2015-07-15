@@ -72,11 +72,11 @@ public class InitInfusionTableRecipes {
 				new ItemStack(InitItems.infused_crystal, 4), 				
 				new ItemStack(Blocks.obsidian), 
 				30, 200));
-		
-		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.fusion_ammo, 4), 
-				new ItemStack(InitItems.infused_azurite), 				
-				new ItemStack(InitItems.steel_plate), 
-				5, 50));
+			
+		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.charged_seeds, 64), 
+				new ItemStack(InitItems.infused_crystal, 32), 				
+				new ItemStack(Items.wheat_seeds, 32), 
+				30, 1000));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitBlocks.concrete, 8), 
 				new ItemStack(Blocks.sand, 8),

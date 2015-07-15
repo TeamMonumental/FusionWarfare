@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemBattery;
@@ -218,22 +219,31 @@ public class InitRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_smg), new Object[]{InitItems.fusion_auto_pistol, InitItems.advanced_chip, InitItems.gun_barrel});
 		
 		//T3
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_sniper_rifle), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.hyper_chip});
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_gatling_gun), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.hyper_chip});	
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.rocket_launcher), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.gun_handle, InitItems.hyper_chip, InitItems.hyper_chip});
+		if (!FWConfig.disableHighTierWeaponRecipes) GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_sniper_rifle), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.hyper_chip});
+		if (!FWConfig.disableHighTierWeaponRecipes) GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_gatling_gun), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.hyper_chip});	
+		if (!FWConfig.disableHighTierWeaponRecipes) GameRegistry.addShapelessRecipe(new ItemStack(InitItems.rocket_launcher), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.gun_handle, InitItems.hyper_chip, InitItems.hyper_chip});
 		
 		//#-#-#-#-#-TOOLS-#-#-#-#-#\\
-		
+				
 		//Tool Coloring		
 		registerColoringRecipe(InitItems.infused_steel, InitItems.infused_steel_red);
+		//-------------			
 			
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.fusion_matter_deconstructor), new Object[] {
 			"III", " E ", " S ", 'I', InitItems.infused_steel_ingot, 'E', InitItems.evaporation_cell, 'S', InitItems.sturdy_handle
 		});		
 		
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.wrench), new Object[] {
+			"I I", " S ", " S ", 'I', InitItems.infused_steel_ingot, 'S', InitItems.steel_plate
+		});
+		
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.location_linker), new Object[] {
 			"I", "S", 'I', InitItems.infused_steel_ingot, 'S', InitItems.steel_plate
-		});	
+		});
+				
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.sprayer), new Object[] {
+			"S  ", " SI", " II", 'I', InitItems.infused_steel_ingot, 'S', InitItems.steel_plate
+		});
 		
 		//Teams
 		
