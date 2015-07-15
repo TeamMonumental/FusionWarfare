@@ -147,6 +147,10 @@ public class InitRecipes {
 		
 		//#-#-#-#-#-ITEMS-#-#-#-#-#\\
 		
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.overclocking_chip, 5), new Object[] {
+			"SIS", "IBI", "SIS", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip, 'I', InitItems.infused_steel_ingot
+		});
+		
 		//#-#-#-#-#-INGREDIENTS-#-#-#-#-#\\
 		
 		GameRegistry.addSmelting(InitItems.fusion_fish, new ItemStack(InitItems.infused_crystal, 4), 10);

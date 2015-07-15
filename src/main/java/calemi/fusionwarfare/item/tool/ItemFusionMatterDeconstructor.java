@@ -52,7 +52,7 @@ public class ItemFusionMatterDeconstructor extends ItemTool implements IEnergyIt
 	
 	@Override
 	public int getMaxEnergy() {
-		return 5000;
+		return 7500;
 	}
 	
 	@SideOnly(Side.CLIENT)

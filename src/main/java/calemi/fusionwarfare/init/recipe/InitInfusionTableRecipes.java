@@ -33,11 +33,6 @@ public class InitInfusionTableRecipes {
 				new ItemStack(InitItems.steel_ingot), 
 				5, 40));
 		
-		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.overclocking_chip), 
-				new ItemStack(InitItems.infused_steel_ingot),
-				new ItemStack(InitItems.steel_plate),
-				25, 300));
-		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.basic_chip), 
 				new ItemStack(Items.diamond), 				
 				new ItemStack(InitItems.steel_plate),
@@ -83,7 +78,7 @@ public class InitInfusionTableRecipes {
 				new ItemStack(Blocks.gravel, 8),
 				10, 200));
 		
-		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitBlocks.reinforced_glass, 4), 
+		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitBlocks.reinforced_glass, 16), 
 				new ItemStack(InitItems.steel_plate, 4), 				
 				new ItemStack(Blocks.glass, 4), 
 				40, 400));
