@@ -146,7 +146,7 @@ public class InitBlocks {
 		
 		//#-#-#-#-#-REACTORS-#-#-#-#-#\\
 		
-		reactor_core = new BlockBasicMachineBase("reactor_core", TileEntityReactorCore.class, FusionWarfare.guiIDReactorCore, false, true, "steel_casing", "steel_casing", "reactor_core_side", false);
+		reactor_core = new BlockBasicMachineBase("reactor_core", TileEntityReactorCore.class, FusionWarfare.guiIDReactorCore, false, true, "reactor_core_side", "reactor_core_side", "reactor_core_side", false);
 		reactor_cooling_unit = new BlockReactorCoolingUnit();
 		
 		advanced_hydro_reactor_core = new BlockBasicMachineBase("advanced_hydro_reactor_core", TileEntityAdvancedHydroReactorCore.class, FusionWarfare.guiIDAdvancedHydroReactorCore, false, true, "advanced_hydro_reactor_core_top", "mech_blank", "advanced_hydro_reactor_core_side", false);
