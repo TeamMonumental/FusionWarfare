@@ -38,11 +38,12 @@ public class RenderRocket extends Render {
 
 		GL11.glPushMatrix();
 		
-		GL11.glTranslated(x, y + 1.5, z);	
+		GL11.glTranslated(x, y, z);
 		GL11.glRotatef(180, 1, 0, 0);
+		GL11.glScalef(1.5F, 1.5F, 1.5F);
 		
-		GL11.glRotatef(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * f2 - 90.0F, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * f2, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(entity.prevRotationYaw + 90F, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(entity.prevRotationPitch, 0.0F, 0.0F, 1.0F);
 
 		Minecraft.getMinecraft().renderEngine.bindTexture(getEntityTexture(entity));
 		model.render(null, 0, 0, 0, 0, 0, 0.0625F);		

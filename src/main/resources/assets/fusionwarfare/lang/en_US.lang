@@ -48,6 +48,7 @@ item.creative_battery.name=Creative Battery
 #-#-#-#-#-GUNS-#-#-#-#-#
 
 item.fusion_ammo.name=Fusion Ammo
+item.rocket.name=Rocket
 
 item.fusion_pistol.name=Fusion Pistol
 item.fusion_auto_pistol.name=Auto Fusion Pistol
@@ -55,6 +56,8 @@ item.fusion_shotgun.name=Fusion Shotgun
 item.fusion_smg.name=Fusion SMG
 item.fusion_sniper_rifle.name=Fusion Sniper Rifle
 item.fusion_gatling_gun.name=Alt-F4
+ 
+item.rocket_launcher.name=Rocket Launcher
  
 #-#-#-#-#-MISSILES-#-#-#-#-#
 

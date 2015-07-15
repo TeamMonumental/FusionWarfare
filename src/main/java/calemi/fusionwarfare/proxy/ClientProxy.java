@@ -34,6 +34,7 @@ import calemi.fusionwarfare.renderer.item.ItemRenderFusionShotgun;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionSniperRifle;
 import calemi.fusionwarfare.renderer.item.ItemRenderMissileLauncher;
 import calemi.fusionwarfare.renderer.item.ItemRenderNetworkCable;
+import calemi.fusionwarfare.renderer.item.ItemRenderRocket;
 import calemi.fusionwarfare.renderer.item.ItemRenderRocketLauncher;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
@@ -72,6 +73,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityMissile.class, new RenderMissile());	
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlock.class, new RenderBlock());	
 		RenderingRegistry.registerEntityRenderingHandler(EntityFallingSupplyCrate.class, new RenderFallingSupplyCrate());
+		
+		MinecraftForgeClient.registerItemRenderer(InitItems.rocket, new ItemRenderRocket());
 		
 		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_pistol, new ItemRenderFusionPistol());
 		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_auto_pistol, new ItemRenderFusionAutoPistol());

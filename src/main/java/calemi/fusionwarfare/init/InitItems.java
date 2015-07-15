@@ -69,7 +69,8 @@ public class InitItems {
 	//#-#-#-#-#-GUNS-#-#-#-#-#\\
 	
 	public static Item fusion_ammo;
-
+	public static Item rocket;
+	
 	public static Item fusion_pistol;
 	public static Item fusion_auto_pistol;
 	public static Item fusion_shotgun;
@@ -163,7 +164,8 @@ public class InitItems {
 		//#-#-#-#-#-GUNS-#-#-#-#-#\\
 		
 		fusion_ammo = new ItemBase("fusion_ammo").setCreativeTab(InitCreativeTabs.creativeTabInfantry);
-
+		rocket = new ItemBase("rocket", false, false).setCreativeTab(InitCreativeTabs.creativeTabInfantry);
+		
 		fusion_pistol = new ItemFusionGun("fusion_pistol", 10, 1, 12, 1, 0.08F, false);
 		fusion_auto_pistol = new ItemFusionGun("fusion_auto_pistol", 0, 1, 10, 3, 0.08F, false);
 		fusion_shotgun = new ItemFusionGun("fusion_shotgun", 30, 6, 25, 10, 0.1F, false);
