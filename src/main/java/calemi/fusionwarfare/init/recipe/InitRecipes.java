@@ -197,6 +197,16 @@ public class InitRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.advanced_battery), new Object[]{InitItems.basic_battery, InitItems.basic_chip});
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.hyper_battery), new Object[]{InitItems.advanced_battery, InitItems.advanced_chip});
 		
+		//#-#-#-#-#-AMMO-#-#-#-#-#\\
+		
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.rocket), new Object[] {
+			"SSS", "ABA", "SSS", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip, 'A', InitItems.infused_azurite
+		});
+				
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.fusion_ammo, 16), new Object[] {
+			"SAS", "SAS", "SAS", 'S', InitItems.steel_plate, 'A', InitItems.infused_azurite
+		});
+		
 		//#-#-#-#-#-GUNS-#-#-#-#-#\\		
 		
 		//T1			
@@ -210,7 +220,8 @@ public class InitRecipes {
 		//T3
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_sniper_rifle), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.hyper_chip});
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_gatling_gun), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.hyper_chip});	
-	
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.rocket_launcher), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.gun_handle, InitItems.hyper_chip, InitItems.hyper_chip});
+		
 		//#-#-#-#-#-TOOLS-#-#-#-#-#\\
 		
 		//Tool Coloring		
