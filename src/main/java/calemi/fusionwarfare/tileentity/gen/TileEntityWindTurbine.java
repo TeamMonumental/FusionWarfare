@@ -3,7 +3,10 @@ package calemi.fusionwarfare.tileentity.gen;
 import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.EnergyUtil;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.biome.BiomeGenOcean;
 
@@ -43,7 +46,12 @@ public class TileEntityWindTurbine extends TileEntityBase {
 
 		}
 	}
-
+	
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1).expand(1, 1, 1);
+	}
+	
 	@Override
 	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
 		return null;

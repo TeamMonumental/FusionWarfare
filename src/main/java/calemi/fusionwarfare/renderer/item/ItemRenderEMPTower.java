@@ -34,7 +34,7 @@ public class ItemRenderEMPTower implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 
 		if (type == IItemRenderer.ItemRenderType.INVENTORY) {
-			GL11.glTranslatef(0, 1, 0);
+			GL11.glTranslatef(0, 0.95F, 0);
 			GL11.glScalef(1.1F, 1.1F, 1.1F);
 		}
 		

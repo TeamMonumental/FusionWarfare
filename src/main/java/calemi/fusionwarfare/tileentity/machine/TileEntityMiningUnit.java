@@ -56,9 +56,11 @@ public class TileEntityMiningUnit extends TileEntityBase {
 	
 	private Location findBlock() {
 
+		int range = 10;
+		
 		for (int y = yCoord - 1; y > 1; y--) {
-			for (int x = xCoord - 5; x <= xCoord + 5; x++) {
-				for (int z = zCoord - 5; z <= zCoord + 5; z++) {
+			for (int x = xCoord - range; x <= xCoord + range; x++) {
+				for (int z = zCoord - range; z <= zCoord + range; z++) {
 
 					Location location = new Location(worldObj, x, y, z);
 

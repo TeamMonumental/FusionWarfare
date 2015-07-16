@@ -8,6 +8,7 @@ import calemi.fusionwarfare.packet.ClientPacketHandler;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -55,7 +56,9 @@ public class ContainerBase extends Container {
 
 		super.detectAndSendChanges();
 
-		FusionWarfare.network.sendTo(new ClientPacketHandler("sync%" + fusion.energy), (EntityPlayerMP) player);
+		if (!(player instanceof EntityClientPlayerMP)) {
+			FusionWarfare.network.sendTo(new ClientPacketHandler("sync%" + fusion.energy), (EntityPlayerMP) player);
+		}
 		
 		for (int i = 0; i < this.crafters.size(); ++i) {
 			ICrafting craft = (ICrafting) this.crafters.get(i);
