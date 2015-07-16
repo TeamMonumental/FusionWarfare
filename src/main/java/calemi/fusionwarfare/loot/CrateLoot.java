@@ -11,12 +11,18 @@ public class CrateLoot {
 	
 	public int countMin, countMax;
 	public boolean critical;
+	public boolean checkDupe;
 	
-	public CrateLoot(EnumCrateRarity rarity, Item item, int countMin, int countMax, boolean critical) {
+	public CrateLoot(EnumCrateRarity rarity, Item item, int countMin, int countMax, boolean critical, boolean checkDupe) {
 		this.rarity = rarity;
 		this.item = item;
 		this.countMin = countMin;
 		this.countMax = countMax;
 		this.critical = critical;
-	}	
+		this.checkDupe = checkDupe;
+	}
+	
+	public CrateLoot(EnumCrateRarity rarity, Item item, int countMin, int countMax, boolean critical) {
+		this(rarity, item, countMin, countMax, critical, false);
+	}
 }

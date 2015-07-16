@@ -82,15 +82,24 @@ public class CrateLootRegistry {
 	public static boolean isUniqueLoot(CrateLoot loot, List<CrateLoot> buffer) {
 		
 		boolean hasCritical = false;
+		boolean hasDupe = false;
 		
 		for (CrateLoot tempLoot : buffer) {
 			
 			if (tempLoot.critical) {			
 				hasCritical = true;
 			}
+			
+			if (tempLoot.item == loot.item && loot.checkDupe) {
+				hasDupe = true;
+			}
 		}
 		
 		if (loot.critical && hasCritical) {
+			return false;
+		}
+		
+		if (hasDupe) {
 			return false;
 		}
 		
