@@ -48,7 +48,6 @@ public class ContainerBase extends Container {
 	public void addCraftingToCrafters(ICrafting craft) {
 		super.addCraftingToCrafters(craft);
 
-		//craft.sendProgressBarUpdate(this, 0, fusion.energy);
 		craft.sendProgressBarUpdate(this, 1, fusion.progress);
 	}
 	
@@ -60,17 +59,12 @@ public class ContainerBase extends Container {
 		
 		for (int i = 0; i < this.crafters.size(); ++i) {
 			ICrafting craft = (ICrafting) this.crafters.get(i);
-
-			/*if (this.lastEnergyTime != fusion.energy) {
-				craft.sendProgressBarUpdate(this, 0, fusion.energy);
-			}*/
 			
 			if (this.lastProgressTime != fusion.progress) {
 				craft.sendProgressBarUpdate(this, 1, fusion.progress);
 			}
 		}
 		
-		//lastEnergyTime = fusion.energy;
 		lastProgressTime = fusion.progress;
 	}
 	

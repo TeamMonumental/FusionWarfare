@@ -36,58 +36,6 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 		return maxEnergy;
 	}
 	
-	//--OPTIMISE--\\
-	
-	/*public boolean transferEnergy(TileEntityBase target, int amount) {
-		
-		if (target.isFull() || energy <= 0) {
-			return false;
-		}
-		
-		if (canSubtractEnergy(amount) && target.canAddEnergy(amount)) { 			
-			subtractEnergy(amount);
-			target.addEnergy(amount);
-			return true;
-		}
-		
-		int sourceEnergy = energy;
-		int targetSpace = target.getSpace();
-		
-		int min = Math.min(sourceEnergy, targetSpace);
-		
-		if (min <= amount) {		
-			return transferEnergy(target, min);
-		}
-		
-		return false;
-	}*/
-	
-	//--END--\\
-	
-	/*public boolean isFull() {
-		return energy >= maxEnergy;
-	}
-	
-	public int getSpace() {
-		return maxEnergy - energy;
-	}
-	
-	public boolean canAddEnergy(int amount) {		
-		return amount <= getSpace();		
-	}
-	
-	public boolean canSubtractEnergy(int amount) {		
-		return energy >= amount;		
-	}
-	
-	public void addEnergy(int amount) {		
-		if (canAddEnergy(amount)) energy += amount; 
-	}
-
-	public void subtractEnergy(int amount) {		
-		if (canSubtractEnergy(amount)) energy -= amount; 	
-	}*/
-	
 	@SideOnly(Side.CLIENT)
 	public int getCurrentEnergyScaled(int i) {
 		return this.energy * i / maxEnergy;

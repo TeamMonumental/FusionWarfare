@@ -50,8 +50,6 @@ public class BlockChargedPlant extends BlockBase {
 		
 		if (!w.isRemote) {
 			
-			System.out.println("tick");
-			
 			if (w.getBlockMetadata(x, y, z) == 3) {		
 				w.setBlockMetadataWithNotify(x, y, z, 4, 2);
 			}	
