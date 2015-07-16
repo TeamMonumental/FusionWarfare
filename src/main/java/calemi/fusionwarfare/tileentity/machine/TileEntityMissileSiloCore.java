@@ -120,16 +120,19 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 	
 	private boolean canLaunch() {
 		
-		if (worldObj.canBlockSeeTheSky(xCoord + direction.offsetX, yCoord, zCoord + direction.offsetZ) && isBlockPowered && EnergyUtil.canSubtractEnergy(this, energyCost)) {
+		if (isAssembled) {
 			
-			for (ItemStack stack : slots) {			
+			if (worldObj.canBlockSeeTheSky(xCoord + direction.offsetX, yCoord, zCoord + direction.offsetZ) && isBlockPowered && EnergyUtil.canSubtractEnergy(this, energyCost)) {
+			
+				for (ItemStack stack : slots) {			
 				
-				if (stack != null) {				
+					if (stack != null) {				
 					
-					return true;
-				}
+						return true;
+					}
+				}	
 			}
-		}
+		}	
 		
 		return false;
 	}

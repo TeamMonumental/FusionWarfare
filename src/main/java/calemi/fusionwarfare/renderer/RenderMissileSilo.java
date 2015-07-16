@@ -34,7 +34,7 @@ public class RenderMissileSilo extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		
 		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.50F, (float)z + 0.5F);
-		GL11.glTranslatef(tileEntity.direction.offsetX, 3, tileEntity.direction.offsetZ);
+		if (tileEntity.direction != null) GL11.glTranslatef(tileEntity.direction.offsetX, 3, tileEntity.direction.offsetZ);
 		GL11.glRotatef(180, 1, 0, 0);
 		
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
