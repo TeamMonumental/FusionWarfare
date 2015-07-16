@@ -69,7 +69,7 @@ public class InitInfusionTableRecipes {
 				30, 200));
 			
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.charged_seeds, 64), 
-				new ItemStack(InitItems.infused_crystal, 32), 				
+				new ItemStack(InitItems.infused_azurite, 32), 				
 				new ItemStack(Items.wheat_seeds, 32), 
 				30, 1000));
 		
