@@ -66,15 +66,13 @@ public class TileEntityNetworkController extends TileEntityBase {
 				checkBlock(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
 			}
 
-			boolean powered = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
-
 			IEnergy lowest = findLowestEnergy();
 
-			if (lowest != null && !powered)	EnergyUtil.transferEnergy(this, lowest, transferRate);
+			if (lowest != null)	EnergyUtil.transferEnergy(this, lowest, transferRate);
 
 			for (IEnergy tempMech : mechs) {
 
-				if (tempMech.getIOType() == EnumIO.OUTPUT || (powered && tempMech.getIOType() == EnumIO.INPUT)) {
+				if (tempMech.getIOType() == EnumIO.OUTPUT) {
 
 					EnergyUtil.transferEnergy(tempMech, this, transferRate);
 				}
