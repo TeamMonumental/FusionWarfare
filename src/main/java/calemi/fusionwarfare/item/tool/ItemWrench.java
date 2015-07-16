@@ -26,6 +26,7 @@ public class ItemWrench extends ItemBase {
 	public ItemWrench() {
 		super("wrench");
 		setCreativeTab(InitCreativeTabs.creativeTabTools);
+		setMaxStackSize(1);
 	}
 	
 	@Override
