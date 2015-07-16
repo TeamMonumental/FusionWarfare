@@ -131,9 +131,9 @@ public class InitBlocks {
 		
 		//#-#-#-#-#-NETWORK-#-#-#-#-#\\
 	
-		network_controller_1 = new BlockNetworkController(1, FusionWarfare.guiIDNetworkController1);
-		network_controller_2 = new BlockNetworkController(2, FusionWarfare.guiIDNetworkController2);
-		network_controller_3 = new BlockNetworkController(3, FusionWarfare.guiIDNetworkController3);
+		network_controller_1 = new BlockNetworkController(1);
+		network_controller_2 = new BlockNetworkController(2);
+		network_controller_3 = new BlockNetworkController(3);
 		network_cable = new BlockNetworkCable();
 		network_gate = new BlockNetworkGate();
 		

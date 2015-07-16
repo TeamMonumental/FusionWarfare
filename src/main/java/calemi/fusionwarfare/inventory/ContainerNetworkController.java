@@ -3,6 +3,7 @@ package calemi.fusionwarfare.inventory;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.IEnergyItem;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
@@ -12,15 +13,17 @@ public class ContainerNetworkController extends ContainerBase {
 
 	private int[] slots = {0,1,2};
 	
-	public ContainerNetworkController(EntityPlayer player, TileEntityBase tileentity, int tier) {
-		super(player, tileentity);		
+	public ContainerNetworkController(EntityPlayer player, TileEntityBase tileEntity) {
+		super(player, tileEntity);		
+		
+		TileEntityNetworkController tileEntityNetworkController = (TileEntityNetworkController)tileEntity;
 		
 		//Overclocking
-		addSlotToContainer(new SlotOverclocking(tileentity, slots[0], 143, 64, tier * 5));
+		addSlotToContainer(new SlotOverclocking(tileEntity, slots[0], 143, 64, tileEntityNetworkController.tier * 5));
 		//Discharge	
-		addSlotToContainer(new Slot(tileentity, slots[1], 17, 23));
+		addSlotToContainer(new Slot(tileEntity, slots[1], 17, 23));
 		//Charge
-		addSlotToContainer(new Slot(tileentity, slots[2], 17, 61));
+		addSlotToContainer(new Slot(tileEntity, slots[2], 17, 61));
 		
 		addPlayerInv(8, 99);
 		addHotbar(8, 157);
@@ -49,11 +52,16 @@ public class ContainerNetworkController extends ContainerBase {
 				
 				if (itemstack1.getItem() == InitItems.overclocking_chip) {								
 					
-					if (!this.mergeItemStack(itemstack1, slots[0], slots[0] + 1, false)) {
-						return null;
-					}				
+					Slot slot2 = (Slot)this.inventorySlots.get(0);
+					int space = slot2.getStack() != null ? slot2.getSlotStackLimit() - slot2.getStack().stackSize : slot2.getSlotStackLimit();
 					
-					slot.onSlotChange(itemstack1, itemstack);
+					if (space > 0) {
+						
+						slot2.putStack(new ItemStack(itemstack1.getItem(), space));
+						itemstack1.stackSize -= space;
+						
+						slot.onSlotChange(itemstack1, itemstack);
+					}					
 				}
 				
 				else if (itemstack1.getItem() instanceof IEnergyItem) {

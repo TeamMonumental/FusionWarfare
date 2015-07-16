@@ -48,10 +48,8 @@ public class FusionWarfare {
 
 	private static int nextGuiID = 1;	
 	
-	public static int guiIDNetworkController1 = nextGuiID++;
-	public static int guiIDNetworkController2 = nextGuiID++;
-	public static int guiIDNetworkController3 = nextGuiID++;
-	
+	public static int guiIDNetworkController = nextGuiID++;
+
 	public static int guiIDAquaGenerator = nextGuiID++;
 	public static int guiIDGeothermalGenerator = nextGuiID++;
 	public static int guiIDSolarGenerator = nextGuiID++;	

@@ -46,16 +46,8 @@ public class GuiHandler implements IGuiHandler {
 
 		TileEntity tileentity = world.getTileEntity(x, y, z);
 
-		if (ID == FusionWarfare.guiIDNetworkController1) {
-			return new ContainerNetworkController(player, (TileEntityNetworkController) tileentity, 1);
-		}
-
-		if (ID == FusionWarfare.guiIDNetworkController2) {
-			return new ContainerNetworkController(player, (TileEntityNetworkController) tileentity, 2);
-		}
-
-		if (ID == FusionWarfare.guiIDNetworkController3) {
-			return new ContainerNetworkController(player, (TileEntityNetworkController) tileentity, 3);
+		if (ID == FusionWarfare.guiIDNetworkController) {
+			return new ContainerNetworkController(player, (TileEntityNetworkController) tileentity);
 		}
 
 		if (ID == FusionWarfare.guiIDEnergeticFurnace) {
@@ -146,16 +138,8 @@ public class GuiHandler implements IGuiHandler {
 
 		TileEntity tileentity = world.getTileEntity(x, y, z);
 
-		if (ID == FusionWarfare.guiIDNetworkController1) {
-			return new GuiNetworkController(player, (TileEntityNetworkController) tileentity, 1, "Basic");
-		}
-
-		if (ID == FusionWarfare.guiIDNetworkController2) {
-			return new GuiNetworkController(player, (TileEntityNetworkController) tileentity, 2, "Advanced");
-		}
-
-		if (ID == FusionWarfare.guiIDNetworkController3) {
-			return new GuiNetworkController(player, (TileEntityNetworkController) tileentity, 3, "Hyper");
+		if (ID == FusionWarfare.guiIDNetworkController) {
+			return new GuiNetworkController(player, (TileEntityNetworkController) tileentity);
 		}
 
 		if (ID == FusionWarfare.guiIDEnergeticFurnace) {

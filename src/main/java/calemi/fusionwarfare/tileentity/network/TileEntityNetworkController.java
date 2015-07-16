@@ -14,12 +14,17 @@ import calemi.fusionwarfare.util.EnergyItemUtil;
 import calemi.fusionwarfare.util.EnergyUtil;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityNetworkController extends TileEntityBase {
 
 	public List<IEnergy> mechs = new ArrayList<IEnergy>();
+	public int tier;
 
 	@Override
 	public EnumIO getIOType() {
@@ -28,7 +33,7 @@ public class TileEntityNetworkController extends TileEntityBase {
 		
 	@Override
 	public void updateEntity() {
-
+		
 		// Slots
 		
 		int amount = 10;
@@ -115,6 +120,38 @@ public class TileEntityNetworkController extends TileEntityBase {
 			}
 		}
 	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+	
+		nbt.setInteger("tier", tier);		
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+	
+		tier = nbt.getInteger("tier");	
+	}
+	
+	@Override
+	public Packet getDescriptionPacket() {
+		NBTTagCompound syncData = new NBTTagCompound();
+	
+		writeToNBT(syncData);
+
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+
+		readFromNBT(pkt.func_148857_g());
+	}
+	
+	//------------------------------------------------------------\\
+	
 	
 	// --------------------------------------------------------------------------------
 

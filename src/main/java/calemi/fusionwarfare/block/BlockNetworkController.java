@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.item.ItemBlockEnergyBase;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
@@ -14,8 +15,8 @@ public class BlockNetworkController extends BlockBasicMachineBase {
 
 	public int tier;
 	
-	public BlockNetworkController(int tier, int guiID) {
-		super("network_controller_" + tier, null, guiID, false, false, "mech_top_" + tier, "steel_casing", "network_controller_" + tier + "_side", false);
+	public BlockNetworkController(int tier) {
+		super("network_controller_" + tier, null, FusionWarfare.guiIDNetworkController, false, false, "mech_top_" + tier, "steel_casing", "network_controller_" + tier + "_side", false);
 		this.tier = tier;
 		setCreativeTab(InitCreativeTabs.creativeTabMachines);
 		GameRegistry.registerBlock(this, ItemBlockEnergyBase.class, imagePath);
@@ -31,7 +32,8 @@ public class BlockNetworkController extends BlockBasicMachineBase {
 	public TileEntity createNewTileEntity(World world, int i) {
 			
 		TileEntityNetworkController tileEntity = new TileEntityNetworkController();
-		
+
+		tileEntity.tier = tier;
 		tileEntity.maxEnergy = tier * 25000;
 		
 		return tileEntity;
