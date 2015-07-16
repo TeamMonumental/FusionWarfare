@@ -20,6 +20,7 @@ item.infused_redstone.name=Infused Redstone
 
 item.steel_mixture.name=Steel Mixture
 item.evaporation_cell.name=Evaporation Cell
+item.infused_circuit.name=Infused Circuit
 item.steel_plate.name=Steel Plate
 item.lightning_rod.name=Lightning Rod
 item.sturdy_handle.name=Sturdy Handle
@@ -183,6 +184,8 @@ tile.mining_unit.name=Mining Unit
 tile.missile_factory.name=Missile Factory
 tile.exp_fabricator.name=EXP Fabricator
 tile.emp_tower.name=EMP Tower
+
+tile.aura_turret.name=Aura Turret
 
 tile.fusion_matter_reinforcer.name=Fusion Matter Reinforcer
 tile.anti_mob_beacon.name=Anti-Mob Beacon

@@ -41,11 +41,12 @@ public class InitItems {
 	//#-#-#-#-#-INGREDIENTS-#-#-#-#-#\\
 	
 	public static Item steel_mixture;
-	public static Item evaporation_cell;	
+	public static Item evaporation_cell;
+	public static Item infused_circuit;
 	public static Item steel_plate;	
 	public static Item lightning_rod;
 	public static Item sturdy_handle;
-	public static Item solar_panel;
+	public static Item solar_panel;	
 	
 	public static Item missile_module_1;
 	public static Item missile_module_2;
@@ -58,8 +59,6 @@ public class InitItems {
 	public static Item gun_core;
 	public static Item gun_barrel;
 	public static Item gun_handle;
-	
-	public static Item infused_circuit;
 	
 	//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 	
