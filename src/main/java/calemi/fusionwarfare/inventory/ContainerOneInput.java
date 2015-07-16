@@ -70,7 +70,7 @@ public class ContainerOneInput extends ContainerBase {
 					slot.onSlotChange(itemstack1, itemstack);
 				}
 			}
-			
+						
 			if (itemstack1.stackSize == 0) {				
 				slot.putStack((ItemStack)null);
 			}

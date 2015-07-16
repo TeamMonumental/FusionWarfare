@@ -22,10 +22,12 @@ public class TileEntityMiningUnit extends TileEntityBase {
 	public void updateEntity() {
 		super.updateEntity();
 
+		int progressMultiplier = (slots[14] == null ? 1 : slots[14].stackSize + 1);
+		
 		if (!worldObj.isRemote) {
 
 			if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && energy >= energyCost) {
-				progress++;
+				progress += progressMultiplier;
 			}
 
 			else {
@@ -112,7 +114,7 @@ public class TileEntityMiningUnit extends TileEntityBase {
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[] {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
+		return new int[] {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14};
 	}
 
 	@Override
@@ -127,7 +129,7 @@ public class TileEntityMiningUnit extends TileEntityBase {
 
 	@Override
 	public int getSizeInventory() {
-		return 32;
+		return 15;
 	}
 
 	@Override

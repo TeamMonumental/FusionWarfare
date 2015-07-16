@@ -7,6 +7,8 @@ import net.minecraft.inventory.Slot;
 
 public class ContainerMissileSiloCore extends ContainerBase {
 
+	
+	
 	public ContainerMissileSiloCore(EntityPlayer player, TileEntityBase tileEntity) {
 		super(player, tileEntity);		
 		
