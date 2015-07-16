@@ -62,7 +62,7 @@ public class InitRecipes {
 			"RSR", "SCS", "RSR", 'R', InitItems.infused_redstone, 'S', InitItems.steel_plate, 'C', InitItems.infused_crystal
 		});
 		
-		//#-#-#-#-#-REACTORS-#-#-#-#-#\\
+		//#-#-#-#-#-REACTORS & MISSILE LAUNCHERS-#-#-#-#-#\\
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.steel_casing, 4), new Object[] {
 			"CSC", "SCS", "CSC", 'C', InitBlocks.concrete, 'S', InitItems.steel_plate
@@ -82,6 +82,14 @@ public class InitRecipes {
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.capsule_core), new Object[] {
 			"SSS", "AGA", "SSS", 'S', InitItems.steel_plate, 'A', InitItems.advanced_chip, 'G', InitBlocks.aqua_generator
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.missile_launcher), new Object[] {
+			"SIS", "IAI", "SIS", 'S', InitItems.steel_plate, 'I', InitItems.infused_steel_ingot, 'A', InitItems.advanced_chip
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.missile_silo_core), new Object[] {
+			"SHS", "HMH", "SHS", 'S', InitItems.steel_plate, 'M', InitBlocks.missile_launcher, 'H', InitItems.hyper_chip
 		});
 		
 		//#-#-#-#-#-MACHINES-#-#-#-#-#\\
@@ -110,9 +118,6 @@ public class InitRecipes {
 			"SIS", "BIB", "SIS", 'S', InitItems.steel_plate, 'I', InitItems.infused_steel_ingot, 'B', InitItems.basic_chip
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.missile_launcher), new Object[] {
-			"SIS", "IAI", "SIS", 'S', InitItems.steel_ingot, 'I', InitItems.infused_steel_ingot, 'A', InitItems.advanced_chip
-		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.exp_fabricator), new Object[] {
 			"ISI", "HSH", "ISI", 'S', InitItems.steel_plate, 'I', InitItems.infused_steel_ingot, 'H', InitItems.hyper_chip

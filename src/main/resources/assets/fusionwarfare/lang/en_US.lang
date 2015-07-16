@@ -161,13 +161,16 @@ tile.geothermal_generator.name=Geothermal Generator
 tile.solar_generator.name=Solar Generator
 tile.wind_turbine.name=Wind Turbine
 
-#-#-#-#-#-REACTOR-#-#-#-#-#
+#-#-#-#-#-REACTOR & MISSILE LAUNCHERS-#-#-#-#-#
 
 tile.reactor_core.name=Reactor Core
 tile.reactor_cooling_unit.name=Reactor Cooling Unit
 
 tile.advanced_hydro_reactor_core.name= Advanced Hydro Reactor Core
 tile.capsule_core.name=Capsule Core
+
+tile.missile_launcher.name=Missile Launcher
+tile.missile_silo_core.name=Missile Silo Core
 
 #-#-#-#-#-MACHINES-#-#-#-#-#
 
@@ -178,7 +181,6 @@ tile.infusion_table.name=Infusion Table
 tile.infusion_foundry.name=Infusion Foundry
 tile.mining_unit.name=Mining Unit
 tile.missile_factory.name=Missile Factory
-tile.missile_launcher.name=Missile Launcher
 tile.exp_fabricator.name=EXP Fabricator
 tile.emp_tower.name=EMP Tower
 
