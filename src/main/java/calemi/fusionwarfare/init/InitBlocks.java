@@ -156,7 +156,7 @@ public class InitBlocks {
 		
 		infusion_table = new BlockTwoInputs("infusion_table", EnumRecipeType.INFUSION_TABLE, FusionWarfare.guiIDTwoInputs, "table_top", "infusion_table_side");	
 		infusion_foundry = new BlockTwoInputs("infusion_foundry", EnumRecipeType.INFUSION_FOUNDRY, FusionWarfare.guiIDTwoInputs, "mech_top_1", "mech_side");	
-		missile_factory = new BlockTwoInputs("missile_factory", EnumRecipeType.MISSILE_FACTORY, FusionWarfare.guiIDTwoInputs, "missile_factory_top", "missile_factory_side_1", "missile_factory_side_2", "missile_factory_side_3", "missile_factory_side_4");	
+		missile_factory = new BlockTwoInputs("missile_factory", EnumRecipeType.MISSILE_FACTORY, FusionWarfare.guiIDTwoInputs, "missile_factory_top", "missile_factory_side");	
 		
 		energetic_furnace = new BlockBasicMachineBase("energetic_furnace", TileEntityEnergeticFurnace.class, FusionWarfare.guiIDEnergeticFurnace, true, false);
 		ore_enricher = new BlockBasicMachineBase("ore_enricher", TileEntityOreEnricher.class, FusionWarfare.guiIDOreEnricher, true, false);			
