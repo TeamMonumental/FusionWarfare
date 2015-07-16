@@ -22,7 +22,7 @@ public class TileEntityAuraTurret extends TileEntitySecurity {
 
 	public TileEntityAuraTurret() {
 		maxEnergy = 5000;
-		maxProgress = 100;
+		maxProgress = 20;
 	}
 	
 	@Override
@@ -43,7 +43,7 @@ public class TileEntityAuraTurret extends TileEntitySecurity {
 				
 					if (!isSameTeam((EntityPlayer) player)) {
 											
-						((EntityPlayer)player).attackEntityFrom(new DamageSource("turret"), 2.0F);	
+						((EntityPlayer)player).attackEntityFrom(new DamageSourceTurret((EntityPlayer)player, teamName), 4.0F);	
 						EnergyUtil.subtractEnergy(this, energyCost);
 					}
 				}

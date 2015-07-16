@@ -24,7 +24,7 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityFallingSupplyCrate extends Entity {
 
-	public static int meta;
+	public int meta;
 	
 	public EntityFallingSupplyCrate(World world) {
 		super(world);
