@@ -22,13 +22,13 @@ public class ItemTest extends ItemBase {
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		
 		if (!world.isRemote) {
-						
-			EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(0, world, (int)player.posX, (int)player.posZ);
+			
+			EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(player.isSneaking() ? 1 : 0, world, (int)player.posX, (int)player.posZ);
 			world.spawnEntityInWorld(entityCrate);
 		}
 		
 		else {
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "A blue supply crate is falling at " + (int)player.posX + " " + (int)player.posZ));	
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "A supply crate is falling at " + (int)player.posX + " " + (int)player.posZ));	
 		}
 		
 			/*for (Location l : ShapeUtil.getFilteredCube(world, (int)player.posX, (int)player.posY - 50, (int)player.posZ, 10, 50, 10, InitBlocks.infused_catalyst_ore)) {

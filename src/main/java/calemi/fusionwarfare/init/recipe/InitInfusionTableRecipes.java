@@ -35,7 +35,7 @@ public class InitInfusionTableRecipes {
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.basic_chip), 
 				new ItemStack(Items.diamond), 				
-				new ItemStack(InitItems.steel_plate),
+				new ItemStack(InitItems.infused_circuit),
 				30, 500));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.advanced_chip), 

@@ -9,6 +9,7 @@ import calemi.fusionwarfare.event.TooltipEvent;
 import calemi.fusionwarfare.gui.GuiHandler;
 import calemi.fusionwarfare.init.InitArmorMaterials;
 import calemi.fusionwarfare.init.InitBlocks;
+import calemi.fusionwarfare.init.InitCrateLoot;
 import calemi.fusionwarfare.init.InitEntities;
 import calemi.fusionwarfare.init.InitHooks;
 import calemi.fusionwarfare.init.InitItems;
@@ -117,6 +118,8 @@ public class FusionWarfare {
 		InitInfusionFoundryRecipes.init();
 		InitMissileFactoryRecipes.init();
 		InitHooks.init();
+		
+		InitCrateLoot.init();
 	}
 	
 	@EventHandler
