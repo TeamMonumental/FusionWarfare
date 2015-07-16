@@ -57,7 +57,9 @@ public class InitItems {
 	
 	public static Item gun_core;
 	public static Item gun_barrel;
-	public static Item gun_handle;	
+	public static Item gun_handle;
+	
+	public static Item infused_circuit;
 	
 	//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 	
@@ -152,6 +154,8 @@ public class InitItems {
 		gun_core = new ItemBase("gun_core");
 		gun_barrel = new ItemBase("gun_barrel");
 		gun_handle = new ItemBase("gun_handle");
+		
+		infused_circuit = new ItemBase("infused_circuit");
 		
 		//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 			
