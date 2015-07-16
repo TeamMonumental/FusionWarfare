@@ -41,7 +41,7 @@ public class BlockReactorCoolingUnit extends BlockBase {
 	public void registerBlockIcons(IIconRegister iconreg) {
 
 		this.block_top = iconreg.registerIcon(Reference.MOD_ID + ":" + imagePath + "_top");
-		this.block_bottom = iconreg.registerIcon(Reference.MOD_ID + ":" + "mech_blank");
+		this.block_bottom = iconreg.registerIcon(Reference.MOD_ID + ":" + "steel_casing");
 		this.blockIcon = iconreg.registerIcon(Reference.MOD_ID + ":" + imagePath + "_side");
 	}
 }

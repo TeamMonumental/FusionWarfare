@@ -10,7 +10,7 @@ import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCasing;
 public class BlockReactorCasing extends BlockBasicMachineBase {
 
 	public BlockReactorCasing() {
-		super("reactor_casing", TileEntityReactorCasing.class, 0, false, true, "mech_blank", "mech_blank", "mech_blank", false);		
+		super("reactor_casing", TileEntityReactorCasing.class, 0, false, true, "steel_casing", "steel_casing", "steel_casing", false);		
 	}
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int i, float f, float f2, float f3) {
