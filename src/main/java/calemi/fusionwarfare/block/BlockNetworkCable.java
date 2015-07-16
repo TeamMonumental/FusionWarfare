@@ -20,6 +20,7 @@ public class BlockNetworkCable extends BlockBasicMachineBase {
 		super("network_cable", TileEntityNetworkCable.class, 0, false, false);
 		setBlockBounds(11 * pixel / 2, 11 * pixel / 2, 11 * pixel / 2, 1 - 11 * pixel / 2, 1 - 11 * pixel / 2, 1 - 11 * pixel / 2);
 		hasCustomModel = true;
+		this.particleImage = "mech_particle";
 	}
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int i, float f, float f2, float f3) {		

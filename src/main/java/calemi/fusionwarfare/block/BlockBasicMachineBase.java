@@ -27,12 +27,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockBasicMachineBase extends BlockContainerBase {
 
 	public Class tileEntity;
-	private int guiID;
-	private boolean isDirectional;
-	private boolean hasSecurity;
+	public int guiID;
+	public boolean isDirectional;
+	public boolean hasSecurity;
 	public boolean hasCustomModel;
 
-	private String topImage, bottomImage, sideImage1, sideImage2, sideImage3, sideImage4;
+	public String topImage, bottomImage, sideImage1, sideImage2, sideImage3, sideImage4;
+	public String particleImage;
 	
 	float pixel = 1F/16F;
 
@@ -59,9 +60,10 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 		this.hasCustomModel = false;
 	}
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean hasSecurity) {
+	public BlockBasicMachineBase(String imagePath, String particleImage, Class tileEntity, int guiID, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean hasSecurity) {
 		this(imagePath, tileEntity, guiID, false, true, "", "", "", hasSecurity);
 		this.hasCustomModel = true;
+		this.particleImage = particleImage;
 		setBlockBounds(xStart * pixel, yStart * pixel, zStart * pixel, xEnd * pixel, yEnd * pixel, zEnd * pixel);
 	}
 	
@@ -176,7 +178,7 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 		}
 		
 		else {
-			this.blockIcon = iconreg.registerIcon(Reference.MOD_ID + ":" + imagePath);
+			this.blockIcon = iconreg.registerIcon(Reference.MOD_ID + ":" + particleImage);
 		}	
 	}
 

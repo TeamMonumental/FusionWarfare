@@ -72,6 +72,8 @@ public class FusionWarfare {
 	public static int guiIDEnergyTransmitter = nextGuiID++;
 	public static int guiIDEnergyReceiver = nextGuiID++;
 	
+	public static int guiIDAuraTurret = nextGuiID++;	
+	
 	public static int guiIDFusionMatterReinforcer = nextGuiID++;	
 	public static int guiIDAntiMobBeacon = nextGuiID++;
 	public static int guiIDPlayerHealingBeacon = nextGuiID++;

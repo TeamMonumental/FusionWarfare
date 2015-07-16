@@ -23,6 +23,7 @@ import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityAdvancedHydroReactorCore;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
@@ -104,6 +105,10 @@ public class GuiHandler implements IGuiHandler {
 		
 		if (ID == FusionWarfare.guiIDEMPTower) {
 			return new ContainerEnergyTank(player, (TileEntityEMPTower) tileentity);
+		}
+		
+		if (ID == FusionWarfare.guiIDAuraTurret) {
+			return new ContainerEnergyTank(player, (TileEntityAuraTurret) tileentity);
 		}
 
 		if (ID == FusionWarfare.guiIDFusionMatterReinforcer) {
@@ -196,6 +201,10 @@ public class GuiHandler implements IGuiHandler {
 
 		if (ID == FusionWarfare.guiIDEMPTower) {
 			return new GuiEnergyTank(player, (TileEntityEMPTower) tileentity, "EMP Tower", true);
+		}
+		
+		if (ID == FusionWarfare.guiIDAuraTurret) {
+			return new GuiEnergyTank(player, (TileEntityAuraTurret) tileentity, "Aura Turret", true);
 		}
 		
 		if (ID == FusionWarfare.guiIDFusionMatterReinforcer) {

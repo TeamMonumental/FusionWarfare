@@ -14,6 +14,7 @@ import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityCapsuleCore;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntitySteelCasing;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
@@ -57,15 +58,16 @@ public class InitTileEntities {
 		GameRegistry.registerTileEntity(TileEntityEXPFabricator.class, Reference.MOD_ID + ":tileEntityEXPFabricator");
 		GameRegistry.registerTileEntity(TileEntityEMPTower.class, Reference.MOD_ID + ":tileEntityEMPTower");
 		
-		GameRegistry.registerTileEntity(TileEntityEnergyTransmitter.class, Reference.MOD_ID + ":tileEntityEnergyTransmitter");
-		GameRegistry.registerTileEntity(TileEntityEnergyReceiver.class, Reference.MOD_ID + ":tileEntityEnergyReceiver");
+		GameRegistry.registerTileEntity(TileEntityAuraTurret.class, Reference.MOD_ID + ":tileEntityAuraTurret");
 		
 		GameRegistry.registerTileEntity(TileEntityFusionMatterReinforcer.class, Reference.MOD_ID + ":tileEntityFusionMatterReinforcer");		
 		GameRegistry.registerTileEntity(TileEntityAntiMobBeacon.class, Reference.MOD_ID + ":tileEntityAntiMobBeacon");
 		GameRegistry.registerTileEntity(TileEntityPlayerHealingBeacon.class, Reference.MOD_ID + ":tileEntityPlayerHealingBeacon");
 		
-		GameRegistry.registerTileEntity(TileEntitySupplyCrate.class, Reference.MOD_ID + ":tileEntitySupplyCrate");
+		GameRegistry.registerTileEntity(TileEntityEnergyTransmitter.class, Reference.MOD_ID + ":tileEntityEnergyTransmitter");
+		GameRegistry.registerTileEntity(TileEntityEnergyReceiver.class, Reference.MOD_ID + ":tileEntityEnergyReceiver");
 		
+		GameRegistry.registerTileEntity(TileEntitySupplyCrate.class, Reference.MOD_ID + ":tileEntitySupplyCrate");		
 		GameRegistry.registerTileEntity(TileEntityReinforcedDoor.class, Reference.MOD_ID + ":tileEntityReinforcedDoor");
 	}
 }

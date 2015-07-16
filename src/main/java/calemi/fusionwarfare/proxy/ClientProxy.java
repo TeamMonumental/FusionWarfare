@@ -25,6 +25,7 @@ import calemi.fusionwarfare.renderer.RenderMissileSilo;
 import calemi.fusionwarfare.renderer.RenderNetworkCable;
 import calemi.fusionwarfare.renderer.RenderRocket;
 import calemi.fusionwarfare.renderer.RenderTurbine;
+import calemi.fusionwarfare.renderer.RenderTurret;
 import calemi.fusionwarfare.renderer.item.ItemRenderEMPTower;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionAutoPistol;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionGatlingGun;
@@ -37,8 +38,10 @@ import calemi.fusionwarfare.renderer.item.ItemRenderMissileLauncher;
 import calemi.fusionwarfare.renderer.item.ItemRenderNetworkCable;
 import calemi.fusionwarfare.renderer.item.ItemRenderRocket;
 import calemi.fusionwarfare.renderer.item.ItemRenderRocketLauncher;
+import calemi.fusionwarfare.renderer.item.ItemRenderTurret;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityFusionMatterReinforcer;
@@ -91,12 +94,17 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.missile_launcher), new ItemRenderMissileLauncher());
 		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_matter_deconstructor, new ItemRenderFusionMatterDeconstructor());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.emp_tower), new ItemRenderEMPTower());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.aura_turret), new ItemRenderTurret("aura"));
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetworkCable.class, new RenderNetworkCable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMissileLauncher.class, new RenderMissileLauncher());
+		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFusionMatterReinforcer.class, new RenderBeacon("fusion_matter_reinforcer"));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntiMobBeacon.class, new RenderBeacon("anti_mob_beacon"));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlayerHealingBeacon.class, new RenderBeacon("player_healing_beacon"));
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAuraTurret.class, new RenderTurret("aura"));
+		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindTurbine.class, new RenderTurbine());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEXPFabricator.class, new RenderFloatingItem(new ItemStack(Items.experience_bottle), 0.5F, 1.1F, 0.5F, 1F));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTwoInputs.class, new RenderFloatingItem(new ItemStack(InitItems.velocity_missile_T1), 0.5F, 1.1F, 0.5F, 0.7F));
