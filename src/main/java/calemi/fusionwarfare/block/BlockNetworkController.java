@@ -15,7 +15,7 @@ public class BlockNetworkController extends BlockBasicMachineBase {
 	public int tier;
 	
 	public BlockNetworkController(int tier, int guiID) {
-		super("network_controller_" + tier, null, guiID, false, false, "mech_top_" + tier, "mech_blank", "network_controller_" + tier + "_side", false);
+		super("network_controller_" + tier, null, guiID, false, false, "mech_top_" + tier, "steel_casing", "network_controller_" + tier + "_side", false);
 		this.tier = tier;
 		setCreativeTab(InitCreativeTabs.creativeTabMachines);
 		GameRegistry.registerBlock(this, ItemBlockEnergyBase.class, imagePath);

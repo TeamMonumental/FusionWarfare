@@ -66,7 +66,7 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 	}
 	
 	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, String sideImage, boolean hasSecurity) {
-		this(imagePath, tileEntity, guiID, isDirectional, true, "mech_top_1", "mech_blank", sideImage, hasSecurity);
+		this(imagePath, tileEntity, guiID, isDirectional, true, "mech_top_1", "steel_casing", sideImage, hasSecurity);
 		this.hasCustomModel = false;
 	}
 	
