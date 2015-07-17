@@ -43,7 +43,7 @@ public class TileEntityAuraTurret extends TileEntitySecurity {
 				
 					if (!isSameTeam((EntityPlayer) player)) {
 											
-						((EntityPlayer)player).attackEntityFrom(new DamageSourceTurret((EntityPlayer)player, teamName), 6.0F);	
+						((EntityPlayer)player).attackEntityFrom(new DamageSourceTurret((EntityPlayer)player, teamName), 12.0F);	
 						EnergyUtil.subtractEnergy(this, energyCost);
 					}
 				}
