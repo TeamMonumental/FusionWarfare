@@ -47,7 +47,7 @@ public class InitRecipes {
 		//#-#-#-#-#-GENERATORS-#-#-#-#-#\\
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aqua_generator), new Object[] {
-			"ISI", "WSW", "ISI", 'I', InitItems.steel_ingot, 'S', Blocks.stone, 'W', Items.water_bucket
+			"ISI", "WSW", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stone, 'W', Items.water_bucket
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.solar_generator), new Object[] {
@@ -166,7 +166,7 @@ public class InitRecipes {
 		
 		//#-#-#-#-#-INGREDIENTS-#-#-#-#-#\\
 				
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.steel_mixture), new Object[]{Items.iron_ingot, Items.coal, Items.coal, Items.coal});
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.steel_mixture, 2), new Object[]{Items.iron_ingot, Items.coal, Items.coal, Items.coal});
 					
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.solar_panel, 3), new Object[] {
 			" G ", "GIG", " G ", 'I', InitItems.infused_crystal, 'G', InitBlocks.reinforced_glass
