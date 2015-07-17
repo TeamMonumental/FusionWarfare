@@ -24,6 +24,6 @@ public class DamageSourceTurret extends DamageSource {
 	
 	public IChatComponent func_151519_b(EntityLivingBase entity) {
 	   
-		return new ChatComponentText(player.getDisplayName() + " was killed by " + team + "'s Turret");
+		return new ChatComponentText(player.getDisplayName() + " was killed by a Turret from " + team);
 	}
 }
