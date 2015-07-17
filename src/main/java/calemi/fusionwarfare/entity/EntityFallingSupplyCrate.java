@@ -75,12 +75,25 @@ public class EntityFallingSupplyCrate extends Entity {
 			
 			TileEntitySupplyCrate tileEntity = (TileEntitySupplyCrate)worldObj.getTileEntity(x, y, z);
 			
-			EnumCrateRarity rarity = EnumCrateRarity.BLUE;
+			EnumCrateRarity rarity = null;
+			int size = 0;
 			
-			if (meta == 1) rarity = EnumCrateRarity.ORANGE;
-			if (meta == 2) rarity = EnumCrateRarity.RED;
+			if (meta == 0) {
+				size = 0;
+				rarity = EnumCrateRarity.BLUE;
+			}
 			
-			ItemStack[] stacks = CrateLootRegistry.genLoot(12, rarity);
+			if (meta == 1) {
+				size = 0;
+				rarity = EnumCrateRarity.ORANGE;
+			}
+			
+			if (meta == 2) {
+				size = 0;
+				rarity = EnumCrateRarity.RED;
+			}
+			
+			ItemStack[] stacks = CrateLootRegistry.genLoot(size, rarity);
 			
 			for (ItemStack stack : stacks) {
 				
