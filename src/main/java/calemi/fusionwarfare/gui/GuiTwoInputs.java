@@ -4,7 +4,6 @@ import org.lwjgl.opengl.GL11;
 
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.gui.recipe.GuiTwoInputsRecipe;
 import calemi.fusionwarfare.inventory.ContainerTwoInputs;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;

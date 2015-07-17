@@ -1,7 +1,7 @@
 package calemi.fusionwarfare.key;
 
 import calemi.fusionwarfare.gui.GuiTeam;
-import calemi.fusionwarfare.gui.recipe.GuiTwoInputsRecipe;
+import calemi.fusionwarfare.gui.GuiTwoInputsRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

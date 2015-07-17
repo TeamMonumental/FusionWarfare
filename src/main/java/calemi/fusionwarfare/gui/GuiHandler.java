@@ -1,7 +1,6 @@
 package calemi.fusionwarfare.gui;
 
 import calemi.fusionwarfare.FusionWarfare;
-import calemi.fusionwarfare.gui.recipe.GuiTwoInputsRecipe;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerOverclockedEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerMiningUnit;

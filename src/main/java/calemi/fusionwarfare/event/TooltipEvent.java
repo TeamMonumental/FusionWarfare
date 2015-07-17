@@ -3,7 +3,7 @@ package calemi.fusionwarfare.event;
 import org.lwjgl.input.Keyboard;
 
 import calemi.fusionwarfare.config.FWConfig;
-import calemi.fusionwarfare.gui.recipe.GuiTwoInputsRecipe;
+import calemi.fusionwarfare.gui.GuiTwoInputsRecipe;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
 import calemi.fusionwarfare.key.KeyBindings;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
