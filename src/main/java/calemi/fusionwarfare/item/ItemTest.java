@@ -23,7 +23,7 @@ public class ItemTest extends ItemBase {
 		
 		if (!world.isRemote) {
 			
-			EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(player.isSneaking() ? 1 : 0, world, (int)player.posX, (int)player.posZ);
+			EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(player.isSneaking() ? 2 : 0, world, (int)player.posX, (int)player.posZ);
 			world.spawnEntityInWorld(entityCrate);
 		}
 		

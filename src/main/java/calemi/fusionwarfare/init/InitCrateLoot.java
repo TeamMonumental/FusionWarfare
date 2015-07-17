@@ -69,7 +69,27 @@ public class InitCrateLoot {
 		
 		
 		//RED_NORMAL\\
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.fusion_ammo, 100, 128, false));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.rocket, 3, 5, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.hyper_chip, 1, 2, false));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.hyper_battery, 1, 1, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.lightning_rod, 1, 2, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.velocity_missile_T2, 2, 2, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.emp_missile_T2, 2, 2, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.overclocking_chip, 10, 15, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, Items.golden_apple, 1, 2, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, Item.getItemFromBlock(Blocks.diamond_block), 1, 1, false));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, Item.getItemFromBlock(InitBlocks.concrete), 100, 128, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, Item.getItemFromBlock(InitBlocks.network_controller_2), 1, 1, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.fusion_matter_deconstructor, 1, 1, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.infused_steel.boots, 1, 1, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.infused_steel.helmet, 1, 1, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.infused_steel.leggings, 1, 1, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.infused_steel.chestplate, 1, 1, false, true));
 		
 		//RED_CRITICAL\\
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.fusion_sniper_rifle, 1, 1, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.rocket_launcher, 1, 1, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.fusion_gatling_gun, 1, 1, true));
 	}
 }

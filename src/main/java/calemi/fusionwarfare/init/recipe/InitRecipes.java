@@ -172,6 +172,10 @@ public class InitRecipes {
 			" G ", "GIG", " G ", 'I', InitItems.infused_crystal, 'G', InitBlocks.reinforced_glass
 		});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.infused_circuit), new Object[] {
+			"RIR", "IGI", "RIR", 'I', InitItems.infused_crystal, 'G', Items.gold_ingot, 'R', Items.redstone
+		});
+		
 		//Guns Parts
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.gun_core), new Object[] {
 			"SSS", "SC ", 'S', InitItems.steel_plate, 'C', InitItems.basic_chip
