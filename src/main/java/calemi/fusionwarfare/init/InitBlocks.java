@@ -169,7 +169,7 @@ public class InitBlocks {
 		exp_fabricator = new BlockBasicMachineBase("exp_fabricator", TileEntityEXPFabricator.class, FusionWarfare.guiIDEXPFabricator, false, true, "exp_fabricator_top", "steel_casing", "exp_fabricator_side", false);
 		emp_tower = new BlockBasicMachineBase("emp_tower", "mech_particle", TileEntityEMPTower.class, FusionWarfare.guiIDEMPTower, 2, 0, 2, 14, 16, 14, false);
 		
-		aura_turret = new BlockBasicMachineBase("aura_turret", "mech_particle", TileEntityAuraTurret.class, FusionWarfare.guiIDAuraTurret, 3, 0, 3, 13, 12, 13, true);
+		aura_turret = new BlockBasicMachineBase("aura_turret", "mech_particle", TileEntityAuraTurret.class, FusionWarfare.guiIDAuraTurret, 3, 0, 3, 13, 12, 13, true).setHardness(50F);
 		
 		fusion_matter_reinforcer = new BlockBasicMachineBase("fusion_matter_reinforcer", TileEntityFusionMatterReinforcer.class, FusionWarfare.guiIDFusionMatterReinforcer, false, "fusion_matter_reinforcer_side", false);	
 		anti_mob_beacon = new BlockBasicMachineBase("anti_mob_beacon", TileEntityAntiMobBeacon.class, FusionWarfare.guiIDAntiMobBeacon, false, "anti_mob_beacon_side", false);	
