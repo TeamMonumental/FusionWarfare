@@ -7,6 +7,7 @@ import calemi.fusionwarfare.block.BlockBasicMachineBase;
 import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.IEnergyItem;
+import calemi.fusionwarfare.item.ItemEnergyBase;
 import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.IEnergy;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
@@ -43,11 +44,7 @@ public class TileEntityNetworkController extends TileEntityBase {
 		if (!worldObj.isRemote) {
 
 			if (getStackInSlot(1) != null) {
-
-				if (getStackInSlot(1).getItem() == InitItems.infused_crystal) {
-					EnergyUtil.addEnergy(this, 100);
-				}
-				
+			
 				// Discharge
 				if (getStackInSlot(1).getItem() instanceof IEnergyItem) {
 
@@ -55,6 +52,12 @@ public class TileEntityNetworkController extends TileEntityBase {
 					IEnergyItem energyItem = (IEnergyItem) stack.getItem();
 					
 					EnergyItemUtil.transferEnergyToBlock(stack, this, transferRate);
+				}
+				
+				if (getStackInSlot(1).getItem() == InitItems.infused_crystal && EnergyUtil.canAddEnergy(this, 100)) {
+					EnergyUtil.addEnergy(this, 100);
+					
+					decrStackSize(1, 1);					
 				}
 			}
 
@@ -161,16 +164,38 @@ public class TileEntityNetworkController extends TileEntityBase {
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		return null;
+		return new int[]{1,2};
 	}
 
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int side) {
+		
+		if (side == 1 && slot == 1) {
+			return true;
+		}
+		
+		if (side > 1 && slot == 2) {
+			return true;
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean canExtractItem(int slot, ItemStack stack, int side) {
+		
+		if (side == 0 && slot == 2) {
+			
+			if (stack.getItem() instanceof IEnergyItem) {
+				
+				IEnergyItem energyStack = (IEnergyItem)stack.getItem();
+				
+				if (energyStack.getEnergy(stack) >= energyStack.getMaxEnergy()) {
+					return true;
+				}
+			}
+		}
+		
 		return false;
 	}
 
@@ -181,6 +206,6 @@ public class TileEntityNetworkController extends TileEntityBase {
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return false;
+		return true;
 	}
 }

@@ -64,6 +64,15 @@ public class ContainerNetworkController extends ContainerBase {
 					}					
 				}
 				
+				else if (itemstack1.getItem() == InitItems.infused_crystal) {
+
+					if (!this.mergeItemStack(itemstack1, slots[1], slots[1] + 1, false)) {
+						return null;
+					}		
+					
+					slot.onSlotChange(itemstack1, itemstack);
+				}
+				
 				else if (itemstack1.getItem() instanceof IEnergyItem) {
 					
 					if (!this.mergeItemStack(itemstack1, slots[1], slots[2] + 1, false)) {

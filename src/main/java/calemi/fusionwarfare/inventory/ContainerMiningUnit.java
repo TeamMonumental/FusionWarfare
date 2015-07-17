@@ -8,21 +8,21 @@ import calemi.fusionwarfare.tileentity.TileEntityBase;
 
 public class ContainerMiningUnit extends ContainerBase {
 
-	private int[] slots = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+	private int[] slots = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21};
 	
 	public ContainerMiningUnit(EntityPlayer player, TileEntityBase tileentity) {
 		super(player, tileentity);
 		
-		for (int y = 0; y < 2; y++) {
+		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 7; x++) {
 				addSlotToContainer(new Slot(tileentity, x + (y * 7), 26 + (x * 18), 27 + (y * 18)));
 			}
 		}
 		
-		addSlotToContainer(new SlotOverclocking(tileentity, slots[14], 154, 45, 15));
+		addSlotToContainer(new SlotOverclocking(tileentity, slots[21], 152, 45, 15));
 		
-		addPlayerInv(8, 85);
-		addHotbar(8, 143);
+		addPlayerInv(8, 99);
+		addHotbar(8, 157);
 	}
 	
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotId) {
@@ -48,7 +48,7 @@ public class ContainerMiningUnit extends ContainerBase {
 				
 				if (itemstack1.getItem() == InitItems.overclocking_chip) {								
 					
-					if (!this.mergeItemStack(itemstack1, slots[14], slots[14] + 1, false)) {
+					if (!this.mergeItemStack(itemstack1, slots[21], slots[21] + 1, false)) {
 						return null;
 					}				
 					
