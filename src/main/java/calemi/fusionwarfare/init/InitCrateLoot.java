@@ -14,7 +14,7 @@ public class InitCrateLoot {
 		//BLUE_NORMAL\\
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.fusion_auto_pistol, 1, 1, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.fusion_pistol, 1, 1, false, true));
-		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.infused_steel_ingot, 5, 10, false));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.infused_steel_ingot, 3, 5, false));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.fusion_ammo, 24, 32, false));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.steel_plate, 4, 8, false));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.infused_circuit, 2, 2, false));
@@ -27,7 +27,7 @@ public class InitCrateLoot {
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.steel.pickaxe, 1, 1, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.steel.sword, 1, 1, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, Item.getItemFromBlock(InitBlocks.fusion_torch), 32, 64, false));
-		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, Item.getItemFromBlock(Blocks.iron_block), 2, 4, false));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, Item.getItemFromBlock(Blocks.iron_block), 2, 4, false, true));
 		
 		
 		
@@ -78,7 +78,7 @@ public class InitCrateLoot {
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.emp_missile_T2, 2, 2, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.overclocking_chip, 10, 15, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, Items.golden_apple, 1, 2, false, true));
-		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, Item.getItemFromBlock(Blocks.diamond_block), 1, 1, false));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, Item.getItemFromBlock(Blocks.diamond_block), 1, 2, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, Item.getItemFromBlock(InitBlocks.concrete), 100, 128, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, Item.getItemFromBlock(InitBlocks.network_controller_2), 1, 1, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.fusion_matter_deconstructor, 1, 1, false, true));

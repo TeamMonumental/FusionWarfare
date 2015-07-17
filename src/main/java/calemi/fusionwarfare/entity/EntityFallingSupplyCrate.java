@@ -79,17 +79,17 @@ public class EntityFallingSupplyCrate extends Entity {
 			int size = 0;
 			
 			if (meta == 0) {
-				size = 0;
+				size = 12;
 				rarity = EnumCrateRarity.BLUE;
 			}
 			
 			if (meta == 1) {
-				size = 0;
+				size = 14;
 				rarity = EnumCrateRarity.ORANGE;
 			}
 			
 			if (meta == 2) {
-				size = 0;
+				size = 16;
 				rarity = EnumCrateRarity.RED;
 			}
 			
