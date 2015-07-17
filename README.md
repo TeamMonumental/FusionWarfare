@@ -1,3 +1,3 @@
 # ChoppedLettuce
 
-An minecraft mod.
+A minecraft mod.
