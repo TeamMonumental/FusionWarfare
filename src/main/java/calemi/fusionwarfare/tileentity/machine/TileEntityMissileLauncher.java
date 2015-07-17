@@ -22,10 +22,11 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 
 	public int targetX;
 	public int targetZ;
+	public boolean forceLaunch = false;
+	
 	private int energyCost = 1000;
-
-	Random rand = new Random();
-
+	private Random rand = new Random();
+	
 	public TileEntityMissileLauncher() {
 		maxEnergy = 5000;
 		maxProgress = 100;		
@@ -48,12 +49,17 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 				double randX = MathHelper.getRandomDoubleInRange(rand, -0.5D, 0.5D);
 				double randZ = MathHelper.getRandomDoubleInRange(rand, -0.5D, 0.5D);
 
-				worldObj.spawnParticle("smoke", xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, randX, -0.1D, randZ);		
-				if (i % 8 == 0) worldObj.spawnParticle("flame", xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, randX, -0.1D, randZ);
+				worldObj.spawnParticle("smoke", xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, randX, -0.1D, randZ);	
+				
+				if (i % 8 == 0) {
+					worldObj.spawnParticle("flame", xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, randX, -0.1D, randZ);
+				}
 			}
 		}
 
-		else resetProgress();
+		else {
+			resetProgress();
+		}
 
 		if (isDone()) {
 
@@ -66,13 +72,20 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 				worldObj.spawnEntityInWorld(entity);				
 			}
 					
-			decrStackSize(0, 1);			
+			decrStackSize(0, 1);
+			
+			forceLaunch = false;
 		}
 
 	}
 
 	private boolean canLaunch() {
-		return worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord) && slots[0] != null && EnergyUtil.canSubtractEnergy(this, energyCost);
+		
+		boolean b1 = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
+		boolean b2 = worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord);
+		boolean b3 = slots[0] != null && EnergyUtil.canSubtractEnergy(this, energyCost);
+		
+		return (b1 && b2 && b3) || (forceLaunch && b2 && b3);
 	}
 
 	public void update() {
