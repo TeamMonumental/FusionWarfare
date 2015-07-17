@@ -44,6 +44,10 @@ public class TileEntityNetworkController extends TileEntityBase {
 
 			if (getStackInSlot(1) != null) {
 
+				if (getStackInSlot(1).getItem() == InitItems.infused_crystal) {
+					EnergyUtil.addEnergy(this, 100);
+				}
+				
 				// Discharge
 				if (getStackInSlot(1).getItem() instanceof IEnergyItem) {
 
