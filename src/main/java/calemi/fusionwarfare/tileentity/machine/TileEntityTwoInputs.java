@@ -26,6 +26,8 @@ public class TileEntityTwoInputs extends TileEntityBase {
 	public void updateEntity() {
 		super.updateEntity();
 		
+		maxEnergy = recipeType == EnumRecipeType.INFUSION_TABLE ? 10000 : 5000;
+		
 		int progressMultiplier = (slots[3] == null ? 1 : slots[3].stackSize + 1);
 		
 		checkForRecipe();

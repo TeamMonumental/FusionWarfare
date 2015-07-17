@@ -2,6 +2,7 @@ package calemi.fusionwarfare.proxy;
 
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.entity.EntityBlock;
+import calemi.fusionwarfare.entity.EntityDesignatorOrb;
 import calemi.fusionwarfare.entity.EntityFallingSupplyCrate;
 import calemi.fusionwarfare.entity.EntityFusionBullet;
 import calemi.fusionwarfare.entity.EntityMissile;
@@ -15,6 +16,7 @@ import calemi.fusionwarfare.key.KeyBindings;
 import calemi.fusionwarfare.key.KeyInputHandler;
 import calemi.fusionwarfare.renderer.RenderBeacon;
 import calemi.fusionwarfare.renderer.RenderBlock;
+import calemi.fusionwarfare.renderer.RenderDesignatorOrb;
 import calemi.fusionwarfare.renderer.RenderEMPTower;
 import calemi.fusionwarfare.renderer.RenderFallingSupplyCrate;
 import calemi.fusionwarfare.renderer.RenderFloatingItem;
@@ -73,7 +75,8 @@ public class ClientProxy extends CommonProxy {
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
 		MinecraftForge.EVENT_BUS.register(new FOVEvent());
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityFusionBullet.class, new RenderFusionBullet());			
+		RenderingRegistry.registerEntityRenderingHandler(EntityFusionBullet.class, new RenderFusionBullet());
+		RenderingRegistry.registerEntityRenderingHandler(EntityDesignatorOrb.class, new RenderDesignatorOrb());
 		RenderingRegistry.registerEntityRenderingHandler(EntityRocket.class, new RenderRocket());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMissile.class, new RenderMissile());	
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlock.class, new RenderBlock());	

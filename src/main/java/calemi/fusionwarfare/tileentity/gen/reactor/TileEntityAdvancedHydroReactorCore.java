@@ -41,7 +41,7 @@ public class TileEntityAdvancedHydroReactorCore extends TileEntityBase {
 				markDirty();
 			}
 
-			int energyAmount = capsules * 25;
+			int energyAmount = capsules * 5;
 
 			if (energyAmount > 0) {
 				

@@ -75,10 +75,10 @@ public class TileEntityReactorCore extends TileEntityBase {
 						decrStackSize(0, 1);
 					}
 					
-					if (EnergyUtil.canAddEnergy(this, 25)) {
+					if (EnergyUtil.canAddEnergy(this, 5)) {
 
 						slots[0].setItemDamage(slots[0].getItemDamage() + 1);
-						EnergyUtil.addEnergy(this, 25);
+						EnergyUtil.addEnergy(this, 5);
 					}
 				}
 			}

@@ -8,7 +8,6 @@ import calemi.fusionwarfare.item.ItemChargedSeeds;
 import calemi.fusionwarfare.item.ItemCreativeBattery;
 import calemi.fusionwarfare.item.ItemFusionGatlingGun;
 import calemi.fusionwarfare.item.ItemFusionGun;
-import calemi.fusionwarfare.item.ItemLaserDesignator;
 import calemi.fusionwarfare.item.ItemMissile;
 import calemi.fusionwarfare.item.ItemMissileModule;
 import calemi.fusionwarfare.item.ItemReinforcedDoor;
@@ -16,6 +15,7 @@ import calemi.fusionwarfare.item.ItemRocketLauncher;
 import calemi.fusionwarfare.item.ItemTest;
 import calemi.fusionwarfare.item.tool.ItemDebugger;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
+import calemi.fusionwarfare.item.tool.ItemDesignator;
 import calemi.fusionwarfare.item.tool.ItemLocationLinker;
 import calemi.fusionwarfare.item.tool.ItemSprayer;
 import calemi.fusionwarfare.item.tool.ItemWrench;
@@ -125,7 +125,7 @@ public class InitItems {
 		
 		infused_crystal = new ItemBase("infused_crystal");
 		infused_catalyst = new ItemBase("infused_catalyst");
-		advanced_infused_catalyst = new ItemBase("advanced_infused_catalyst", true, true).setMaxDamage(1000).setMaxStackSize(1);	
+		advanced_infused_catalyst = new ItemBase("advanced_infused_catalyst", true, true).setMaxDamage(5000).setMaxStackSize(1);	
 		infused_azurite = new ItemBase("infused_azurite");
 		fusion_fish = new ItemBase("fusion_fish");		
 		charged_seeds = new ItemChargedSeeds();
@@ -211,7 +211,7 @@ public class InitItems {
 		location_linker = new ItemLocationLinker();
 		sprayer = new ItemSprayer();
 		
-		laser_designator = new ItemLaserDesignator();
+		laser_designator = new ItemDesignator();
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		

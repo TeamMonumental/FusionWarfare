@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class EntityRocket extends Entity {
 
-	public EntityPlayer thrower;
+	public EntityPlayer shooter;
 	
 	public EntityRocket(World world) {
 		super(world);
@@ -25,7 +25,7 @@ public class EntityRocket extends Entity {
 
 		setSize(0.5F, 0.5F);
 
-		thrower = entity;
+		shooter = entity;
 		
 		posX = entity.posX;
 		posY = entity.posY + 1.5;
@@ -65,7 +65,7 @@ public class EntityRocket extends Entity {
 			
 			if (worldObj.getBlock((int)posX, (int)posY, (int)posZ) != Blocks.air) {
 			
-				worldObj.createExplosion(thrower, posX, posY, posZ, 5, false);
+				worldObj.createExplosion(shooter, posX, posY, posZ, 5, false);
 				setDead();
 			}
 			
@@ -77,7 +77,7 @@ public class EntityRocket extends Entity {
 								
 					if (ticksExisted > 5 && entity != this && entity.getDistance(posX, posY, posZ) < 2) {
 						
-						worldObj.createExplosion(thrower, posX, posY, posZ, 6, false);
+						worldObj.createExplosion(shooter, posX, posY, posZ, 6, false);
 						setDead();
 						break;
 					}				
@@ -89,9 +89,16 @@ public class EntityRocket extends Entity {
 	@Override
 	protected void entityInit() {}
 
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound nbt) {}
 
 	@Override
-	protected void writeEntityToNBT(NBTTagCompound nbt) {}
+	public void readEntityFromNBT(NBTTagCompound nbt) {
+	
+		shooter = worldObj.getPlayerEntityByName(nbt.getString("shooter"));
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound nbt) {
+	
+		nbt.setString("shooter", ((EntityPlayer)shooter).getDisplayName());
+	}
 }

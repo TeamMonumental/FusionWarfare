@@ -19,7 +19,7 @@ public class ContainerMiningUnit extends ContainerBase {
 			}
 		}
 		
-		addSlotToContainer(new SlotOverclocking(tileentity, slots[21], 152, 45, 10));
+		addSlotToContainer(new SlotOverclocking(tileentity, slots[21], 152, 45, 5));
 		
 		addPlayerInv(8, 99);
 		addHotbar(8, 157);

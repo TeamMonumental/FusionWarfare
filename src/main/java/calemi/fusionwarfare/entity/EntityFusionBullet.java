@@ -92,4 +92,19 @@ public class EntityFusionBullet extends EntityThrowable {
 	protected float getGravityVelocity() {
 		return gravityVelocity;
 	}
+	
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound nbt) {
+		super.readEntityFromNBT(nbt);
+		
+		shooter = worldObj.getPlayerEntityByName(nbt.getString("shooter"));
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound nbt) {
+		super.writeEntityToNBT(nbt);
+		
+		nbt.setString("shooter", ((EntityPlayer)shooter).getDisplayName());
+	}
 }

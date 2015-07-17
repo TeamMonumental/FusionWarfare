@@ -75,8 +75,9 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 			decrStackSize(0, 1);
 			
 			forceLaunch = false;
+			
+			update();
 		}
-
 	}
 
 	private boolean canLaunch() {

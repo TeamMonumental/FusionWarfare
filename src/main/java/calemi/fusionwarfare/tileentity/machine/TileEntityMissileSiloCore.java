@@ -43,6 +43,7 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 	public boolean sprayMode;
 	public boolean isAssembled;
 	public boolean isBlockPowered;	
+	public boolean forceLaunch = false;
 	
 	public TileEntityMissileSiloCore() {
 		maxEnergy = 10000;
@@ -70,7 +71,7 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 			}
 		}	
 		
-		if (canLaunch()) {
+		if (isAssembled && canLaunch()) {
 			progress++;
 		}
 		
@@ -102,6 +103,8 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 				
 				EnergyUtil.subtractEnergy(this, energyCost);
 				decrStackSize(missileSlot, 1);
+				forceLaunch = false;
+				update();
 			}													
 		}
 	}
@@ -120,23 +123,20 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 	
 	private boolean canLaunch() {
 		
-		if (isAssembled) {
-			
-			if (worldObj.canBlockSeeTheSky(xCoord + direction.offsetX, yCoord, zCoord + direction.offsetZ) && isBlockPowered && EnergyUtil.canSubtractEnergy(this, energyCost)) {
-			
-				for (ItemStack stack : slots) {			
-				
-					if (stack != null) {				
-					
-						return true;
-					}
-				}	
-			}
-		}	
+		boolean b1 = isBlockPowered;
+		boolean b2 = worldObj.canBlockSeeTheSky(xCoord + direction.offsetX, yCoord, zCoord + direction.offsetZ);
+		boolean b3 = EnergyUtil.canSubtractEnergy(this, energyCost);		
+		boolean b4 = false;
 		
-		return false;
+		for (ItemStack stack : slots) {				
+			if (stack != null) {			
+				b4 = true;
+			}
+		}
+		
+		return (b1 && b2 && b3 && b4) || (forceLaunch && b2 && b3 && b4);
 	}
-	
+		
 	private void checkStructure(ForgeDirection dir) {
 		
 		Location loc = new Location(worldObj, xCoord + dir.offsetX, yCoord, zCoord + dir.offsetZ);
