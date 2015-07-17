@@ -40,14 +40,19 @@ public class ItemFusionMatterDeconstructor extends ItemTool implements IEnergyIt
 	public String imagePath;
 	private static ToolMaterial toolMaterial = InitToolMaterials.toolMaterialFusionMatterDeconstructor;
 	
-	public ItemFusionMatterDeconstructor() {
+	public ItemFusionMatterDeconstructor(boolean isRed) {
 		super(4F, InitToolMaterials.toolMaterialFusionMatterDeconstructor, null);
 		setCreativeTab(InitCreativeTabs.creativeTabTools);
-		this.imagePath = "fusion_matter_deconstructor";
+		this.imagePath = "fusion_matter_deconstructor" + (isRed ? "_red" : "");
 		setUnlocalizedName(this.imagePath);
 		GameRegistry.registerItem(this, this.imagePath);
 		setMaxStackSize(1);		
 		setMaxDamage(getMaxEnergy());		
+	}
+	
+	@Override
+	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_) {
+		System.out.println(getDamage(p_77663_1_));
 	}
 	
 	@Override

@@ -9,6 +9,7 @@ import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemBattery;
+import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
 import calemi.fusionwarfare.util.ToolSet;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -39,7 +40,7 @@ public class InitRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_controller_3), new Object[] {
 			"SHS", "ICI", "SSS", 'C', InitBlocks.network_controller_2, 'S', InitItems.steel_plate, 'H', InitItems.hyper_chip, 'I', InitItems.infused_steel_ingot
 		});
-		
+				
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_cable, 8), new Object[] {
 			"GSG", "GCG", "GSG", 'G', Blocks.glass, 'S', InitItems.steel_ingot, 'C', InitItems.infused_crystal
 		});
@@ -240,7 +241,10 @@ public class InitRecipes {
 				
 		//Tool Coloring		
 		registerColoringRecipe(InitItems.infused_steel, InitItems.infused_steel_red);
-		//-------------			
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_matter_deconstructor_red, 1), new Object[]{new ItemStack(InitItems.fusion_matter_deconstructor, 1, WILDCARD_VALUE)});
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_matter_deconstructor, 1), new Object[]{new ItemStack(InitItems.fusion_matter_deconstructor_red, 1, WILDCARD_VALUE)});
+		//-------------
 			
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.fusion_matter_deconstructor), new Object[] {
 			"III", " E ", " S ", 'I', InitItems.infused_steel_ingot, 'E', InitItems.evaporation_cell, 'S', InitItems.sturdy_handle

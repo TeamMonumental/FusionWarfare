@@ -3,9 +3,14 @@ package calemi.fusionwarfare.event;
 import java.util.List;
 
 import sun.net.www.content.text.plain;
+import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.item.ItemBattery;
+import calemi.fusionwarfare.item.ItemBlockEnergyBase;
+import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
 import calemi.fusionwarfare.util.ToolSet;
+import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.FakePlayer;
@@ -21,12 +26,36 @@ public class CraftingEvent {
 			
 			ItemStack stack = event.craftMatrix.getStackInSlot(i);
 			
-			if (stack != null && stack.getItem() instanceof ItemBattery) {
+			if (stack != null) {
+								
+				if (stack.getItem() instanceof ItemBattery) {
 				
-				int energy = ((ItemBattery)stack.getItem()).getNBT(stack).getInteger("energy");
+					int energy = ((ItemBattery)stack.getItem()).getNBT(stack).getInteger("energy");
 				
-				if (event.crafting != null) {			
-					((ItemBattery)event.crafting.getItem()).getNBT(event.crafting).setInteger("energy", energy);
+					if (event.crafting != null) {			
+						((ItemBattery)event.crafting.getItem()).getNBT(event.crafting).setInteger("energy", energy);
+					}
+				}
+				
+				if (Block.getBlockFromItem(stack.getItem()) instanceof BlockNetworkController) {
+					
+					int energy = ((ItemBlockEnergyBase)stack.getItem()).getEnergy(stack);
+				
+					System.out.println(energy);
+					
+					if (event.crafting != null) {
+						((ItemBlockEnergyBase)event.crafting.getItem()).setMaxEnergy(((BlockNetworkController)Block.getBlockFromItem(event.crafting.getItem())).tier * 25000, event.crafting);;
+						((ItemBlockEnergyBase)event.crafting.getItem()).setEnergy(energy, event.crafting);
+					}
+				}
+				
+				if (stack.getItem() instanceof ItemFusionMatterDeconstructor) {
+					
+					int energy = ((ItemFusionMatterDeconstructor)stack.getItem()).getNBT(stack).getInteger("energy");
+				
+					if (event.crafting != null) {
+						((ItemFusionMatterDeconstructor)event.crafting.getItem()).getNBT(event.crafting).setInteger("energy", energy);
+					}
 				}
 			}
 		}

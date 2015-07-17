@@ -1,5 +1,8 @@
 package calemi.fusionwarfare.entity;
 
+import calemi.fusionwarfare.util.BlockUtil;
+import calemi.fusionwarfare.util.Location;
+import calemi.fusionwarfare.util.ShapeUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -66,6 +69,15 @@ public class EntityRocket extends Entity {
 			if (worldObj.getBlock((int)posX, (int)posY, (int)posZ) != Blocks.air) {
 			
 				worldObj.createExplosion(shooter, posX, posY, posZ, 5, false);
+				
+				for (Location loc : ShapeUtil.getSphere(worldObj, (int)posX, (int)posY, (int)posZ, 5)) {					
+					BlockUtil.degradeBlock(loc, 1, false, false);			
+				}
+				
+				for (Location loc : ShapeUtil.getSphere(worldObj, (int)posX, (int)posY, (int)posZ, 3)) {						
+					BlockUtil.degradeBlock(loc, 1, false, false);			
+				}
+				
 				setDead();
 			}
 			
@@ -78,6 +90,7 @@ public class EntityRocket extends Entity {
 					if (ticksExisted > 5 && entity != this && entity.getDistance(posX, posY, posZ) < 2) {
 						
 						worldObj.createExplosion(shooter, posX, posY, posZ, 6, false);
+						
 						setDead();
 						break;
 					}				

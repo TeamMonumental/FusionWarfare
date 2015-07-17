@@ -23,7 +23,7 @@ public class VelocityEvent extends BlastEvent {
 
 		for (Location loc : ShapeUtil.getSphere(world, x, y, z, r)) {
 
-			BlockUtil.degradeBlock(loc, 1, true);		
+			BlockUtil.degradeBlock(loc, 1, true, true);		
 		}
 	}
 	

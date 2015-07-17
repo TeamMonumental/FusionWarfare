@@ -16,8 +16,8 @@ public class ItemRenderFusionMatterDeconstructor implements IItemRenderer {
 	private final ModelFusionMatterDeconstructor model = new ModelFusionMatterDeconstructor();
 	public final ResourceLocation texture;
 	
-	public ItemRenderFusionMatterDeconstructor() {
-		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/fusion_matter_deconstructor.png");
+	public ItemRenderFusionMatterDeconstructor(boolean isRed) {
+		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/fusion_matter_deconstructor" + (isRed ? "_red" : "") + ".png");
 	}
 
 	@Override

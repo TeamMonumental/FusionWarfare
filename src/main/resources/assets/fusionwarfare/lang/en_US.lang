@@ -95,6 +95,7 @@ item.infused_steel_red_shovel.name=Red Infused Steel Shovel
 item.infused_steel_red_axe.name=Red Infused Steel Axe
 
 item.fusion_matter_deconstructor.name=Fusion Matter Deconstructor
+item.fusion_matter_deconstructor_red.name=Red Fusion Matter Deconstructor
 
 item.wrench.name=Wrench
 item.debugger.name=Debugger

@@ -19,7 +19,7 @@ public class BreachingEvent extends BlastEvent {
 		
 		for (Location loc : ShapeUtil.getSphere(world, x, y, z, r)) {		
 			
-			BlockUtil.degradeBlock(loc, d, true);			
+			BlockUtil.degradeBlock(loc, d, true, true);			
 		}
 	}
 }

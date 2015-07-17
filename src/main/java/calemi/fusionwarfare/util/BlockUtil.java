@@ -12,13 +12,17 @@ public class BlockUtil {
 		loc.breakBlock();
 	}
 	
-	public static void degradeBlock(Location loc, int degrade, boolean breakNormalBlocks) {
+	public static void degradeBlock(Location loc, int degrade, boolean breakNormalBlocks, boolean spawnGhostBlocks) {
 		
 		if (loc.getBlock() instanceof BlockReinforceable) {
 			
 			if ((loc.getBlockMetadata() - degrade) < 0) {			
 				
-				BlockUtil.spawnGhostBlock(loc);				
+				if (spawnGhostBlocks) {
+					BlockUtil.spawnGhostBlock(loc);				
+				}
+				
+				else loc.world.setBlockToAir(loc.x, loc.y, loc.z);
 			}
 			
 			else {

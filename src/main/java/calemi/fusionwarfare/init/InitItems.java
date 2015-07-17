@@ -104,7 +104,7 @@ public class InitItems {
 	
 	public static ToolSet steel, infused_steel, infused_steel_red;
 	
-	public static Item fusion_matter_deconstructor;
+	public static Item fusion_matter_deconstructor, fusion_matter_deconstructor_red;
 	
 	public static Item wrench;
 	public static Item debugger;
@@ -204,7 +204,8 @@ public class InitItems {
 		infused_steel = new ToolSet("infused_steel", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, FusionWarfare.armorIDInfusedSteel, infused_steel_ingot, true);
 		infused_steel_red = new ToolSet("infused_steel_red", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, FusionWarfare.armorIDInfusedSteel, infused_steel_ingot, false);
 		
-		fusion_matter_deconstructor = new ItemFusionMatterDeconstructor();
+		fusion_matter_deconstructor = new ItemFusionMatterDeconstructor(false);
+		fusion_matter_deconstructor_red = new ItemFusionMatterDeconstructor(true);
 		
 		wrench = new ItemWrench();
 		debugger = new ItemDebugger();
