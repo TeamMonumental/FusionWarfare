@@ -19,7 +19,7 @@ public class BlockReactorCoolingUnit extends BlockBase {
 	private IIcon block_bottom;
 
 	public BlockReactorCoolingUnit() {
-		super("reactor_cooling_unit", 2, Material.iron, 3F, 3F, Block.soundTypeMetal);
+		super("reactor_cooling_unit", 2, Material.iron, 6F, 10F, Block.soundTypeMetal);
 		setCreativeTab(InitCreativeTabs.creativeTabMachines);
 	}
 

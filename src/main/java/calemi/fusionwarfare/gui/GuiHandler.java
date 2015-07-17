@@ -3,7 +3,7 @@ package calemi.fusionwarfare.gui;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.gui.recipe.GuiTwoInputsRecipe;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
-import calemi.fusionwarfare.inventory.ContainerEnergyTransmitter;
+import calemi.fusionwarfare.inventory.ContainerOverclockedEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerMiningUnit;
 import calemi.fusionwarfare.inventory.ContainerMissileLauncher;
 import calemi.fusionwarfare.inventory.ContainerMissileSiloCore;
@@ -112,7 +112,7 @@ public class GuiHandler implements IGuiHandler {
 		}
 
 		if (ID == FusionWarfare.guiIDFusionMatterReinforcer) {
-			return new ContainerEnergyTank(player, (TileEntityFusionMatterReinforcer) tileentity);
+			return new ContainerOverclockedEnergyTank(player, (TileEntityFusionMatterReinforcer) tileentity, 10);
 		}
 
 		if (ID == FusionWarfare.guiIDAntiMobBeacon) {
@@ -124,7 +124,7 @@ public class GuiHandler implements IGuiHandler {
 		}
 
 		if (ID == FusionWarfare.guiIDEnergyTransmitter) {
-			return new ContainerEnergyTransmitter(player, (TileEntityEnergyTransmitter) tileentity);
+			return new ContainerOverclockedEnergyTank(player, (TileEntityEnergyTransmitter) tileentity, 15);
 		}
 
 		if (ID == FusionWarfare.guiIDEnergyReceiver) {
@@ -208,7 +208,7 @@ public class GuiHandler implements IGuiHandler {
 		}
 		
 		if (ID == FusionWarfare.guiIDFusionMatterReinforcer) {
-			return new GuiEnergyTank(player, (TileEntityFusionMatterReinforcer) tileentity, "Fusion Matter Reinforcer", true);
+			return new GuiOverclockedEnergyTank(player, (TileEntityFusionMatterReinforcer) tileentity, "Fusion Matter Reinforcer", 10, true);
 		}
 
 		if (ID == FusionWarfare.guiIDAntiMobBeacon) {
@@ -220,7 +220,7 @@ public class GuiHandler implements IGuiHandler {
 		}
 
 		if (ID == FusionWarfare.guiIDEnergyTransmitter) {
-			return new GuiEnergyTransmitter(player, (TileEntityEnergyTransmitter) tileentity);
+			return new GuiOverclockedEnergyTank(player, (TileEntityEnergyTransmitter) tileentity, "Energy Transmitter", 5, false);
 		}
 
 		if (ID == FusionWarfare.guiIDEnergyReceiver) {

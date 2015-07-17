@@ -7,13 +7,13 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerEnergyTransmitter extends ContainerBase {
+public class ContainerOverclockedEnergyTank extends ContainerBase {
 
-	public ContainerEnergyTransmitter(EntityPlayer player, TileEntityBase tileentity) {
+	public ContainerOverclockedEnergyTank(EntityPlayer player, TileEntityBase tileentity, int overClockNumber) {
 		super(player, tileentity);		
 		
 		//Overclocking
-		addSlotToContainer(new SlotOverclocking(tileentity, 0, 143, 64, 15));
+		addSlotToContainer(new SlotOverclocking(tileentity, 0, 143, 64, overClockNumber));
 	
 		addPlayerInv(8, 99);
 		addHotbar(8, 157);
@@ -29,25 +29,18 @@ public class ContainerEnergyTransmitter extends ContainerBase {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 				
-			if (itemstack1.getItem() == InitItems.overclocking_chip) {
+			if (itemstack1.getItem() == InitItems.overclocking_chip) {								
 				
-				if (slotId > 0) {
-					
-					if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
-						return null;
-					}
-
-					slot.onSlotChange(itemstack1, itemstack);
-				}	
+				Slot slot2 = (Slot)this.inventorySlots.get(0);
+				int space = slot2.getStack() != null ? slot2.getSlotStackLimit() - slot2.getStack().stackSize : slot2.getSlotStackLimit();
 				
-				else {
+				if (space > 0) {
 					
-					if (!this.mergeItemStack(itemstack1, 1, 36, false)) {
-						return null;
-					}
-
+					slot2.putStack(new ItemStack(itemstack1.getItem(), space));
+					itemstack1.stackSize -= space;
+					
 					slot.onSlotChange(itemstack1, itemstack);
-				}
+				}					
 			}
 			
 			else if (slotId < 28) {

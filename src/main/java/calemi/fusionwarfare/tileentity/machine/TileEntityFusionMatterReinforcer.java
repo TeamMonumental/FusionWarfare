@@ -23,8 +23,10 @@ public class TileEntityFusionMatterReinforcer extends TileEntityBase {
 	@Override
 	public void updateEntity() {
 
+		int progressMultiplier = (slots[0] == null ? 1 : slots[0].stackSize + 1);
+		
 		if (!isDone() && worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
-			progress++;
+			progress += progressMultiplier;
 		}
 
 		else {
@@ -45,7 +47,7 @@ public class TileEntityFusionMatterReinforcer extends TileEntityBase {
 					if (l.getBlockMetadata() < (block.maxMeta - 1) && EnergyUtil.canSubtractEnergy(this, energyCost)) {
 						EnergyUtil.subtractEnergy(this, energyCost);
 						l.setBlockMetadata(l.getBlockMetadata() + 1);
-						worldObj.playSoundEffect(l.x, l.y, l.z, "random.anvil_use", 1, 0.5F);
+						worldObj.playSoundEffect(l.x, l.y, l.z, "mob.zombie.unfect", 1, 1);
 					}
 				}
 			}
@@ -94,7 +96,7 @@ public class TileEntityFusionMatterReinforcer extends TileEntityBase {
 
 	@Override
 	public int getSizeInventory() {
-		return 0;
+		return 1;
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public class BlockReinforcedDoor extends BlockContainerBase {
 
 	public BlockReinforcedDoor() {
 
-		super("reinforced_door", 2, Material.rock, 3.0F, 3.0F, Block.soundTypeMetal);
+		super("reinforced_door", 2, Material.rock, 30F, 10F, Block.soundTypeMetal);
 		float f = 0.5F;
 		float f1 = 1.0F;
 		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f1, 0.5F + f);

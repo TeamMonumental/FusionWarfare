@@ -66,7 +66,7 @@ public class BlockReinforceable extends BlockBase {
 
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
-		return 3 + (0.50F * world.getBlockMetadata(x, y, z));
+		return 3 + (10F * world.getBlockMetadata(x, y, z));
 	}
 
 	@Override
