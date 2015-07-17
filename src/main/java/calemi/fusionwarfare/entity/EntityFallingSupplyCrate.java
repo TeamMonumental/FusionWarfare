@@ -22,7 +22,7 @@ import calemi.fusionwarfare.tileentity.TileEntitySupplyCrate;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
-public class EntityFallingSupplyCrate extends Entity {
+public class EntityFallingSupplyCrate extends Entity implements IEntityAdditionalSpawnData {
 
 	public int meta;
 	
@@ -121,17 +121,27 @@ public class EntityFallingSupplyCrate extends Entity {
 	}
 
 	@Override
-	protected void entityInit() {
-		
+	protected void entityInit() {}
+
+	@Override
+	protected void readEntityFromNBT(NBTTagCompound tag) {
+		meta = tag.getInteger("meta");
 	}
 
 	@Override
-	protected void readEntityFromNBT(NBTTagCompound nbt) {
-		
+	protected void writeEntityToNBT(NBTTagCompound tag) {
+		tag.setInteger("meta", meta);
+	}
+	
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		NBTTagCompound tag = new NBTTagCompound();
+		writeEntityToNBT(tag);
+		ByteBufUtils.writeTag(buffer, tag);
 	}
 
 	@Override
-	protected void writeEntityToNBT(NBTTagCompound nbt) {
-		
+	public void readSpawnData(ByteBuf buffer) {		
+		readEntityFromNBT(ByteBufUtils.readTag(buffer));
 	}	
 }
