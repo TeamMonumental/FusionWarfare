@@ -49,7 +49,7 @@ public class InitCrateLoot {
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.advanced_battery, 1, 1, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.steel_plate, 10, 16, false));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.infused_circuit, 3, 5, false));
-		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.advanced_chip, 1, 1, false, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.advanced_chip, 1, 2, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.overclocking_chip, 3, 8, false));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.velocity_missile_T1, 1, 2, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.breaching_missile_T1, 1, 2, false, true));
