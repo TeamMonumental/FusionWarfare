@@ -2,6 +2,7 @@ package calemi.fusionwarfare.entity;
 
 import java.util.List;
 
+import calemi.fusionwarfare.damage.DamageSourceBullets;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -59,7 +60,16 @@ public class EntityFusionBullet extends EntityThrowable {
 	protected void onImpact(MovingObjectPosition mop) {
 		
 		if (mop.entityHit != null && mop.entityHit != shooter) {
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);			
+			
+			if (mop.entityHit instanceof EntityPlayer && shooter instanceof EntityPlayer) {
+				mop.entityHit.attackEntityFrom(new DamageSourceBullets((EntityPlayer)mop.entityHit, (EntityPlayer)shooter), damage);
+			}
+			
+			else {
+				mop.entityHit.attackEntityFrom(DamageSource.magic, damage);
+			}
+			
+						
 			setDead();
 		}
 		
