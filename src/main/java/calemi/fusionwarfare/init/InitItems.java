@@ -8,6 +8,7 @@ import calemi.fusionwarfare.item.ItemChargedSeeds;
 import calemi.fusionwarfare.item.ItemCreativeBattery;
 import calemi.fusionwarfare.item.ItemFusionGatlingGun;
 import calemi.fusionwarfare.item.ItemFusionGun;
+import calemi.fusionwarfare.item.ItemLaserDesignator;
 import calemi.fusionwarfare.item.ItemMissile;
 import calemi.fusionwarfare.item.ItemMissileModule;
 import calemi.fusionwarfare.item.ItemReinforcedDoor;
@@ -109,6 +110,8 @@ public class InitItems {
 	public static Item debugger;
 	public static Item location_linker;
 	public static Item sprayer;
+	
+	public static Item laser_designator;
 		
 	//#-#-#-#-#-MISC-#-#-#-#-#\\
 	
@@ -207,6 +210,8 @@ public class InitItems {
 		debugger = new ItemDebugger();
 		location_linker = new ItemLocationLinker();
 		sprayer = new ItemSprayer();
+		
+		laser_designator = new ItemLaserDesignator();
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		

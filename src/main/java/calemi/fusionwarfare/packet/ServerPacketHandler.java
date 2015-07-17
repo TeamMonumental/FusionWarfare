@@ -106,6 +106,10 @@ public class ServerPacketHandler implements IMessage {
 				if (tileEntity.sprayMode) tileEntity.sprayMode = false;
 				else tileEntity.sprayMode = true;
 			}
+			
+			if (data[0].equalsIgnoreCase("laser")) {
+				
+			}
 
 			return null;
 		}
