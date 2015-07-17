@@ -55,6 +55,12 @@ public class EntityRocket extends Entity {
 			setDead();			
 		}
 			
+		for (int i = 0; i < 10; i++) {
+
+			worldObj.spawnParticle("smoke", posX - motionX, posY, posZ - motionZ, 0, 0, 0);				
+			if (i % 10 == 0) worldObj.spawnParticle("flame", posX - motionX, posY, posZ - motionZ, 0, 0, 0);
+		}
+		
 		if (!worldObj.isRemote) {
 			
 			if (worldObj.getBlock((int)posX, (int)posY, (int)posZ) != Blocks.air) {
