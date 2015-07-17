@@ -57,10 +57,25 @@ public class ContainerNetworkController extends ContainerBase {
 					
 					if (space > 0) {
 						
-						slot2.putStack(new ItemStack(itemstack1.getItem(), space));
-						itemstack1.stackSize -= space;
+						if (itemstack1.stackSize > space) {
 						
-						slot.onSlotChange(itemstack1, itemstack);
+							if (slot2.getHasStack()) slot2.getStack().stackSize += space;
+							else slot2.putStack(new ItemStack(itemstack1.getItem(), space));							
+							
+							itemstack1.stackSize -= space;
+							
+							slot.onSlotChange(itemstack1, itemstack);
+						}
+						
+						else {
+							
+							if (slot2.getHasStack()) slot2.getStack().stackSize += itemstack1.stackSize;							
+							else slot2.putStack(new ItemStack(itemstack1.getItem(), itemstack1.stackSize));
+							
+							itemstack1.stackSize -= itemstack1.stackSize;
+							
+							slot.onSlotChange(itemstack1, itemstack);
+						}					
 					}					
 				}
 				
