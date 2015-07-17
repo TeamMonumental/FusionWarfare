@@ -5,6 +5,7 @@ import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class InitMissileFactoryRecipes {
@@ -61,5 +62,12 @@ public class InitMissileFactoryRecipes {
 				new ItemStack(InitBlocks.network_controller_1), 				
 				new ItemStack(InitItems.missile_module_3), 
 				30, 1500));
+		
+		//#-#-#-#-#-PYROBLAST-#-#-#-#-#\\
+		
+		TwoInputRecipeRegistry.register(EnumRecipeType.MISSILE_FACTORY, new TwoInputRecipe(new ItemStack(InitItems.pyroblast_missile), 
+				new ItemStack(Items.blaze_rod, 2),				
+				new ItemStack(InitItems.missile_module_2), 
+				20, 1000));
 	}
 }
