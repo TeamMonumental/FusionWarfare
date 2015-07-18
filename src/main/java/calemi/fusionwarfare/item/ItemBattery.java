@@ -19,9 +19,8 @@ import net.minecraft.world.World;
 
 public class ItemBattery extends ItemEnergyBase {
 
-	int maxEnergy;
+	public int maxEnergy;
 	
-	@SideOnly(Side.CLIENT)
 	private IIcon[] overlays = new IIcon[9];
 	
 	public ItemBattery(String type, int maxEnergy) {
@@ -59,6 +58,7 @@ public class ItemBattery extends ItemEnergyBase {
 	}
 		
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack is, int overlay) {
 				
 		int energyScaled = getEnergy(is) * 8 / getMaxEnergy();
@@ -128,6 +128,7 @@ public class ItemBattery extends ItemEnergyBase {
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
 		
 		itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":battery/battery_base");

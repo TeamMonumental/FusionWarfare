@@ -11,6 +11,8 @@ public class FWConfig {
 	
 	public static Configuration config = FusionWarfare.config;
 	
+	public static boolean disableWelcomeChat;
+	public static boolean disableFreeWrench;
 	public static boolean disableFallingCrates;
 	public static boolean disableHighTierWeaponRecipes;
 	public static boolean disableTooltips;
@@ -34,6 +36,8 @@ public class FWConfig {
 		config.setCategoryLanguageKey(GENERAL_OPTIONS, "category.general_options.name");
 		config.addCustomCategoryComment(GENERAL_OPTIONS, "General options for Fusion Warfare.");
 		
+		disableWelcomeChat = config.getBoolean("Disable Welcome Chat", GENERAL_OPTIONS, false, "Disables welcome chat.");
+		disableFreeWrench = config.getBoolean("Disable Free Wrench", GENERAL_OPTIONS, false, "Disables the free wrench that spawns when you first join a world.");
 		disableFallingCrates = config.getBoolean("Disable Falling Supply Crates", GENERAL_OPTIONS, false, "Disables Supply Crates from falling");
 		disableHighTierWeaponRecipes = config.getBoolean("Disable High Tier Weapon Recipes", GENERAL_OPTIONS, true, "Disables high tier weapon recipes. Recommended false if Supply Crates are enabled.");
 		disableTooltips = config.getBoolean("Disable Custom Tooltips", GENERAL_OPTIONS, false, "Disables custom tooltips on armor and tools.");

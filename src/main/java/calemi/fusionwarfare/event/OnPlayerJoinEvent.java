@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.entity.FWPlayerStats;
 import calemi.fusionwarfare.init.InitItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -45,16 +46,19 @@ public class OnPlayerJoinEvent {
 				
 			ItemStack wrench = new ItemStack(InitItems.wrench);
 				
-			event.player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "Welcome to Fusion Warfare!"));
+			if (!FWConfig.disableWelcomeChat) event.player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "Welcome to Fusion Warfare!"));
 			
-            if (!event.player.inventory.addItemStackToInventory(wrench)) {
-                EntityItem item = new EntityItem(event.player.worldObj, event.player.posX, event.player.posY, event.player.posZ, wrench);
-                item.delayBeforeCanPickup = 0;
-                event.player.worldObj.spawnEntityInWorld(item);
-            }				
+            if (!FWConfig.disableFreeWrench) {
+			
+            	if (!event.player.inventory.addItemStackToInventory(wrench)) {
+					EntityItem item = new EntityItem(event.player.worldObj, event.player.posX, event.player.posY, event.player.posZ, wrench);
+					item.delayBeforeCanPickup = 0;
+                	event.player.worldObj.spawnEntityInWorld(item);
+            	}				
+            }
 		}
 		
-		else {
+		else if (!FWConfig.disableWelcomeChat) {
 			
 			event.player.addChatMessage(new ChatComponentText(""));
 			event.player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "Welcome back to Fusion Warfare!"));
