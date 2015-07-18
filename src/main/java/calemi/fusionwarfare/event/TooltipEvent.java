@@ -9,6 +9,9 @@ import calemi.fusionwarfare.key.KeyBindings;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.inventory.GuiContainerCreative;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -103,23 +106,34 @@ public class TooltipEvent {
 			}	
 		}
 		
-		if (Keyboard.isKeyDown(KeyBindings.recipeButton.getKeyCode())) {
-
+		if (((GuiContainerCreative)Minecraft.getMinecraft().currentScreen).func_147056_g() != CreativeTabs.tabAllSearch.getTabIndex() && Keyboard.isKeyDown(KeyBindings.recipeButton.getKeyCode())) {
+					
 			for (TwoInputRecipe currentRecipe : TwoInputRecipeRegistry.getRecipes(EnumRecipeType.INFUSION_TABLE)) {
-				checkAndOpenGui(currentRecipe, event.entityPlayer, event.itemStack);				
+				
+				if (checkAndOpenGui(currentRecipe, event.entityPlayer, event.itemStack)) {
+					break;
+				}
 			}
 			
 			for (TwoInputRecipe currentRecipe : TwoInputRecipeRegistry.getRecipes(EnumRecipeType.MISSILE_FACTORY)) {
-				checkAndOpenGui(currentRecipe, event.entityPlayer, event.itemStack);
+				
+				if (checkAndOpenGui(currentRecipe, event.entityPlayer, event.itemStack)) {
+					break;
+				}				
 			}
+			
+			return;
 		}
 	}
 	
-	private void checkAndOpenGui(TwoInputRecipe recipe, EntityPlayer player, ItemStack itemStack) {
+	private boolean checkAndOpenGui(TwoInputRecipe recipe, EntityPlayer player, ItemStack itemStack) {
 		
 		if (itemStack.getItem() == recipe.output.getItem()) {
-
+		
 			FMLClientHandler.instance().displayGuiScreen(player, new GuiTwoInputsRecipe(player, recipe.recipeType, TwoInputRecipeRegistry.getRecipeIndex(recipe.recipeType, recipe)));
+			return true;
 		}		
+		
+		return false;
 	}
 }

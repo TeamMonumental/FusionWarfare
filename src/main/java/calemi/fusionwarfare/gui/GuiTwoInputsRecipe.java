@@ -107,23 +107,7 @@ public class GuiTwoInputsRecipe extends GuiScreenBase {
 
 			int i1 = getCurrentRecipe().energyCost * 50 / 10000;
 			this.drawTexturedModalRect(getScreenX() + 19, getScreenY() + 69 - i1, 176, 50 - i1, 14, i1 + 1);
-		}
 		
-		for (int i = -4; i <= 4; i++) {
-			
-			TwoInputRecipe recipe = getCurrentRecipe(i);
-
-			if (recipe != null) {
-				drawItemStack(recipe.output, (getGuiSizeX() / 2) - 8 + (i * 22), -20);
-			}
-		}
-		
-		if (getCurrentRecipe() != null) {
-			
-			drawItemStack(getCurrentRecipe().input1, 56, 25);
-			drawItemStack(getCurrentRecipe().input2, 56, 47);
-			drawItemStack(getCurrentRecipe().output, 116, 36);
-			
 			drawLeftInfoTextBar(getCurrentRecipe().input1.stackSize + "x " + getCurrentRecipe().input1.getDisplayName(), 0);
 			drawLeftInfoTextBar(getCurrentRecipe().input2.stackSize + "x " + getCurrentRecipe().input2.getDisplayName(), 1);
 			
@@ -133,7 +117,20 @@ public class GuiTwoInputsRecipe extends GuiScreenBase {
 			String missileTier = recipeType == EnumRecipeType.MISSILE_FACTORY ? " [Tier " + ((ItemMissile)getCurrentRecipe().output.getItem()).missileType.event.tier + "]" : "";
 			
 			drawCenteredStringBox(getCurrentRecipe().output.stackSize + "x " + getCurrentRecipe().output.getDisplayName() + missileTier, getGuiSizeX() / 2, -40);
+			
+			drawItemStack(getCurrentRecipe().input1, 56, 25);
+			drawItemStack(getCurrentRecipe().input2, 56, 47);
+			drawItemStack(getCurrentRecipe().output, 116, 36);
 		}	
+		
+		for (int i = -4; i <= 4; i++) {
+			
+			TwoInputRecipe recipe = getCurrentRecipe(i);
+
+			if (recipe != null) {
+				drawItemStack(recipe.output, (getGuiSizeX() / 2) - 8 + (i * 22), -20);
+			}
+		}
 	}
 
 	@Override
