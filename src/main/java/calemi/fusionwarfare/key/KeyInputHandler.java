@@ -1,6 +1,6 @@
 package calemi.fusionwarfare.key;
 
-import calemi.fusionwarfare.gui.GuiTeam;
+import calemi.fusionwarfare.gui.GuiTeamSystem;
 import calemi.fusionwarfare.gui.GuiTwoInputsRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -18,7 +18,7 @@ public class KeyInputHandler {
 			
 			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 			
-			FMLClientHandler.instance().displayGuiScreen(player, new GuiTeam(player));
+			FMLClientHandler.instance().displayGuiScreen(player, new GuiTeamSystem(player));
 		}
 	}
 }

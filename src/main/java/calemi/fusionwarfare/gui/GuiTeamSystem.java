@@ -16,7 +16,7 @@ import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.ChatComponentText;
 
-public class GuiTeam extends GuiScreenBase {
+public class GuiTeamSystem extends GuiScreenBase {
 
 	private ArrayList<Team> teams = new ArrayList<Team>();
 	private ArrayList<String> playerNames = new ArrayList<String>();
@@ -35,7 +35,7 @@ public class GuiTeam extends GuiScreenBase {
 	
 	private EntityPlayer player;
 	
-	public GuiTeam(EntityPlayer player) {
+	public GuiTeamSystem(EntityPlayer player) {
 		this.player = player;
 	}
 	

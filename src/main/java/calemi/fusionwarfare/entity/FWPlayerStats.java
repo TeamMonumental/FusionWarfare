@@ -14,7 +14,8 @@ public class FWPlayerStats implements IExtendedEntityProperties {
 	
 	public WeakReference<EntityPlayer> player;
 	
-	public boolean loggedIn;
+	public boolean firstLogIn;
+	public boolean isLoggedIn;
 	
 	public FWPlayerStats(EntityPlayer player) {
 		this.player = new WeakReference<EntityPlayer>(player);
@@ -23,7 +24,8 @@ public class FWPlayerStats implements IExtendedEntityProperties {
 	@Override
 	public void saveNBTData(NBTTagCompound nbt) {
 		NBTTagCompound fwTag = new NBTTagCompound();
-		fwTag.setBoolean("loggedIn", loggedIn);
+		fwTag.setBoolean("firstLogIn", firstLogIn);
+		fwTag.setBoolean("isLoggedIn", isLoggedIn);
 		nbt.setTag(PROP_NAME, fwTag);
 	}
 
@@ -32,7 +34,8 @@ public class FWPlayerStats implements IExtendedEntityProperties {
 		
 		NBTTagCompound properties = (NBTTagCompound) nbt.getTag(PROP_NAME);
 		
-		loggedIn = properties.getBoolean("loggedIn");
+		firstLogIn = properties.getBoolean("firstLogIn");
+		isLoggedIn = properties.getBoolean("isLoggedIn");
 	}
 
 	@Override
