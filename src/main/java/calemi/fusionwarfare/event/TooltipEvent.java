@@ -106,23 +106,35 @@ public class TooltipEvent {
 			}	
 		}
 		
-		if (((GuiContainerCreative)Minecraft.getMinecraft().currentScreen).func_147056_g() != CreativeTabs.tabAllSearch.getTabIndex() && Keyboard.isKeyDown(KeyBindings.recipeButton.getKeyCode())) {
+		boolean b1 = Keyboard.isKeyDown(KeyBindings.recipeButton.getKeyCode());
+		boolean b2 = Minecraft.getMinecraft().currentScreen != null;
+		boolean b3 = Minecraft.getMinecraft().currentScreen instanceof GuiContainerCreative;
+		boolean b4 = b3 ? ((GuiContainerCreative)Minecraft.getMinecraft().currentScreen).func_147056_g() != CreativeTabs.tabAllSearch.getTabIndex() : false;
+		
+		if (b1 && b2) {
 					
-			for (TwoInputRecipe currentRecipe : TwoInputRecipeRegistry.getRecipes(EnumRecipeType.INFUSION_TABLE)) {
-				
-				if (checkAndOpenGui(currentRecipe, event.entityPlayer, event.itemStack)) {
-					break;
-				}
+			if (!b3 && !b4 || b3 && b4) {
+				checkThroughRecipes(event);
 			}
 			
-			for (TwoInputRecipe currentRecipe : TwoInputRecipeRegistry.getRecipes(EnumRecipeType.MISSILE_FACTORY)) {
+			return;			
+		}	
+	}
+		
+	private void checkThroughRecipes(ItemTooltipEvent event) {
+		
+		for (TwoInputRecipe currentRecipe : TwoInputRecipeRegistry.getRecipes(EnumRecipeType.INFUSION_TABLE)) {
 				
-				if (checkAndOpenGui(currentRecipe, event.entityPlayer, event.itemStack)) {
-					break;
-				}				
+			if (checkAndOpenGui(currentRecipe, event.entityPlayer, event.itemStack)) {
+				break;
 			}
+		}
 			
-			return;
+		for (TwoInputRecipe currentRecipe : TwoInputRecipeRegistry.getRecipes(EnumRecipeType.MISSILE_FACTORY)) {
+				
+			if (checkAndOpenGui(currentRecipe, event.entityPlayer, event.itemStack)) {
+				break;
+			}				
 		}
 	}
 	
