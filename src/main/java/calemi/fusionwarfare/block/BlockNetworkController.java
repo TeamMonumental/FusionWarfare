@@ -40,7 +40,7 @@ public class BlockNetworkController extends BlockBasicMachineBase {
 		if (tier == 2) energy = 50000; 
 		if (tier == 3) energy = 100000; 
 		
-		if (tier == 1) tileEntity.maxEnergy = energy;
+		tileEntity.maxEnergy = energy;
 		return tileEntity;
 	}
 }
