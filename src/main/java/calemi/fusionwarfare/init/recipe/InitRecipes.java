@@ -219,7 +219,7 @@ public class InitRecipes {
 		});
 				
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.fusion_ammo, 16), new Object[] {
-			"SAS", "SAS", "SAS", 'S', InitItems.steel_plate, 'A', InitItems.infused_azurite
+			"SAS", "SAS", "SAS", 'S', InitItems.steel_ingot, 'A', InitItems.infused_azurite
 		});
 		
 		//#-#-#-#-#-GUNS-#-#-#-#-#\\		
