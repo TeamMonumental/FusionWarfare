@@ -25,7 +25,7 @@ public class TileEntityAdvancedHydroReactorCore extends TileEntityBase {
 	public int capsules;
 
 	public TileEntityAdvancedHydroReactorCore() {
-		maxEnergy = 100000;
+		maxEnergy = 200000;
 	}
 
 	@Override

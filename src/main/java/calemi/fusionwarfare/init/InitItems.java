@@ -124,7 +124,7 @@ public class InitItems {
 		
 		infused_crystal = new ItemBase("infused_crystal");
 		infused_catalyst = new ItemBase("infused_catalyst");
-		advanced_infused_catalyst = new ItemBase("advanced_infused_catalyst", true, true).setMaxDamage(5000).setMaxStackSize(1);	
+		advanced_infused_catalyst = new ItemBase("advanced_infused_catalyst", true, true).setMaxDamage(10000).setMaxStackSize(1);	
 		infused_azurite = new ItemBase("infused_azurite");
 		fusion_fish = new ItemBase("fusion_fish");		
 		charged_seeds = new ItemChargedSeeds();
@@ -175,7 +175,7 @@ public class InitItems {
 		fusion_auto_pistol = new ItemFusionGun("fusion_auto_pistol", 0, 1, 10, 3, 0.08F, false);
 		fusion_shotgun = new ItemFusionGun("fusion_shotgun", 30, 6, 30, 8, 0.09F, false);
 		fusion_smg = new ItemFusionGun("fusion_smg", 0, 1, 10, 2, 0.04F, false);
-		fusion_sniper_rifle = new ItemFusionGun("fusion_sniper_rifle", 100, 1, 80, 0, 0.002F, true);	
+		fusion_sniper_rifle = new ItemFusionGun("fusion_sniper_rifle", 100, 1, 60, 0, 0.002F, true);	
 		fusion_gatling_gun = new ItemFusionGatlingGun("fusion_gatling_gun", 1, 20, 1, 0.06F);
 		
 		rocket_launcher = new ItemRocketLauncher();

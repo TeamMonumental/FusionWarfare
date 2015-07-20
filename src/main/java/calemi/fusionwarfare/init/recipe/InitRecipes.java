@@ -52,15 +52,15 @@ public class InitRecipes {
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.solar_generator), new Object[] {
-			"SSS", "RIR", "RRR", 'S', InitItems.solar_panel, 'R', InitItems.infused_redstone, 'I', InitItems.infused_crystal
+			"SSS", "RIR", "RRR", 'S', InitItems.solar_panel, 'R', InitItems.infused_redstone, 'I', InitItems.infused_steel_ingot
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.geothermal_generator), new Object[] {
-			"RRR", "SIS", "SFS", 'R', InitItems.infused_redstone, 'S', InitItems.steel_plate, 'I', InitItems.infused_crystal, 'F', InitBlocks.energetic_furnace
+			"RRR", "SIS", "SFS", 'R', InitItems.infused_redstone, 'S', InitItems.steel_plate, 'I', InitItems.infused_steel_ingot, 'F', InitBlocks.energetic_furnace
 		});	
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.wind_turbine), new Object[] {
-			"RSR", "SCS", "RSR", 'R', InitItems.infused_redstone, 'S', InitItems.steel_plate, 'C', InitItems.infused_crystal
+			"RSR", "SIS", "RSR", 'R', InitItems.infused_redstone, 'S', InitItems.steel_plate, 'I', InitItems.infused_steel_ingot
 		});
 		
 		//#-#-#-#-#-REACTORS & MISSILE LAUNCHERS-#-#-#-#-#\\

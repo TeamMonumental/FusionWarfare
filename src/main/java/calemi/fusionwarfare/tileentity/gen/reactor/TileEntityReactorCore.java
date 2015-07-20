@@ -20,7 +20,7 @@ public class TileEntityReactorCore extends TileEntityBase {
 	private boolean isAssembled;
 
 	public TileEntityReactorCore() {
-		maxEnergy = 25000;
+		maxEnergy = 50000;
 	}
 
 	@Override
