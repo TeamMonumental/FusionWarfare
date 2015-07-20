@@ -3,10 +3,8 @@ package calemi.fusionwarfare;
 import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.event.CraftingEvent;
 import calemi.fusionwarfare.event.EntitySpawnEvent;
-import calemi.fusionwarfare.event.LivingEntityEvent;
 import calemi.fusionwarfare.event.OnPlayerJoinEvent;
 import calemi.fusionwarfare.event.SupplyCrateEvent;
-import calemi.fusionwarfare.event.TooltipEvent;
 import calemi.fusionwarfare.gui.GuiHandler;
 import calemi.fusionwarfare.init.InitArmorMaterials;
 import calemi.fusionwarfare.init.InitBlocks;
@@ -95,7 +93,6 @@ public class FusionWarfare {
 	public void preInit(FMLPreInitializationEvent event) {	
 		
 		MinecraftForge.EVENT_BUS.register(new EntitySpawnEvent());
-		MinecraftForge.EVENT_BUS.register(new LivingEntityEvent());
 		MinecraftForge.EVENT_BUS.register(new OnPlayerJoinEvent());
 		
 		config = new Configuration(event.getSuggestedConfigurationFile());
