@@ -56,7 +56,7 @@ public class ContainerBase extends Container {
 
 		super.detectAndSendChanges();
 
-		if (!(player instanceof EntityClientPlayerMP)) {
+		if (player instanceof EntityPlayerMP) {
 			FusionWarfare.network.sendTo(new ClientPacketHandler("sync%" + fusion.energy), (EntityPlayerMP) player);
 		}
 		
