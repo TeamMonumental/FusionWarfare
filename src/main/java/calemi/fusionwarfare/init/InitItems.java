@@ -109,9 +109,8 @@ public class InitItems {
 	public static Item wrench;
 	public static Item debugger;
 	public static Item location_linker;
-	public static Item sprayer;
-	
-	public static Item laser_designator;
+	public static Item sprayer;	
+	public static Item designator;
 		
 	//#-#-#-#-#-MISC-#-#-#-#-#\\
 	
@@ -210,9 +209,8 @@ public class InitItems {
 		wrench = new ItemWrench();
 		debugger = new ItemDebugger();
 		location_linker = new ItemLocationLinker();
-		sprayer = new ItemSprayer();
-		
-		laser_designator = new ItemDesignator();
+		sprayer = new ItemSprayer();		
+		designator = new ItemDesignator();
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		

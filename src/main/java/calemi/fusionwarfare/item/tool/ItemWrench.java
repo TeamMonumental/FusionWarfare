@@ -44,6 +44,11 @@ public class ItemWrench extends ItemBase {
 	}
 	
 	@Override
+	public boolean isFull3D() {
+		return true;
+	}
+	
+	@Override
 	public boolean onItemUse(ItemStack is, EntityPlayer p, World w, int x, int y, int z, int m, float f1, float f2, float f3) {
 		
 		if (!w.isRemote && p.isSneaking()) {

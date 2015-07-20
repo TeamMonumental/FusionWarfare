@@ -5,6 +5,7 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 
 import calemi.fusionwarfare.FusionWarfare;
+import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.entity.EntityDesignatorOrb;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitCreativeTabs;
@@ -59,6 +60,11 @@ public class ItemDesignator extends ItemBase {
 		}
 	}
 	
+	@Override
+	public boolean isFull3D() {
+		return true;
+	}
+		
 	public int getCurrentProgress(ItemStack is) {
 		return getMaxDamage() - is.getItemDamage();
 	}
@@ -96,6 +102,9 @@ public class ItemDesignator extends ItemBase {
 
 						EntityDesignatorOrb entity = new EntityDesignatorOrb(w, p);
 						w.spawnEntityInWorld(entity);
+						
+						w.playSoundAtEntity(entity, Reference.MOD_ID + ":gun_shot", 1, 1);
+						
 						is.damageItem(getMaxDamage(), p);
 					}			
 				}

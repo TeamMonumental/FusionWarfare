@@ -58,6 +58,8 @@ public class ItemRocketLauncher extends ItemBase {
 					
 						if (!w.isRemote) {
 						
+							w.playSoundAtEntity(p, "mob.ghast.fireball", 1, 0.5F);
+							
 							EntityRocket entity = new EntityRocket(w, p);		
 							w.spawnEntityInWorld(entity);
 						

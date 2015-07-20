@@ -68,17 +68,8 @@ public class EntityRocket extends Entity {
 			
 			if (worldObj.getBlock((int)posX, (int)posY, (int)posZ) != Blocks.air) {
 			
-				worldObj.createExplosion(shooter, posX, posY, posZ, 5, false);
-				
-				for (Location loc : ShapeUtil.getSphere(worldObj, (int)posX, (int)posY, (int)posZ, 5)) {					
-					BlockUtil.degradeBlock(loc, 1, false, false);			
-				}
-				
-				for (Location loc : ShapeUtil.getSphere(worldObj, (int)posX, (int)posY, (int)posZ, 3)) {						
-					BlockUtil.degradeBlock(loc, 1, false, false);			
-				}
-				
-				setDead();
+				explode();
+				return;
 			}
 			
 			for (Object o : worldObj.loadedEntityList) {
@@ -89,19 +80,31 @@ public class EntityRocket extends Entity {
 								
 					if (ticksExisted > 5 && entity != this && entity.getDistance(posX, posY, posZ) < 2) {
 						
-						worldObj.createExplosion(shooter, posX, posY, posZ, 6, false);
-						
-						setDead();
-						break;
+						explode();							
+						return;
 					}				
 				}			
 			}
 		}	
 	}
 
+	private void explode() {
+		
+		worldObj.createExplosion(shooter, posX, posY, posZ, 6, false);
+		
+		for (Location loc : ShapeUtil.getSphere(worldObj, (int)posX, (int)posY, (int)posZ, 5)) {					
+			BlockUtil.degradeBlock(loc, 1, false, false);			
+		}
+		
+		for (Location loc : ShapeUtil.getSphere(worldObj, (int)posX, (int)posY, (int)posZ, 3)) {						
+			BlockUtil.degradeBlock(loc, 1, false, false);			
+		}
+		
+		setDead();
+	}
+	
 	@Override
 	protected void entityInit() {}
-
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbt) {

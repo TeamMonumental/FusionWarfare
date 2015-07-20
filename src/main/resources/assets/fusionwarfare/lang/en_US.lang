@@ -101,6 +101,7 @@ item.wrench.name=Wrench
 item.debugger.name=Debugger
 item.location_linker.name=Location Linker
 item.sprayer.name=Sprayer
+item.designator.name=Designator
 
 #-#-#-#-#-ARMOR-#-#-#-#-#
 
