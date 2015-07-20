@@ -97,17 +97,17 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 	// ------------------------------------------------------------------------
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
+	public int[] getAccessibleSlotsFromSide(int side) {
 		return new int[]{0};
 	}
 
 	@Override
-	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
+	public boolean canInsertItem(int p_102007_1_, ItemStack stack, int p_102007_3_) {
 		return true;
 	}
 
 	@Override
-	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
+	public boolean canExtractItem(int p_102008_1_, ItemStack stack, int p_102008_3_) {
 		return true;
 	}
 
@@ -117,7 +117,7 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack stack) {
+	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return stack.getItem() instanceof ItemMissile;
 	}
 

@@ -255,17 +255,17 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 	//------------------------------------------------------------\\
 	
 	@Override
-	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
-		return null;
+	public int[] getAccessibleSlotsFromSide(int side) {
+		return new int[] {0,1,2,3,4,5,6,7,8};
 	}
 
 	@Override
-	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
-		return false;
+	public boolean canInsertItem(int slot, ItemStack stack, int side) {
+		return side > 1;
 	}
 
 	@Override
-	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
+	public boolean canExtractItem(int slot, ItemStack stack, int side) {
 		return false;
 	}
 
@@ -275,8 +275,8 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
-		return false;
+	public boolean isItemValidForSlot(int slot, ItemStack stack) {
+		return stack.getItem() instanceof ItemMissile;
 	}
 
 	@Override
