@@ -31,23 +31,27 @@ public class TileEntityAuraTurret extends TileEntitySecurity {
 		int energyCost = 50;		
 		int range = 5;
 		
-		if (EnergyUtil.canSubtractEnergy(this, energyCost)) {
+		if (!isDone() && EnergyUtil.canSubtractEnergy(this, energyCost)) {
 			
 			progress++;
+		}
 			
-			if (isDone()) {
-		
-				resetProgress();
+		if (isDone()) {
+					
+			for (Object o : worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1).expand(range, range, range))) {
 				
-				for (Object player : worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1).expand(range, range, range))) {
+				EntityPlayer player = (EntityPlayer)o;
 				
-					if (!isSameTeam((EntityPlayer) player)) {
-											
-						((EntityPlayer)player).attackEntityFrom(new DamageSourceTurret((EntityPlayer)player, teamName), 12.0F);	
-						EnergyUtil.subtractEnergy(this, energyCost);
-					}
+				if (!player.capabilities.isCreativeMode && !isSameTeam(player) && player.hurtResistantTime == 0) {
+						
+					resetProgress();	
+						
+					player.attackEntityFrom(new DamageSourceTurret(player, teamName), 12.0F);	
+					player.hurtResistantTime = 5;
+					EnergyUtil.subtractEnergy(this, energyCost);
 				}
 			}
+			
 		}
 	}
 	

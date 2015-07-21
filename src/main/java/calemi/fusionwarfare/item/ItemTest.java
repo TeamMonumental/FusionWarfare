@@ -4,6 +4,7 @@ import calemi.fusionwarfare.entity.EntityFallingSupplyCrate;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -43,5 +44,14 @@ public class ItemTest extends ItemBase {
 		
 		
 		return stack;
+	}
+	
+	@Override
+	public void onUpdate(ItemStack is, World w, Entity e, int i, boolean b) {
+
+		if (!w.isRemote && e instanceof EntityPlayer) {		
+			
+			System.out.println(((EntityPlayer)e).hurtResistantTime);
+		}
 	}
 }
