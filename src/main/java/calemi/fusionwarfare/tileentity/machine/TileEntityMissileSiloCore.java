@@ -38,7 +38,7 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 	public int currentDelay;
 	public int targetX;
 	public int targetZ;
-	public int energyCost = 1000;
+	public int energyCost = 5000;
 	
 	public boolean sprayMode;
 	public boolean isAssembled;
@@ -46,7 +46,7 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 	public boolean forceLaunch = false;
 	
 	public TileEntityMissileSiloCore() {
-		maxEnergy = 10000;
+		maxEnergy = 50000;
 		maxProgress = 20;
 	}
 
