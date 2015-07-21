@@ -43,11 +43,11 @@ public class GuiReactorCore extends GuiContainerBase {
         	drawInfoTextBar("Capsules: " + ((TileEntityAdvancedHydroReactorCore)tileEntity).capsules + "/4", 0);
         }		
 		
-		drawLargeFuelBar(63, 80);
+		drawLargeFuelBar(99, 80);
 	}
 
 	@Override
 	public void drawGuiForeground(int mouseX, int mouseY) {
-		drawLargeFuelBarTextBox(63, 80, mouseX, mouseY);
+		drawLargeFuelBarTextBox(99, 80, mouseX, mouseY);
 	}
 }

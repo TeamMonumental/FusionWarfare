@@ -46,7 +46,7 @@ public class ContainerMissileSiloCore extends ContainerBase {
 				
 				if (itemstack1.getItem() instanceof ItemMissile) {								
 					
-					if (!this.mergeItemStack(itemstack1, slots[0], slots[7] + 1, false)) {
+					if (!this.mergeItemStack(itemstack1, slots[0], slots.length, false)) {
 						return null;
 					}				
 					

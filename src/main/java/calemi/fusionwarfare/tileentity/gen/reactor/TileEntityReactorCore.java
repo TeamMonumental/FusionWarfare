@@ -69,18 +69,23 @@ public class TileEntityReactorCore extends TileEntityBase {
 
 			if (isAssembled && worldObj.getBiomeGenForCoords(xCoord, zCoord) instanceof BiomeGenOcean && hasEnoughWater()) {
 
-				if (slots[0] != null && slots[0].getItem() == InitItems.advanced_infused_catalyst) {
-
-					if (slots[0].getItemDamage() >= slots[0].getMaxDamage()) {
-						decrStackSize(0, 1);
-					}
+				for (int i = 0; i < slots.length; i++) {
 					
-					if (EnergyUtil.canAddEnergy(this, 5)) {
+					if (slots[i] != null && slots[i].getItem() == InitItems.advanced_infused_catalyst) {
 
-						slots[0].setItemDamage(slots[0].getItemDamage() + 1);
-						EnergyUtil.addEnergy(this, 5);
+						if (slots[i].getItemDamage() >= slots[i].getMaxDamage()) {
+							decrStackSize(i, 1);
+						}
+					
+						if (EnergyUtil.canAddEnergy(this, 5)) {
+
+							slots[i].setItemDamage(slots[i].getItemDamage() + 1);
+							EnergyUtil.addEnergy(this, 5);
+						}
+						
+						break;
 					}
-				}
+				}			
 			}
 		}
 	}
@@ -150,7 +155,7 @@ public class TileEntityReactorCore extends TileEntityBase {
 
 	@Override
 	public int getSizeInventory() {
-		return 1;
+		return 6;
 	}
 
 	@Override

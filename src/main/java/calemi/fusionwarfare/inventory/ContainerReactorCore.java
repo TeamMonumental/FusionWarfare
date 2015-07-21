@@ -1,6 +1,7 @@
 package calemi.fusionwarfare.inventory;
 
 import calemi.fusionwarfare.init.InitItems;
+import calemi.fusionwarfare.item.ItemMissile;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -9,12 +10,19 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerReactorCore extends ContainerBase {
 
+	private int[] slots = {0,1,2,3,4,5};
+	
 	public ContainerReactorCore(EntityPlayer player, TileEntityBase tileentity) {
 		super(player, tileentity);		
 		
-		//Charge
-		addSlotToContainer(new Slot(tileentity, 0, 26, 42));
-		
+		//Charge					
+		for (int y = 0; y < 2; y++) {			
+			for (int x = 0; x < 3; x++) {
+				
+				addSlotToContainer(new Slot(tileentity, x + y * 3, 26 + (x * 21), 31 + (y * 21)));			
+			}
+		}
+			
 		addPlayerInv(8, 99);
 		addHotbar(8, 157);
 	}
@@ -29,43 +37,25 @@ public class ContainerReactorCore extends ContainerBase {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 				
-			if (itemstack1.getItem() == InitItems.advanced_infused_catalyst) {
+			if (slotId < slots.length) {
 				
-				if (slotId > 0) {
-					
-					if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
-						return null;
-					}
-
-					slot.onSlotChange(itemstack1, itemstack);
-				}	
-				
-				else {
-					
-					if (!this.mergeItemStack(itemstack1, 1, 36, false)) {
-						return null;
-					}
-
-					slot.onSlotChange(itemstack1, itemstack);
-				}
-			}
-			
-			else if (slotId < 28) {
-				
-				if (!this.mergeItemStack(itemstack1, 28, 36, false)) {
+				if (!this.mergeItemStack(itemstack1, slots.length, slots.length + 36, false)) {
 					return null;
 				}
 
 				slot.onSlotChange(itemstack1, itemstack);
 			}
 			
-			else {
+			else if (slotId >= slots.length) {
 				
-				if (!this.mergeItemStack(itemstack1, 1, 27, false)) {
-					return null;
-				}	
-				
-				slot.onSlotChange(itemstack1, itemstack);
+				if (itemstack1.getItem() == InitItems.advanced_infused_catalyst) {								
+					
+					if (!this.mergeItemStack(itemstack1, slots[0], slots.length, false)) {
+						return null;
+					}				
+					
+					slot.onSlotChange(itemstack1, itemstack);
+				}
 			}
 			
 			if (itemstack1.stackSize == 0) {				

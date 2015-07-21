@@ -45,16 +45,21 @@ public class TileEntityAdvancedHydroReactorCore extends TileEntityBase {
 
 			if (energyAmount > 0) {
 				
-				if (slots[0] != null && slots[0].getItem() == InitItems.advanced_infused_catalyst) {
+				for (int i = 0; i < slots.length; i++) {
+				
+					if (slots[i] != null && slots[i].getItem() == InitItems.advanced_infused_catalyst) {
 
-					if (slots[0].getItemDamage() >= slots[0].getMaxDamage()) {
-						decrStackSize(0, 1);
-					}
+						if (slots[i].getItemDamage() >= slots[i].getMaxDamage()) {
+							decrStackSize(i, 1);
+						}
+					
+						else if (EnergyUtil.canAddEnergy(this, energyAmount)) {
 
-					else if (EnergyUtil.canAddEnergy(this, energyAmount)) {
-
-						slots[0].setItemDamage(slots[0].getItemDamage() + 1);
-						EnergyUtil.addEnergy(this, energyAmount);
+							slots[i].setItemDamage(slots[i].getItemDamage() + 1);
+							EnergyUtil.addEnergy(this, energyAmount);
+						}
+						
+						break;
 					}
 				}
 			}			
@@ -142,7 +147,7 @@ public class TileEntityAdvancedHydroReactorCore extends TileEntityBase {
 
 	@Override
 	public int getSizeInventory() {
-		return 1;
+		return 6;
 	}
 
 	@Override
