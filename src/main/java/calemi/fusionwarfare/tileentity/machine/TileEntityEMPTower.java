@@ -31,7 +31,7 @@ public class TileEntityEMPTower extends TileEntityBase {
 						
 						EntityMissile missile = (EntityMissile) entity;
 						
-						if (missile.motionY < 0 && missile.getDistance(xCoord, yCoord + 8, zCoord) <= 16) {
+						if (!missile.isDead && missile.motionY < 0 && missile.getDistance(xCoord, yCoord + 8, zCoord) <= 16) {
 							
 							progress = 0;
 							energy -= energyCost;
