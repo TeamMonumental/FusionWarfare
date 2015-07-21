@@ -93,31 +93,46 @@ public class ItemFusionGun extends ItemBase {
 	}
 
 	public void shootBullet(World world, ItemStack is, EntityLivingBase entity) {
+		
+		if (((EntityPlayer)entity).capabilities.isCreativeMode) {
+					
+			world.playSoundAtEntity(entity, Reference.MOD_ID + ":gun_shot", 1, 1);
 
-		if (getCurrentProgress(is) == getMaxDamage()) {
+			if (!world.isRemote) {
 
-			for (ItemStack slot : ((EntityPlayer) entity).inventory.mainInventory) {
-
-				if (slot != null && slot.getItem() == InitItems.fusion_ammo && slot.stackSize >= ammoCost) {
-
-					for (int i = 0; i < ammoCost; i++) {
-						((EntityPlayer) entity).inventory.consumeInventoryItem(InitItems.fusion_ammo);
-					}
-
-					world.playSoundAtEntity(entity, Reference.MOD_ID + ":gun_shot", 1, 1);
-
-					if (!world.isRemote) {
-
-						for (int i = 0; i < ammoCost; i++) {
-							world.spawnEntityInWorld(new EntityFusionBullet(world, entity, hitDamage, accuracy, gravityVelocity));
-						}
-
-						is.damageItem(getMaxDamage(), entity);
-					}
-
-					break;
+				for (int i = 0; i < ammoCost; i++) {
+					world.spawnEntityInWorld(new EntityFusionBullet(world, entity, hitDamage, accuracy, gravityVelocity));
 				}
 			}
 		}
+					
+		else {
+		
+			if (getCurrentProgress(is) == getMaxDamage()) {
+
+				for (ItemStack slot : ((EntityPlayer) entity).inventory.mainInventory) {
+					
+					if (slot != null && slot.getItem() == InitItems.fusion_ammo && slot.stackSize >= ammoCost) {
+						
+						for (int i = 0; i < ammoCost; i++) {
+							((EntityPlayer) entity).inventory.consumeInventoryItem(InitItems.fusion_ammo);
+						}
+
+						world.playSoundAtEntity(entity, Reference.MOD_ID + ":gun_shot", 1, 1);
+
+						if (!world.isRemote) {
+
+							for (int i = 0; i < ammoCost; i++) {
+								world.spawnEntityInWorld(new EntityFusionBullet(world, entity, hitDamage, accuracy, gravityVelocity));
+							}
+
+							is.damageItem(getMaxDamage(), entity);
+						}
+					}
+
+					break;					
+				}			
+			}
+		}		
 	}
 }

@@ -25,22 +25,27 @@ public abstract class GuiScreenBase extends GuiScreen {
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float f1) {
 		updateScreen();
-		this.drawDefaultBackground();
+		
+		drawDefaultBackground();
+		
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + getGuiTextures() + ".png"));
 		this.drawTexturedModalRect(getScreenX(), getScreenY(), 0, 0, getGuiSizeX(), getGuiSizeY());	
+		
 		drawGuiBackground(mouseX, mouseY);
+		
 		super.drawScreen(mouseX, mouseY, f1);
+		
 		drawGuiForeground(mouseX, mouseY);
 	}
 	
 	public abstract void drawGuiBackground(int mouseX, int mouseY);
-	public abstract void drawGuiForeground(int mouseX, int mouseY);
+	public abstract void drawGuiForeground(int mouseX, int mouseY);	
 	
 	public void drawCenteredStringBox(String text, int x, int y) {
 		
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
 		
-		int xPos = getScreenX() + x;
+		int xPos = getScreenX() + (x - 3);
 		int yPos = getScreenY() + y;
 		
 		int stringWidth = Minecraft.getMinecraft().fontRenderer.getStringWidth(text);

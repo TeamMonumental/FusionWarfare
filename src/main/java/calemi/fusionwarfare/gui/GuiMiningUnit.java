@@ -41,5 +41,5 @@ public class GuiMiningUnit extends GuiContainerBase {
 	public void drawGuiForeground(int mouseX, int mouseY) {
 		drawSmallFuelBarTextBox(8, 78, mouseX, mouseY);
 		drawLongProgBarTextBox(7, 86, mouseX, mouseY);
-	}	
+	}
 }

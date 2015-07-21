@@ -73,9 +73,8 @@ public class GuiMissileSiloCore extends GuiContainerBase {
 
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
-		if (((TileEntitySecurity)tileEntity).getTeam() != null) drawLeftInfoTextBar(((TileEntitySecurity)tileEntity).teamName, 0);
-		drawRightInfoTextBar("Target X: " + ((TileEntityMissileSiloCore)tileEntity).targetX, 0);
-		drawRightInfoTextBar("Target Z: " + ((TileEntityMissileSiloCore)tileEntity).targetZ, 1);
+		drawInfoTextBar("Target X: " + ((TileEntityMissileSiloCore)tileEntity).targetX, 0);
+		drawInfoTextBar("Target Z: " + ((TileEntityMissileSiloCore)tileEntity).targetZ, 1);
 		drawSmallFuelBar(8, 68);
 	}
 
@@ -83,5 +82,4 @@ public class GuiMissileSiloCore extends GuiContainerBase {
 	public void drawGuiForeground(int mouseX, int mouseY) {
 		drawSmallFuelBarTextBox(8, 68, mouseX, mouseY);
 	}
-
 }

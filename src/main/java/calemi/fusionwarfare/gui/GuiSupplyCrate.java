@@ -30,5 +30,4 @@ public class GuiSupplyCrate extends GuiContainerBase {
 	public void drawGuiForeground(int mouseX, int mouseY) {
 		
 	}
-
 }

@@ -38,8 +38,6 @@ public class GuiEnergyTank extends GuiContainerBase {
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
 		
-		if (tileEntity instanceof TileEntitySecurity && ((TileEntitySecurity)tileEntity).getTeam() != null) drawLeftInfoTextBar(((TileEntitySecurity)tileEntity).teamName, 0);
-		
 		drawLargeFuelBar(63, 80);	
 		
 		if (hasProgBar) {

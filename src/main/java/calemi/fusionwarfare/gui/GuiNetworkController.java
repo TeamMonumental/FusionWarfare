@@ -50,5 +50,4 @@ public class GuiNetworkController extends GuiContainerBase {
 	public void drawGuiForeground(int mouseX, int mouseY) {
 		drawLargeFuelBarTextBox(63, 80, mouseX, mouseY);
 	}
-	
 }

@@ -7,7 +7,9 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -61,6 +63,7 @@ public abstract class GuiContainerBase extends GuiContainer {
 		updateScreen();
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + getGuiTextures() + ".png"));
 		this.drawTexturedModalRect(getScreenX(), getScreenY(), 0, 0, getGuiSizeX(), getGuiSizeY());			
+		if (tileEntity instanceof TileEntitySecurity && ((TileEntitySecurity)tileEntity).getTeam() != null) drawBottomStringBox(((TileEntitySecurity)tileEntity).teamName);
 		drawGuiBackground(mouseX, mouseY);
 		drawCenteredStringWithoutShadow(getGuiTitle(), 88, 6);
 	}
@@ -74,31 +77,50 @@ public abstract class GuiContainerBase extends GuiContainer {
 			
 	public abstract void drawGuiBackground(int mouseX, int mouseY);
 	public abstract void drawGuiForeground(int mouseX, int mouseY);
-	
-	public void drawRightInfoTextBar(String text, int index) {
-			
+
+	public void drawBottomStringBox(String text) {
+		
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
 		
-		//Long Piece
-		drawTexturedModalRect(getScreenX() + getGuiSizeX(), (getScreenY() + 3) + (index * 19), 2, 238, Minecraft.getMinecraft().fontRenderer.getStringWidth(text) + 1, 18);
-		//End
-		drawTexturedModalRect(getScreenX() + (getGuiSizeX() + (Minecraft.getMinecraft().fontRenderer.getStringWidth(text) + 1)), (getScreenY() + 3) + (index * 19), 254, 238, 2, 18);
+		int xPos = getScreenX() + ((getGuiSizeX() / 2) - 3);
+		int yPos = getScreenY() + getGuiSizeY();
 		
-		mc.fontRenderer.drawString(text, getScreenX() + (getGuiSizeX() + 1), (getScreenY() + 8) + (index * 19), 0xffffff);		
+		int stringWidth = Minecraft.getMinecraft().fontRenderer.getStringWidth(text);
+		
+		//Long Piece
+		drawTexturedModalRect(xPos - (stringWidth / 2), yPos, 0, 240, stringWidth + 3, 16);
+		//End
+		drawTexturedModalRect(xPos + ((stringWidth / 2) + 3), yPos, 254, 240, 2, 16);
+		
+		mc.fontRenderer.drawString(text, (xPos - (stringWidth / 2)) + 3, yPos + 4, 0xffffff);	
 	}
-	
-	public void drawLeftInfoTextBar(String text, int index) {
+		
+	public void drawInfoTextBar(String text, int index) {
 		
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
 		
 		int stringWidth = Minecraft.getMinecraft().fontRenderer.getStringWidth(text);
 		
-		//Long Piece
-		drawTexturedModalRect((getScreenX() - stringWidth), (getScreenY() + 3) + (index * 19), 2, 238, stringWidth + 1, 18);
-		//End
-		drawTexturedModalRect((getScreenX() - stringWidth) - 2, (getScreenY() + 3) + (index * 19), 0, 238, 2, 18);
+		//Left Side
+		if (!FWConfig.drawInfoTextOnRight) {
+					
+			//Long Piece
+			drawTexturedModalRect((getScreenX() - stringWidth), (getScreenY() + 3) + (index * 19), 2, 238, stringWidth + 1, 18);
+			//End
+			drawTexturedModalRect((getScreenX() - stringWidth) - 2, (getScreenY() + 3) + (index * 19), 0, 238, 2, 18);
+			
+			mc.fontRenderer.drawString(text, (getScreenX() - stringWidth) + 1, (getScreenY() + 8) + (index * 19), 0xffffff);
+		}
 		
-		mc.fontRenderer.drawString(text, (getScreenX() - stringWidth) + 1, (getScreenY() + 8) + (index * 19), 0xffffff);		
+		//Right Side
+		else {
+			//Long Piece
+			drawTexturedModalRect(getScreenX() + getGuiSizeX(), (getScreenY() + 3) + (index * 19), 2, 238, Minecraft.getMinecraft().fontRenderer.getStringWidth(text) + 1, 18);
+			//End
+			drawTexturedModalRect(getScreenX() + (getGuiSizeX() + (Minecraft.getMinecraft().fontRenderer.getStringWidth(text) + 1)), (getScreenY() + 3) + (index * 19), 254, 238, 2, 18);
+			
+			mc.fontRenderer.drawString(text, getScreenX() + (getGuiSizeX() + 1), (getScreenY() + 8) + (index * 19), 0xffffff);
+		}			
 	}
 	
 	public void drawSmallFuelBar(int x, int y) {

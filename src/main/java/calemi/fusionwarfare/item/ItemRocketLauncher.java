@@ -46,7 +46,20 @@ public class ItemRocketLauncher extends ItemBase {
 	@Override
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer p) {
 
-		if (!w.isRemote) {
+		if (p.capabilities.isCreativeMode) {
+			
+			w.playSoundAtEntity(p, "mob.ghast.fireball", 1, 0.5F);
+			
+			if (!w.isRemote) {			
+				
+				EntityRocket entity = new EntityRocket(w, p);		
+				w.spawnEntityInWorld(entity);
+			
+				is.damageItem(getMaxDamage(), p);
+			}
+		} 
+		
+		else {
 			
 			if (getCurrentProgress(is) == getMaxDamage()) {
 
@@ -70,7 +83,7 @@ public class ItemRocketLauncher extends ItemBase {
 					}
 				}
 			}
-		}	
+		}		
 		
 		return is;
 	}

@@ -57,18 +57,16 @@ public class GuiOverclockedEnergyTank extends GuiContainerBase {
 			TileEntityEnergyTransmitter tileEntityTransmitter = (TileEntityEnergyTransmitter) tileEntity;
 			TileEntityEnergyReceiver tileEntityReciever = (TileEntityEnergyReceiver) player.worldObj.getTileEntity(tileEntityTransmitter.targetX, tileEntityTransmitter.targetY, tileEntityTransmitter.targetZ);
 		
-			if (((TileEntitySecurity)tileEntity).getTeam() != null) drawLeftInfoTextBar(((TileEntitySecurity)tileEntity).teamName, 0);
-		
-			drawRightInfoTextBar("Target X: " + tileEntityTransmitter.targetX, 0);
-			drawRightInfoTextBar("Target Y: " + tileEntityTransmitter.targetY, 1);
-			drawRightInfoTextBar("Target Z: " + tileEntityTransmitter.targetZ, 2);		
+			drawInfoTextBar("Target X: " + tileEntityTransmitter.targetX, 0);
+			drawInfoTextBar("Target Y: " + tileEntityTransmitter.targetY, 1);
+			drawInfoTextBar("Target Z: " + tileEntityTransmitter.targetZ, 2);		
 			
 			if (tileEntityReciever == null || tileEntityTransmitter.target == null || !tileEntityTransmitter.compare(tileEntityReciever)) {
-				drawRightInfoTextBar(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "Receiver Not Found!", 3);
+				drawInfoTextBar(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "Receiver Not Found!", 3);
 			}
 			
 			else {
-				drawRightInfoTextBar("Receiver Found", 3);
+				drawInfoTextBar("Receiver Found", 3);
 			}	
 		}	
 	}
@@ -78,5 +76,5 @@ public class GuiOverclockedEnergyTank extends GuiContainerBase {
 			
 		drawLargeFuelBarTextBox(63, 80, mouseX, mouseY);
 		if (hasProgBar) drawLongProgBarTextBox(7, 86, mouseX, mouseY);
-	}	
+	}
 }
