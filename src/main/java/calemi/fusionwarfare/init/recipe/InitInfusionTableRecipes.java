@@ -54,8 +54,8 @@ public class InitInfusionTableRecipes {
 				420, 5000));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.sturdy_handle), 
-				new ItemStack(InitItems.hyper_chip, 2), 				
-				new ItemStack(InitItems.lightning_rod, 2), 
+				new ItemStack(InitItems.hyper_chip, 1), 				
+				new ItemStack(InitItems.lightning_rod, 1), 
 				20, 500));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.advanced_infused_catalyst), 
