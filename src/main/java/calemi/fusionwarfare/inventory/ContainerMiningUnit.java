@@ -15,14 +15,14 @@ public class ContainerMiningUnit extends ContainerBase {
 		
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 7; x++) {
-				addSlotToContainer(new Slot(tileentity, x + (y * 7), 26 + (x * 18), 27 + (y * 18)));
+				addSlotToContainer(new Slot(tileentity, x + (y * 7), 26 + (x * 18), 18 + (y * 18)));
 			}
 		}
 		
-		addSlotToContainer(new SlotOverclocking(tileentity, slots[21], 152, 45, 5));
+		addSlotToContainer(new SlotOverclocking(tileentity, slots[21], 152, 36, 5));
 		
-		addPlayerInv(8, 99);
-		addHotbar(8, 157);
+		addPlayerInv(8, 90);
+		addHotbar(8, 148);
 	}
 	
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotId) {

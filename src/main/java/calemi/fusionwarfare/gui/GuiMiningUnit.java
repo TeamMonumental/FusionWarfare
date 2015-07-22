@@ -18,7 +18,7 @@ public class GuiMiningUnit extends GuiContainerBase {
 	
 	@Override
 	public int getScreenYOffset() {
-		return 15;
+		return 6;
 	}
 	
 	@Override
@@ -33,13 +33,13 @@ public class GuiMiningUnit extends GuiContainerBase {
 
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
-		drawSmallFuelBar(8, 78);
-		drawLongProgBar(7, 86);
+		drawSmallFuelBar(8, 69);
+		drawLongProgBar(7, 77);
 	}
 
 	@Override
 	public void drawGuiForeground(int mouseX, int mouseY) {
-		drawSmallFuelBarTextBox(8, 78, mouseX, mouseY);
-		drawLongProgBarTextBox(7, 86, mouseX, mouseY);
+		drawSmallFuelBarTextBox(8, 69, mouseX, mouseY);
+		drawLongProgBarTextBox(7, 77, mouseX, mouseY);
 	}
 }
