@@ -3,6 +3,9 @@ package calemi.fusionwarfare.entity;
 import calemi.fusionwarfare.util.BlockUtil;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +18,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 
-public class EntityRocket extends Entity {
+public class EntityRocket extends Entity implements IEntityAdditionalSpawnData {
 
 	public EntityPlayer shooter;
 	
@@ -108,13 +111,28 @@ public class EntityRocket extends Entity {
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbt) {
-	
+		
 		shooter = worldObj.getPlayerEntityByName(nbt.getString("shooter"));
 	}
 	
 	@Override
 	public void writeEntityToNBT(NBTTagCompound nbt) {
-	
+		
 		nbt.setString("shooter", ((EntityPlayer)shooter).getDisplayName());
+	}
+	
+	@Override
+	public void readSpawnData(ByteBuf additionalData) {
+		readEntityFromNBT(ByteBufUtils.readTag(additionalData));
+	}
+	
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		
+		NBTTagCompound nbt = new NBTTagCompound();
+		
+		writeEntityToNBT(nbt);
+		
+		ByteBufUtils.writeTag(buffer, nbt);
 	}
 }

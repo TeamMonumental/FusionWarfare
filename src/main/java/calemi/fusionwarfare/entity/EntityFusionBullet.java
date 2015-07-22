@@ -3,6 +3,9 @@ package calemi.fusionwarfare.entity;
 import java.util.List;
 
 import calemi.fusionwarfare.damage.DamageSourceBullets;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -20,17 +23,17 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class EntityFusionBullet extends EntityThrowable {
+public class EntityFusionBullet extends EntityThrowable implements IEntityAdditionalSpawnData {
 
 	private int damage;
 	private float gravityVelocity;
-	private Entity shooter;
+	private EntityPlayer shooter;
 
 	public EntityFusionBullet(World world) {
 		super(world);
 	}
 
-	public EntityFusionBullet(World world, EntityLivingBase entity, int damage, int accuracy, float gravityVelocity) {
+	public EntityFusionBullet(World world, EntityPlayer player, int damage, int accuracy, float gravityVelocity) {
 		super(world);
 
 		this.damage = damage;
@@ -38,15 +41,17 @@ public class EntityFusionBullet extends EntityThrowable {
 		
 		setSize(0.5F, 0.5F);
 
-		posX = entity.posX;
-		posY = entity.posY + 1.5;
-		posZ = entity.posZ;
+		this.shooter = player;
+		
+		posX = player.posX;
+		posY = player.posY + 1.5;
+		posZ = player.posZ;
 
 		float randomPitch = accuracy == 0 ? 0 : rand.nextInt(accuracy * 2) - accuracy;
 		float randomYaw = accuracy == 0 ? 0 : rand.nextInt(accuracy * 2) - accuracy;
 		
-		rotationPitch = entity.rotationPitch + randomPitch;
-		rotationYaw = entity.rotationYaw + randomYaw;
+		rotationPitch = player.rotationPitch + randomPitch;
+		rotationYaw = player.rotationYaw + randomYaw;
 
 		motionX = (double) (-MathHelper.sin(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
 		motionZ = (double) (MathHelper.cos(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
@@ -105,6 +110,21 @@ public class EntityFusionBullet extends EntityThrowable {
 	public void writeEntityToNBT(NBTTagCompound nbt) {
 		super.writeEntityToNBT(nbt);
 		
-		nbt.setString("shooter", ((EntityPlayer)shooter).getDisplayName());
+		if (shooter != null) nbt.setString("shooter", shooter.getDisplayName());
+	}
+
+	@Override
+	public void readSpawnData(ByteBuf additionalData) {
+		readEntityFromNBT(ByteBufUtils.readTag(additionalData));
+	}
+	
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		
+		NBTTagCompound nbt = new NBTTagCompound();
+		
+		writeEntityToNBT(nbt);
+		
+		ByteBufUtils.writeTag(buffer, nbt);
 	}
 }
