@@ -17,7 +17,7 @@ public class BlockNetworkGate extends BlockBasicMachineBase {
 	private IIcon block_closed;	
 	
 	public BlockNetworkGate() {
-		super("network_gate", TileEntityNetworkGate.class, 0, false, true, "network_gate", "network_gate", "network_gate", false);
+		super("network_gate", TileEntityNetworkGate.class, 0, false, true, "network_gate", "network_gate", "network_gate");
 	}
 	
 	@SideOnly(Side.CLIENT)

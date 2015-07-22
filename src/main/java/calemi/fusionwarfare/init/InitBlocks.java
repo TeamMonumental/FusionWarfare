@@ -11,6 +11,7 @@ import calemi.fusionwarfare.block.BlockOreBase;
 import calemi.fusionwarfare.block.BlockSteelCasing;
 import calemi.fusionwarfare.block.BlockReactorCoolingUnit;
 import calemi.fusionwarfare.block.BlockReinforceable;
+import calemi.fusionwarfare.block.BlockReinforceableGlass;
 import calemi.fusionwarfare.block.BlockReinforcedDoor;
 import calemi.fusionwarfare.block.BlockSupplyCrate;
 import calemi.fusionwarfare.block.BlockTwoInputs;
@@ -49,6 +50,7 @@ public class InitBlocks {
 	//#-#-#-#-#-BUILDING-#-#-#-#-#\\
 	
 	public static Block fusion_torch;
+	
 	public static Block concrete;
 	public static Block reinforced_glass;
 	
@@ -121,12 +123,13 @@ public class InitBlocks {
 		//#-#-#-#-#-BUILDING-#-#-#-#-#\\
 		
 		fusion_torch = new BlockFusionTorch();
-		concrete = new BlockReinforceable("concrete", 5, true);
-		reinforced_glass = new BlockReinforceable("reinforced_glass", 3, false);
+		
+		concrete = new BlockReinforceable("concrete", 5);
+		reinforced_glass = new BlockReinforceableGlass("reinforced_glass", 3);
 				
-		black_brick = new BlockReinforceable("black_brick", 5, true);
-		blue_brick = new BlockReinforceable("blue_brick", 5, true);
-		red_brick = new BlockReinforceable("red_brick", 5, true);
+		black_brick = new BlockReinforceable("black_brick", 5);
+		blue_brick = new BlockReinforceable("blue_brick", 5);
+		red_brick = new BlockReinforceable("red_brick", 5);
 		
 		steel_casing = new BlockSteelCasing();
 		
@@ -142,18 +145,18 @@ public class InitBlocks {
 		
 		//#-#-#-#-#-GENERATORS-#-#-#-#-#\\
 		
-		aqua_generator = new BlockBasicMachineBase("aqua_generator", TileEntityAquaGenerator.class, FusionWarfare.guiIDAquaGenerator, false, "aqua_generator_side", false);
-		solar_generator = new BlockBasicMachineBase("solar_generator", TileEntitySolarGenerator.class, FusionWarfare.guiIDSolarGenerator, false, true, "solar_generator_top", "steel_casing", "mech_side", false);		
-		geothermal_generator = new BlockBasicMachineBase("geothermal_generator", TileEntityGeothermalGenerator.class, FusionWarfare.guiIDGeothermalGenerator, false, "geothermal_generator_side", false);
-		wind_turbine = new BlockBasicMachineBase("wind_turbine", TileEntityWindTurbine.class, FusionWarfare.guiIDWindTurbine, true, true, "mech_top_1", "steel_casing", "wind_turbine_side", false);		
+		aqua_generator = new BlockBasicMachineBase("aqua_generator", TileEntityAquaGenerator.class, FusionWarfare.guiIDAquaGenerator, false, "aqua_generator_side");
+		solar_generator = new BlockBasicMachineBase("solar_generator", TileEntitySolarGenerator.class, FusionWarfare.guiIDSolarGenerator, false, true, "solar_generator_top", "steel_casing", "mech_side");		
+		geothermal_generator = new BlockBasicMachineBase("geothermal_generator", TileEntityGeothermalGenerator.class, FusionWarfare.guiIDGeothermalGenerator, false, "geothermal_generator_side");
+		wind_turbine = new BlockBasicMachineBase("wind_turbine", TileEntityWindTurbine.class, FusionWarfare.guiIDWindTurbine, true, true, "mech_top_1", "steel_casing", "wind_turbine_side");		
 		
 		//#-#-#-#-#-REACTORS-#-#-#-#-#\\
 		
-		reactor_core = new BlockBasicMachineBase("reactor_core", TileEntityReactorCore.class, FusionWarfare.guiIDReactorCore, false, true, "reactor_core_side", "reactor_core_side", "reactor_core_side", false);
+		reactor_core = new BlockBasicMachineBase("reactor_core", TileEntityReactorCore.class, FusionWarfare.guiIDReactorCore, false, true, "reactor_core_side", "reactor_core_side", "reactor_core_side");
 		reactor_cooling_unit = new BlockReactorCoolingUnit();
 		
-		advanced_hydro_reactor_core = new BlockBasicMachineBase("advanced_hydro_reactor_core", TileEntityAdvancedHydroReactorCore.class, FusionWarfare.guiIDAdvancedHydroReactorCore, false, true, "advanced_hydro_reactor_core_top", "steel_casing", "advanced_hydro_reactor_core_side", false);
-		capsule_core = new BlockBasicMachineBase("capsule_core", TileEntityCapsuleCore.class, 0, false, true, "capsule_core_side", "capsule_core_side", "capsule_core_side", false);
+		advanced_hydro_reactor_core = new BlockBasicMachineBase("advanced_hydro_reactor_core", TileEntityAdvancedHydroReactorCore.class, FusionWarfare.guiIDAdvancedHydroReactorCore, false, true, "advanced_hydro_reactor_core_top", "steel_casing", "advanced_hydro_reactor_core_side");
+		capsule_core = new BlockBasicMachineBase("capsule_core", TileEntityCapsuleCore.class, 0, false, true, "capsule_core_side", "capsule_core_side", "capsule_core_side");
 		
 		//#-#-#-#-#-MACHINES-#-#-#-#-#\\
 		
@@ -161,22 +164,22 @@ public class InitBlocks {
 		infusion_foundry = new BlockTwoInputs("infusion_foundry", EnumRecipeType.INFUSION_FOUNDRY, FusionWarfare.guiIDTwoInputs, "mech_top_1", "mech_side");	
 		missile_factory = new BlockTwoInputs("missile_factory", EnumRecipeType.MISSILE_FACTORY, FusionWarfare.guiIDTwoInputs, "missile_factory_top", "missile_factory_side");	
 		
-		energetic_furnace = new BlockBasicMachineBase("energetic_furnace", TileEntityEnergeticFurnace.class, FusionWarfare.guiIDEnergeticFurnace, true, false);
-		ore_enricher = new BlockBasicMachineBase("ore_enricher", TileEntityOreEnricher.class, FusionWarfare.guiIDOreEnricher, true, false);			
-		mining_unit = new BlockBasicMachineBase("mining_unit", TileEntityMiningUnit.class, FusionWarfare.guiIDMiningUnit, false, true, "mech_top_1", "mining_unit_bottom", "mining_unit_side", false);	
-		missile_launcher = new BlockBasicMachineBase("missile_launcher", "mech_particle", TileEntityMissileLauncher.class, FusionWarfare.guiIDMissileLauncher, 1, 0, 1, 15, 4, 15, true);
-		missile_silo_core = new BlockBasicMachineBase("missile_silo_core", TileEntityMissileSiloCore.class, FusionWarfare.guiIDMissileSiloCore, false, true, "steel_casing", "steel_casing", "missile_silo_core", true);
-		exp_fabricator = new BlockBasicMachineBase("exp_fabricator", TileEntityEXPFabricator.class, FusionWarfare.guiIDEXPFabricator, false, true, "exp_fabricator_top", "steel_casing", "exp_fabricator_side", false);
-		emp_tower = new BlockBasicMachineBase("emp_tower", "mech_particle", TileEntityEMPTower.class, FusionWarfare.guiIDEMPTower, 2, 0, 2, 14, 16, 14, false);
+		energetic_furnace = new BlockBasicMachineBase("energetic_furnace", TileEntityEnergeticFurnace.class, FusionWarfare.guiIDEnergeticFurnace, true);
+		ore_enricher = new BlockBasicMachineBase("ore_enricher", TileEntityOreEnricher.class, FusionWarfare.guiIDOreEnricher, true);			
+		mining_unit = new BlockBasicMachineBase("mining_unit", TileEntityMiningUnit.class, FusionWarfare.guiIDMiningUnit, false, true, "mech_top_1", "mining_unit_bottom", "mining_unit_side");	
+		missile_launcher = new BlockBasicMachineBase("missile_launcher", "mech_particle", TileEntityMissileLauncher.class, FusionWarfare.guiIDMissileLauncher, 1, 0, 1, 15, 4, 15);
+		missile_silo_core = new BlockBasicMachineBase("missile_silo_core", TileEntityMissileSiloCore.class, FusionWarfare.guiIDMissileSiloCore, false, true, "steel_casing", "steel_casing", "missile_silo_core");
+		exp_fabricator = new BlockBasicMachineBase("exp_fabricator", TileEntityEXPFabricator.class, FusionWarfare.guiIDEXPFabricator, false, true, "exp_fabricator_top", "steel_casing", "exp_fabricator_side");
+		emp_tower = new BlockBasicMachineBase("emp_tower", "mech_particle", TileEntityEMPTower.class, FusionWarfare.guiIDEMPTower, 2, 0, 2, 14, 16, 14);
 		
-		aura_turret = new BlockBasicMachineBase("aura_turret", "mech_particle", TileEntityAuraTurret.class, FusionWarfare.guiIDAuraTurret, 3, 0, 3, 13, 12, 13, true).setHardness(50F);
+		aura_turret = new BlockBasicMachineBase("aura_turret", "mech_particle", TileEntityAuraTurret.class, FusionWarfare.guiIDAuraTurret, 3, 0, 3, 13, 12, 13).setHardness(50F);
 		
-		fusion_matter_reinforcer = new BlockBasicMachineBase("fusion_matter_reinforcer", TileEntityFusionMatterReinforcer.class, FusionWarfare.guiIDFusionMatterReinforcer, false, "fusion_matter_reinforcer_side", false);	
-		anti_mob_beacon = new BlockBasicMachineBase("anti_mob_beacon", TileEntityAntiMobBeacon.class, FusionWarfare.guiIDAntiMobBeacon, false, "anti_mob_beacon_side", false);	
-		player_healing_beacon = new BlockBasicMachineBase("player_healing_beacon", TileEntityPlayerHealingBeacon.class, FusionWarfare.guiIDPlayerHealingBeacon, false, "player_healing_beacon_side", false);	
+		fusion_matter_reinforcer = new BlockBasicMachineBase("fusion_matter_reinforcer", TileEntityFusionMatterReinforcer.class, FusionWarfare.guiIDFusionMatterReinforcer, false, "fusion_matter_reinforcer_side");	
+		anti_mob_beacon = new BlockBasicMachineBase("anti_mob_beacon", TileEntityAntiMobBeacon.class, FusionWarfare.guiIDAntiMobBeacon, false, "anti_mob_beacon_side");	
+		player_healing_beacon = new BlockBasicMachineBase("player_healing_beacon", TileEntityPlayerHealingBeacon.class, FusionWarfare.guiIDPlayerHealingBeacon, false, "player_healing_beacon_side");	
 		
-		energy_transmitter = new BlockBasicMachineBase("energy_transmitter",TileEntityEnergyTransmitter.class, FusionWarfare.guiIDEnergyTransmitter, false, "energy_transmitter_side", true);	
-		energy_receiver = new BlockBasicMachineBase("energy_receiver", TileEntityEnergyReceiver.class, FusionWarfare.guiIDEnergyReceiver, false, "energy_receiver_side", true);		
+		energy_transmitter = new BlockBasicMachineBase("energy_transmitter",TileEntityEnergyTransmitter.class, FusionWarfare.guiIDEnergyTransmitter, false, "energy_transmitter_side");	
+		energy_receiver = new BlockBasicMachineBase("energy_receiver", TileEntityEnergyReceiver.class, FusionWarfare.guiIDEnergyReceiver, false, "energy_receiver_side");		
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		

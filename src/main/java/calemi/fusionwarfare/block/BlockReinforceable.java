@@ -28,40 +28,11 @@ import net.minecraft.world.World;
 public class BlockReinforceable extends BlockBase {
 
 	public int maxMeta;
-	private IIcon[] icons = new IIcon[maxMeta];
-	private boolean isOpaqueCube;
 
-	public BlockReinforceable(String imagePath, int maxMeta, boolean isOpaqueCube) {
+	public BlockReinforceable(String imagePath, int maxMeta) {
 		super(imagePath, 2, Material.rock, 0, 6000000.0F, Block.soundTypeMetal, false);
 		this.maxMeta = maxMeta;
-		this.isOpaqueCube = isOpaqueCube;
 		GameRegistry.registerBlock(this, ItemBlockMeta.class, imagePath);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess, int x, int y, int z, int side) {
-
-		if (!isOpaqueCube) {
-
-			Block block = iBlockAccess.getBlock(x, y, z);
-
-			return block == this ? false : super.shouldSideBeRendered(iBlockAccess, x, y, z, side);
-		}
-		
-		return super.shouldSideBeRendered(iBlockAccess, x, y, z, side);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass() {
-		return isOpaqueCube ? 0 : 1;
-	}
-
-	public boolean renderAsNormalBlock() {
-		return isOpaqueCube;
-	}
-
-	public boolean isOpaqueCube() {
-		return isOpaqueCube;
 	}
 
 	@Override
@@ -86,6 +57,6 @@ public class BlockReinforceable extends BlockBase {
 
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z) {
-		return getBlockColor() - (isOpaqueCube ? (blockAccess.getBlockMetadata(x, y, z) * 0x151515) : (blockAccess.getBlockMetadata(x, y, z) * 0x303030));
+		return getBlockColor() - (blockAccess.getBlockMetadata(x, y, z) * 0x151515);
 	}
 }

@@ -16,7 +16,7 @@ public class BlockNetworkController extends BlockBasicMachineBase {
 	public int tier;
 	
 	public BlockNetworkController(int tier) {
-		super("network_controller_" + tier, null, FusionWarfare.guiIDNetworkController, false, false, "mech_top_" + tier, "steel_casing", "network_controller_" + tier + "_side", false);
+		super("network_controller_" + tier, null, FusionWarfare.guiIDNetworkController, false, false, "mech_top_" + tier, "steel_casing", "network_controller_" + tier + "_side");
 		this.tier = tier;
 		setCreativeTab(InitCreativeTabs.creativeTabMachines);
 		GameRegistry.registerBlock(this, ItemBlockEnergyBase.class, imagePath);

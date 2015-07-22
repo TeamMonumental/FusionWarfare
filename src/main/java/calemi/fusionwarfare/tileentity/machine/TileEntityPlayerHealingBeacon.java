@@ -2,17 +2,22 @@ package calemi.fusionwarfare.tileentity.machine;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 import calemi.fusionwarfare.util.EnergyUtil;
 
-public class TileEntityPlayerHealingBeacon extends TileEntityBase {
+public class TileEntityPlayerHealingBeacon extends TileEntitySecurity {
 	
 	private int energyCost = 500;
 	
 	public TileEntityPlayerHealingBeacon() {
 		maxEnergy = 5000;
-		maxProgress = 25;
+		maxProgress = 20;
 	}
 	
 	@Override
@@ -36,7 +41,7 @@ public class TileEntityPlayerHealingBeacon extends TileEntityBase {
 						
 						EntityPlayer player = (EntityPlayer)o;
 												
-						if (player.getDistance(xCoord, yCoord, zCoord) <= 32 && player.getHealth() < player.getMaxHealth()) {
+						if (!player.capabilities.isCreativeMode && isSameTeam(player) && player.getDistance(xCoord, yCoord, zCoord) <= 32 && player.getHealth() < player.getMaxHealth()) {
 							
 							if (EnergyUtil.canSubtractEnergy(this, energyCost)) {
 								EnergyUtil.subtractEnergy(this, energyCost);
@@ -51,6 +56,21 @@ public class TileEntityPlayerHealingBeacon extends TileEntityBase {
 	}
 	
 	//-------------------------------------------------------------------------------------------
+	
+	@Override
+	public Packet getDescriptionPacket() {
+		NBTTagCompound syncData = new NBTTagCompound();
+	
+		writeToNBT(syncData);
+
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+
+		readFromNBT(pkt.func_148857_g());
+	}
 	
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {

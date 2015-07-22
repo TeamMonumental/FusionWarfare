@@ -29,7 +29,6 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 	public Class tileEntity;
 	public int guiID;
 	public boolean isDirectional;
-	public boolean hasSecurity;
 	public boolean hasCustomModel;
 
 	public String topImage, bottomImage, sideImage1, sideImage2, sideImage3, sideImage4;
@@ -40,12 +39,11 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 	@SideOnly(Side.CLIENT)
 	private IIcon block_top, block_bottom, block_front, block_side_2, block_side_3, block_side_4;
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, boolean isRegistered, String topImage, String bottomImage, String sideImage1, String sideImage2, String sideImage3, String sideImage4, boolean hasSecurity) {
+	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, boolean isRegistered, String topImage, String bottomImage, String sideImage1, String sideImage2, String sideImage3, String sideImage4) {
 		super(imagePath, 2, Material.iron, 6F, 10F, Block.soundTypeMetal, isRegistered);
 		this.tileEntity = tileEntity;
 		this.guiID = guiID;
 		this.isDirectional = isDirectional;
-		this.hasSecurity = hasSecurity;
 		this.hasCustomModel = false;
 		this.topImage = topImage;
 		this.bottomImage = bottomImage;
@@ -55,25 +53,25 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 		this.sideImage4 = sideImage4;
 	}
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, boolean isRegistered, String topImage, String bottomImage, String sideImage, boolean hasSecurity) {
-		this(imagePath, tileEntity, guiID, isDirectional, isRegistered, topImage, bottomImage, sideImage, sideImage, sideImage, sideImage, hasSecurity);
+	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, boolean isRegistered, String topImage, String bottomImage, String sideImage) {
+		this(imagePath, tileEntity, guiID, isDirectional, isRegistered, topImage, bottomImage, sideImage, sideImage, sideImage, sideImage);
 		this.hasCustomModel = false;
 	}
 	
-	public BlockBasicMachineBase(String imagePath, String particleImage, Class tileEntity, int guiID, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean hasSecurity) {
-		this(imagePath, tileEntity, guiID, false, true, "", "", "", hasSecurity);
+	public BlockBasicMachineBase(String imagePath, String particleImage, Class tileEntity, int guiID, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd) {
+		this(imagePath, tileEntity, guiID, false, true, "", "", "");
 		this.hasCustomModel = true;
 		this.particleImage = particleImage;
 		setBlockBounds(xStart * pixel, yStart * pixel, zStart * pixel, xEnd * pixel, yEnd * pixel, zEnd * pixel);
 	}
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, String sideImage, boolean hasSecurity) {
-		this(imagePath, tileEntity, guiID, isDirectional, true, "mech_top_1", "steel_casing", sideImage, hasSecurity);
+	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, String sideImage) {
+		this(imagePath, tileEntity, guiID, isDirectional, true, "mech_top_1", "steel_casing", sideImage);
 		this.hasCustomModel = false;
 	}
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, boolean hasSecurity) {
-		this(imagePath, tileEntity, guiID, isDirectional, true, "mech_top_1", "steel_casing", "mech_side", hasSecurity);
+	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional) {
+		this(imagePath, tileEntity, guiID, isDirectional, true, "mech_top_1", "steel_casing", "mech_side");
 		this.hasCustomModel = false;
 	}
 	
@@ -146,7 +144,7 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 			
 			EntityPlayer player = (EntityPlayer)e;
 			
-			if (hasSecurity) {
+			if (w.getTileEntity(x, y, z) instanceof TileEntitySecurity) {
 				
 				if (player.getTeam() != null) {
 					((TileEntitySecurity)w.getTileEntity(x, y, z)).teamName = player.getTeam().getRegisteredName();

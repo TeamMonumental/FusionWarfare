@@ -17,7 +17,7 @@ public class BlockNetworkCable extends BlockBasicMachineBase {
 	float pixel = 1F/16F;
 	
 	public BlockNetworkCable() {
-		super("network_cable", TileEntityNetworkCable.class, 0, false, false);
+		super("network_cable", TileEntityNetworkCable.class, 0, false);
 		setBlockBounds(11 * pixel / 2, 11 * pixel / 2, 11 * pixel / 2, 1 - 11 * pixel / 2, 1 - 11 * pixel / 2, 1 - 11 * pixel / 2);
 		hasCustomModel = true;
 		this.particleImage = "mech_particle";
