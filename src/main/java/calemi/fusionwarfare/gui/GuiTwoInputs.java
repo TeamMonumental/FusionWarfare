@@ -63,6 +63,9 @@ public class GuiTwoInputs extends GuiContainerBase {
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
 		
+		drawSmallFuelBar(19, 69);
+		drawSmallProgBar(79, 38);
+		
 		TileEntityTwoInputs tileEntityTwoInputs = (TileEntityTwoInputs)tileEntity;
 
 		if (tileEntityTwoInputs.currentRecipe != null) {
@@ -72,10 +75,7 @@ public class GuiTwoInputs extends GuiContainerBase {
 			drawInfoTextBar("Creating:", 0);
 			drawInfoTextBar(output.stackSize + "x " + output.getDisplayName(), 1);
 			drawInfoTextBar((tileEntityTwoInputs.currentRecipe.energyCost > tileEntityTwoInputs.energy ? EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD : "") + "Energy Cost: " + tileEntityTwoInputs.currentRecipe.energyCost, 2);
-		}
-		
-		drawSmallFuelBar(19, 69);
-		drawSmallProgBar(79, 38);
+		}	
 	}
 	
 	@Override
