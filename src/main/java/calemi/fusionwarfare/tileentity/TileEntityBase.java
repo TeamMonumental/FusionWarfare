@@ -27,7 +27,7 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 		
 		if (getOverclockingSlot() != null) {
 			
-			return getOverclockingSlot().stackSize * (maxProgress / 15);
+			return (getOverclockingSlot().stackSize) * (maxProgress / 15);
 		}
 		
 		return 0;		

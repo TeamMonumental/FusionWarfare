@@ -13,7 +13,7 @@ public class ContainerOverclockedEnergyTank extends ContainerBase {
 		super(player, tileentity);		
 		
 		//Overclocking
-		addSlotToContainer(new SlotOverclocking(tileentity, 0, 143, 64, overClockNumber));
+		addSlotToContainer(new SlotOverclocking(tileentity, 0, 143, 64, 15));
 	
 		addPlayerInv(8, 99);
 		addHotbar(8, 157);
@@ -29,33 +29,25 @@ public class ContainerOverclockedEnergyTank extends ContainerBase {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 				
-			if (itemstack1.getItem() == InitItems.overclocking_chip) {								
+			if (slotId > 0) {
 				
-				Slot slot2 = (Slot)this.inventorySlots.get(0);
-				int space = slot2.getStack() != null ? slot2.getSlotStackLimit() - slot2.getStack().stackSize : slot2.getSlotStackLimit();
+				if (itemstack1.getItem() == InitItems.overclocking_chip) {								
+					
+					if (!this.mergeItemStack(itemstack1, 0, 0 + 1, false)) {
+						return null;
+					}				
+					
+					slot.onSlotChange(itemstack1, itemstack);
+				}
 				
-				if (space > 0) {
+				else {
 					
-					if (itemstack1.stackSize > space) {
+					if (!this.mergeItemStack(itemstack1, 0, 0 + 1, false)) {
+						return null;
+					}		
 					
-						if (slot2.getHasStack()) slot2.getStack().stackSize += space;
-						else slot2.putStack(new ItemStack(itemstack1.getItem(), space));							
-						
-						itemstack1.stackSize -= space;
-						
-						slot.onSlotChange(itemstack1, itemstack);
-					}
-					
-					else {
-						
-						if (slot2.getHasStack()) slot2.getStack().stackSize += itemstack1.stackSize;							
-						else slot2.putStack(new ItemStack(itemstack1.getItem(), itemstack1.stackSize));
-						
-						itemstack1.stackSize -= itemstack1.stackSize;
-						
-						slot.onSlotChange(itemstack1, itemstack);
-					}					
-				}					
+					slot.onSlotChange(itemstack1, itemstack);
+				}
 			}
 			
 			else if (slotId < 28) {

@@ -15,7 +15,7 @@ public class TileEntityMiningUnit extends TileEntityBase {
 
 	public TileEntityMiningUnit() {
 		maxEnergy = 5000;
-		maxProgress = 50;
+		maxProgress = 30;
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class TileEntityMiningUnit extends TileEntityBase {
 		if (!worldObj.isRemote) {
 
 			if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && energy >= energyCost) {
-				progress ++;
+				progress++;
 			}
 
 			else {

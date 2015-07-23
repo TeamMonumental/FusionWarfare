@@ -28,8 +28,6 @@ public class TileEntityTwoInputs extends TileEntityBase {
 			
 		maxEnergy = recipeType == EnumRecipeType.INFUSION_TABLE ? 10000 : 5000;
 		
-		System.out.println(getMaxProgress());
-		
 		checkForRecipe();
 		
 		if (!worldObj.isRemote) {
