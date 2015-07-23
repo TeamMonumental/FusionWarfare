@@ -72,12 +72,11 @@ public class TileEntityOreEnricher extends TileEntityBase {
 		
 		ItemStack output = recipes.get(Block.getBlockFromItem(slots[0].getItem()));
 		
-		boolean b2 = output != null;
-		boolean b3 = slots[1] == null || (slots[1] != null && slots[1].getItem() == output.getItem());
-		boolean b4 = slots[1] == null || (slots[1].getMaxStackSize() - slots[1].stackSize) >= output.stackSize;
-		boolean b5 = energy >= energyCost;
+		boolean b2 = slots[1] == null || (output != null && slots[1] != null && slots[1].getItem() == output.getItem());
+		boolean b3 = slots[1] == null || (slots[1].getMaxStackSize() - slots[1].stackSize) >= output.stackSize;
+		boolean b4 = energy >= energyCost;
 				
-		return b1 && b2 && b3 && b4 && b5;
+		return b1 && b2 && b3 && b4;
 	}
 	
 	@Override
