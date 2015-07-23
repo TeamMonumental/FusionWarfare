@@ -30,11 +30,11 @@ public class TileEntityOreEnricher extends TileEntityBase {
 		recipes.put(Blocks.gold_ore, new ItemStack(Items.gold_ingot, 2));
 		recipes.put(Blocks.diamond_ore, new ItemStack(Items.diamond, 2));
 		recipes.put(Blocks.emerald_ore, new ItemStack(Items.emerald, 2));
-		recipes.put(Blocks.lapis_ore, new ItemStack(Items.dye, 12, 4));
-		recipes.put(Blocks.redstone_ore, new ItemStack(Items.redstone, 8));
+		recipes.put(Blocks.lapis_ore, new ItemStack(Items.dye, 4, 4));
+		recipes.put(Blocks.redstone_ore, new ItemStack(Items.redstone, 4));
 		recipes.put(Blocks.quartz_ore, new ItemStack(Items.quartz, 2));
-		recipes.put(InitBlocks.infused_crystal_ore, new ItemStack(InitItems.infused_crystal, 4));
-		recipes.put(InitBlocks.infused_azurite_ore, new ItemStack(InitItems.infused_azurite, 4));
+		recipes.put(InitBlocks.infused_crystal_ore, new ItemStack(InitItems.infused_crystal, 2));
+		recipes.put(InitBlocks.infused_azurite_ore, new ItemStack(InitItems.infused_azurite, 2));
 	}
 	
 	public TileEntityOreEnricher() {
