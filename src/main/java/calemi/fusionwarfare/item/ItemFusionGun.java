@@ -109,10 +109,12 @@ public class ItemFusionGun extends ItemBase {
 		else {
 		
 			if (getCurrentProgress(is) == getMaxDamage()) {
-
+				
 				for (ItemStack slot : player.inventory.mainInventory) {
 					
 					if (slot != null && slot.getItem() == InitItems.fusion_ammo && slot.stackSize >= ammoCost) {
+						
+						System.out.println("called");
 						
 						for (int i = 0; i < ammoCost; i++) {
 							player.inventory.consumeInventoryItem(InitItems.fusion_ammo);
@@ -128,9 +130,9 @@ public class ItemFusionGun extends ItemBase {
 
 							is.damageItem(getMaxDamage(), player);
 						}
-					}
-
-					break;					
+						
+						break;
+					}									
 				}			
 			}
 		}		
