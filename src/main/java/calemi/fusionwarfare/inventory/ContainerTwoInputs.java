@@ -65,11 +65,31 @@ public class ContainerTwoInputs extends ContainerBase {
 				
 				if (itemstack1.getItem() == InitItems.overclocking_chip) {								
 					
-					if (!this.mergeItemStack(itemstack1, slots[3], slots[3] + 1, false)) {
-						return null;
-					}				
+					Slot slot2 = (Slot)this.inventorySlots.get(3);
+					int space = slot2.getStack() != null ? slot2.getSlotStackLimit() - slot2.getStack().stackSize : slot2.getSlotStackLimit();
 					
-					slot.onSlotChange(itemstack1, itemstack);
+					if (space > 0) {
+						
+						if (itemstack1.stackSize > space) {
+						
+							if (slot2.getHasStack()) slot2.getStack().stackSize += space;
+							else slot2.putStack(new ItemStack(itemstack1.getItem(), space));							
+							
+							itemstack1.stackSize -= space;
+							
+							slot.onSlotChange(itemstack1, itemstack);
+						}
+						
+						else {
+							
+							if (slot2.getHasStack()) slot2.getStack().stackSize += itemstack1.stackSize;							
+							else slot2.putStack(new ItemStack(itemstack1.getItem(), itemstack1.stackSize));
+							
+							itemstack1.stackSize -= itemstack1.stackSize;
+							
+							slot.onSlotChange(itemstack1, itemstack);
+						}					
+					}					
 				}
 				
 				else {
