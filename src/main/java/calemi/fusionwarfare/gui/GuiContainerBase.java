@@ -181,11 +181,11 @@ public abstract class GuiContainerBase extends GuiContainer {
 	}
 	
 	public void drawSmallProgBarTextBox(int x, int y, int mouseX, int mouseY) {
-		drawStringOverBox("Progress: " + tileEntity.progress * 100 / tileEntity.maxProgress + "%", x, y, 24, 12, mouseX, mouseY);
+		drawStringOverBox("Progress: " + tileEntity.progress * 100 / tileEntity.getMaxProgress() + "%", x, y, 24, 12, mouseX, mouseY);
 	}
 	
 	public void drawLongProgBarTextBox(int x, int y, int mouseX, int mouseY) {
-		drawStringOverBox("Progress: " + tileEntity.progress * 100 / tileEntity.maxProgress + "%", x, y, 161, 7, mouseX, mouseY);
+		drawStringOverBox("Progress: " + tileEntity.progress * 100 / tileEntity.getMaxProgress() + "%", x, y, 161, 7, mouseX, mouseY);
 	}
 		
 	public void drawCenteredStringWithoutShadow(String text, int x, int y) {

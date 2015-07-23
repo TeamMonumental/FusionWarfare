@@ -25,17 +25,17 @@ public class TileEntityTwoInputs extends TileEntityBase {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		
+			
 		maxEnergy = recipeType == EnumRecipeType.INFUSION_TABLE ? 10000 : 5000;
 		
-		int progressMultiplier = (slots[3] == null ? 1 : slots[3].stackSize + 1);
+		System.out.println(getMaxProgress());
 		
 		checkForRecipe();
 		
 		if (!worldObj.isRemote) {
 			
 			if (currentRecipe != null && energy >= currentRecipe.energyCost) {				
-				progress += progressMultiplier;
+				progress++;
 			} 
 			
 			else {
@@ -113,6 +113,11 @@ public class TileEntityTwoInputs extends TileEntityBase {
 	@Override
 	public EnumIO getIOType() {
 		return EnumIO.INPUT;
+	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return slots[3];
 	}
 	
 	@Override

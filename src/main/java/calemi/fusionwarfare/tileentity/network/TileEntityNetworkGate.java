@@ -48,4 +48,9 @@ public class TileEntityNetworkGate extends TileEntityBase {
 	public EnumIO getIOType() {
 		return getBlockMetadata() == 0 ? EnumIO.NONE : EnumIO.REJECTED;
 	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return null;
+	}
 }

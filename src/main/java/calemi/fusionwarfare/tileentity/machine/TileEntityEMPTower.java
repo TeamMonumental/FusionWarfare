@@ -81,5 +81,10 @@ public class TileEntityEMPTower extends TileEntityBase {
 	@Override
 	public EnumIO getIOType() {
 		return EnumIO.INPUT;
-	}	
+	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return null;
+	}
 }

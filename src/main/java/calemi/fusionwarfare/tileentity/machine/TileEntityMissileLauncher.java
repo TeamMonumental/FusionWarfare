@@ -125,6 +125,11 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 	public EnumIO getIOType() {
 		return EnumIO.INPUT;
 	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return null;
+	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {

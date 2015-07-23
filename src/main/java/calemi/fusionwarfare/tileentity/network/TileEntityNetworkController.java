@@ -31,6 +31,11 @@ public class TileEntityNetworkController extends TileEntityBase {
 	public EnumIO getIOType() {
 		return EnumIO.NONE;
 	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return null;
+	}
 		
 	@Override
 	public void updateEntity() {

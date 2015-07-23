@@ -46,11 +46,9 @@ public class TileEntityOreEnricher extends TileEntityBase {
 	public void updateEntity() {
 		super.updateEntity();
 		
-		int progressMultiplier = (slots[2] == null ? 1 : slots[2].stackSize + 1);
-		
 		if (!worldObj.isRemote) {
 			
-			if (canSmelt()) progress += progressMultiplier;
+			if (canSmelt()) progress ++;
 			else resetProgress();
 			
 			if (isDone()) {
@@ -85,6 +83,11 @@ public class TileEntityOreEnricher extends TileEntityBase {
 	@Override
 	public EnumIO getIOType() {
 		return EnumIO.INPUT;
+	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return slots[2];
 	}
 	
 	@Override

@@ -23,10 +23,8 @@ public class TileEntityFusionMatterReinforcer extends TileEntityBase {
 	@Override
 	public void updateEntity() {
 
-		int progressMultiplier = (slots[0] == null ? 1 : slots[0].stackSize + 1);
-		
 		if (!isDone() && worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
-			progress += progressMultiplier;
+			progress++;
 		}
 
 		else {
@@ -107,5 +105,10 @@ public class TileEntityFusionMatterReinforcer extends TileEntityBase {
 	@Override
 	public EnumIO getIOType() {
 		return EnumIO.INPUT;
+	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return slots[0];
 	}
 }

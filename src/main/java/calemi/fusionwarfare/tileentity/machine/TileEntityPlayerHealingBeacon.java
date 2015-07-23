@@ -101,4 +101,9 @@ public class TileEntityPlayerHealingBeacon extends TileEntitySecurity {
 	public EnumIO getIOType() {
 		return EnumIO.INPUT;
 	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return null;
+	}
 }

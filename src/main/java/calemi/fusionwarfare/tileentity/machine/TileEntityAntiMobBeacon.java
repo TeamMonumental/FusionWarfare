@@ -80,4 +80,9 @@ public class TileEntityAntiMobBeacon extends TileEntityBase {
 	public EnumIO getIOType() {
 		return EnumIO.INPUT;
 	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return null;
+	}
 }

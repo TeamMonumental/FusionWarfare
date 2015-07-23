@@ -71,6 +71,11 @@ public class TileEntityEnergyTransmitter extends TileEntitySecurity {
 	public EnumIO getIOType() {
 		return EnumIO.INPUT;
 	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return null;
+	}
 
 	@Override
 	public Packet getDescriptionPacket() {

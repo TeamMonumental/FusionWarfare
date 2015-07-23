@@ -21,6 +21,18 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	public int progress;
 	public int maxProgress;
 	
+	public abstract ItemStack getOverclockingSlot();
+	
+	public int overclockedDifference() {
+		
+		if (getOverclockingSlot() != null) {
+			
+			return getOverclockingSlot().stackSize * (maxProgress / 15);
+		}
+		
+		return 0;		
+	}
+	
 	@Override
 	public int getEnergy() {
 		return energy;
@@ -46,7 +58,7 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	}
 	
 	public int getMaxProgress() {
-		return maxProgress;
+		return maxProgress - overclockedDifference();
 	}
 	
 	public void resetProgress() {
@@ -54,12 +66,12 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	}
 	
 	public boolean isDone() {
-		return progress >= maxProgress;
+		return progress >= getMaxProgress();
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public int getCurrentProgressScaled(int i) {
-		return this.progress * i / maxProgress;
+		return this.progress * i / getMaxProgress();
 	}
 	
 	@Override

@@ -22,12 +22,10 @@ public class TileEntityMiningUnit extends TileEntityBase {
 	public void updateEntity() {
 		super.updateEntity();
 
-		int progressMultiplier = (slots[21] == null ? 1 : slots[21].stackSize + 1);
-		
 		if (!worldObj.isRemote) {
 
 			if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && energy >= energyCost) {
-				progress += progressMultiplier;
+				progress ++;
 			}
 
 			else {
@@ -144,4 +142,8 @@ public class TileEntityMiningUnit extends TileEntityBase {
 		return EnumIO.INPUT;
 	}
 
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return slots[21];
+	}
 }

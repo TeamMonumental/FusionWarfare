@@ -33,4 +33,9 @@ public class TileEntityReinforcedDoor extends TileEntitySecurity {
 	public EnumIO getIOType() {
 		return null;
 	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return null;
+	}
 }

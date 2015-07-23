@@ -33,4 +33,9 @@ public class TileEntitySupplyCrate extends TileEntityBase {
 	public EnumIO getIOType() {
 		return EnumIO.NONE;
 	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return null;
+	}
 }

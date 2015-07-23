@@ -81,4 +81,9 @@ public class TileEntityWindTurbine extends TileEntityBase {
 	public EnumIO getIOType() {
 		return EnumIO.OUTPUT;
 	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return null;
+	}
 }
