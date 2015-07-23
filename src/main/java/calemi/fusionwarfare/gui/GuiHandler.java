@@ -111,7 +111,7 @@ public class GuiHandler implements IGuiHandler {
 		}
 
 		if (ID == FusionWarfare.guiIDFusionMatterReinforcer) {
-			return new ContainerOverclockedEnergyTank(player, (TileEntityFusionMatterReinforcer) tileentity, 10);
+			return new ContainerOverclockedEnergyTank(player, (TileEntityFusionMatterReinforcer) tileentity, 15);
 		}
 
 		if (ID == FusionWarfare.guiIDAntiMobBeacon) {
