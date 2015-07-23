@@ -25,7 +25,7 @@ public class ContainerOneInput extends ContainerBase {
 		addSlotToContainer(new SlotOutput(tileentity, slots[1], 116, 36));
 
 		// Overclocking
-		addSlotToContainer(new SlotOverclocking(tileentity, slots[2], 152, 62, 15));
+		addSlotToContainer(new SlotOverclocking(tileentity, slots[2], 152, 62, 10));
 
 		addPlayerInv(8, 84);
 		addHotbar(8, 142);

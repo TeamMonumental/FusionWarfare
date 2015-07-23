@@ -49,12 +49,7 @@ public class ItemFusionMatterDeconstructor extends ItemTool implements IEnergyIt
 		setMaxStackSize(1);		
 		setMaxDamage(getMaxEnergy());		
 	}
-	
-	@Override
-	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_) {
-		System.out.println(getDamage(p_77663_1_));
-	}
-	
+		
 	@Override
 	public int getMaxEnergy() {
 		return 7500;

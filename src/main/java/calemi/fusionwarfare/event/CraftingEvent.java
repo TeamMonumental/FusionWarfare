@@ -41,8 +41,6 @@ public class CraftingEvent {
 					
 					int energy = ((ItemBlockEnergyBase)stack.getItem()).getEnergy(stack);
 				
-					System.out.println(energy);
-					
 					if (event.crafting != null) {
 						((ItemBlockEnergyBase)event.crafting.getItem()).setMaxEnergy(((BlockNetworkController)Block.getBlockFromItem(event.crafting.getItem())).tier * 25000, event.crafting);;
 						((ItemBlockEnergyBase)event.crafting.getItem()).setEnergy(energy, event.crafting);
