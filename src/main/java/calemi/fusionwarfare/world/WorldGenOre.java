@@ -40,7 +40,7 @@ public class WorldGenOre implements IWorldGenerator {
 		
 		if (!FWConfig.disableInfusedCatalystOre) {
 		
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 2; i++) {
 			
 				int randPosX = chunkX + rand.nextInt(16);
 				int randPosY = rand.nextInt(10) + 10;
