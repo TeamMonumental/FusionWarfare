@@ -2,14 +2,18 @@ package calemi.fusionwarfare.packet;
 
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.init.InitItems;
+import calemi.fusionwarfare.item.ItemFusionGatlingGun;
+import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.util.EnergyUtil;
+import calemi.fusionwarfare.util.GunUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -107,8 +111,11 @@ public class ServerPacketHandler implements IMessage {
 				else tileEntity.sprayMode = true;
 			}
 			
-			if (data[0].equalsIgnoreCase("laser")) {
+			if (data[0].equalsIgnoreCase("shoot")) {
+								
+				ItemFusionGun item = (ItemFusionGun)player.getCurrentEquippedItem().getItem();
 				
+				GunUtil.shootBullet(player.worldObj, player.getCurrentEquippedItem(), player);
 			}
 
 			return null;

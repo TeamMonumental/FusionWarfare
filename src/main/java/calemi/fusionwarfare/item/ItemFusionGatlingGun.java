@@ -2,8 +2,11 @@ package calemi.fusionwarfare.item;
 
 import java.util.List;
 
+import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.entity.EntityFusionBullet;
 import calemi.fusionwarfare.init.InitItems;
+import calemi.fusionwarfare.packet.ServerPacketHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,14 +23,9 @@ public class ItemFusionGatlingGun extends ItemFusionGun {
 	}
 	
 	@Override
-	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean b) {}
-
-	@Override
 	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player) {
 		
-		player.setItemInUse(is, getMaxItemUseDuration(is));
-		getNBT(is).setBoolean("using", true);
-		
+		player.setItemInUse(is, getMaxItemUseDuration(is));	
 		return is;
 	}
 		
@@ -40,18 +38,25 @@ public class ItemFusionGatlingGun extends ItemFusionGun {
 	public void onUpdate(ItemStack is, World world, Entity entity, int i1, boolean b) {
 
 		EntityPlayer player = (EntityPlayer)entity;
-		
-		if (!world.isRemote) {
-
-			if (player.isUsingItem()) {
-				
-				getNBT(is).setBoolean("using", true);	
-				shootBullet(world, is, player);	
-			} 
 			
-			else {
-				getNBT(is).setBoolean("using", false);
-			}			
+		if (world.isRemote) {
+			
+			if (player.getCurrentEquippedItem() == is) {
+					
+				if (player.isUsingItem()) {
+										
+					getNBT(is).setBoolean("using", true);
+					
+					if (player.getItemInUseDuration() > 20) {
+				
+						FusionWarfare.network.sendToServer(new ServerPacketHandler("shoot"));
+					}	
+				}
+			
+				else {
+					getNBT(is).setBoolean("using", false);
+				}			
+			}	
 		}
 	}
 	

@@ -118,12 +118,15 @@ public class InitRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.missile_factory), new Object[] {
 			"SIS", "BIB", "SIS", 'S', InitItems.steel_plate, 'I', InitItems.infused_steel_ingot, 'B', InitItems.basic_chip
 		});
-		
-		
+					
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.exp_fabricator), new Object[] {
 			"ISI", "HSH", "ISI", 'S', InitItems.steel_plate, 'I', InitItems.infused_steel_ingot, 'H', InitItems.hyper_chip
 		});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aura_turret), new Object[] {
+			" L ", "SLS", "SHS", 'L', InitItems.lightning_rod, 'S', InitItems.steel_plate, 'H', InitItems.hyper_chip
+		});
+				
 		//BEACONS		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.fusion_matter_reinforcer), new Object[] {
 			"ILI", "IXI", "SCS", 'I', InitItems.infused_steel_ingot, 'L', InitItems.lightning_rod, 'S', InitItems.steel_plate, 'C', InitItems.hyper_chip, 'X', Blocks.anvil

@@ -6,6 +6,7 @@ import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.entity.EntityFusionBullet;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.init.InitItems;
+import calemi.fusionwarfare.util.GunUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,10 +18,10 @@ import net.minecraft.world.World;
 
 public class ItemFusionGun extends ItemBase {
 
-	private int ammoCost;
-	private int hitDamage;
-	private int accuracy;
-	private float gravityVelocity;
+	public int ammoCost;
+	public int hitDamage;
+	public int accuracy;
+	public float gravityVelocity;
 	private boolean isSniper;
 
 	public ItemFusionGun(String imagePath, int reloadTime, int ammoCost, int hitDamage, int accuracy, float gravityVelocity, boolean isSniper) {
@@ -79,7 +80,7 @@ public class ItemFusionGun extends ItemBase {
 	@Override
 	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player) {
 
-		shootBullet(world, is, player);
+		GunUtil.shootBullet(world, is, player);
 		return is;
 	}
 
@@ -92,49 +93,5 @@ public class ItemFusionGun extends ItemBase {
 		return true;
 	}
 
-	public void shootBullet(World world, ItemStack is, EntityPlayer player) {
-		
-		if (player.capabilities.isCreativeMode) {
-					
-			world.playSoundAtEntity(player, Reference.MOD_ID + ":gun_shot", 1, 1);
-
-			if (!world.isRemote) {
-
-				for (int i = 0; i < ammoCost; i++) {
-					world.spawnEntityInWorld(new EntityFusionBullet(world, player, hitDamage, accuracy, gravityVelocity));
-				}
-			}
-		}
-					
-		else {
-		
-			if (getCurrentProgress(is) == getMaxDamage()) {
-				
-				for (ItemStack slot : player.inventory.mainInventory) {
-					
-					if (slot != null && slot.getItem() == InitItems.fusion_ammo && slot.stackSize >= ammoCost) {
-						
-						System.out.println("called");
-						
-						for (int i = 0; i < ammoCost; i++) {
-							player.inventory.consumeInventoryItem(InitItems.fusion_ammo);
-						}
-
-						world.playSoundAtEntity(player, Reference.MOD_ID + ":gun_shot", 1, 1);
-
-						if (!world.isRemote) {
-
-							for (int i = 0; i < ammoCost; i++) {
-								world.spawnEntityInWorld(new EntityFusionBullet(world, player, hitDamage, accuracy, gravityVelocity));
-							}
-
-							is.damageItem(getMaxDamage(), player);
-						}
-						
-						break;
-					}									
-				}			
-			}
-		}		
-	}
+	
 }

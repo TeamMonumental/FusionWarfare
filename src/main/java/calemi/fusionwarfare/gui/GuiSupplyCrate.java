@@ -2,6 +2,7 @@ package calemi.fusionwarfare.gui;
 
 import calemi.fusionwarfare.inventory.ContainerSupplyCrate;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.TileEntitySupplyCrate;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 
@@ -19,6 +20,15 @@ public class GuiSupplyCrate extends GuiContainerBase {
 	@Override
 	public String getGuiTitle() {
 		return "Supply Crate";
+	}
+	
+	@Override
+	public void updateScreen() {
+		super.updateScreen();
+		
+		if (((TileEntitySupplyCrate)tileEntity).isEmpty) {
+			player.closeScreen();
+		}
 	}
 
 	@Override
