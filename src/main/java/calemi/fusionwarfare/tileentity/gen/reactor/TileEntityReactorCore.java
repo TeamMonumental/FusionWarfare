@@ -75,6 +75,7 @@ public class TileEntityReactorCore extends TileEntityBase {
 
 						if (slots[i].getItemDamage() >= slots[i].getMaxDamage()) {
 							decrStackSize(i, 1);
+							break;
 						}
 					
 						if (EnergyUtil.canAddEnergy(this, 5)) {

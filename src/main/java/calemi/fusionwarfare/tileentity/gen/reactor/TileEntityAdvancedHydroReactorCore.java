@@ -51,6 +51,7 @@ public class TileEntityAdvancedHydroReactorCore extends TileEntityBase {
 
 						if (slots[i].getItemDamage() >= slots[i].getMaxDamage()) {
 							decrStackSize(i, 1);
+							break;
 						}
 					
 						else if (EnergyUtil.canAddEnergy(this, energyAmount)) {
