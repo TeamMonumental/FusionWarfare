@@ -74,7 +74,7 @@ public class InitRecipes {
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.reactor_cooling_unit), new Object[] {
-			"IHI", "SCS", "SSS", 'I', Blocks.ice, 'H', Blocks.hopper, 'S', InitItems.steel_plate, 'C', InitItems.advanced_chip
+			"WHW", "SCS", "SSS", 'W', Items.water_bucket, 'H', Blocks.hopper, 'S', InitItems.steel_plate, 'C', InitItems.basic_chip
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.advanced_hydro_reactor_core), new Object[] {
@@ -82,7 +82,7 @@ public class InitRecipes {
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.capsule_core), new Object[] {
-			"SSS", "AGA", "SSS", 'S', InitItems.steel_plate, 'A', InitItems.advanced_chip, 'G', InitBlocks.aqua_generator
+			"SSS", "BGB", "SSS", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip, 'G', InitBlocks.aqua_generator
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.missile_launcher), new Object[] {
