@@ -5,6 +5,7 @@ import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -32,26 +33,22 @@ public class ItemTest extends ItemBase {
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "A supply crate is falling at " + (int)player.posX + " " + (int)player.posZ));	
 		}
 		
-			/*for (Location l : ShapeUtil.getFilteredCube(world, (int)player.posX, (int)player.posY - 50, (int)player.posZ, 10, 50, 10, InitBlocks.infused_catalyst_ore)) {
-				
-				player.setPositionAndUpdate(l.x, l.y, l.z);
-			}*/
-			
-			/*EntityDragon entity = new EntityDragon(world);
-			entity.setPositionAndUpdate(player.posX, player.posY, player.posZ);
-			entity.setHealth(50.F);
-			world.spawnEntityInWorld(entity);*/
-		
-		
 		return stack;
 	}
 	
 	@Override
-	public void onUpdate(ItemStack is, World w, Entity e, int i, boolean b) {
-
-		if (!w.isRemote && e instanceof EntityPlayer) {		
+	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack) {
+		
+		if (!entityLiving.worldObj.isRemote) {
 			
-			System.out.println(((EntityPlayer)e).hurtResistantTime);
+			EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(2, entityLiving.worldObj, (int)entityLiving.posX, (int)entityLiving.posZ);
+			entityLiving.worldObj.spawnEntityInWorld(entityCrate);
 		}
+		
+		else {
+			((EntityPlayer)entityLiving).addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "A supply crate is falling at " + (int)entityLiving.posX + " " + (int)entityLiving.posZ));	
+		}
+		
+		return false;
 	}
 }
