@@ -23,6 +23,6 @@ public class DamageSourceBullets extends DamageSource {
 	
 	public IChatComponent func_151519_b(EntityLivingBase entity) {
 	   
-		return new ChatComponentText(target.getDisplayName() + " was pummeled by Fusion Bullets from" + source);
+		return new ChatComponentText(target.getDisplayName() + " was pummeled by Fusion Bullets from " + source.getDisplayName());
 	}
 }

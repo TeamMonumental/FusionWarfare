@@ -147,7 +147,7 @@ public class InitBlocks {
 		
 		aqua_generator = new BlockBasicMachineBase("aqua_generator", TileEntityAquaGenerator.class, FusionWarfare.guiIDAquaGenerator, false, "aqua_generator_side");
 		solar_generator = new BlockBasicMachineBase("solar_generator", TileEntitySolarGenerator.class, FusionWarfare.guiIDSolarGenerator, false, true, "solar_generator_top", "steel_casing", "mech_side");		
-		geothermal_generator = new BlockBasicMachineBase("geothermal_generator", TileEntityGeothermalGenerator.class, FusionWarfare.guiIDGeothermalGenerator, false, "geothermal_generator_side");
+		geothermal_generator = new BlockBasicMachineBase("geothermal_generator", TileEntityGeothermalGenerator.class, FusionWarfare.guiIDGeothermalGenerator, false, true, "mech_top_3", "steel_casing", "geothermal_generator_side");
 		wind_turbine = new BlockBasicMachineBase("wind_turbine", TileEntityWindTurbine.class, FusionWarfare.guiIDWindTurbine, true, true, "mech_top_1", "steel_casing", "wind_turbine_side");		
 		
 		//#-#-#-#-#-REACTORS-#-#-#-#-#\\

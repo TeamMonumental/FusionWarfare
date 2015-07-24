@@ -261,6 +261,12 @@ public class InitRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.sprayer), new Object[] {
 			"S  ", " SI", " II", 'I', InitItems.infused_steel_ingot, 'S', InitItems.steel_plate
 		});
+					
+		//#-#-#-#-#-MISC-#-#-#-#-#\\
+		
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.reinforced_door), new Object[] {
+			"SS", "SS", "SS", 'S', InitBlocks.steel_casing
+		});
 		
 		//Teams
 		
