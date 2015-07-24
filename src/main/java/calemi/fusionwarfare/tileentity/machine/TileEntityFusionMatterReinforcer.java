@@ -39,17 +39,27 @@ public class TileEntityFusionMatterReinforcer extends TileEntityBase {
 				Location l = findWeakestBlock();
 
 				if (l != null) {
-					
-					BlockReinforceable block = (BlockReinforceable) l.getBlock();
 
-					if (l.getBlockMetadata() < (block.maxMeta - 1) && EnergyUtil.canSubtractEnergy(this, energyCost)) {
-						EnergyUtil.subtractEnergy(this, energyCost);
-						l.setBlockMetadata(l.getBlockMetadata() + 1);
+					if (EnergyUtil.canSubtractEnergy(this, energyCost) && reinforceBlock(l)) {
+						EnergyUtil.subtractEnergy(this, energyCost);						
 						worldObj.playSoundEffect(l.x, l.y, l.z, "mob.zombie.unfect", 1, 1);
 					}
 				}
 			}
 		}
+	}
+	
+	private boolean reinforceBlock(Location l) {
+		
+		BlockReinforceable block = (BlockReinforceable) l.getBlock();
+		
+		if (l.getBlockMetadata() < (block.maxMeta - 1)) {
+			
+			l.setBlockMetadata(l.getBlockMetadata() + 1);
+			return true;
+		}
+		
+		return false;
 	}
 
 	private Location findWeakestBlock() {
@@ -60,7 +70,7 @@ public class TileEntityFusionMatterReinforcer extends TileEntityBase {
 
 			if (l.getBlock() instanceof BlockReinforceable) {
 
-				if (tempLoc == null || l.getBlockMetadata() < tempLoc.getBlockMetadata()) {
+				if (tempLoc == null || getMetaSpace(l) > getMetaSpace(tempLoc)) {
 					tempLoc = l;
 				}
 			}
@@ -69,6 +79,11 @@ public class TileEntityFusionMatterReinforcer extends TileEntityBase {
 		return tempLoc;
 	}
 
+	private int getMetaSpace(Location l) {
+		
+		return ((BlockReinforceable)l.getBlock()).maxMeta - l.getBlockMetadata();
+	}
+	
 	private List<Location> getArea() {
 
 		int r = 10;
