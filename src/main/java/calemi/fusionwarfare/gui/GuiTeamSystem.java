@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 
+import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;

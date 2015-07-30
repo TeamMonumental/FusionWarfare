@@ -1,6 +1,7 @@
 package calemi.fusionwarfare.gui;
 
 import calemi.fusionwarfare.FusionWarfare;
+import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.inventory.ContainerMissileSiloCore;
 import calemi.fusionwarfare.packet.ServerPacketHandler;
 import calemi.fusionwarfare.tileentity.TileEntityBase;

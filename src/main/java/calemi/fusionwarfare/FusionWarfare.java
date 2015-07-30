@@ -8,6 +8,7 @@ import calemi.fusionwarfare.event.SupplyCrateEvent;
 import calemi.fusionwarfare.gui.GuiHandler;
 import calemi.fusionwarfare.init.InitArmorMaterials;
 import calemi.fusionwarfare.init.InitBlocks;
+import calemi.fusionwarfare.init.InitBookPages;
 import calemi.fusionwarfare.init.InitCrateLoot;
 import calemi.fusionwarfare.init.InitEntities;
 import calemi.fusionwarfare.init.InitHooks;
@@ -37,7 +38,7 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY, dependencies = "after:NotEnoughItems")
 public class FusionWarfare {
 	
 	@Instance(Reference.MOD_ID)
@@ -119,8 +120,10 @@ public class FusionWarfare {
 		InitInfusionTableRecipes.init();
 		InitInfusionFoundryRecipes.init();
 		InitMissileFactoryRecipes.init();
-		InitHooks.init();
 		
+		InitBookPages.init();
+		
+		InitHooks.init();		
 		InitCrateLoot.init();
 	}
 	

@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.item.ItemBase;
 import calemi.fusionwarfare.item.ItemBattery;
+import calemi.fusionwarfare.item.ItemBook;
 import calemi.fusionwarfare.item.ItemChargedSeeds;
 import calemi.fusionwarfare.item.ItemCreativeBattery;
 import calemi.fusionwarfare.item.ItemFusionGatlingGun;
@@ -78,7 +79,6 @@ public class InitItems {
 	public static Item fusion_shotgun;
 	public static Item fusion_smg;
 	public static Item fusion_sniper_rifle;
-	public static Item fusion_grenade_launcher;
 	public static Item fusion_gatling_gun;
 	
 	public static Item rocket_launcher;
@@ -114,6 +114,7 @@ public class InitItems {
 		
 	//#-#-#-#-#-MISC-#-#-#-#-#\\
 	
+	public static Item book;
 	public static Item reinforced_door;
 	public static Item overclocking_chip;	
 	public static Item test;
@@ -214,6 +215,7 @@ public class InitItems {
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		
+		book = new ItemBook();
 		reinforced_door = new ItemReinforcedDoor();
 		overclocking_chip = new ItemBase("overclocking_chip").setMaxStackSize(15);
 		test = new ItemTest();		

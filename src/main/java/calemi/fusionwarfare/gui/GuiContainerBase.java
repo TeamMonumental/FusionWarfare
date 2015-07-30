@@ -62,7 +62,7 @@ public abstract class GuiContainerBase extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		updateScreen();
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + getGuiTextures() + ".png"));
-		this.drawTexturedModalRect(getScreenX(), getScreenY(), 0, 0, getGuiSizeX(), getGuiSizeY());			
+		this.drawTexturedModalRect(getScreenX(), getScreenY(), 0, 0, getGuiSizeX(), getGuiSizeY());
 		if (tileEntity instanceof TileEntitySecurity && ((TileEntitySecurity)tileEntity).getTeam() != null) drawBottomStringBox(((TileEntitySecurity)tileEntity).teamName);
 		drawGuiBackground(mouseX, mouseY);
 		drawCenteredStringWithoutShadow(getGuiTitle(), 88, 6);

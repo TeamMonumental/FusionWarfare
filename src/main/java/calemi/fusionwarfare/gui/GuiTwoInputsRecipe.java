@@ -7,6 +7,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.item.ItemMissile;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;

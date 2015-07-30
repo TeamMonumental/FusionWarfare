@@ -9,6 +9,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.packet.ServerPacketHandler;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
