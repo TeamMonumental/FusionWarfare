@@ -76,12 +76,12 @@ public class ClientPacketHandler implements IMessage {
 			}
 			
 			if (data[0].equalsIgnoreCase("broadcast.supplycrates")) {
-				
-				System.out.println("called");
-				
+							
 				int meta = Integer.parseInt(data[1]);
 				int randX = Integer.parseInt(data[2]);
-				int randZ = Integer.parseInt(data[3]);
+				int randZ = Integer.parseInt(data[3]);				
+				
+				player.playSound("mob.wither.spawn", 1, 1);
 				
 				if (meta == 0) player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "A blue supply crate is falling at x" + randX + ", z" + randZ + "!"));
 				if (meta == 1) player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "An orange supply crate is falling at x" + randX + ", z" + randZ + "!!"));

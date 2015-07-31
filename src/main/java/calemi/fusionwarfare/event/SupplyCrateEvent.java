@@ -7,71 +7,70 @@ import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.entity.EntityFallingSupplyCrate;
 import calemi.fusionwarfare.packet.ClientPacketHandler;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
 
 public class SupplyCrateEvent {
-	
-	private boolean canCallSpawn = true;
-	
+
+	private static boolean canCallSpawn = true;
+
 	Random rand = new Random();
+
+	@SubscribeEvent(priority = EventPriority.NORMAL)
+	public void onPlayerTick(PlayerTickEvent event) {
 	
-	@SubscribeEvent
-	public void onWorldTick(WorldTickEvent event) {	
-		
-		if (!FWConfig.disableFallingCrates) {
+		if (!event.player.worldObj.isRemote && event.player.dimension == 0) {
 			
-			boolean b = false;
-			
-			for (Object o : event.world.playerEntities) {
+			System.out.println(canCallSpawn);
+
+			if (!FWConfig.disableFallingCrates) {
+
+				World world = event.player.worldObj;
 				
-				if ((EntityPlayer)o != null) {
-					b = true;
-				}
-			}				
-			
-			if (b && canCallSpawn && event.world.getCurrentMoonPhaseFactor() == 1.0F && (event.world.getWorldTime() % 24000) > 18000) {
-								
-				canCallSpawn = false;
+				if (canCallSpawn && world.getCurrentMoonPhaseFactor() == 1.0F && (world.getWorldTime() % 24000) > 18000) {
 
-				int range = 250;
+					canCallSpawn = false;
 
-				int randX = event.world.getSpawnPoint().posX + (rand.nextInt(range * 2) - range);
-				int randZ = event.world.getSpawnPoint().posZ + (rand.nextInt(range * 2) - range);
+					int range = 250;
 
-				int randomInt = rand.nextInt(100);
+					int randX = world.getSpawnPoint().posX + (rand.nextInt(range * 2) - range);
+					int randZ = world.getSpawnPoint().posZ + (rand.nextInt(range * 2) - range);
 
-				int meta;
+					int randomInt = rand.nextInt(100);
 
-				if (randomInt < 10) meta = 2;
-				else if (randomInt < 40) meta = 1;
-				else meta = 0;
-				
-				EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(meta, event.world, randX, randZ);
-				
-				if (!event.world.isRemote) {	
+					int meta;
+
+					if (randomInt < 10) meta = 2;
+					else if (randomInt < 40) meta = 1;
+					else meta = 0;
+
+					EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(meta, world, randX, randZ);
 					
-					event.world.playBroadcastSound(1013, (int) entityCrate.posX, (int) entityCrate.posY, (int) entityCrate.posZ, 0);
-					event.world.spawnEntityInWorld(entityCrate);
-										
+					world.spawnEntityInWorld(entityCrate);
+
 					System.out.println(entityCrate.posX + " " + entityCrate.posZ);
-					
-					for (Object o : event.world.playerEntities) {
-					
-						FusionWarfare.network.sendTo(new ClientPacketHandler("broadcast.supplycrates%" + meta + "%" + randX + "%" + randZ), (EntityPlayerMP) o);
-					}
-				}			
-			}
 
-			if (canCallSpawn == false && event.world.getCurrentMoonPhaseFactor() < 1.0F && (event.world.getWorldTime() % 24000) >= 18000) {
-				canCallSpawn = true;
-				System.out.println("stop");
+					for (Object o : world.playerEntities) {
+
+						FusionWarfare.network.sendTo(new ClientPacketHandler("broadcast.supplycrates%" + meta + "%" + randX + "%" + randZ), (EntityPlayerMP) o);
+					}					
+				}
+
+				if (canCallSpawn == false && world.getCurrentMoonPhaseFactor() < 1.0F && (world.getWorldTime() % 24000) >= 18000) {
+					canCallSpawn = true;
+					System.out.println("reset");
+				}
 			}
 		}
-	}	
+
+	}
 }
