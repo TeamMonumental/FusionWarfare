@@ -1,4 +1,4 @@
-package calemi.fusionwarfare.damage;
+package calemi.fusionwarfare.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

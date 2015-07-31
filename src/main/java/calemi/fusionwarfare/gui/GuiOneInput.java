@@ -1,9 +1,12 @@
 package calemi.fusionwarfare.gui;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.inventory.ContainerOneInput;
 import calemi.fusionwarfare.inventory.ContainerTwoInputs;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import codechicken.nei.recipe.GuiCraftingRecipe;
+import cpw.mods.fml.common.Loader;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,11 +18,30 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiOneInput extends GuiContainerBase {
 
+	private GuiFusionButton recipeButton;
 	private String name;
 	
 	public GuiOneInput(EntityPlayer player, TileEntityBase tileEntity, String name) {
 		super(new ContainerOneInput(player, tileEntity), player, tileEntity);
 		this.name = name;
+	}
+	
+	@Override
+	public void initGui() {
+		super.initGui();
+
+		if (Loader.isModLoaded("NotEnoughItems")) {		
+			recipeButton = new GuiFusionButton(0, getScreenX() + 155, getScreenY() + 5, 16, "?");
+			buttonList.add(recipeButton);
+		}
+	}
+
+	@Override
+	protected void actionPerformed(GuiButton button) {
+
+		if (button.id == 0) {				
+			GuiCraftingRecipe.openRecipeGui("Energetic Furnace", new Object[0]);			
+		}
 	}
 
 	@Override

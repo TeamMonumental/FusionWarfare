@@ -2,7 +2,6 @@ package calemi.fusionwarfare.entity;
 
 import java.util.List;
 
-import calemi.fusionwarfare.damage.DamageSourceBullets;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;

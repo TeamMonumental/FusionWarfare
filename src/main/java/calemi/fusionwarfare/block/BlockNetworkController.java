@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import calemi.fusionwarfare.FusionWarfare;
+import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.item.ItemBlockEnergyBase;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
@@ -16,7 +16,7 @@ public class BlockNetworkController extends BlockBasicMachineBase {
 	public int tier;
 	
 	public BlockNetworkController(int tier) {
-		super("network_controller_" + tier, null, FusionWarfare.guiIDNetworkController, false, false, "mech_top_" + tier, "steel_casing", "network_controller_" + tier + "_side");
+		super("network_controller_" + tier, null, Reference.guiIDNetworkController, false, false, "mech_top_" + tier, "steel_casing", "network_controller_" + tier + "_side");
 		this.tier = tier;
 		setCreativeTab(InitCreativeTabs.creativeTabMachines);
 		GameRegistry.registerBlock(this, ItemBlockEnergyBase.class, imagePath);

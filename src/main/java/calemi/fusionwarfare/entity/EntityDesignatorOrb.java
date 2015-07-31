@@ -2,7 +2,6 @@ package calemi.fusionwarfare.entity;
 
 import java.util.List;
 
-import calemi.fusionwarfare.damage.DamageSourceBullets;
 import calemi.fusionwarfare.item.tool.ItemDesignator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;

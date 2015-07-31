@@ -1,6 +1,6 @@
 package calemi.fusionwarfare.proxy;
 
-import calemi.fusionwarfare.FusionWarfare;
+import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.entity.EntityBlock;
 import calemi.fusionwarfare.entity.EntityDesignatorOrb;
 import calemi.fusionwarfare.entity.EntityFallingSupplyCrate;
@@ -115,9 +115,9 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEMPTower.class, new RenderEMPTower());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMissileSiloCore.class, new RenderMissileSilo());
 			
-		FusionWarfare.armorIDSteel = addArmor("steel");
-		FusionWarfare.armorIDInfusedSteel = addArmor("infused_steel");
-		FusionWarfare.armorIDInfusedSteelRed = addArmor("infused_steel_red");
+		Reference.armorIDSteel = addArmor("steel");
+		Reference.armorIDInfusedSteel = addArmor("infused_steel");
+		Reference.armorIDInfusedSteelRed = addArmor("infused_steel_red");
 	}
 	
 	public int addArmor(String armor) {

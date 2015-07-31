@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import calemi.fusionwarfare.FusionWarfare;
+import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCasing;
 
@@ -25,7 +26,7 @@ public class BlockReactorCasing extends BlockBasicMachineBase {
 		
 			if (tileEntity.getMaster() != null) {
 				
-				FMLNetworkHandler.openGui(p, FusionWarfare.instance, FusionWarfare.guiIDReactorCore, w, tileEntity.x, tileEntity.y, tileEntity.z);		
+				FMLNetworkHandler.openGui(p, FusionWarfare.instance, Reference.guiIDReactorCore, w, tileEntity.x, tileEntity.y, tileEntity.z);		
 				return true;
 			}			
 						

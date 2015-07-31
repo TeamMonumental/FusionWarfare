@@ -2,7 +2,6 @@ package calemi.fusionwarfare.block;
 
 import java.util.List;
 
-import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.item.ItemBlockCrate;
@@ -70,6 +69,6 @@ public class BlockSupplyCrate extends BlockContainerBase {
 
 	@Override
 	public int getGuiID() {
-		return FusionWarfare.guiIDSupplyCrate;
+		return Reference.guiIDSupplyCrate;
 	}
 }

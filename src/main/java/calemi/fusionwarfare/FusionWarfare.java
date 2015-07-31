@@ -8,7 +8,6 @@ import calemi.fusionwarfare.event.SupplyCrateEvent;
 import calemi.fusionwarfare.gui.GuiHandler;
 import calemi.fusionwarfare.init.InitArmorMaterials;
 import calemi.fusionwarfare.init.InitBlocks;
-import calemi.fusionwarfare.init.InitBookPages;
 import calemi.fusionwarfare.init.InitCrateLoot;
 import calemi.fusionwarfare.init.InitEntities;
 import calemi.fusionwarfare.init.InitHooks;
@@ -47,43 +46,6 @@ public class FusionWarfare {
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static IProxy proxy;
 
-	private static int nextGuiID = 1;	
-	
-	public static int guiIDNetworkController = nextGuiID++;
-
-	public static int guiIDAquaGenerator = nextGuiID++;
-	public static int guiIDGeothermalGenerator = nextGuiID++;
-	public static int guiIDSolarGenerator = nextGuiID++;	
-	public static int guiIDWindTurbine = nextGuiID++;
-	
-	public static int guiIDReactorCore = nextGuiID++;
-	
-	public static int guiIDAdvancedHydroReactorCore = nextGuiID++;
-
-	public static int guiIDEnergeticFurnace = nextGuiID++;
-	public static int guiIDOreEnricher = nextGuiID++;
-	public static int guiIDTwoInputs = nextGuiID++;
-	public static int guiIDMiningUnit = nextGuiID++;
-	public static int guiIDMissileLauncher = nextGuiID++;
-	public static int guiIDMissileSiloCore = nextGuiID++;
-	public static int guiIDEXPFabricator = nextGuiID++;		
-	public static int guiIDEMPTower = nextGuiID++;	
-	
-	public static int guiIDEnergyTransmitter = nextGuiID++;
-	public static int guiIDEnergyReceiver = nextGuiID++;
-	
-	public static int guiIDAuraTurret = nextGuiID++;	
-	
-	public static int guiIDFusionMatterReinforcer = nextGuiID++;	
-	public static int guiIDAntiMobBeacon = nextGuiID++;
-	public static int guiIDPlayerHealingBeacon = nextGuiID++;
-	
-	public static int guiIDSupplyCrate = nextGuiID++;
-	
-	public static int armorIDSteel;
-	public static int armorIDInfusedSteel;
-	public static int armorIDInfusedSteelRed;
-	
 	public static WorldGenOre worldGenOre = new WorldGenOre();
 	
 	public static SimpleNetworkWrapper network;
@@ -120,8 +82,6 @@ public class FusionWarfare {
 		InitInfusionTableRecipes.init();
 		InitInfusionFoundryRecipes.init();
 		InitMissileFactoryRecipes.init();
-		
-		InitBookPages.init();
 		
 		InitHooks.init();		
 		InitCrateLoot.init();

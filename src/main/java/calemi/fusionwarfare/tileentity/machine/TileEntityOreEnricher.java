@@ -14,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
@@ -33,8 +34,18 @@ public class TileEntityOreEnricher extends TileEntityBase {
 		recipes.put(Blocks.lapis_ore, new ItemStack(Items.dye, 4, 4));
 		recipes.put(Blocks.redstone_ore, new ItemStack(Items.redstone, 4));
 		recipes.put(Blocks.quartz_ore, new ItemStack(Items.quartz, 2));
-		recipes.put(InitBlocks.infused_crystal_ore, new ItemStack(InitItems.infused_crystal, 2));
-		recipes.put(InitBlocks.infused_azurite_ore, new ItemStack(InitItems.infused_azurite, 2));
+		//recipes.put(InitBlocks.infused_crystal_ore, new ItemStack(InitItems.infused_crystal, 2));
+		//recipes.put(InitBlocks.infused_azurite_ore, new ItemStack(InitItems.infused_azurite, 2));
+		
+		for (int i = 0; i < OreDictionary.getOres("oreInfusedCrystal").size(); i++) {
+			
+			recipes.put(Block.getBlockFromItem(OreDictionary.getOres("oreInfusedCrystal").get(i).getItem()), new ItemStack(OreDictionary.getOres("gemInfused").get(0).getItem(), 2));
+		}
+		
+		for (int i = 0; i < OreDictionary.getOres("oreInfusedAzurite").size(); i++) {
+			
+			recipes.put(Block.getBlockFromItem(OreDictionary.getOres("oreInfusedAzurite").get(i).getItem()), new ItemStack(OreDictionary.getOres("gemInfusedAzurite").get(0).getItem(), 2));
+		}
 	}
 	
 	public TileEntityOreEnricher() {

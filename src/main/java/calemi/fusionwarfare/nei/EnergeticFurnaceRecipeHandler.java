@@ -2,52 +2,51 @@ package calemi.fusionwarfare.nei;
 
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.gui.GuiScreenBase;
-import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.nei.TwoInputRecipeHandlerBase.CachedInfusionRecipe;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
-import calemi.fusionwarfare.recipe.TwoInputRecipe;
-import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.guihook.GuiContainerManager;
 import codechicken.nei.recipe.GuiRecipe;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.item.crafting.FurnaceRecipes;
 
-public class TwoInputRecipeHandlerBase extends TemplateRecipeHandler {	
+public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {	
 	
 	public EnumRecipeType recipeType;
 	
 	@Override
 	public String getRecipeName() {
-		return recipeType.name;
+		return "Energetic Furnace";
 	}
 	
 	@Override
 	public String getGuiTexture() {
-		return Reference.MOD_ID + ":textures/gui/nei_two_inputs.png";
+		return Reference.MOD_ID + ":textures/gui/nei_one_input.png";
 	}
 	
 	@Override
 	public String getOverlayIdentifier() {
-		return recipeType.name;
+		return "Energetic Furnace";
 	}
 		
 	@Override
 	public void loadCraftingRecipes(ItemStack result) {
 		
-		for (TwoInputRecipe recipe : TwoInputRecipeRegistry.getRecipes(recipeType)) {		
+		Map<ItemStack, ItemStack> recipes = (Map<ItemStack, ItemStack>) FurnaceRecipes.smelting().getSmeltingList();
+		
+		for (ItemStack input : recipes.keySet()) {
 			
-			if (result != null && result.isItemEqual(recipe.output)) {			
+			ItemStack output = recipes.get(input);
+			
+			if (output.isItemEqual(result)) {
 				
-				arecipes.add(new CachedInfusionRecipe(recipe));
+				arecipes.add(new CachedEnergeticFurnaceRecipe(input, output));				
 			}
 		}
 	}
@@ -55,28 +54,41 @@ public class TwoInputRecipeHandlerBase extends TemplateRecipeHandler {
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		
+		Map<ItemStack, ItemStack> recipes = (Map<ItemStack, ItemStack>) FurnaceRecipes.smelting().getSmeltingList();
+		
 		if (outputId == getOverlayIdentifier()) {		
 			
-			for (TwoInputRecipe recipe : TwoInputRecipeRegistry.getRecipes(recipeType)) {			
+			for (ItemStack input : recipes.keySet()) {			
 				
-				arecipes.add(new CachedInfusionRecipe(recipe));								
+				ItemStack output = recipes.get(input);
+				
+				arecipes.add(new CachedEnergeticFurnaceRecipe(input, output));								
 			}
 		}
 		
 		if (outputId == "item") {
 			
 			loadCraftingRecipes((ItemStack)results[0]);			
-		}
+		}			
 	}
 	
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-
-		for (TwoInputRecipe recipe : TwoInputRecipeRegistry.getRecipes(recipeType)) {		
-			
-			if (ingredient != null && (ingredient.isItemEqual(recipe.input1) || ingredient.isItemEqual(recipe.input2))) {			
+		
+		System.out.println(ingredient);
 				
-				arecipes.add(new CachedInfusionRecipe(recipe));
+		Map<ItemStack, ItemStack> recipes = (Map<ItemStack, ItemStack>) FurnaceRecipes.smelting().getSmeltingList();
+		
+		for (ItemStack input : recipes.keySet()) {
+			
+			System.out.println(input);
+			
+			if (input.getItem() == ingredient.getItem()) {
+				
+				System.out.println("true");
+				
+				ItemStack output = recipes.get(input);
+				arecipes.add(new CachedEnergeticFurnaceRecipe(input, output));				
 			}
 		}
 	}
@@ -85,11 +97,9 @@ public class TwoInputRecipeHandlerBase extends TemplateRecipeHandler {
 	public void drawBackground(int recipe) {		
 		super.drawBackground(recipe);
 		
-		CachedInfusionRecipe currentRecipe = (CachedInfusionRecipe) arecipes.get(recipe);
-		
 		GuiDraw.changeTexture(Reference.MOD_ID + ":textures/gui/gui_textures.png");	
 		
-		int scaledE = currentRecipe.energy * 50 / 10000;
+		int scaledE = 10 * 50 / 10000;
 		GuiDraw.drawTexturedModalRect(19, 56 - scaledE + 1, 49, 7, 14, scaledE);
 		
 		drawProgressBar(85 - 5, 37 - 11, 78, 7, 23, 12, 23, 0);		
@@ -103,8 +113,6 @@ public class TwoInputRecipeHandlerBase extends TemplateRecipeHandler {
 	@Override
 	public List<String> handleTooltip(GuiRecipe gui, List<String> currenttip, int recipe) {
 				
-		CachedInfusionRecipe rec = (CachedInfusionRecipe) arecipes.get(recipe);
-		
         if (GuiContainerManager.shouldShowTooltip(gui) && currenttip.size() == 0) {
         	
             Point offset = gui.getRecipePosition(recipe);
@@ -115,7 +123,7 @@ public class TwoInputRecipeHandlerBase extends TemplateRecipeHandler {
             
             if (energyRect.contains(relMouse)) {
 
-            	currenttip.add("Energy Cost: " + rec.energy);
+            	currenttip.add("Energy Cost: 10");
                 return currenttip;
             }
             
@@ -123,7 +131,7 @@ public class TwoInputRecipeHandlerBase extends TemplateRecipeHandler {
             
             if (progressRect.contains(relMouse)) {
 
-            	currenttip.add("Time: " + (rec.time / 20) + "s");
+            	currenttip.add("Time: " + (100 / 20) + "s");
                 return currenttip;
             }
         }
@@ -131,30 +139,24 @@ public class TwoInputRecipeHandlerBase extends TemplateRecipeHandler {
 		return super.handleTooltip(gui, currenttip, recipe);
 	}
 	
-	public class CachedInfusionRecipe extends CachedRecipe {
+	public class CachedEnergeticFurnaceRecipe extends CachedRecipe {
 
-		private List<PositionedStack> inputs = new ArrayList<PositionedStack>();
+		private PositionedStack input;
 		private PositionedStack output;
-		public int energy;
-		public int time;
-		
-		public CachedInfusionRecipe(TwoInputRecipe recipe) {
-			
-			inputs.add(new PositionedStack(recipe.input1, 56, 13));
-			inputs.add(new PositionedStack(recipe.input2, 56, 35));
-			output = new PositionedStack(recipe.output, 116, 24);
-			energy = recipe.energyCost;
-			time = recipe.progressTime;
+				
+		public CachedEnergeticFurnaceRecipe(ItemStack input, ItemStack output) {
+			this.input = new PositionedStack(input, 61 - 5, 35 - 11);
+			this.output = new PositionedStack(output, 116, 24);
 		}
 		
 		@Override
 		public PositionedStack getResult() {
 			return output;
-		}
+		}		
 		
 		@Override
-		public List<PositionedStack> getIngredients() {
-			return inputs;
+		public PositionedStack getIngredient() {
+			return input;
 		}
-	}
+	}	
 }

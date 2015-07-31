@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import calemi.fusionwarfare.block.BlockContainerBase;
-import calemi.fusionwarfare.damage.DamageSourceTurret;
+import calemi.fusionwarfare.entity.DamageSourceTurret;
 import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.IEnergy;
 import calemi.fusionwarfare.tileentity.TileEntityBase;

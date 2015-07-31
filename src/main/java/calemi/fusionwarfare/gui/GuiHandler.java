@@ -1,6 +1,6 @@
 package calemi.fusionwarfare.gui;
 
-import calemi.fusionwarfare.FusionWarfare;
+import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerOverclockedEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerMiningUnit;
@@ -46,91 +46,91 @@ public class GuiHandler implements IGuiHandler {
 
 		TileEntity tileentity = world.getTileEntity(x, y, z);
 				
-		if (ID == FusionWarfare.guiIDNetworkController) {
+		if (ID == Reference.guiIDNetworkController) {
 			return new ContainerNetworkController(player, (TileEntityNetworkController) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDEnergeticFurnace) {
+		if (ID == Reference.guiIDEnergeticFurnace) {
 			return new ContainerOneInput(player, (TileEntityEnergeticFurnace) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDOreEnricher) {
+		if (ID == Reference.guiIDOreEnricher) {
 			return new ContainerOneInput(player, (TileEntityOreEnricher) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDTwoInputs) {
+		if (ID == Reference.guiIDTwoInputs) {
 			return new ContainerTwoInputs(player, (TileEntityTwoInputs) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDMiningUnit) {
+		if (ID == Reference.guiIDMiningUnit) {
 			return new ContainerMiningUnit(player, (TileEntityMiningUnit) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDGeothermalGenerator) {
+		if (ID == Reference.guiIDGeothermalGenerator) {
 			return new ContainerEnergyTank(player, (TileEntityGeothermalGenerator) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDSolarGenerator) {
+		if (ID == Reference.guiIDSolarGenerator) {
 			return new ContainerEnergyTank(player, (TileEntitySolarGenerator) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDAquaGenerator) {
+		if (ID == Reference.guiIDAquaGenerator) {
 			return new ContainerEnergyTank(player, (TileEntityAquaGenerator) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDWindTurbine) {
+		if (ID == Reference.guiIDWindTurbine) {
 			return new ContainerEnergyTank(player, (TileEntityWindTurbine) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDReactorCore) {
+		if (ID == Reference.guiIDReactorCore) {
 			return new ContainerReactorCore(player, (TileEntityReactorCore) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDAdvancedHydroReactorCore) {
+		if (ID == Reference.guiIDAdvancedHydroReactorCore) {
 			return new ContainerReactorCore(player, (TileEntityAdvancedHydroReactorCore) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDMissileLauncher) {
+		if (ID == Reference.guiIDMissileLauncher) {
 			return new ContainerMissileLauncher(player, (TileEntityMissileLauncher) tileentity);
 		}
 		
-		if (ID == FusionWarfare.guiIDMissileSiloCore) {
+		if (ID == Reference.guiIDMissileSiloCore) {
 			return new ContainerMissileSiloCore(player, (TileEntityMissileSiloCore) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDEXPFabricator) {
+		if (ID == Reference.guiIDEXPFabricator) {
 			return new ContainerEnergyTank(player, (TileEntityEXPFabricator) tileentity);
 		}
 		
-		if (ID == FusionWarfare.guiIDEMPTower) {
+		if (ID == Reference.guiIDEMPTower) {
 			return new ContainerEnergyTank(player, (TileEntityEMPTower) tileentity);
 		}
 		
-		if (ID == FusionWarfare.guiIDAuraTurret) {
+		if (ID == Reference.guiIDAuraTurret) {
 			return new ContainerEnergyTank(player, (TileEntityAuraTurret) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDFusionMatterReinforcer) {
+		if (ID == Reference.guiIDFusionMatterReinforcer) {
 			return new ContainerOverclockedEnergyTank(player, (TileEntityFusionMatterReinforcer) tileentity, 15);
 		}
 
-		if (ID == FusionWarfare.guiIDAntiMobBeacon) {
+		if (ID == Reference.guiIDAntiMobBeacon) {
 			return new ContainerEnergyTank(player, (TileEntityAntiMobBeacon) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDPlayerHealingBeacon) {
+		if (ID == Reference.guiIDPlayerHealingBeacon) {
 			return new ContainerEnergyTank(player, (TileEntityPlayerHealingBeacon) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDEnergyTransmitter) {
+		if (ID == Reference.guiIDEnergyTransmitter) {
 			return new ContainerOverclockedEnergyTank(player, (TileEntityEnergyTransmitter) tileentity, 15);
 		}
 
-		if (ID == FusionWarfare.guiIDEnergyReceiver) {
+		if (ID == Reference.guiIDEnergyReceiver) {
 			return new ContainerEnergyTank(player, (TileEntityEnergyReceiver) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDSupplyCrate) {
+		if (ID == Reference.guiIDSupplyCrate) {
 			return new ContainerSupplyCrate(player, (TileEntitySupplyCrate) tileentity);
 		}
 		
@@ -142,91 +142,91 @@ public class GuiHandler implements IGuiHandler {
 
 		TileEntity tileentity = world.getTileEntity(x, y, z);
 
-		if (ID == FusionWarfare.guiIDNetworkController) {
+		if (ID == Reference.guiIDNetworkController) {
 			return new GuiNetworkController(player, (TileEntityNetworkController) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDEnergeticFurnace) {
+		if (ID == Reference.guiIDEnergeticFurnace) {
 			return new GuiOneInput(player, (TileEntityEnergeticFurnace) tileentity, "Energetic Furnace");
 		}
 
-		if (ID == FusionWarfare.guiIDOreEnricher) {
+		if (ID == Reference.guiIDOreEnricher) {
 			return new GuiOneInput(player, (TileEntityOreEnricher) tileentity, "Ore Enricher");
 		}
 
-		if (ID == FusionWarfare.guiIDTwoInputs) {
+		if (ID == Reference.guiIDTwoInputs) {
 			return new GuiTwoInputs(player, (TileEntityTwoInputs) tileentity, ((TileEntityTwoInputs)tileentity).recipeType);
 		}
 
-		if (ID == FusionWarfare.guiIDMiningUnit) {
+		if (ID == Reference.guiIDMiningUnit) {
 			return new GuiMiningUnit(player, (TileEntityMiningUnit) tileentity);
 		}
 		
-		if (ID == FusionWarfare.guiIDGeothermalGenerator) {
+		if (ID == Reference.guiIDGeothermalGenerator) {
 			return new GuiEnergyTank(player, (TileEntityGeothermalGenerator) tileentity, "Thermal Generator", false);
 		}
 
-		if (ID == FusionWarfare.guiIDSolarGenerator) {
+		if (ID == Reference.guiIDSolarGenerator) {
 			return new GuiEnergyTank(player, (TileEntitySolarGenerator) tileentity, "Solar Generator", false);
 		}
 
-		if (ID == FusionWarfare.guiIDAquaGenerator) {
+		if (ID == Reference.guiIDAquaGenerator) {
 			return new GuiEnergyTank(player, (TileEntityAquaGenerator) tileentity, "Aqua Generator", false);
 		}
 
-		if (ID == FusionWarfare.guiIDWindTurbine) {
+		if (ID == Reference.guiIDWindTurbine) {
 			return new GuiEnergyTank(player, (TileEntityWindTurbine) tileentity, "Wind Turbine", false);
 		}
 
-		if (ID == FusionWarfare.guiIDReactorCore) {
+		if (ID == Reference.guiIDReactorCore) {
 			return new GuiReactorCore(player, (TileEntityReactorCore) tileentity, "Reactor");
 		}
 
-		if (ID == FusionWarfare.guiIDAdvancedHydroReactorCore) {
+		if (ID == Reference.guiIDAdvancedHydroReactorCore) {
 			return new GuiReactorCore(player, (TileEntityAdvancedHydroReactorCore) tileentity, "Advanced Hydro Reactor");
 		}
 
-		if (ID == FusionWarfare.guiIDMissileLauncher) {
+		if (ID == Reference.guiIDMissileLauncher) {
 			return new GuiMissileLauncher(player, (TileEntityMissileLauncher) tileentity);
 		}
 		
-		if (ID == FusionWarfare.guiIDMissileSiloCore) {
+		if (ID == Reference.guiIDMissileSiloCore) {
 			return new GuiMissileSiloCore(player, (TileEntityMissileSiloCore) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDEXPFabricator) {
+		if (ID == Reference.guiIDEXPFabricator) {
 			return new GuiEXPFabricator(player, (TileEntityEXPFabricator) tileentity);
 		}
 
-		if (ID == FusionWarfare.guiIDEMPTower) {
+		if (ID == Reference.guiIDEMPTower) {
 			return new GuiEnergyTank(player, (TileEntityEMPTower) tileentity, "EMP Tower", true);
 		}
 		
-		if (ID == FusionWarfare.guiIDAuraTurret) {
+		if (ID == Reference.guiIDAuraTurret) {
 			return new GuiEnergyTank(player, (TileEntityAuraTurret) tileentity, "Aura Turret", true);
 		}
 		
-		if (ID == FusionWarfare.guiIDFusionMatterReinforcer) {
+		if (ID == Reference.guiIDFusionMatterReinforcer) {
 			return new GuiOverclockedEnergyTank(player, (TileEntityFusionMatterReinforcer) tileentity, "Fusion Matter Reinforcer", 10, true);
 		}
 
-		if (ID == FusionWarfare.guiIDAntiMobBeacon) {
+		if (ID == Reference.guiIDAntiMobBeacon) {
 			return new GuiEnergyTank(player, (TileEntityAntiMobBeacon) tileentity, "Anti-Mob Beacon", true);
 		}
 
-		if (ID == FusionWarfare.guiIDPlayerHealingBeacon) {
+		if (ID == Reference.guiIDPlayerHealingBeacon) {
 			return new GuiEnergyTank(player, (TileEntityPlayerHealingBeacon) tileentity, "Player Healing Beacon", true);
 		}
 
-		if (ID == FusionWarfare.guiIDEnergyTransmitter) {
+		if (ID == Reference.guiIDEnergyTransmitter) {
 			return new GuiOverclockedEnergyTank(player, (TileEntityEnergyTransmitter) tileentity, "Energy Transmitter", 5, false);
 		}
 
-		if (ID == FusionWarfare.guiIDEnergyReceiver) {
+		if (ID == Reference.guiIDEnergyReceiver) {
 			return new GuiEnergyTank(player, (TileEntityEnergyReceiver) tileentity, "Energy Receiver", false);
 		}
 		
-		if (ID == FusionWarfare.guiIDSupplyCrate) {
+		if (ID == Reference.guiIDSupplyCrate) {
 			return new GuiSupplyCrate(player, (TileEntitySupplyCrate) tileentity);
 		}
 

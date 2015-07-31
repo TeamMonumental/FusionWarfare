@@ -1,10 +1,8 @@
 package calemi.fusionwarfare.init;
 
-import net.minecraft.item.Item;
-import calemi.fusionwarfare.FusionWarfare;
+import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.item.ItemBase;
 import calemi.fusionwarfare.item.ItemBattery;
-import calemi.fusionwarfare.item.ItemBook;
 import calemi.fusionwarfare.item.ItemChargedSeeds;
 import calemi.fusionwarfare.item.ItemCreativeBattery;
 import calemi.fusionwarfare.item.ItemFusionGatlingGun;
@@ -15,13 +13,15 @@ import calemi.fusionwarfare.item.ItemReinforcedDoor;
 import calemi.fusionwarfare.item.ItemRocketLauncher;
 import calemi.fusionwarfare.item.ItemTest;
 import calemi.fusionwarfare.item.tool.ItemDebugger;
-import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
 import calemi.fusionwarfare.item.tool.ItemDesignator;
+import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
 import calemi.fusionwarfare.item.tool.ItemLocationLinker;
 import calemi.fusionwarfare.item.tool.ItemSprayer;
 import calemi.fusionwarfare.item.tool.ItemWrench;
 import calemi.fusionwarfare.util.ToolSet;
 import calemi.fusionwarfare.util.missile.MissileTypeRegistry;
+import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class InitItems {
 
@@ -114,7 +114,6 @@ public class InitItems {
 		
 	//#-#-#-#-#-MISC-#-#-#-#-#\\
 	
-	public static Item book;
 	public static Item reinforced_door;
 	public static Item overclocking_chip;	
 	public static Item test;
@@ -200,9 +199,9 @@ public class InitItems {
 		
 		//#-#-#-#-#-TOOLS-#-#-#-#-#\\		
 		
-		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, InitArmorMaterials.toolMaterialSteel, FusionWarfare.armorIDSteel, steel_ingot, true);
-		infused_steel = new ToolSet("infused_steel", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, FusionWarfare.armorIDInfusedSteel, infused_steel_ingot, true);
-		infused_steel_red = new ToolSet("infused_steel_red", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, FusionWarfare.armorIDInfusedSteel, infused_steel_ingot, false);
+		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, InitArmorMaterials.toolMaterialSteel, Reference.armorIDSteel, steel_ingot, true);
+		infused_steel = new ToolSet("infused_steel", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, Reference.armorIDInfusedSteel, infused_steel_ingot, true);
+		infused_steel_red = new ToolSet("infused_steel_red", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, Reference.armorIDInfusedSteel, infused_steel_ingot, false);
 		
 		fusion_matter_deconstructor = new ItemFusionMatterDeconstructor(false);
 		fusion_matter_deconstructor_red = new ItemFusionMatterDeconstructor(true);
@@ -215,9 +214,12 @@ public class InitItems {
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		
-		book = new ItemBook();
+		//book = new ItemBook();
 		reinforced_door = new ItemReinforcedDoor();
 		overclocking_chip = new ItemBase("overclocking_chip").setMaxStackSize(15);
 		test = new ItemTest();		
+		
+		OreDictionary.registerOre("gemInfused", infused_crystal);
+		OreDictionary.registerOre("gemInfusedAzurite", infused_azurite);
 	}
 }

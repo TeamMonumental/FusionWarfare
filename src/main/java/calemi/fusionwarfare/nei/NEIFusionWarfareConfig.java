@@ -23,6 +23,9 @@ public class NEIFusionWarfareConfig implements IConfigureNEI {
 		
 		API.registerRecipeHandler(new MissileFactoryRecipeHandler());
 		API.registerUsageHandler(new MissileFactoryRecipeHandler());
+		
+		API.registerRecipeHandler(new EnergeticFurnaceRecipeHandler());
+		API.registerUsageHandler(new EnergeticFurnaceRecipeHandler());
 	}
 	
 	@Override
