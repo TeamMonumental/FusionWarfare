@@ -16,6 +16,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 
 public class TileEntityMissileLauncher extends TileEntitySecurity {
@@ -92,6 +93,11 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 	public void update() {
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		worldObj.func_147479_m(xCoord, yCoord, zCoord);
+	}
+	
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1).expand(0, 5, 0);
 	}
 
 	// ------------------------------------------------------------------------

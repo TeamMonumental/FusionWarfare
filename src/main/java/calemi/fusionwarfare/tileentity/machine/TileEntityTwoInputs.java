@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntityTwoInputs extends TileEntityBase {
 
@@ -79,6 +80,11 @@ public class TileEntityTwoInputs extends TileEntityBase {
 		}	
 		
 		currentRecipe = null;
+	}
+	
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1).expand(0, 1, 0);
 	}
 	
 	//--------------------------------------------------------------------

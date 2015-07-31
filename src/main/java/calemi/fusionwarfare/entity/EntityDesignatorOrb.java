@@ -2,7 +2,9 @@ package calemi.fusionwarfare.entity;
 
 import java.util.List;
 
+import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.item.tool.ItemDesignator;
+import calemi.fusionwarfare.packet.ClientPacketHandler;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.util.EnergyUtil;
@@ -13,6 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
@@ -104,11 +107,10 @@ public class EntityDesignatorOrb extends EntityThrowable {
 						
 							launcher.targetX = x;
 							launcher.targetZ = z;
-						
-							launcher.forceLaunch = true;
 									
 							if (launcher.getStackInSlot(0) != null && EnergyUtil.canSubtractEnergy(launcher, 1000)) {
 								worldObj.playSoundEffect(x, y, z, "mob.wither.spawn", 50, 1);
+								FusionWarfare.network.sendTo(new ClientPacketHandler("force.launch%" + launcher.xCoord + "%" + launcher.yCoord + "%" + launcher.zCoord), (EntityPlayerMP) player);
 								launcher.forceLaunch = true;
 							}
 							

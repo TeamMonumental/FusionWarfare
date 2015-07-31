@@ -3,6 +3,7 @@ package calemi.fusionwarfare.tileentity.machine;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import calemi.fusionwarfare.block.BlockReinforceable;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.tileentity.EnumIO;
@@ -88,6 +89,11 @@ public class TileEntityFusionMatterReinforcer extends TileEntityBase {
 
 		int r = 10;
 		return ShapeUtil.getCube(worldObj, xCoord, (yCoord + r) - 1, zCoord, r, r, r);
+	}
+	
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1).expand(0, 2, 0);
 	}
 
 	// -------------------------------------------------------------------------------------------

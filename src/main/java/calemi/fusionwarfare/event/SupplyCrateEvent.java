@@ -30,7 +30,7 @@ public class SupplyCrateEvent {
 	
 		if (!event.player.worldObj.isRemote && event.player.dimension == 0) {
 			
-			System.out.println(canCallSpawn);
+			//System.out.println(canCallSpawn);
 
 			if (!FWConfig.disableFallingCrates) {
 
@@ -57,7 +57,7 @@ public class SupplyCrateEvent {
 					
 					world.spawnEntityInWorld(entityCrate);
 
-					System.out.println(entityCrate.posX + " " + entityCrate.posZ);
+					//System.out.println(entityCrate.posX + " " + entityCrate.posZ);
 
 					for (Object o : world.playerEntities) {
 
@@ -67,7 +67,7 @@ public class SupplyCrateEvent {
 
 				if (canCallSpawn == false && world.getCurrentMoonPhaseFactor() < 1.0F && (world.getWorldTime() % 24000) >= 18000) {
 					canCallSpawn = true;
-					System.out.println("reset");
+					//System.out.println("reset");
 				}
 			}
 		}

@@ -1,5 +1,9 @@
 package calemi.fusionwarfare.item;
 
+import java.util.List;
+
+import org.lwjgl.input.Keyboard;
+
 import calemi.fusionwarfare.entity.EntityFallingSupplyCrate;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.util.Location;
@@ -20,6 +24,20 @@ public class ItemTest extends ItemBase {
 		super("test");
 	}
 
+	@Override
+	public void addInformation(ItemStack is, EntityPlayer p, List list, boolean b) {
+		
+		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
+			
+			list.add(EnumChatFormatting.GOLD + "Right-click = Blue");
+			list.add(EnumChatFormatting.GOLD + "Sneak Right-click = Orange");
+			list.add(EnumChatFormatting.GOLD + "Left-click = Red");
+			
+		} else {
+			list.add("Press " + EnumChatFormatting.GOLD + "SHIFT" + EnumChatFormatting.RESET + EnumChatFormatting.GRAY + " for more info");
+		}
+	}
+	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		

@@ -6,6 +6,7 @@ import calemi.fusionwarfare.inventory.ContainerBase;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
+import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.util.EnergyUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -86,6 +87,17 @@ public class ClientPacketHandler implements IMessage {
 				if (meta == 0) player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "A blue supply crate is falling at x" + randX + ", z" + randZ + "!"));
 				if (meta == 1) player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "An orange supply crate is falling at x" + randX + ", z" + randZ + "!!"));
 				if (meta == 2) player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "A red supply crate is falling at x" + randX + ", z" + randZ + "!!!"));
+			}
+			
+			if (data[0].equalsIgnoreCase("force.launch")) {
+				
+				int x = Integer.parseInt(data[1]);
+				int y = Integer.parseInt(data[2]);
+				int z = Integer.parseInt(data[3]);
+				
+				TileEntityMissileLauncher tileEntity = (TileEntityMissileLauncher)player.worldObj.getTileEntity(x, y, z);
+				
+				tileEntity.forceLaunch = true;
 			}
 			
 			return null;

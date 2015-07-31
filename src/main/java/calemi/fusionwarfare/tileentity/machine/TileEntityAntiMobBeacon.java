@@ -2,6 +2,7 @@ package calemi.fusionwarfare.tileentity.machine;
 
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.EnergyUtil;
@@ -47,6 +48,11 @@ public class TileEntityAntiMobBeacon extends TileEntityBase {
 				}
 			}			
 		}	
+	}
+	
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1).expand(0, 2, 0);
 	}
 	
 	//-------------------------------------------------------------------------------------------

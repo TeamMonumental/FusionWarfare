@@ -5,6 +5,7 @@ import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntityEMPTower extends TileEntityBase {
 
@@ -49,6 +50,11 @@ public class TileEntityEMPTower extends TileEntityBase {
 		} else {
 			progress = 0;
 		}
+	}
+	
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1).expand(0, 1, 0);
 	}
 	
 	//----------------------------------------------------------------------------------------------------------
