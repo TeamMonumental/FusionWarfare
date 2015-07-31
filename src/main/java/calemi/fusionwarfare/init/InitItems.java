@@ -5,6 +5,7 @@ import calemi.fusionwarfare.item.ItemBase;
 import calemi.fusionwarfare.item.ItemBattery;
 import calemi.fusionwarfare.item.ItemChargedSeeds;
 import calemi.fusionwarfare.item.ItemCreativeBattery;
+import calemi.fusionwarfare.item.ItemFoodBase;
 import calemi.fusionwarfare.item.ItemFusionGatlingGun;
 import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.item.ItemMissile;
@@ -32,6 +33,7 @@ public class InitItems {
 	public static Item advanced_infused_catalyst;			
 	public static Item infused_azurite;
 	public static Item fusion_fish;	
+	public static Item fusion_fish_cooked;
 	public static Item charged_seeds;
 	
 	//#-#-#-#-#-INGOTS-#-#-#-#-#\\
@@ -126,7 +128,8 @@ public class InitItems {
 		infused_catalyst = new ItemBase("infused_catalyst");
 		advanced_infused_catalyst = new ItemBase("advanced_infused_catalyst", true, true).setMaxDamage(10000).setMaxStackSize(1);	
 		infused_azurite = new ItemBase("infused_azurite");
-		fusion_fish = new ItemBase("fusion_fish");		
+		fusion_fish = new ItemBase("fusion_fish");	
+		fusion_fish_cooked = new ItemFoodBase("fusion_fish_cooked", 10, 0.7F, false);
 		charged_seeds = new ItemChargedSeeds();
 		
 		//#-#-#-#-#-INGOTS-#-#-#-#-#\\
@@ -135,7 +138,7 @@ public class InitItems {
 		infused_steel_ingot = new ItemBase("infused_steel_ingot");
 		infused_redstone = new ItemBase("infused_redstone");
 		
-		//#-#-#-#-#-INGREDIANTS-#-#-#-#-#\\
+		//#-#-#-#-#-INGREDIENTS-#-#-#-#-#\\
 		
 		steel_mixture = new ItemBase("steel_mixture");
 		evaporation_cell = new ItemBase("evaporation_cell");

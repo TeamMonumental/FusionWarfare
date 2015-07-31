@@ -162,7 +162,7 @@ public class InitRecipes {
 		
 		//#-#-#-#-#-INGREDIENTS-#-#-#-#-#\\
 		
-		GameRegistry.addSmelting(InitItems.fusion_fish, new ItemStack(InitItems.infused_crystal, 4), 10);
+		GameRegistry.addSmelting(InitItems.fusion_fish, new ItemStack(InitItems.fusion_fish_cooked), 1);
 		
 		//#-#-#-#-#-INGOTS-#-#-#-#-#\\
 		
