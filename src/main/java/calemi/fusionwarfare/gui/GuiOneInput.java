@@ -5,6 +5,8 @@ import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.inventory.ContainerOneInput;
 import calemi.fusionwarfare.inventory.ContainerTwoInputs;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
+import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
 import codechicken.nei.recipe.GuiCraftingRecipe;
 import cpw.mods.fml.common.Loader;
 import net.minecraft.client.gui.GuiButton;
@@ -39,8 +41,15 @@ public class GuiOneInput extends GuiContainerBase {
 	@Override
 	protected void actionPerformed(GuiButton button) {
 
-		if (button.id == 0) {				
-			GuiCraftingRecipe.openRecipeGui("Energetic Furnace", new Object[0]);			
+		if (button.id == 0) {
+			
+			if (tileEntity instanceof TileEntityEnergeticFurnace) {
+				GuiCraftingRecipe.openRecipeGui("Energetic Furnace", new Object[0]);		
+			}
+			
+			if (tileEntity instanceof TileEntityOreEnricher) {
+				GuiCraftingRecipe.openRecipeGui("Ore Enricher", new Object[0]);		
+			}				
 		}
 	}
 

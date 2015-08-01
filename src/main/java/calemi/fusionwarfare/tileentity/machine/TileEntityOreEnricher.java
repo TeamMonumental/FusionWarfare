@@ -2,6 +2,7 @@ package calemi.fusionwarfare.tileentity.machine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -21,36 +22,46 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class TileEntityOreEnricher extends TileEntityBase {
 
-	public static Map<Block, ItemStack> recipes = new HashMap<Block, ItemStack>();
+	public static Map<ItemStack, ItemStack> recipes = new HashMap<ItemStack, ItemStack>();
 	
-	private int energyCost = 50;
-	
-	static {
-		recipes.put(Blocks.coal_ore, new ItemStack(Items.coal, 2));
-		recipes.put(Blocks.iron_ore, new ItemStack(Items.iron_ingot, 2));
-		recipes.put(Blocks.gold_ore, new ItemStack(Items.gold_ingot, 2));
-		recipes.put(Blocks.diamond_ore, new ItemStack(Items.diamond, 2));
-		recipes.put(Blocks.emerald_ore, new ItemStack(Items.emerald, 2));
-		recipes.put(Blocks.lapis_ore, new ItemStack(Items.dye, 4, 4));
-		recipes.put(Blocks.redstone_ore, new ItemStack(Items.redstone, 4));
-		recipes.put(Blocks.quartz_ore, new ItemStack(Items.quartz, 2));
-		//recipes.put(InitBlocks.infused_crystal_ore, new ItemStack(InitItems.infused_crystal, 2));
-		//recipes.put(InitBlocks.infused_azurite_ore, new ItemStack(InitItems.infused_azurite, 2));
-		
-		for (int i = 0; i < OreDictionary.getOres("oreInfusedCrystal").size(); i++) {
-			
-			recipes.put(Block.getBlockFromItem(OreDictionary.getOres("oreInfusedCrystal").get(i).getItem()), new ItemStack(OreDictionary.getOres("gemInfused").get(0).getItem(), 2));
-		}
-		
-		for (int i = 0; i < OreDictionary.getOres("oreInfusedAzurite").size(); i++) {
-			
-			recipes.put(Block.getBlockFromItem(OreDictionary.getOres("oreInfusedAzurite").get(i).getItem()), new ItemStack(OreDictionary.getOres("gemInfusedAzurite").get(0).getItem(), 2));
-		}
-	}
+	public static int energyCost = 50;
 	
 	public TileEntityOreEnricher() {
 		maxEnergy = 5000;
 		maxProgress = 100;
+	}
+
+	static {
+		
+		recipes.put(new ItemStack(Blocks.coal_ore), new ItemStack(Items.coal, 2));
+		recipes.put(new ItemStack(Blocks.diamond_ore), new ItemStack(Items.diamond, 2));
+		recipes.put(new ItemStack(Blocks.emerald_ore), new ItemStack(Items.emerald, 2));
+		recipes.put(new ItemStack(Blocks.lapis_ore), new ItemStack(Items.dye, 4, 4));
+		recipes.put(new ItemStack(Blocks.redstone_ore), new ItemStack(Items.redstone, 4));
+		recipes.put(new ItemStack(Blocks.quartz_ore), new ItemStack(Items.quartz, 2));
+		recipes.put(new ItemStack(InitBlocks.infused_crystal_ore), new ItemStack(InitItems.infused_crystal, 2));
+		recipes.put(new ItemStack(InitBlocks.infused_azurite_ore), new ItemStack(InitItems.infused_azurite, 2));
+				
+		for (String name : OreDictionary.getOreNames()) {
+			
+			if (name.startsWith("ore")) {			
+				
+				String ingot = name.replaceFirst("ore", "ingot");
+				
+				for (int i = 0; i < OreDictionary.getOres(name).size(); i++) {				
+					
+					if (!OreDictionary.getOres(ingot).isEmpty()) {
+						
+						ItemStack oreStack = OreDictionary.getOres(name).get(i).copy();
+												
+						ItemStack ingotStack = OreDictionary.getOres(ingot).get(0).copy();
+						ingotStack.stackSize = 2;						
+						
+						recipes.put(oreStack, ingotStack);
+					}
+				}
+			}
+		}
 	}
 	
 	@Override
@@ -59,13 +70,14 @@ public class TileEntityOreEnricher extends TileEntityBase {
 		
 		if (!worldObj.isRemote) {
 			
-			if (canSmelt()) progress ++;
+			if (canSmelt()) progress++;
 			else resetProgress();
 			
 			if (isDone()) {
+				
 				resetProgress();
 				EnergyUtil.subtractEnergy(this, energyCost);
-				ItemStack output = recipes.get(Block.getBlockFromItem(slots[0].getItem())).copy();
+				ItemStack output = getRecipe(slots[0]).copy();
 				
 				if (slots[1] == null) slots[1] = output;
 				else slots[1].stackSize += output.stackSize;
@@ -79,15 +91,28 @@ public class TileEntityOreEnricher extends TileEntityBase {
 			
 		if (slots[0] == null) return false;
 	
-		boolean b1 = Block.getBlockFromItem(slots[0].getItem()) != null && recipes.containsKey(Block.getBlockFromItem(slots[0].getItem()));
+		boolean b1 = slots[0] != null && getRecipe(slots[0]) != null;
 		
-		ItemStack output = recipes.get(Block.getBlockFromItem(slots[0].getItem()));
+		ItemStack output = getRecipe(slots[0]);
 		
 		boolean b2 = slots[1] == null || (output != null && slots[1] != null && slots[1].getItem() == output.getItem());
 		boolean b3 = slots[1] == null || (output != null && (slots[1].getMaxStackSize() - slots[1].stackSize) >= output.stackSize);
 		boolean b4 = energy >= energyCost;
 				
 		return b1 && b2 && b3 && b4;
+	}
+	
+	private ItemStack getRecipe(ItemStack key) {
+		
+		for (ItemStack stack : recipes.keySet()) {
+			
+			if (stack.isItemEqual(key)) {
+				
+				return recipes.get(stack);				
+			}
+		}	
+		
+		return null;
 	}
 	
 	@Override

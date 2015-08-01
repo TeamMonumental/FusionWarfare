@@ -22,6 +22,7 @@ public class ItemTest extends ItemBase {
 	
 	public ItemTest() {
 		super("test");
+		setMaxStackSize(1);
 	}
 
 	@Override

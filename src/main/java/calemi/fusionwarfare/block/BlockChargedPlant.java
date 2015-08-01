@@ -31,7 +31,7 @@ public class BlockChargedPlant extends BlockBase {
 	private static final String[] textureNames = new String[] { "growing_grass", "tallgrass", "fern", "growing_deadbush", "deadbush" };
 	
 	@SideOnly(Side.CLIENT)
-	private IIcon[] icons;
+	public static IIcon[] icons;
 
 	Random rand = new Random();
 	

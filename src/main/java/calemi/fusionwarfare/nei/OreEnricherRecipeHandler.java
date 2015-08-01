@@ -8,7 +8,7 @@ import java.util.Map;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.nei.TwoInputRecipeHandlerBase.CachedInfusionRecipe;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
-import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
+import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.guihook.GuiContainerManager;
@@ -17,11 +17,11 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
-public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {	
+public class OreEnricherRecipeHandler extends TemplateRecipeHandler {	
 	
 	@Override
 	public String getRecipeName() {
-		return "Energetic Furnace";
+		return "Ore Enricher";
 	}
 	
 	@Override
@@ -31,13 +31,13 @@ public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {
 	
 	@Override
 	public String getOverlayIdentifier() {
-		return "Energetic Furnace";
+		return "Ore Enricher";
 	}
 		
 	@Override
 	public void loadCraftingRecipes(ItemStack result) {
 		
-		Map<ItemStack, ItemStack> recipes = (Map<ItemStack, ItemStack>) FurnaceRecipes.smelting().getSmeltingList();
+		Map<ItemStack, ItemStack> recipes = TileEntityOreEnricher.recipes;
 		
 		for (ItemStack input : recipes.keySet()) {
 			
@@ -45,7 +45,7 @@ public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {
 			
 			if (output.isItemEqual(result)) {
 				
-				arecipes.add(new CachedEnergeticFurnaceRecipe(input, output));				
+				arecipes.add(new CachedOreEnricherRecipe(input, output));				
 			}
 		}
 	}
@@ -53,7 +53,7 @@ public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		
-		Map<ItemStack, ItemStack> recipes = (Map<ItemStack, ItemStack>) FurnaceRecipes.smelting().getSmeltingList();
+		Map<ItemStack, ItemStack> recipes = TileEntityOreEnricher.recipes;
 		
 		if (outputId == getOverlayIdentifier()) {		
 			
@@ -61,7 +61,7 @@ public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {
 				
 				ItemStack output = recipes.get(input);
 				
-				arecipes.add(new CachedEnergeticFurnaceRecipe(input, output));								
+				arecipes.add(new CachedOreEnricherRecipe(input, output));								
 			}
 		}
 		
@@ -73,15 +73,15 @@ public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {
 	
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-		
-		Map<ItemStack, ItemStack> recipes = (Map<ItemStack, ItemStack>) FurnaceRecipes.smelting().getSmeltingList();
+			
+		Map<ItemStack, ItemStack> recipes = TileEntityOreEnricher.recipes;
 		
 		for (ItemStack input : recipes.keySet()) {
 			
 			if (input.getItem() == ingredient.getItem()) {
 				
 				ItemStack output = recipes.get(input);
-				arecipes.add(new CachedEnergeticFurnaceRecipe(input, output));				
+				arecipes.add(new CachedOreEnricherRecipe(input, output));				
 			}
 		}
 	}
@@ -92,7 +92,7 @@ public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {
 		
 		GuiDraw.changeTexture(Reference.MOD_ID + ":textures/gui/gui_textures.png");	
 		
-		int scaledE = TileEntityEnergeticFurnace.energyCost * 50 / 10000;
+		int scaledE = TileEntityOreEnricher.energyCost * 50 / 10000;
 		GuiDraw.drawTexturedModalRect(19, 56 - scaledE + 1, 49, 7, 14, scaledE);
 		
 		drawProgressBar(85 - 5, 37 - 11, 78, 7, 23, 12, 23, 0);		
@@ -116,7 +116,7 @@ public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {
             
             if (energyRect.contains(relMouse)) {
 
-            	currenttip.add("Energy Cost: " + TileEntityEnergeticFurnace.energyCost);
+            	currenttip.add("Energy Cost: " + TileEntityOreEnricher.energyCost);
                 return currenttip;
             }
             
@@ -132,12 +132,12 @@ public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {
 		return super.handleTooltip(gui, currenttip, recipe);
 	}
 	
-	public class CachedEnergeticFurnaceRecipe extends CachedRecipe {
+	public class CachedOreEnricherRecipe extends CachedRecipe {
 
 		private PositionedStack input;
 		private PositionedStack output;
 				
-		public CachedEnergeticFurnaceRecipe(ItemStack input, ItemStack output) {
+		public CachedOreEnricherRecipe(ItemStack input, ItemStack output) {
 			this.input = new PositionedStack(input, 61 - 5, 35 - 11);
 			this.output = new PositionedStack(output, 116, 24);
 		}

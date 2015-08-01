@@ -19,6 +19,7 @@ public class ItemSprayer extends ItemBase {
 	
 	public ItemSprayer() {
 		super("sprayer");
+		setMaxStackSize(1);
 	}
 	
 	@SideOnly(Side.CLIENT)

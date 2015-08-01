@@ -3,6 +3,7 @@ package calemi.fusionwarfare.nei;
 import javax.swing.JOptionPane;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.block.BlockChargedPlant;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
 import codechicken.nei.api.API;
@@ -15,6 +16,10 @@ public class NEIFusionWarfareConfig implements IConfigureNEI {
 	public void loadConfig() {
 		API.hideItem(new ItemStack(InitBlocks.reinforced_door));
 		
+		for (int i = 0; i < BlockChargedPlant.icons.length; i++) {
+			API.hideItem(new ItemStack(InitBlocks.charged_plant, 1, i));
+		}	
+		
 		API.registerRecipeHandler(new InfusionTableRecipeHandler());
 		API.registerUsageHandler(new InfusionTableRecipeHandler());
 		
@@ -26,6 +31,9 @@ public class NEIFusionWarfareConfig implements IConfigureNEI {
 		
 		API.registerRecipeHandler(new EnergeticFurnaceRecipeHandler());
 		API.registerUsageHandler(new EnergeticFurnaceRecipeHandler());
+		
+		API.registerRecipeHandler(new OreEnricherRecipeHandler());
+		API.registerUsageHandler(new OreEnricherRecipeHandler());
 	}
 	
 	@Override

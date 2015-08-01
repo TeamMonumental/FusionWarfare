@@ -91,7 +91,7 @@ public class FusionWarfare {
 	public void init(FMLInitializationEvent event) {	
 		
 		proxy.registerRenders();
-		InitEntities.init();
+		InitEntities.init();		
 		InitTileEntities.init();
 		GameRegistry.registerWorldGenerator(worldGenOre, 1);
 	}

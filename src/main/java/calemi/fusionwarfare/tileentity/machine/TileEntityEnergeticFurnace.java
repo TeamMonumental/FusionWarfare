@@ -7,17 +7,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
 public class TileEntityEnergeticFurnace extends TileEntityBase {
-
+	
+	public static int energyCost = 10;
+	
 	public TileEntityEnergeticFurnace() {
 		maxEnergy = 5000;
 		maxProgress = 100;
 	}
-
+	
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-
-		int energyCost = 10;
 
 		if (!worldObj.isRemote) {
 			
