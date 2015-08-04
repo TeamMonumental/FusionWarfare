@@ -11,8 +11,10 @@ import calemi.fusionwarfare.item.ItemEnergyBase;
 import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.IEnergy;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.util.BlockScanUtil;
 import calemi.fusionwarfare.util.EnergyItemUtil;
 import calemi.fusionwarfare.util.EnergyUtil;
+import calemi.fusionwarfare.util.Location;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,6 +28,8 @@ public class TileEntityNetworkController extends TileEntityBase {
 
 	public List<IEnergy> mechs = new ArrayList<IEnergy>();
 	public int tier;
+	
+	private int ticks;
 
 	@Override
 	public EnumIO getIOType() {
@@ -77,21 +81,24 @@ public class TileEntityNetworkController extends TileEntityBase {
 			
 			// Controller
 
-			mechs.clear();
-
-			for (ForgeDirection dir : ForgeDirection.values()) {
-				checkBlock(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
-			}
-
-			IEnergy lowest = findLowestEnergy();
-
-			if (lowest != null)	EnergyUtil.transferEnergy(this, lowest, transferRate);
-
-			for (IEnergy tempMech : mechs) {
-
-				if (tempMech.getIOType() == EnumIO.OUTPUT) {
-
-					EnergyUtil.transferEnergy(tempMech, this, transferRate);
+			ticks++;
+			ticks %= 20;
+			
+			if (ticks == 0) {
+				mechs.clear();
+				
+				mechs = BlockScanUtil.scan(new Location(worldObj, xCoord, yCoord, zCoord));
+	
+				IEnergy lowest = findLowestEnergy();
+	
+				if (lowest != null)	EnergyUtil.transferEnergy(this, lowest, transferRate);
+	
+				for (IEnergy tempMech : mechs) {
+	
+					if (tempMech.getIOType() == EnumIO.OUTPUT) {
+	
+						EnergyUtil.transferEnergy(tempMech, this, transferRate);
+					}
 				}
 			}
 		}	
@@ -112,25 +119,6 @@ public class TileEntityNetworkController extends TileEntityBase {
 		}
 
 		return currentLowest;
-	}
-
-	public void checkBlock(int x, int y, int z) {
-		
-		TileEntity entity = worldObj.getTileEntity(x, y, z);
-
-		if (entity != null && entity instanceof IEnergy && ((IEnergy) entity).getIOType() != EnumIO.REJECTED) {
-
-			IEnergy tempMech = (IEnergy) entity;
-
-			if (!mechs.contains(tempMech)) {
-
-				mechs.add(tempMech);
-
-				for (ForgeDirection dir : ForgeDirection.values()) {
-					checkBlock(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
-				}
-			}
-		}
 	}
 	
 	@Override
