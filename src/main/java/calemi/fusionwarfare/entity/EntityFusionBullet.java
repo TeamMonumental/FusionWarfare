@@ -97,7 +97,6 @@ public class EntityFusionBullet extends EntityThrowable implements IEntityAdditi
 		return gravityVelocity;
 	}
 	
-
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbt) {
 		super.readEntityFromNBT(nbt);

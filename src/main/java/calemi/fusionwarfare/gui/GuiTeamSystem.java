@@ -2,10 +2,15 @@ package calemi.fusionwarfare.gui;
 
 import java.util.ArrayList;
 
+import javax.vecmath.Color3f;
+
 import org.lwjgl.input.Keyboard;
+
+import com.mojang.realmsclient.gui.ChatFormatting;
 
 import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
+import calemi.fusionwarfare.util.EnumColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
@@ -13,9 +18,13 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.command.server.CommandListPlayers;
 import net.minecraft.command.server.CommandScoreboard;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayer.EnumChatVisibility;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.util.Constants.NBT;
 
 public class GuiTeamSystem extends GuiScreenBase {
 
@@ -146,6 +155,13 @@ public class GuiTeamSystem extends GuiScreenBase {
 				
 		int range = 6;
 		
+		if (getSelectedTeam() != null && getSelectedTeam() instanceof ScorePlayerTeam) {
+			
+			ScorePlayerTeam team = (ScorePlayerTeam)getSelectedTeam();
+			
+			System.out.println(EnumColorUtil.getColorByPrefix(team.getColorPrefix()));
+		}
+		
 		for (int i = -range; i <= range; i++) {
 			
 			Team team = getTeam(i + currentTeamIndex);
@@ -154,7 +170,7 @@ public class GuiTeamSystem extends GuiScreenBase {
 				drawLimitedString(team.getRegisteredName(), 9, 98 + (i * 10), 78, mouseX, mouseY, i == 0);
 			}
 		}
-		
+				
 		for (int i = -range; i <= range; i++) {
 			
 			String p = getPlayer(i + currentPlayerIndex);
@@ -345,5 +361,10 @@ public class GuiTeamSystem extends GuiScreenBase {
 		if (playerNames.size() == 1) {
 			currentPlayerIndex = 0;
 		}
+	}
+
+	@Override
+	public boolean canCloseWithInvKey() {
+		return !teamNameField.isFocused() && !playerNameField.isFocused();
 	}
 }

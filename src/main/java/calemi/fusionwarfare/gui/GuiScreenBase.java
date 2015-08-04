@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import calemi.fusionwarfare.Reference;
@@ -19,6 +20,8 @@ public abstract class GuiScreenBase extends GuiScreen {
 
 	public abstract int getGuiSizeX();
 	public abstract int getGuiSizeY();	
+	
+	public abstract boolean canCloseWithInvKey();
 	
 	public int getScreenX() {
 		return (this.width - getGuiSizeX()) / 2;
@@ -208,7 +211,7 @@ public abstract class GuiScreenBase extends GuiScreen {
 	protected void keyTyped(char c, int keyID) {
 		super.keyTyped(c, keyID);
 		
-		if (keyID == Minecraft.getMinecraft().gameSettings.keyBindInventory.getKeyCode()) {
+		if (canCloseWithInvKey() && keyID == Minecraft.getMinecraft().gameSettings.keyBindInventory.getKeyCode()) {
 			Minecraft.getMinecraft().thePlayer.closeScreen();
 		}
 	}

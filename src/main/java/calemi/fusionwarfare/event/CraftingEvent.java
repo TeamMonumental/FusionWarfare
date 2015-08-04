@@ -13,6 +13,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraftforge.common.util.FakePlayer;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
@@ -30,6 +31,14 @@ public class CraftingEvent {
 								
 				if (stack.getItem() instanceof ItemBattery) {
 				
+					if (event.player.getTeam() != null && event.player.getTeam() instanceof ScorePlayerTeam) {
+						
+						ScorePlayerTeam team = (ScorePlayerTeam) event.player.getTeam();
+					
+						System.out.println(team.getColorPrefix());
+						System.out.println(team.getColorSuffix());
+					}					
+					
 					int energy = ((ItemBattery)stack.getItem()).getNBT(stack).getInteger("energy");
 				
 					if (event.crafting != null) {			

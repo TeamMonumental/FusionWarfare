@@ -149,6 +149,11 @@ public class GuiTwoInputsRecipe extends GuiScreenBase {
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
+	}
+
+	@Override
+	public boolean canCloseWithInvKey() {
+		return true;
 	}		
 }	
 	
