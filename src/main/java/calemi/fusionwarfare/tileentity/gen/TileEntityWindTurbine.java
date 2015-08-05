@@ -43,7 +43,6 @@ public class TileEntityWindTurbine extends TileEntityBase {
 
 		else {
 			speed = 0;
-
 		}
 	}
 	

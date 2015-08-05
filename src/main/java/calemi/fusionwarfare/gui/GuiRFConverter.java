@@ -79,6 +79,10 @@ public class GuiRFConverter extends GuiContainerBase {
 	@Override
 	public void drawGuiForeground(int mouseX, int mouseY) {
 		
+		fontRendererObj.drawString("5", getScreenX() + 52, getScreenY() + 40, 4210752);
+		
+		fontRendererObj.drawString("1000", getScreenX() + 110, getScreenY() + 40, 4210752);
+		
 		drawSmallFuelBarTextBox(19, 69, mouseX, mouseY);
 		
 		drawStringOverBox("RF: " + tileEntityRF.storage.getEnergyStored() + "/" + tileEntityRF.storage.getMaxEnergyStored(), 143, 69 - 50, 14, 50, mouseX, mouseY);

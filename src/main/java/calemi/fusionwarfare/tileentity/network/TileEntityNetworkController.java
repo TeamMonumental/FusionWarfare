@@ -87,18 +87,18 @@ public class TileEntityNetworkController extends TileEntityBase {
 			if (ticks == 0) {
 				mechs.clear();
 				
-				mechs = BlockScanUtil.scan(new Location(worldObj, xCoord, yCoord, zCoord));
+				mechs = BlockScanUtil.scan(new Location(worldObj, xCoord, yCoord, zCoord));			
+			}
+			
+			IEnergy lowest = findLowestEnergy();
 	
-				IEnergy lowest = findLowestEnergy();
-	
-				if (lowest != null)	EnergyUtil.transferEnergy(this, lowest, transferRate);
-	
-				for (IEnergy tempMech : mechs) {
-	
-					if (tempMech.getIOType() == EnumIO.OUTPUT) {
-	
-						EnergyUtil.transferEnergy(tempMech, this, transferRate);
-					}
+			if (lowest != null)	EnergyUtil.transferEnergy(this, lowest, transferRate);
+				
+			for (IEnergy tempMech : mechs) {
+				
+				if (tempMech.getIOType() == EnumIO.OUTPUT) {
+
+					EnergyUtil.transferEnergy(tempMech, this, transferRate);
 				}
 			}
 		}	

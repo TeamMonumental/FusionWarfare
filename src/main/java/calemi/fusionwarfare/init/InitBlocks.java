@@ -184,7 +184,7 @@ public class InitBlocks {
 		energy_transmitter = new BlockBasicMachineBase("energy_transmitter",TileEntityEnergyTransmitter.class, Reference.guiIDEnergyTransmitter, false, "energy_transmitter_side");	
 		energy_receiver = new BlockBasicMachineBase("energy_receiver", TileEntityEnergyReceiver.class, Reference.guiIDEnergyReceiver, false, "energy_receiver_side");		
 		
-		rf_converter = new BlockBasicMachineBase("rf_converter", TileEntityRFConverter.class, Reference.guiIDRFConverter, false, true, "rf_converter_top", "steel_casing", "rf_converter_side");
+		rf_converter = new BlockBasicMachineBase("rf_converter", TileEntityRFConverter.class, Reference.guiIDRFConverter, false, true, "mech_top_1", "steel_casing", "rf_converter_side");
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		

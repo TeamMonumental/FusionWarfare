@@ -20,7 +20,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityRFConverter extends TileEntityBase implements IEnergyHandler {
 	
-	public EnergyStorage storage = new EnergyStorage(50000);
+	public EnergyStorage storage = new EnergyStorage(500000);
 	
 	public boolean outputFusion = true;
 	
@@ -31,27 +31,25 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 	@Override
 	public void updateEntity() {
 		
-		System.out.println(energy);
-		
 		if (!worldObj.isRemote) {
 			
 			if (outputFusion) {
 			
-				if (storage.getEnergyStored() >= 10 && EnergyUtil.canAddEnergy(this, 1)) {
+				if (storage.getEnergyStored() >= 1000 && EnergyUtil.canAddEnergy(this, 5)) {
 				
-					storage.extractEnergy(10, false);
+					storage.extractEnergy(1000, false);
 				
-					EnergyUtil.addEnergy(this, 1);
+					EnergyUtil.addEnergy(this, 5);
 				}			
 			} 
 		
 			else {
 			
-				if ((storage.getMaxEnergyStored() - storage.getEnergyStored()) >= 10 && EnergyUtil.canSubtractEnergy(this, 1)) {
+				if ((storage.getMaxEnergyStored() - storage.getEnergyStored()) >= 1000 && EnergyUtil.canSubtractEnergy(this, 5)) {
 				
-					storage.receiveEnergy(10, false);
+					storage.receiveEnergy(1000, false);
 				
-					EnergyUtil.subtractEnergy(this, 1);
+					EnergyUtil.subtractEnergy(this, 5);
 				}
 			}
 		}		
@@ -64,12 +62,12 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 
 	@Override
 	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
-		return storage.receiveEnergy(maxReceive, simulate);
+		return outputFusion ? storage.receiveEnergy(maxReceive, simulate) : 0;
 	}
 
 	@Override
 	public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
-		return storage.extractEnergy(maxExtract, simulate);
+		return outputFusion ? 0 : storage.extractEnergy(maxExtract, simulate);
 	}
 
 	@Override
@@ -101,11 +99,6 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 		outputFusion = nbt.getBoolean("outFusion");
 	}
 	
-	/*public void update() {
-		markDirty();
-		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-	}*/
-		
 	//--------------------------------------------------------------------
 	
 	@Override
@@ -135,7 +128,7 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 
 	@Override
 	public EnumIO getIOType() {
-		return EnumIO.OUTPUT;
+		return outputFusion ? EnumIO.OUTPUT : EnumIO.INPUT;
 	}
 	
 	@Override
@@ -150,12 +143,7 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 		
 		NBTTagCompound syncData = new NBTTagCompound();
 	
-		syncData.setInteger("FE", energy);
-		syncData.setInteger("progress", progress);
-		
-		storage.readFromNBT(syncData);
-		
-		syncData.setBoolean("outFusion", outputFusion);
+		writeToNBT(syncData);
 		
 		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, syncData);
 	}
@@ -163,11 +151,6 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		
-		energy = pkt.func_148857_g().getInteger("FE");
-		progress = pkt.func_148857_g().getInteger("progress");
-		
-		storage.writeToNBT(pkt.func_148857_g());
-		
-		outputFusion = pkt.func_148857_g().getBoolean("outFusion");
+		readFromNBT(pkt.func_148857_g());
 	}
 }
