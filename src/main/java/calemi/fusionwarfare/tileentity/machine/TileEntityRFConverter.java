@@ -7,7 +7,11 @@ import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.EnergyUtil;
 import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyConnection;
 import cofh.api.energy.IEnergyHandler;
+import cofh.api.energy.IEnergyProvider;
+import cofh.api.energy.IEnergyReceiver;
+import cofh.api.energy.IEnergyStorage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
@@ -20,7 +24,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityRFConverter extends TileEntityBase implements IEnergyHandler {
 	
-	public EnergyStorage storage = new EnergyStorage(500000);
+	public EnergyStorage storage = new EnergyStorage(500000, 1000, 1000);
 	
 	public boolean outputFusion = true;
 	
@@ -67,7 +71,7 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 
 	@Override
 	public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
-		return outputFusion ? 0 : storage.extractEnergy(maxExtract, simulate);
+		return !outputFusion ? storage.extractEnergy(maxExtract, simulate) : 0;
 	}
 
 	@Override

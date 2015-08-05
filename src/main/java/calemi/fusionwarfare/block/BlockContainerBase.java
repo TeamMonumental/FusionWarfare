@@ -6,6 +6,7 @@ import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -93,15 +94,24 @@ public abstract class BlockContainerBase extends BlockContainer {
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int i, float f, float f2, float f3) {
 		
-		if(w.isRemote) {
-			return true;
-		} 
-		
-		else {	
+		if(!w.isRemote) {
+			
+			TileEntity tileEntity = w.getTileEntity(x, y, z);
+			
+			if (tileEntity instanceof TileEntitySecurity) {	
 	
-			FMLNetworkHandler.openGui(p, FusionWarfare.instance, getGuiID(), w, x, y, z);			
-			return true;
-		} 	
+				if (((TileEntitySecurity)tileEntity).isSameTeam(p)) {
+						
+					FMLNetworkHandler.openGui(p, FusionWarfare.instance, getGuiID(), w, x, y, z);
+				}
+			}
+			
+			else {
+				FMLNetworkHandler.openGui(p, FusionWarfare.instance, getGuiID(), w, x, y, z);
+			}
+		}
+		
+		return true;	
 	}
 	
 	@SideOnly(Side.CLIENT)
