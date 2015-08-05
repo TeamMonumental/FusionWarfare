@@ -18,8 +18,10 @@ public class ContainerRFConverter extends ContainerBase {
 
 	public TileEntityRFConverter tileEntityRF;
 	
-	public ContainerRFConverter(EntityPlayer player, TileEntityBase tileentity) {
-		super(player, tileentity);
+	public ContainerRFConverter(EntityPlayer player, TileEntityBase tileEntity) {
+		super(player, tileEntity);
+		
+		tileEntityRF = (TileEntityRFConverter) tileEntity;
 		
 		addPlayerInv(8, 84);
 		addHotbar(8, 142);
@@ -27,15 +29,15 @@ public class ContainerRFConverter extends ContainerBase {
 	
 	public void addCraftingToCrafters(ICrafting craft) {
 		super.addCraftingToCrafters(craft);
-
-		//craft.sendProgressBarUpdate(this, 1, tileEntityRF.);
+		
+		craft.sendProgressBarUpdate(this, 1, tileEntityRF.storage.getEnergyStored());
 	}
 	
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		
 		if (player instanceof EntityPlayerMP) {
-			//FusionWarfare.network.sendTo(new ClientPacketHandler("sync%" + tileEntityRF.), (EntityPlayerMP) player);
+			FusionWarfare.network.sendTo(new ClientPacketHandler("sync.rf%" + tileEntityRF.storage.getEnergyStored()), (EntityPlayerMP) player);
 		}
 	}
 	
@@ -43,7 +45,7 @@ public class ContainerRFConverter extends ContainerBase {
 	public void updateProgressBar(int i, int i2) {
 		
 		if (i == 2) {
-			//tileEntityRF. = i2;
+			i2 = tileEntityRF.storage.getEnergyStored();
 		}		
 	}
 }

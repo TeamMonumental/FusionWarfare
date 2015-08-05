@@ -116,7 +116,7 @@ public class OreEnricherRecipeHandler extends TemplateRecipeHandler {
             
             if (energyRect.contains(relMouse)) {
 
-            	currenttip.add("Energy Cost: " + TileEntityOreEnricher.energyCost);
+            	currenttip.add("FE: " + TileEntityOreEnricher.energyCost);
                 return currenttip;
             }
             

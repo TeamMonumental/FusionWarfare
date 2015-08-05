@@ -8,6 +8,8 @@ import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.EnergyUtil;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -18,7 +20,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityRFConverter extends TileEntityBase implements IEnergyHandler {
 	
-	public EnergyStorage storage = new EnergyStorage(5000);
+	public EnergyStorage storage = new EnergyStorage(50000);
 	
 	public boolean outputFusion = true;
 	
@@ -29,23 +31,30 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 	@Override
 	public void updateEntity() {
 		
-		if (outputFusion) {
+		System.out.println(energy);
+		
+		if (!worldObj.isRemote) {
 			
-			if (storage.getEnergyStored() >= 10 && EnergyUtil.getSpace(this) >= 1) {
-				
-				storage.extractEnergy(10, false);
-				
-				energy += 10;
-			}
-		} else {
+			if (outputFusion) {
 			
-			if ((storage.getEnergyStored() - storage.getMaxEnergyStored()) >= 10 && energy >= 1) {
+				if (storage.getEnergyStored() >= 10 && EnergyUtil.canAddEnergy(this, 1)) {
 				
-				storage.receiveEnergy(10, false);
+					storage.extractEnergy(10, false);
 				
-				energy -= 10;
+					EnergyUtil.addEnergy(this, 1);
+				}			
+			} 
+		
+			else {
+			
+				if ((storage.getMaxEnergyStored() - storage.getEnergyStored()) >= 10 && EnergyUtil.canSubtractEnergy(this, 1)) {
+				
+					storage.receiveEnergy(10, false);
+				
+					EnergyUtil.subtractEnergy(this, 1);
+				}
 			}
-		}
+		}		
 	}
 	
 	@Override
@@ -73,6 +82,11 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 		return storage.getMaxEnergyStored();
 	}
 	
+	@SideOnly(Side.CLIENT)
+	public int getCurrentRFScaled(int i) {
+		return storage.getEnergyStored() * i / storage.getMaxEnergyStored();
+	}
+	
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
@@ -86,6 +100,11 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 		storage.readFromNBT(nbt);
 		outputFusion = nbt.getBoolean("outFusion");
 	}
+	
+	/*public void update() {
+		markDirty();
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+	}*/
 		
 	//--------------------------------------------------------------------
 	
@@ -131,7 +150,7 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 		
 		NBTTagCompound syncData = new NBTTagCompound();
 	
-		syncData.setInteger("energy", energy);
+		syncData.setInteger("FE", energy);
 		syncData.setInteger("progress", progress);
 		
 		storage.readFromNBT(syncData);
@@ -144,7 +163,7 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		
-		energy = pkt.func_148857_g().getInteger("energy");
+		energy = pkt.func_148857_g().getInteger("FE");
 		progress = pkt.func_148857_g().getInteger("progress");
 		
 		storage.writeToNBT(pkt.func_148857_g());

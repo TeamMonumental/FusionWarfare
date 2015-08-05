@@ -85,7 +85,7 @@ public class ClientPacketHandler implements IMessage {
 					
 					ContainerRFConverter container = (ContainerRFConverter)player.openContainer;	
 					
-					//container.tileEntityRF = energy;
+					container.tileEntityRF.storage.setEnergyStored(energy);
 				}
 			}
 			

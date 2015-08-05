@@ -116,7 +116,7 @@ public class EnergeticFurnaceRecipeHandler extends TemplateRecipeHandler {
             
             if (energyRect.contains(relMouse)) {
 
-            	currenttip.add("Energy Cost: " + TileEntityEnergeticFurnace.energyCost);
+            	currenttip.add("FE: " + TileEntityEnergeticFurnace.energyCost);
                 return currenttip;
             }
             

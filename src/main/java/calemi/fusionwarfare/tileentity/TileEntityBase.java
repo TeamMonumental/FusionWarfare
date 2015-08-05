@@ -94,8 +94,8 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 			nbt.setTag("slot_" + i, tempTag);
 		}
 		
-		nbt.setInteger("energy", energy);
-		nbt.setInteger("maxEnergy", maxEnergy);
+		nbt.setInteger("FE", energy);
+		nbt.setInteger("maxFE", maxEnergy);
 		nbt.setInteger("progress", progress);	
 		nbt.setInteger("maxProgress", maxProgress);
 	}
@@ -114,8 +114,8 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 			}
 		}
 		
-		energy = nbt.getInteger("energy");
-		maxEnergy = nbt.getInteger("maxEnergy");
+		energy = nbt.getInteger("FE");
+		maxEnergy = nbt.getInteger("maxFE");
 		progress = nbt.getInteger("progress");
 		maxProgress = nbt.getInteger("maxProgress");
 	}
@@ -212,7 +212,7 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	public Packet getDescriptionPacket() {
 		NBTTagCompound syncData = new NBTTagCompound();
 	
-		syncData.setInteger("energy", energy);
+		syncData.setInteger("FE", energy);
 		syncData.setInteger("progress", progress);
 
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
@@ -221,7 +221,7 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		
-		energy = pkt.func_148857_g().getInteger("energy");
+		energy = pkt.func_148857_g().getInteger("FE");
 		progress = pkt.func_148857_g().getInteger("progress");
 	}
 }

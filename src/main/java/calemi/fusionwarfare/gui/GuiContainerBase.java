@@ -173,11 +173,11 @@ public abstract class GuiContainerBase extends GuiContainer {
 	}
 	
 	public void drawSmallFuelBarTextBox(int x, int y, int mouseX, int mouseY) {
-		drawStringOverBox("Energy: " + tileEntity.energy + "/" + tileEntity.maxEnergy, x, y - 50, 14, 50, mouseX, mouseY);
+		drawStringOverBox("FE: " + tileEntity.energy + "/" + tileEntity.maxEnergy, x, y - 50, 14, 50, mouseX, mouseY);
 	}
 	
 	public void drawLargeFuelBarTextBox(int x, int y, int mouseX, int mouseY) {
-		drawStringOverBox("Energy: " + tileEntity.energy + "/" + tileEntity.maxEnergy, x, y - 60, 49, 60, mouseX, mouseY);
+		drawStringOverBox("FE: " + tileEntity.energy + "/" + tileEntity.maxEnergy, x, y - 60, 49, 60, mouseX, mouseY);
 	}
 	
 	public void drawSmallProgBarTextBox(int x, int y, int mouseX, int mouseY) {

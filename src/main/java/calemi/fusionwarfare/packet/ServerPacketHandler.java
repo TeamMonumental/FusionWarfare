@@ -8,6 +8,7 @@ import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
+import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.GunUtil;
 import net.minecraft.client.Minecraft;
@@ -109,6 +110,18 @@ public class ServerPacketHandler implements IMessage {
 				
 				if (tileEntity.sprayMode) tileEntity.sprayMode = false;
 				else tileEntity.sprayMode = true;
+			}
+			
+			if (data[0].equalsIgnoreCase("output.mode")) {
+				
+				int x = Integer.parseInt(data[1]);
+				int y = Integer.parseInt(data[2]);
+				int z = Integer.parseInt(data[3]);
+				
+				TileEntityRFConverter tileEntity = (TileEntityRFConverter)player.worldObj.getTileEntity(x, y, z);
+								
+				if (tileEntity.outputFusion) tileEntity.outputFusion = false;
+				else tileEntity.outputFusion = true;
 			}
 			
 			if (data[0].equalsIgnoreCase("shoot")) {

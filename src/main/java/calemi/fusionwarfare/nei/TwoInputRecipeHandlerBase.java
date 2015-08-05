@@ -115,7 +115,7 @@ public class TwoInputRecipeHandlerBase extends TemplateRecipeHandler {
             
             if (energyRect.contains(relMouse)) {
 
-            	currenttip.add("Energy Cost: " + rec.energy);
+            	currenttip.add("FE: " + rec.energy);
                 return currenttip;
             }
             
