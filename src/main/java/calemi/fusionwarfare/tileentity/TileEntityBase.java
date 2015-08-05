@@ -23,6 +23,7 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	
 	public abstract ItemStack getOverclockingSlot();
 	
+	
 	public int overclockedDifference() {
 		
 		if (getOverclockingSlot() != null) {
@@ -74,51 +75,7 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 		return this.progress * i / getMaxProgress();
 	}
 	
-	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-	
-		for (int i = 0; i < slots.length; i++) {
-
-			NBTTagCompound tempTag = new NBTTagCompound();
-
-			if (slots[i] != null) {
-
-				slots[i].writeToNBT(tempTag);
-				tempTag.setBoolean("null", false);
-
-			} else {
-				tempTag.setBoolean("null", true);
-			}
-
-			nbt.setTag("slot_" + i, tempTag);
-		}
-		
-		nbt.setInteger("FE", energy);
-		nbt.setInteger("maxFE", maxEnergy);
-		nbt.setInteger("progress", progress);	
-		nbt.setInteger("maxProgress", maxProgress);
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-	
-		for (int i = 0; i < slots.length; i++) {
-
-			NBTTagCompound tempTag = nbt.getCompoundTag("slot_" + i);
-
-			if (!tempTag.getBoolean("null")) {
-
-				slots[i] = ItemStack.loadItemStackFromNBT(tempTag);
-			}
-		}
-		
-		energy = nbt.getInteger("FE");
-		maxEnergy = nbt.getInteger("maxFE");
-		progress = nbt.getInteger("progress");
-		maxProgress = nbt.getInteger("maxProgress");
-	}
+	//------------------------------------------------------------------------------------------------------------------
 	
 	@Override
 	public ItemStack getStackInSlot(int i) {
@@ -189,7 +146,7 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer p_70300_1_) {
+	public boolean isUseableByPlayer(EntityPlayer player) {
 		return true;
 	}
 	
@@ -206,22 +163,97 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	public void closeInventory() {
 	}
 	
-	//-------------------------------------------------Packets
+	//------------------------------------------------------------------------------------------------------------------
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+	
+		for (int i = 0; i < slots.length; i++) {
+
+			NBTTagCompound tempTag = new NBTTagCompound();
+
+			if (slots[i] != null) {
+
+				slots[i].writeToNBT(tempTag);
+				tempTag.setBoolean("null", false);
+
+			} else {
+				tempTag.setBoolean("null", true);
+			}
+
+			nbt.setTag("slot_" + i, tempTag);
+		}
+		
+		nbt.setInteger("FE", energy);
+		nbt.setInteger("maxFE", maxEnergy);
+		nbt.setInteger("progress", progress);	
+		nbt.setInteger("maxProgress", maxProgress);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+	
+		for (int i = 0; i < slots.length; i++) {
+
+			NBTTagCompound tempTag = nbt.getCompoundTag("slot_" + i);
+
+			if (!tempTag.getBoolean("null")) {
+
+				slots[i] = ItemStack.loadItemStackFromNBT(tempTag);
+			}
+		}
+		
+		energy = nbt.getInteger("FE");
+		maxEnergy = nbt.getInteger("maxFE");
+		progress = nbt.getInteger("progress");
+		maxProgress = nbt.getInteger("maxProgress");
+	}
+	
+	//------------------------------------------------------------------------------------------------------------------
 	
 	@Override
 	public Packet getDescriptionPacket() {
+		
 		NBTTagCompound syncData = new NBTTagCompound();
 	
 		syncData.setInteger("FE", energy);
 		syncData.setInteger("progress", progress);
 
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, syncData);
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
 		
-		energy = pkt.func_148857_g().getInteger("FE");
-		progress = pkt.func_148857_g().getInteger("progress");
+		NBTTagCompound nbt = packet.func_148857_g();
+		
+		energy = nbt.getInteger("FE");
+		progress = nbt.getInteger("progress");
 	}
+	
+	//------------------------------------------------------------------------------------------------------------------
+	
+	@Override
+	public int[] getAccessibleSlotsFromSide(int side) {
+		return new int[] {};
+	}
+	
+	@Override
+	public boolean canExtractItem(int slot, ItemStack stack, int side) {
+		return false;
+	}
+	
+	@Override
+	public boolean canInsertItem(int slot, ItemStack stack, int side) {
+		return false;
+	}
+	
+	@Override
+	public boolean isItemValidForSlot(int slot, ItemStack is) {		
+		return false;
+	}
+	
+	//------------------------------------------------------------------------------------------------------------------
 }
