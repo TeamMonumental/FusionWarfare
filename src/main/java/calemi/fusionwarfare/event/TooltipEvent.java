@@ -63,7 +63,7 @@ public class TooltipEvent {
 			
 				if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
 
-					event.toolTip.add(EnumChatFormatting.GOLD + "Sharpness: " + EnumChatFormatting.AQUA + (4.0F + Item.ToolMaterial.valueOf(itemSword.getToolMaterialName()).getDamageVsEntity()));
+					event.toolTip.add(EnumChatFormatting.GOLD + "Sharpness: " + EnumChatFormatting.AQUA + (4.0F + ((ItemSword)event.itemStack.getItem()).func_150931_i()));
 					event.toolTip.add(EnumChatFormatting.GOLD + "Durability: " + EnumChatFormatting.AQUA + (event.itemStack.getMaxDamage() - event.itemStack.getItemDamage()) + "/" + event.itemStack.getMaxDamage());
 
 				} else {
@@ -88,9 +88,10 @@ public class TooltipEvent {
 			
 				if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
 
-					event.toolTip.add(EnumChatFormatting.GOLD + "Speed: " + EnumChatFormatting.AQUA + Item.ToolMaterial.valueOf(itemTool.getToolMaterialName()).getEfficiencyOnProperMaterial());
+					event.toolTip.add(EnumChatFormatting.GOLD + "Speed: " + EnumChatFormatting.AQUA + ((ItemTool)event.itemStack.getItem()).func_150913_i().getEfficiencyOnProperMaterial());
 
 					if (event.itemStack.getItem() instanceof ItemFusionMatterDeconstructor) {
+						
 						ItemFusionMatterDeconstructor itemFusionTool = (ItemFusionMatterDeconstructor) event.itemStack.getItem();
 						event.toolTip.add(EnumChatFormatting.GOLD + "Sharpness: " + EnumChatFormatting.AQUA + (4.0F + Item.ToolMaterial.valueOf(itemTool.getToolMaterialName()).getDamageVsEntity()));
 						event.toolTip.add(EnumChatFormatting.GOLD + "Energy: " + EnumChatFormatting.AQUA + itemFusionTool.getEnergy(event.itemStack) + "/" + itemFusionTool.getMaxEnergy());

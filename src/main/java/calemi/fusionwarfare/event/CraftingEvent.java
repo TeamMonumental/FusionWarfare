@@ -31,14 +31,6 @@ public class CraftingEvent {
 								
 				if (stack.getItem() instanceof ItemBattery) {
 				
-					if (event.player.getTeam() != null && event.player.getTeam() instanceof ScorePlayerTeam) {
-						
-						ScorePlayerTeam team = (ScorePlayerTeam) event.player.getTeam();
-					
-						System.out.println(team.getColorPrefix());
-						System.out.println(team.getColorSuffix());
-					}					
-					
 					int energy = ((ItemBattery)stack.getItem()).getNBT(stack).getInteger("energy");
 				
 					if (event.crafting != null) {			

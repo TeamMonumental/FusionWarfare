@@ -36,6 +36,7 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
+import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import net.minecraft.block.Block;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -106,6 +107,8 @@ public class InitBlocks {
 	
 	public static Block energy_transmitter;
 	public static Block energy_receiver;
+	
+	public static Block rf_converter;
 		
 	//#-#-#-#-#-MISC-#-#-#-#-#\\
 		
@@ -180,6 +183,8 @@ public class InitBlocks {
 		
 		energy_transmitter = new BlockBasicMachineBase("energy_transmitter",TileEntityEnergyTransmitter.class, Reference.guiIDEnergyTransmitter, false, "energy_transmitter_side");	
 		energy_receiver = new BlockBasicMachineBase("energy_receiver", TileEntityEnergyReceiver.class, Reference.guiIDEnergyReceiver, false, "energy_receiver_side");		
+		
+		rf_converter = new BlockBasicMachineBase("rf_converter", TileEntityRFConverter.class, Reference.guiIDRFConverter, false, true, "rf_converter_top", "steel_casing", "rf_converter_side");
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		

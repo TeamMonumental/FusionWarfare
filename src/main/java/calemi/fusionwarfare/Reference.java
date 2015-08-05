@@ -59,4 +59,6 @@ public class Reference {
 	public static int guiIDEnergyReceiver = nextGuiID++;		
 	
 	public static int guiIDSupplyCrate = nextGuiID++;
+	
+	public static int guiIDRFConverter = nextGuiID++;
 }

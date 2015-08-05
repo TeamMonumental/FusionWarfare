@@ -155,13 +155,6 @@ public class GuiTeamSystem extends GuiScreenBase {
 				
 		int range = 6;
 		
-		if (getSelectedTeam() != null && getSelectedTeam() instanceof ScorePlayerTeam) {
-			
-			ScorePlayerTeam team = (ScorePlayerTeam)getSelectedTeam();
-			
-			System.out.println(EnumColorUtil.getColorByPrefix(team.getColorPrefix()));
-		}
-		
 		for (int i = -range; i <= range; i++) {
 			
 			Team team = getTeam(i + currentTeamIndex);
