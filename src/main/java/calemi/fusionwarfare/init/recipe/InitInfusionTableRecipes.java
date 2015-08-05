@@ -16,32 +16,32 @@ public class InitInfusionTableRecipes {
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.steel_ingot), 
 				new ItemStack(Items.coal), 				
 				new ItemStack(Items.iron_ingot), 
-				5, 40));
+				5, 60));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.infused_steel_ingot), 
 				new ItemStack(InitItems.infused_crystal, 4),
 				new ItemStack(InitItems.steel_ingot, 4),
-				10, 200));
+				10, 300));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.infused_redstone), 
 				new ItemStack(Items.redstone, 4), 				
 				new ItemStack(Items.iron_ingot, 4), 
-				5, 20));
+				5, 30));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.steel_plate), 
 				new ItemStack(InitItems.steel_ingot), 				
 				new ItemStack(InitItems.steel_ingot), 
-				5, 40));
+				5, 60));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.basic_chip), 
 				new ItemStack(Items.diamond), 				
 				new ItemStack(InitItems.infused_circuit),
-				30, 500));
+				30, 750));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.advanced_chip), 
 				new ItemStack(InitItems.basic_chip), 				
 				new ItemStack(InitItems.basic_chip), 
-				60, 1000));
+				60, 1500));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.hyper_chip), 
 				new ItemStack(InitItems.advanced_chip), 				
@@ -61,7 +61,7 @@ public class InitInfusionTableRecipes {
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.advanced_infused_catalyst), 
 				new ItemStack(InitItems.advanced_chip), 				
 				new ItemStack(InitItems.infused_catalyst), 
-				60 * 2, 2000));
+				60 * 2, 3000));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.evaporation_cell), 
 				new ItemStack(InitItems.infused_crystal, 4), 				

@@ -66,7 +66,7 @@ public class InitMissileFactoryRecipes {
 		//#-#-#-#-#-PYROBLAST-#-#-#-#-#\\
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.MISSILE_FACTORY, new TwoInputRecipe(new ItemStack(InitItems.pyroblast_missile), 
-				new ItemStack(Items.blaze_rod, 2),				
+				new ItemStack(Items.blaze_rod, 4),				
 				new ItemStack(InitItems.missile_module_2), 
 				20, 1000));
 	}
