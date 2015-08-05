@@ -3,6 +3,7 @@ package calemi.fusionwarfare.gui;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerOverclockedEnergyTank;
+import calemi.fusionwarfare.inventory.ContainerRFConverter;
 import calemi.fusionwarfare.inventory.ContainerMiningUnit;
 import calemi.fusionwarfare.inventory.ContainerMissileLauncher;
 import calemi.fusionwarfare.inventory.ContainerMissileSiloCore;
@@ -132,7 +133,7 @@ public class GuiHandler implements IGuiHandler {
 		}
 		
 		if (ID == Reference.guiIDRFConverter) {
-			return new ContainerEnergyTank(player, (TileEntityRFConverter) tileentity);
+			return new ContainerRFConverter(player, (TileEntityRFConverter) tileentity);
 		}
 
 		if (ID == Reference.guiIDSupplyCrate) {

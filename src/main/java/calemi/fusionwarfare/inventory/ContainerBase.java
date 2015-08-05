@@ -24,7 +24,6 @@ public class ContainerBase extends Container {
 	public TileEntityBase fusion;
 	public EntityPlayer player;
 
-	private int lastEnergyTime;
 	private int lastProgressTime;
 	
 	public ContainerBase(EntityPlayer player, TileEntityBase tileEntity) {
@@ -33,15 +32,19 @@ public class ContainerBase extends Container {
 	}
 	
 	public void addPlayerInv(int x, int y) {
+		
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 9; j++) {
+			for (int j = 0; j < 9; j++) {		
+				
 				this.addSlotToContainer(new Slot(player.inventory, j + i * 9 + 9, x + (j * 18), y + (i * 18)));
 			}
 		}
 	}
 
 	public void addHotbar(int x, int y) {
+		
 		for (int i = 0; i < 9; i++) {
+			
 			this.addSlotToContainer(new Slot(player.inventory, i, x + i * 18, y));
 		}
 	}
@@ -53,14 +56,14 @@ public class ContainerBase extends Container {
 	}
 	
 	public void detectAndSendChanges() {
-
 		super.detectAndSendChanges();
 
 		if (player instanceof EntityPlayerMP) {
-			FusionWarfare.network.sendTo(new ClientPacketHandler("sync%" + fusion.energy), (EntityPlayerMP) player);
+			FusionWarfare.network.sendTo(new ClientPacketHandler("sync.fusion%" + fusion.energy), (EntityPlayerMP) player);
 		}
 		
 		for (int i = 0; i < this.crafters.size(); ++i) {
+			
 			ICrafting craft = (ICrafting) this.crafters.get(i);
 			
 			if (this.lastProgressTime != fusion.progress) {
@@ -73,13 +76,9 @@ public class ContainerBase extends Container {
 	
 	@SideOnly(Side.CLIENT)
 	public void updateProgressBar(int i, int i2) {
-		if (i == 0) {
-			fusion.energy = i2;
-		}
 		
-		if (i == 1) {
-			fusion.progress = i2;
-		}
+		if (i == 0) fusion.energy = i2;		
+		if (i == 1) fusion.progress = i2;
 	}
 
 	@Override

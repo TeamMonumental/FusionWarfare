@@ -3,6 +3,7 @@ package calemi.fusionwarfare.packet;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.inventory.ContainerBase;
+import calemi.fusionwarfare.inventory.ContainerRFConverter;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
@@ -64,7 +65,7 @@ public class ClientPacketHandler implements IMessage {
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You need " + energyLeft + " more energy!"));	
 			}
 			
-			if (data[0].equalsIgnoreCase("sync")) {
+			if (data[0].equalsIgnoreCase("sync.fusion")) {
 				
 				int energy = Integer.parseInt(data[1]);
 				
@@ -73,6 +74,18 @@ public class ClientPacketHandler implements IMessage {
 					ContainerBase container = (ContainerBase)player.openContainer;	
 					
 					container.fusion.energy = energy;
+				}
+			}
+			
+			if (data[0].equalsIgnoreCase("sync.rf")) {
+				
+				int energy = Integer.parseInt(data[1]);
+				
+				if (player.openContainer instanceof ContainerRFConverter) {				
+					
+					ContainerRFConverter container = (ContainerRFConverter)player.openContainer;	
+					
+					//container.tileEntityRF = energy;
 				}
 			}
 			
