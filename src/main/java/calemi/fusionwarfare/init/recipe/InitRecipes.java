@@ -20,6 +20,19 @@ public class InitRecipes {
 	public static void init() {
 
 		//#-#-#-#-#-BLOCKS-#-#-#-#-#\\
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.black_brick, 16), new Object[] {
+			"BSB", "SBS", "BSB", 'S', InitItems.steel_ingot, 'B', Blocks.brick_block,
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.blue_brick, 16), new Object[] {
+			"BIB", "IBI", "BIB", 'I', InitItems.infused_crystal, 'B', Blocks.brick_block,
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.red_brick, 16), new Object[] {
+			"BRB", "RBR", "BRB", 'R', Items.redstone, 'B', Blocks.brick_block,
+		});
+		
+
 		
 		//#-#-#-#-#-BUILDING-#-#-#-#-#\\
 		

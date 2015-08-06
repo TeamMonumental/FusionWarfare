@@ -28,7 +28,7 @@ public class TileEntitySolarGenerator extends TileEntityBase {
 					if (lightValue > 12) {
 						
 						if (worldObj.getBiomeGenForCoords(xCoord, zCoord).temperature > 1.5F) {
-							EnergyUtil.addEnergy(this, 5);
+							EnergyUtil.addEnergy(this, 10);
 						}
 						
 						EnergyUtil.addEnergy(this, 15);

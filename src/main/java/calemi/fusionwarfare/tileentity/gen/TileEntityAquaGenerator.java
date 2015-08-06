@@ -26,7 +26,7 @@ public class TileEntityAquaGenerator extends TileEntityBase {
 				if (worldObj.getTotalWorldTime() % 40L == 0L) {
 					
 					if (worldObj.isRaining() && worldObj.canBlockSeeTheSky(xCoord, yCoord + 1, zCoord)) {
-						EnergyUtil.addEnergy(this, 4);
+						EnergyUtil.addEnergy(this, 5);
 					}
 					
 					findWater();
