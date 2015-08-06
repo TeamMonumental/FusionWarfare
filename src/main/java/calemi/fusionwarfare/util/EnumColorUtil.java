@@ -49,5 +49,10 @@ public enum EnumColorUtil {
 		
 		return WHITE;
 	}
+	
+	public static String getPrefixByColor(EnumColorUtil enumColor) {
+		
+		return "§" + enumColor.colorID;		
+	}
 }
 

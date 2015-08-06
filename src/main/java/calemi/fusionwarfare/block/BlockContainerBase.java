@@ -22,6 +22,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 public abstract class BlockContainerBase extends BlockContainer {
@@ -103,6 +105,10 @@ public abstract class BlockContainerBase extends BlockContainer {
 				if (((TileEntitySecurity)tileEntity).isSameTeam(p)) {
 						
 					FMLNetworkHandler.openGui(p, FusionWarfare.instance, getGuiID(), w, x, y, z);
+				}
+				
+				else {
+					p.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "This unit belongs to " + ((TileEntitySecurity)tileEntity).teamName));
 				}
 			}
 			

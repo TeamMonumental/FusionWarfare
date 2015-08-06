@@ -202,9 +202,9 @@ public class InitItems {
 		
 		//#-#-#-#-#-TOOLS-#-#-#-#-#\\		
 		
-		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, InitArmorMaterials.toolMaterialSteel, Reference.armorIDSteel, steel_ingot, true);
-		infused_steel = new ToolSet("infused_steel", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, Reference.armorIDInfusedSteel, infused_steel_ingot, true);
-		infused_steel_red = new ToolSet("infused_steel_red", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, Reference.armorIDInfusedSteel, infused_steel_ingot, false);
+		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, InitArmorMaterials.toolMaterialSteel, Reference.armorIDSteel, steel_ingot, true, false);
+		infused_steel = new ToolSet("infused_steel", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, Reference.armorIDInfusedSteel, infused_steel_ingot, true, true);
+		infused_steel_red = new ToolSet("infused_steel_red", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, Reference.armorIDInfusedSteel, infused_steel_ingot, false, true);
 		
 		fusion_matter_deconstructor = new ItemFusionMatterDeconstructor(false);
 		fusion_matter_deconstructor_red = new ItemFusionMatterDeconstructor(true);

@@ -1,13 +1,11 @@
 package calemi.fusionwarfare.gui;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.vecmath.Color3f;
-
 import org.lwjgl.input.Keyboard;
-
 import com.mojang.realmsclient.gui.ChatFormatting;
-
 import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import calemi.fusionwarfare.util.EnumColorUtil;
@@ -25,14 +23,17 @@ import net.minecraft.scoreboard.Team;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.Constants.NBT;
+import scala.actors.threadpool.Arrays;
 
 public class GuiTeamSystem extends GuiScreenBase {
 
 	private ArrayList<Team> teams = new ArrayList<Team>();
 	private ArrayList<String> playerNames = new ArrayList<String>();
+	private ArrayList<EnumColorUtil> colors = new ArrayList<EnumColorUtil>();
 	
 	private int currentTeamIndex;
 	private int currentPlayerIndex;
+	private int currentColorIndex;
 	
 	private GuiTextField teamNameField;
 	private GuiTextField playerNameField;
@@ -42,11 +43,14 @@ public class GuiTeamSystem extends GuiScreenBase {
 	private GuiFusionButton upButton1, upButton2;
 	private GuiFusionButton downButton1, downButton2;
 	private GuiFusionButton doneButton;
+	private GuiFusionButton colorButton;
+	private GuiFusionButton addColorButton;
 	
 	private EntityPlayer player;
 	
 	public GuiTeamSystem(EntityPlayer player) {
 		this.player = player;
+		colors.addAll(Arrays.asList(EnumColorUtil.values()));
 	}
 	
 	@Override
@@ -110,12 +114,20 @@ public class GuiTeamSystem extends GuiScreenBase {
 		
 		doneButton = new GuiFusionButton(nextButtonID++, getScreenX() + offsetX, getScreenY() + 152, 74, "Done");
 		buttonList.add(doneButton);
+		
+		colorButton = new GuiFusionButton(nextButtonID++, getScreenX() + offsetX, getScreenY() + 133, 48, EnumColorUtil.getPrefixByColor(getSelectedColor()) + "Color");
+		buttonList.add(colorButton);
+		
+		addColorButton = new GuiFusionButton(nextButtonID++, getScreenX() + offsetX + otherSideOffsetX, getScreenY() + 133, 16, "+");
+		buttonList.add(addColorButton);
 	}
 	
 	@Override
 	public void updateScreen() {
 		super.updateScreen();
 		refresh();		
+		
+		colorButton.displayString = EnumColorUtil.getPrefixByColor(getSelectedColor()) + "Color";
 		
 		if (teamNameField.isFocused()) {
 									
@@ -160,7 +172,7 @@ public class GuiTeamSystem extends GuiScreenBase {
 			Team team = getTeam(i + currentTeamIndex);
 			
 			if (team != null) {				
-				drawLimitedString(team.getRegisteredName(), 9, 98 + (i * 10), 78, mouseX, mouseY, i == 0);
+				drawLimitedString((i > 0 && i == 0 ? " " : "") + ((ScorePlayerTeam)teams.get(i + currentTeamIndex)).getColorPrefix() + team.getRegisteredName(), 10, 98 + (i * 10), 78, mouseX, mouseY, i == 0);
 			}
 		}
 				
@@ -169,7 +181,7 @@ public class GuiTeamSystem extends GuiScreenBase {
 			String p = getPlayer(i + currentPlayerIndex);
 			
 			if (p != null) {				
-				drawLimitedString(p, 169, 98 + (i * 10), 78, mouseX, mouseY, i == 0);
+				drawLimitedString((i > 0 && i == 0 ? " " : "") + p, 170, 98 + (i * 10), 78, mouseX, mouseY, i == 0);
 			}
 		}
 		
@@ -178,7 +190,7 @@ public class GuiTeamSystem extends GuiScreenBase {
 			Team team = getTeam(i + currentTeamIndex);
 		
 			if (team != null) {				
-				drawSelectedStringOverBox(team.getRegisteredName(), 9, 98 + (i * 10), 78, mouseX, mouseY);
+				drawSelectedStringOverBox(team.getRegisteredName(), 10, 98 + (i * 10), 78, mouseX, mouseY);
 			}
 		}	
 		
@@ -187,13 +199,19 @@ public class GuiTeamSystem extends GuiScreenBase {
 			String p = getPlayer(i + currentPlayerIndex);
 						
 			if (p != null) {				
-				drawSelectedStringOverBox(p, 169, 98 + (i * 10), 78, mouseX, mouseY);
+				drawSelectedStringOverBox(p, 170, 98 + (i * 10), 78, mouseX, mouseY);
 			}
 		}
 	}	
 	
 	@Override
 	protected void actionPerformed(GuiButton button) {
+		
+		if (colorButton.id == button.id) currentColorIndex++;
+		
+		if (addColorButton.id == button.id) {
+			((EntityClientPlayerMP)player).sendChatMessage("/scoreboard teams option " + getSelectedTeam().getRegisteredName() + " color " + getSelectedColor().toString().toLowerCase());	
+		}
 		
 		if (upButton1.id == button.id) currentTeamIndex--;
 		if (downButton1.id == button.id) currentTeamIndex++;
@@ -256,6 +274,15 @@ public class GuiTeamSystem extends GuiScreenBase {
 				currentPlayerIndex = playerNames.size() - 1;
 			}
 		}
+		
+		if (colors.size() != 0) {
+			
+			currentColorIndex %= colors.size();
+			
+			if (currentColorIndex < 0) {
+				currentColorIndex = colors.size() - 1;
+			}
+		}
 	}
 	
 	@Override
@@ -293,7 +320,27 @@ public class GuiTeamSystem extends GuiScreenBase {
 			return null;
 		}	
 	}
+		
+	private ScorePlayerTeam getSelectedScoreTeam() {
+		
+		if (teams.get(currentTeamIndex) instanceof ScorePlayerTeam) {
+			
+			try {			
+				return (ScorePlayerTeam)teams.get(currentTeamIndex);						
+			}
+		
+			catch (IndexOutOfBoundsException e) {
+				return null;
+			}	
+		}
+			
+		return null;	
+	}
 	
+	private EnumColorUtil getSelectedColor() {		
+		return colors.get(currentColorIndex);
+	}
+		
 	private Team getTeam(int index) {
 		
 		try {
