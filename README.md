@@ -1,3 +1,3 @@
-# ChoppedLettuce
+# Fusion Warfare
 
-A minecraft mod.
+A minecraft warfare mod.
