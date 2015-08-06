@@ -26,15 +26,15 @@ public class ToolSet {
 	
 	public ToolSet(String imagePath, ToolMaterial toolMaterial, ArmorMaterial armorMaterial, int armorRenderID, Item recipeItem, boolean hasCraftingRecipe, boolean hasOverlay) {
 		
-		sword = new ItemSwordBase(imagePath + "_sword", toolMaterial);
-		pickaxe = new ItemPickaxeBase(imagePath + "_pickaxe", toolMaterial);
-		shovel = new ItemShovelBase(imagePath + "_shovel", toolMaterial);		
-		axe = new ItemAxeBase(imagePath + "_axe", toolMaterial);		
+		sword = new ItemSwordBase(imagePath + "_sword", toolMaterial, hasOverlay);
+		pickaxe = new ItemPickaxeBase(imagePath + "_pickaxe", toolMaterial, hasOverlay);
+		shovel = new ItemShovelBase(imagePath + "_shovel", toolMaterial, hasOverlay);		
+		axe = new ItemAxeBase(imagePath + "_axe", toolMaterial, hasOverlay);		
 		
-		helmet = new ItemArmorBase(imagePath + "_helmet", imagePath, armorMaterial, armorRenderID, 0, hasOverlay);
-		chestplate = new ItemArmorBase(imagePath + "_chestplate", imagePath, armorMaterial, armorRenderID, 1, hasOverlay);
-		leggings = new ItemArmorBase(imagePath + "_leggings", imagePath, armorMaterial, armorRenderID, 2, hasOverlay);
-		boots = new ItemArmorBase(imagePath + "_boots", imagePath, armorMaterial, armorRenderID, 3, hasOverlay);
+		helmet = new ItemArmorBase(imagePath + "_helmet", imagePath, "helmet", armorMaterial, armorRenderID, 0, hasOverlay);
+		chestplate = new ItemArmorBase(imagePath + "_chestplate", imagePath, "chestplate", armorMaterial, armorRenderID, 1, hasOverlay);
+		leggings = new ItemArmorBase(imagePath + "_leggings", imagePath, "leggings", armorMaterial, armorRenderID, 2, hasOverlay);
+		boots = new ItemArmorBase(imagePath + "_boots", imagePath, "boots", armorMaterial, armorRenderID, 3, hasOverlay);
 				
 		if (hasCraftingRecipe) {
 			

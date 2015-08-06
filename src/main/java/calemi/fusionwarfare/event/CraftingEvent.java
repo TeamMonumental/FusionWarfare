@@ -6,6 +6,7 @@ import sun.net.www.content.text.plain;
 import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.item.ItemBattery;
 import calemi.fusionwarfare.item.ItemBlockEnergyBase;
+import calemi.fusionwarfare.item.tool.ItemArmorBase;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
 import calemi.fusionwarfare.util.ToolSet;
 import net.minecraft.block.Block;
@@ -58,5 +59,12 @@ public class CraftingEvent {
 				}
 			}
 		}
+		
+		/*if (event.crafting != null && event.crafting.getItem() instanceof ItemArmorBase) {
+			
+			ItemArmorBase itemArmor = (ItemArmorBase) event.crafting.getItem();
+			
+			itemArmor.getNBT(event.crafting).setString("player", event.player.getDisplayName());			
+		}*/
 	}
 }
