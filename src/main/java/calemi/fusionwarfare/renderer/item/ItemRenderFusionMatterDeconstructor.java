@@ -79,7 +79,7 @@ public class ItemRenderFusionMatterDeconstructor implements IItemRenderer {
 			EntityPlayer player = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(nbt.getString("player"));
 				
 			if (player.getTeam() != null) {
-
+				
 				return EnumColorUtil.getColorByPrefix(((ScorePlayerTeam)player.getTeam()).getColorPrefix());					
 			}
 		}

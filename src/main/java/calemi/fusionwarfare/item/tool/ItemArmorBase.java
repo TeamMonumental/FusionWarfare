@@ -84,6 +84,11 @@ public class ItemArmorBase extends ItemArmor {
 				
 		if (hasOverlay && overlay > 0) {
 			
+			if (getNBT(is).hasKey("color")) {		
+				
+				return getNBT(is).getInteger("color");				
+			}
+			
 			if (getNBT(is).hasKey("player")) {		
 							
 				EntityPlayer player = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(getNBT(is).getString("player"));
@@ -104,7 +109,11 @@ public class ItemArmorBase extends ItemArmor {
 	public void onUpdate(ItemStack is, World w, Entity e, int i, boolean b) {
 		
 		if (!w.isRemote && e instanceof EntityPlayer) {
-						
+					
+			if (getNBT(is).hasKey("color")) {
+				getNBT(is).removeTag("color");
+			}
+			
 			if (!getNBT(is).getString("player").equals(((EntityPlayer)e).getDisplayName())) {
 				
 				getNBT(is).setString("player", ((EntityPlayer)e).getDisplayName());
@@ -133,7 +142,7 @@ public class ItemArmorBase extends ItemArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 		
-		if (type == "overlay") {
+		if (hasOverlay && type == "overlay") {
 			return Reference.MOD_ID + ":textures/models/armor/overlays/armor_overlay_" + (armorType == 2 ? 2 : 1) + ".png";
 		}
 		

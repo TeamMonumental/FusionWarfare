@@ -61,8 +61,18 @@ public class ModelFusionMatterDeconstructor extends ModelBase {
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, int red, int green, int blue) { 
-      
-    	GL11.glColor3f(red, green, blue);
+        
+        this.end1.render(f5);
+        this.end2.render(f5);  
+        this.base.render(f5);
+        this.head.render(f5);             
+        this.shaft.render(f5);   
+        
+        float s = 1.0F / 255.0F;
+        
+        GL11.glPushMatrix();    	
+    	GL11.glColor3f(s * red, s * green, s * blue);
+    	
     	this.ring1.render(f5);
         this.ring2.render(f5);
         this.ring3.render(f5);
@@ -70,11 +80,7 @@ public class ModelFusionMatterDeconstructor extends ModelBase {
     	this.ring5.render(f5);
         this.ring6.render(f5);
         
-        this.end1.render(f5);
-        this.end2.render(f5);  
-        this.base.render(f5);
-        this.head.render(f5);             
-        this.shaft.render(f5);        
+        GL11.glPopMatrix();
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
