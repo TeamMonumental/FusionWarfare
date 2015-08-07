@@ -17,6 +17,7 @@ import calemi.fusionwarfare.item.tool.ItemDebugger;
 import calemi.fusionwarfare.item.tool.ItemDesignator;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
 import calemi.fusionwarfare.item.tool.ItemLocationLinker;
+import calemi.fusionwarfare.item.tool.ItemScubaGear;
 import calemi.fusionwarfare.item.tool.ItemSprayer;
 import calemi.fusionwarfare.item.tool.ItemWrench;
 import calemi.fusionwarfare.util.ToolSet;
@@ -105,6 +106,8 @@ public class InitItems {
 	//#-#-#-#-#-TOOLS-#-#-#-#-#\\
 	
 	public static ToolSet steel, infused_steel, infused_steel_red;
+	
+	public static Item scuba_helmet, scuba_chestplate, scuba_leggings, scuba_boots;
 	
 	public static Item fusion_matter_deconstructor, fusion_matter_deconstructor_red;
 	
@@ -206,9 +209,14 @@ public class InitItems {
 		infused_steel = new ToolSet("infused_steel", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, Reference.armorIDInfusedSteel, infused_steel_ingot, true, true);
 		infused_steel_red = new ToolSet("infused_steel_red", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, Reference.armorIDInfusedSteel, infused_steel_ingot, false, true);
 		
+		scuba_helmet = new ItemScubaGear("scuba_helmet", "scuba_gear", InitArmorMaterials.toolMaterialScuba, Reference.armorIDScuba, 0);
+		scuba_chestplate = new ItemScubaGear("scuba_chestplate", "scuba_gear", InitArmorMaterials.toolMaterialScuba, Reference.armorIDScuba, 1);
+		scuba_leggings = new ItemScubaGear("scuba_leggings", "scuba_gear", InitArmorMaterials.toolMaterialScuba, Reference.armorIDScuba, 2);
+		scuba_boots = new ItemScubaGear("scuba_boots", "scuba_gear", InitArmorMaterials.toolMaterialScuba, Reference.armorIDScuba, 3);
+		
 		fusion_matter_deconstructor = new ItemFusionMatterDeconstructor(false);
 		fusion_matter_deconstructor_red = new ItemFusionMatterDeconstructor(true);
-		
+			
 		wrench = new ItemWrench();
 		debugger = new ItemDebugger();
 		location_linker = new ItemLocationLinker();

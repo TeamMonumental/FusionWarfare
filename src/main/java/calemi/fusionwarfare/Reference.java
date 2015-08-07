@@ -15,6 +15,7 @@ public class Reference {
 	
 	//-------------------------------------------------------------------------\\
 	
+	public static int armorIDScuba;
 	public static int armorIDSteel;
 	public static int armorIDInfusedSteel;
 	public static int armorIDInfusedSteelRed;

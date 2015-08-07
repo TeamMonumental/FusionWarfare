@@ -39,7 +39,7 @@ public class TooltipEvent {
 				if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
 
 					event.toolTip.add(EnumChatFormatting.GOLD + "Protection: " + EnumChatFormatting.AQUA + itemArmor.damageReduceAmount);
-					event.toolTip.add(EnumChatFormatting.GOLD + "Durability: " + EnumChatFormatting.AQUA + (event.itemStack.getMaxDamage() - event.itemStack.getItemDamage()) + "/" + event.itemStack.getMaxDamage());
+					if (event.itemStack.getMaxDamage() > 0) event.toolTip.add(EnumChatFormatting.GOLD + "Durability: " + EnumChatFormatting.AQUA + (event.itemStack.getMaxDamage() - event.itemStack.getItemDamage()) + "/" + event.itemStack.getMaxDamage());
 
 				} else {
 					event.toolTip.add("Press " + EnumChatFormatting.GOLD + "SHIFT" + EnumChatFormatting.RESET + EnumChatFormatting.GRAY + " for more info");
@@ -107,7 +107,7 @@ public class TooltipEvent {
 			}	
 		}
 		
-		boolean b1 = Keyboard.isKeyDown(KeyBindings.recipeButton.getKeyCode());
+		/*boolean b1 = Keyboard.isKeyDown(KeyBindings.recipeButton.getKeyCode());
 		boolean b2 = Minecraft.getMinecraft().currentScreen != null;
 		boolean b3 = Minecraft.getMinecraft().currentScreen instanceof GuiContainerCreative;
 		boolean b4 = b3 ? ((GuiContainerCreative)Minecraft.getMinecraft().currentScreen).func_147056_g() != CreativeTabs.tabAllSearch.getTabIndex() : false;
@@ -119,7 +119,7 @@ public class TooltipEvent {
 			}
 			
 			return;			
-		}	
+		}*/
 	}
 		
 	private void checkThroughRecipes(ItemTooltipEvent event) {

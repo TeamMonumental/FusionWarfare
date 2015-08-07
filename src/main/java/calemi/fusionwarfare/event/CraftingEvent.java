@@ -8,8 +8,10 @@ import calemi.fusionwarfare.item.ItemBattery;
 import calemi.fusionwarfare.item.ItemBlockEnergyBase;
 import calemi.fusionwarfare.item.tool.ItemArmorBase;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
+import calemi.fusionwarfare.item.tool.ItemScubaGear;
 import calemi.fusionwarfare.util.ToolSet;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
@@ -58,13 +60,11 @@ public class CraftingEvent {
 					}
 				}
 			}
+			
+			if (event.crafting != null && event.crafting.getItem() instanceof ItemScubaGear) {
+				
+				event.crafting.addEnchantment(Enchantment.aquaAffinity, 5);
+			}
 		}
-		
-		/*if (event.crafting != null && event.crafting.getItem() instanceof ItemArmorBase) {
-			
-			ItemArmorBase itemArmor = (ItemArmorBase) event.crafting.getItem();
-			
-			itemArmor.getNBT(event.crafting).setString("player", event.player.getDisplayName());			
-		}*/
 	}
 }

@@ -1,5 +1,8 @@
 package calemi.fusionwarfare.proxy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.entity.EntityBlock;
 import calemi.fusionwarfare.entity.EntityDesignatorOrb;
@@ -12,8 +15,10 @@ import calemi.fusionwarfare.event.GunRenderEvent;
 import calemi.fusionwarfare.event.TooltipEvent;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
+import calemi.fusionwarfare.item.tool.ItemScubaGear;
 import calemi.fusionwarfare.key.KeyBindings;
 import calemi.fusionwarfare.key.KeyInputHandler;
+import calemi.fusionwarfare.model.ModelScubaGear;
 import calemi.fusionwarfare.renderer.RenderBeacon;
 import calemi.fusionwarfare.renderer.RenderBlock;
 import calemi.fusionwarfare.renderer.RenderDesignatorOrb;
@@ -56,6 +61,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -64,6 +70,8 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy {
 
+	public static final Map<Item, ModelBiped> armorModels = new HashMap<Item, ModelBiped>();
+	
 	@Override
 	public void registerRenders() {
 		
@@ -115,6 +123,15 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEMPTower.class, new RenderEMPTower());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMissileSiloCore.class, new RenderMissileSilo());
 			
+		ModelScubaGear scuba_armor = new ModelScubaGear(0.5F);
+		ModelScubaGear scuba_legs = new ModelScubaGear(0.25F);
+		
+		armorModels.put(InitItems.scuba_helmet, scuba_armor);
+		armorModels.put(InitItems.scuba_chestplate, scuba_armor);
+		armorModels.put(InitItems.scuba_leggings, scuba_legs);
+		armorModels.put(InitItems.scuba_boots, scuba_armor);
+		
+		Reference.armorIDScuba = addArmor("scuba");
 		Reference.armorIDSteel = addArmor("steel");
 		Reference.armorIDInfusedSteel = addArmor("infused_steel");
 		Reference.armorIDInfusedSteelRed = addArmor("infused_steel_red");
