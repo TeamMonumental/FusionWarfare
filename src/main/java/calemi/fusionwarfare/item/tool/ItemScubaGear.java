@@ -3,6 +3,7 @@ package calemi.fusionwarfare.item.tool;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.item.ItemRocketLauncher;
 import calemi.fusionwarfare.proxy.ClientProxy;
@@ -10,7 +11,10 @@ import calemi.fusionwarfare.renderer.RenderNetworkCable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiChat;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,6 +22,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class ItemScubaGear extends ItemArmorBase {
@@ -37,7 +42,7 @@ public class ItemScubaGear extends ItemArmorBase {
 	public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
 		return false;
 	}
-	
+			
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
 		

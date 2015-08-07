@@ -16,11 +16,15 @@ import org.lwjgl.util.Color;
 
 import calemi.fusionwarfare.Reference;
 
-public class GuiScopeOverlay extends GuiScreen {
+public class GuiOverlay extends GuiScreen {
 
-	public ResourceLocation TEXTURE = new ResourceLocation(Reference.MOD_ID + ":textures/gui/scope.png");
+	public ResourceLocation texture;
 	
-	public void renderLogoText(RenderGameOverlayEvent event) {
+	public GuiOverlay(String imagePath) {
+		texture = new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + imagePath + ".png");
+	}
+	
+	public void render(RenderGameOverlayEvent event) {
 		
 		GL11.glPushMatrix();
 		
@@ -32,8 +36,8 @@ public class GuiScopeOverlay extends GuiScreen {
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glScalef(1F, 1F, 0);
-		
-		Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
+
+		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 
 		if(Minecraft.getMinecraft().currentScreen == null) {
 			

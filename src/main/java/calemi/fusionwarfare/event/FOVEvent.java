@@ -13,9 +13,10 @@ import org.lwjgl.opengl.GL11;
 import com.sun.javafx.iio.common.SmoothMinifier;
 
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.gui.GuiScopeOverlay;
+import calemi.fusionwarfare.gui.GuiOverlay;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemFusionGun;
+import calemi.fusionwarfare.item.tool.ItemScubaGear;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -23,8 +24,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class FOVEvent {
 	
-	GuiScopeOverlay overlay = new GuiScopeOverlay();
-	
+	GuiOverlay snipingOverlay = new GuiOverlay("scope");
+
 	@SubscribeEvent
 	public void updateFOV(FOVUpdateEvent event) {
 		
@@ -49,7 +50,7 @@ public class FOVEvent {
 		
 		if (stack != null && stack.getItem() == InitItems.fusion_sniper_rifle && ((ItemFusionGun)stack.getItem()).getNBT(stack).getFloat("Scoping") > 0) {
 				
-			overlay.renderLogoText(event);
+			snipingOverlay.render(event);
 		}
 	}	
 }

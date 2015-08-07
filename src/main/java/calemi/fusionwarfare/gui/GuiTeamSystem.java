@@ -209,7 +209,7 @@ public class GuiTeamSystem extends GuiScreenBase {
 		
 		if (colorButton.id == button.id) currentColorIndex++;
 		
-		if (addColorButton.id == button.id) {
+		if (addColorButton.id == button.id && getSelectedTeam() != null) {
 			((EntityClientPlayerMP)player).sendChatMessage("/scoreboard teams option " + getSelectedTeam().getRegisteredName() + " color " + getSelectedColor().toString().toLowerCase());	
 		}
 		

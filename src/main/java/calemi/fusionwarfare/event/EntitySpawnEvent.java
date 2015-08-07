@@ -37,7 +37,7 @@ public class EntitySpawnEvent {
 				entity.setCurrentItemOrArmor(1, new ItemStack(InitItems.steel.boots));
 			}
 			
-			if (rand.nextInt(800) == 0) {
+			if (rand.nextInt(100) == 0) {
 				
 				ItemStack sword = new ItemStack(InitItems.infused_steel.sword);
 				ItemStack helmet = new ItemStack(InitItems.infused_steel.helmet);
@@ -47,7 +47,7 @@ public class EntitySpawnEvent {
 								
 				ItemStack[] armor = new ItemStack[]{helmet, chestplate, leggings, boots};
 				
-				int colorID = rand.nextInt(15);
+				int colorID = rand.nextInt(13);
 				
 				EnumColorUtil[] colors = EnumColorUtil.values();
 				

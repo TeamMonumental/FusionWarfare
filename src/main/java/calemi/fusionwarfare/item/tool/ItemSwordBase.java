@@ -55,6 +55,11 @@ public class ItemSwordBase extends ItemSword {
 				
 		if (hasOverlay && overlay > 0) {
 			
+			if (getNBT(is).hasKey("color")) {		
+				
+				return getNBT(is).getInteger("color");				
+			}
+			
 			if (getNBT(is).hasKey("player")) {		
 							
 				EntityPlayer player = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(getNBT(is).getString("player"));
@@ -63,7 +68,7 @@ public class ItemSwordBase extends ItemSword {
 
 					return EnumColorUtil.getColorByPrefix(((ScorePlayerTeam)player.getTeam()).getColorPrefix()).hex;					
 				}
-			}
+			}		
 			
 			return EnumColorUtil.AQUA.hex;
 		}
@@ -76,6 +81,10 @@ public class ItemSwordBase extends ItemSword {
 		
 		if (!w.isRemote && e instanceof EntityPlayer) {
 						
+			if (getNBT(is).hasKey("color")) {
+				getNBT(is).removeTag("color");
+			}
+			
 			if (!getNBT(is).getString("player").equals(((EntityPlayer)e).getDisplayName())) {
 				
 				getNBT(is).setString("player", ((EntityPlayer)e).getDisplayName());

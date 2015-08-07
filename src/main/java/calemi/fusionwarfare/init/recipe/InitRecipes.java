@@ -173,6 +173,10 @@ public class InitRecipes {
 			"SIS", "IBI", "SIS", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip, 'I', InitItems.infused_steel_ingot
 		});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.designator), new Object[] {
+			"   ", "SSB", "  S", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip,
+		});
+		
 		//#-#-#-#-#-INGREDIENTS-#-#-#-#-#\\
 		
 		GameRegistry.addSmelting(InitItems.fusion_fish, new ItemStack(InitItems.fusion_fish_cooked), 1);
@@ -253,6 +257,20 @@ public class InitRecipes {
 		if (!FWConfig.disableHighTierWeaponRecipes) GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_gatling_gun), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.hyper_chip});	
 		if (!FWConfig.disableHighTierWeaponRecipes) GameRegistry.addShapelessRecipe(new ItemStack(InitItems.rocket_launcher), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.gun_handle, InitItems.hyper_chip, InitItems.hyper_chip});
 		
+		//#-#-#-#-#-SCUBA GEAR-#-#-#-#-#\\
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.scuba_helmet), new Object[] {
+			"SSS", "SBS", "   ", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip
+		});
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.scuba_chestplate), new Object[] {
+			"S S", "BSB", "SSS", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip
+		});
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.scuba_leggings), new Object[] {
+			"SSS", "B B", "S S", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip
+		});
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.scuba_boots), new Object[] {
+			"   ", "S S", "S S", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip
+		});
+		
 		//#-#-#-#-#-TOOLS-#-#-#-#-#\\
 							
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.fusion_matter_deconstructor), new Object[] {
@@ -281,17 +299,5 @@ public class InitRecipes {
 		
 		//GameRegistry.addShapelessRecipe(new ItemStack(InitItems.team_card), new Object[]{Items.paper, Items.redstone});
 		//GameRegistry.addShapelessRecipe(new ItemStack(InitItems.team_card), new Object[]{InitItems.team_card, Items.paper});
-	}
-	
-	private static void registerColoringRecipe(ToolSet input, ToolSet output) {
-		
-		Item[] inputs = new Item[]{input.sword, input.pickaxe, input.shovel, input.axe, input.helmet, input.chestplate, input.leggings, input.boots};		
-		Item[] outputs = new Item[]{output.sword, output.pickaxe, output.shovel, output.axe, output.helmet, output.chestplate, output.leggings, output.boots};
-		
-		for (int i = 0; i < inputs.length; ++i) {
-			
-			GameRegistry.addShapelessRecipe(new ItemStack(outputs[i]), new Object[]{inputs[i]});
-			GameRegistry.addShapelessRecipe(new ItemStack(inputs[i]), new Object[]{outputs[i]});
-		}
 	}
 }
