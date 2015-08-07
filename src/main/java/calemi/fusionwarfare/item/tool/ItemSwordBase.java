@@ -54,12 +54,7 @@ public class ItemSwordBase extends ItemSword {
 	public int getColorFromItemStack(ItemStack is, int overlay) {
 				
 		if (hasOverlay && overlay > 0) {
-			
-			if (getNBT(is).hasKey("color")) {		
-				
-				return getNBT(is).getInteger("color");				
-			}
-			
+						
 			if (getNBT(is).hasKey("player")) {		
 							
 				EntityPlayer player = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(getNBT(is).getString("player"));
@@ -80,11 +75,7 @@ public class ItemSwordBase extends ItemSword {
 	public void onUpdate(ItemStack is, World w, Entity e, int i, boolean b) {
 		
 		if (!w.isRemote && e instanceof EntityPlayer) {
-						
-			if (getNBT(is).hasKey("color")) {
-				getNBT(is).removeTag("color");
-			}
-			
+				
 			if (!getNBT(is).getString("player").equals(((EntityPlayer)e).getDisplayName())) {
 				
 				getNBT(is).setString("player", ((EntityPlayer)e).getDisplayName());

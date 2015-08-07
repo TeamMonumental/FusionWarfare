@@ -63,6 +63,11 @@ public class ItemArmorBase extends ItemArmor {
 		
 		if (hasOverlay) {
 			
+			if (getNBT(is).hasKey("color")) {		
+				
+				return getNBT(is).getInteger("color");				
+			}
+			
 			if (getNBT(is).hasKey("player")) {		
 							
 				EntityPlayer player = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(getNBT(is).getString("player"));

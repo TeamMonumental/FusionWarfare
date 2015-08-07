@@ -37,9 +37,8 @@ public class EntitySpawnEvent {
 				entity.setCurrentItemOrArmor(1, new ItemStack(InitItems.steel.boots));
 			}
 			
-			if (rand.nextInt(100) == 0) {
+			if (rand.nextInt(400) == 0) {
 				
-				ItemStack sword = new ItemStack(InitItems.infused_steel.sword);
 				ItemStack helmet = new ItemStack(InitItems.infused_steel.helmet);
 				ItemStack chestplate = new ItemStack(InitItems.infused_steel.chestplate);
 				ItemStack leggings = new ItemStack(InitItems.infused_steel.leggings);
@@ -53,14 +52,11 @@ public class EntitySpawnEvent {
 				
 				int hex = colors[colorID].hex;
 				
-				((ItemSwordBase)sword.getItem()).getNBT(sword).setInteger("color", hex);
-				
 				for (ItemStack armorStack : armor) {
 					
 					((ItemArmorBase)armorStack.getItem()).getNBT(armorStack).setInteger("color", hex);	
 				}
 				
-				entity.setCurrentItemOrArmor(0, sword);
 				entity.setCurrentItemOrArmor(4, armor[0]);
 				entity.setCurrentItemOrArmor(3, armor[1]);
 				entity.setCurrentItemOrArmor(2, armor[2]);
