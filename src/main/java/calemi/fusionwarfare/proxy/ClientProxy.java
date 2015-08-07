@@ -104,7 +104,6 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.network_cable), new ItemRenderNetworkCable(new RenderNetworkCable(), new TileEntityNetworkCable()));
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.missile_launcher), new ItemRenderMissileLauncher());
 		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_matter_deconstructor, new ItemRenderFusionMatterDeconstructor(false));
-		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_matter_deconstructor_red, new ItemRenderFusionMatterDeconstructor(true));
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.emp_tower), new ItemRenderEMPTower());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.aura_turret), new ItemRenderTurret("aura"));
 		
