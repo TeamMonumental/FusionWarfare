@@ -254,14 +254,7 @@ public class InitRecipes {
 		if (!FWConfig.disableHighTierWeaponRecipes) GameRegistry.addShapelessRecipe(new ItemStack(InitItems.rocket_launcher), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.gun_handle, InitItems.hyper_chip, InitItems.hyper_chip});
 		
 		//#-#-#-#-#-TOOLS-#-#-#-#-#\\
-				
-		//Tool Coloring		
-		registerColoringRecipe(InitItems.infused_steel, InitItems.infused_steel_red);
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_matter_deconstructor_red, 1), new Object[]{new ItemStack(InitItems.fusion_matter_deconstructor, 1, WILDCARD_VALUE)});
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_matter_deconstructor, 1), new Object[]{new ItemStack(InitItems.fusion_matter_deconstructor_red, 1, WILDCARD_VALUE)});
-		//-------------
-			
+							
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.fusion_matter_deconstructor), new Object[] {
 			"III", " E ", " S ", 'I', InitItems.infused_steel_ingot, 'E', InitItems.evaporation_cell, 'S', InitItems.sturdy_handle
 		});		

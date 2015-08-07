@@ -213,7 +213,7 @@ public class InitItems {
 		scuba_leggings = new ItemScubaGear("scuba_leggings", "scuba_gear", InitArmorMaterials.toolMaterialScuba, Reference.armorIDScuba, 2);
 		scuba_boots = new ItemScubaGear("scuba_boots", "scuba_gear", InitArmorMaterials.toolMaterialScuba, Reference.armorIDScuba, 3);
 		
-		fusion_matter_deconstructor = new ItemFusionMatterDeconstructor(false);
+		fusion_matter_deconstructor = new ItemFusionMatterDeconstructor();
 	
 		wrench = new ItemWrench();
 		debugger = new ItemDebugger();
