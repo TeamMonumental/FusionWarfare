@@ -87,7 +87,7 @@ public class ItemWrench extends ItemBase {
 					}
 					
 					else {
-						p.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "This block is secured by another player!"));	
+						p.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "This unit belongs to " + tileEntitySecurity.teamName));
 					}
 				}
 				

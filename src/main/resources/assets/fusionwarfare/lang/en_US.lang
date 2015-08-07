@@ -89,13 +89,12 @@ item.infused_steel_pickaxe.name=Infused Steel Pickaxe
 item.infused_steel_shovel.name=Infused Steel Shovel
 item.infused_steel_axe.name=Infused Steel Axe
 
-item.infused_steel_red_sword.name=Red Infused Steel Sword
-item.infused_steel_red_pickaxe.name=Red Infused Steel Pickaxe
-item.infused_steel_red_shovel.name=Red Infused Steel Shovel
-item.infused_steel_red_axe.name=Red Infused Steel Axe
+item.scuba_helmet.name=Scuba Helmet
+item.scuba_chestplate.name=Scuba Chestplate
+item.scuba_leggings.name=Scuba Leggings
+item.scuba_boots.name=Scuba Flippers
 
 item.fusion_matter_deconstructor.name=Fusion Matter Deconstructor
-item.fusion_matter_deconstructor_red.name=Red Fusion Matter Deconstructor
 
 item.wrench.name=Wrench
 item.debugger.name=Debugger
