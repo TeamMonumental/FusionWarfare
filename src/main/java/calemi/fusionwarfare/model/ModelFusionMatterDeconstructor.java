@@ -1,14 +1,13 @@
 package calemi.fusionwarfare.model;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-/**
- * ModelFusionMatterDeconstructor - Robo
- * Created using Tabula 5.0.0
- */
 public class ModelFusionMatterDeconstructor extends ModelBase {
+	
     public ModelRenderer shaft;
     public ModelRenderer head;
     public ModelRenderer base;
@@ -22,8 +21,10 @@ public class ModelFusionMatterDeconstructor extends ModelBase {
     public ModelRenderer end2;
 
     public ModelFusionMatterDeconstructor() {
+    	
         this.textureWidth = 64;
         this.textureHeight = 32;
+        
         this.ring4 = new ModelRenderer(this, 12, 6);
         this.ring4.setRotationPoint(3.0F, 2.5F, -2.0F);
         this.ring4.addBox(0.0F, 0.0F, 0.0F, 1, 4, 4, 0.0F);
@@ -59,24 +60,23 @@ public class ModelFusionMatterDeconstructor extends ModelBase {
         this.end1.addBox(0.0F, 0.0F, 0.0F, 1, 2, 2, 0.0F);
     }
 
-    @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        this.ring4.render(f5);
-        this.ring6.render(f5);
-        this.ring5.render(f5);
-        this.ring3.render(f5);
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, int red, int green, int blue) { 
+      
+    	GL11.glColor3f(red, green, blue);
+    	this.ring1.render(f5);
         this.ring2.render(f5);
-        this.base.render(f5);
-        this.head.render(f5);
-        this.end2.render(f5);
-        this.ring1.render(f5);
-        this.shaft.render(f5);
+        this.ring3.render(f5);
+    	this.ring4.render(f5);
+    	this.ring5.render(f5);
+        this.ring6.render(f5);
+        
         this.end1.render(f5);
+        this.end2.render(f5);  
+        this.base.render(f5);
+        this.head.render(f5);             
+        this.shaft.render(f5);        
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;

@@ -1,7 +1,10 @@
 package calemi.fusionwarfare.renderer.item;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
@@ -9,15 +12,19 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import org.lwjgl.opengl.GL11;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
 import calemi.fusionwarfare.model.ModelFusionMatterDeconstructor;
+import calemi.fusionwarfare.util.EnumColorUtil;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemRenderFusionMatterDeconstructor implements IItemRenderer {
 
 	private final ModelFusionMatterDeconstructor model = new ModelFusionMatterDeconstructor();
 	public final ResourceLocation texture;
 	
-	public ItemRenderFusionMatterDeconstructor(boolean isRed) {
-		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/fusion_matter_deconstructor" + (isRed ? "_red" : "") + ".png");
+	public ItemRenderFusionMatterDeconstructor() {
+		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/fusion_matter_deconstructor.png");
 	}
 
 	@Override
@@ -31,7 +38,7 @@ public class ItemRenderFusionMatterDeconstructor implements IItemRenderer {
 	}
 
 	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+	public void renderItem(ItemRenderType type, ItemStack is, Object... data) {
 			
 		if (type == IItemRenderer.ItemRenderType.ENTITY) {
 			GL11.glTranslatef(0, 1.7F, 0);
@@ -60,17 +67,36 @@ public class ItemRenderFusionMatterDeconstructor implements IItemRenderer {
 			GL11.glScalef(1.3F, 1.3F, 1.3F);
 		}
 		
-		render();
+		render(is);
 	}
 	
-	private void render() {
+	public EnumColorUtil getEnumColor(ItemStack is) {
+				
+		NBTTagCompound nbt = ((ItemFusionMatterDeconstructor)is.getItem()).getNBT(is);
+		
+		if (nbt.hasKey("player")) {		
+							
+			EntityPlayer player = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(nbt.getString("player"));
+				
+			if (player.getTeam() != null) {
+
+				return EnumColorUtil.getColorByPrefix(((ScorePlayerTeam)player.getTeam()).getColorPrefix());					
+			}
+		}
+			
+		return EnumColorUtil.AQUA;			
+	}
+	
+	private void render(ItemStack is) {
 		
 		GL11.glPushMatrix();
 		
 		GL11.glRotatef(180, 1, 0, 0);
-	
-		Minecraft.getMinecraft().renderEngine.bindTexture(texture);			
-		model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+		
+		EnumColorUtil color = getEnumColor(is);
+		
+		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+		model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, color.red, color.green, color.blue);
 		
 		GL11.glPopMatrix();
 	}

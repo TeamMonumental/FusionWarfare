@@ -105,11 +105,11 @@ public class InitItems {
 	
 	//#-#-#-#-#-TOOLS-#-#-#-#-#\\
 	
-	public static ToolSet steel, infused_steel, infused_steel_red;
+	public static ToolSet steel, infused_steel;
 	
 	public static Item scuba_helmet, scuba_chestplate, scuba_leggings, scuba_boots;
 	
-	public static Item fusion_matter_deconstructor, fusion_matter_deconstructor_red;
+	public static Item fusion_matter_deconstructor;
 	
 	public static Item wrench;
 	public static Item debugger;
@@ -207,16 +207,14 @@ public class InitItems {
 		
 		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, InitArmorMaterials.toolMaterialSteel, Reference.armorIDSteel, steel_ingot, true, false);
 		infused_steel = new ToolSet("infused_steel", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, Reference.armorIDInfusedSteel, infused_steel_ingot, true, true);
-		infused_steel_red = new ToolSet("infused_steel_red", InitToolMaterials.toolMaterialInfusedSteel, InitArmorMaterials.toolMaterialInfusedSteel, Reference.armorIDInfusedSteel, infused_steel_ingot, false, true);
 		
 		scuba_helmet = new ItemScubaGear("scuba_helmet", "scuba_gear", InitArmorMaterials.toolMaterialScuba, Reference.armorIDScuba, 0);
 		scuba_chestplate = new ItemScubaGear("scuba_chestplate", "scuba_gear", InitArmorMaterials.toolMaterialScuba, Reference.armorIDScuba, 1);
 		scuba_leggings = new ItemScubaGear("scuba_leggings", "scuba_gear", InitArmorMaterials.toolMaterialScuba, Reference.armorIDScuba, 2);
 		scuba_boots = new ItemScubaGear("scuba_boots", "scuba_gear", InitArmorMaterials.toolMaterialScuba, Reference.armorIDScuba, 3);
 		
-		fusion_matter_deconstructor = new ItemFusionMatterDeconstructor(false);
-		fusion_matter_deconstructor_red = new ItemFusionMatterDeconstructor(true);
-			
+		fusion_matter_deconstructor = new ItemFusionMatterDeconstructor();
+	
 		wrench = new ItemWrench();
 		debugger = new ItemDebugger();
 		location_linker = new ItemLocationLinker();

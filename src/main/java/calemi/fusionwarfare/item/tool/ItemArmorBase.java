@@ -14,8 +14,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -56,6 +58,27 @@ public class ItemArmorBase extends ItemArmor {
 		return is.getTagCompound();
 	}
 	
+	@Override
+	public int getColor(ItemStack is) {
+		
+		if (hasOverlay) {
+			
+			if (getNBT(is).hasKey("player")) {		
+							
+				EntityPlayer player = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(getNBT(is).getString("player"));
+				
+				if (player.getTeam() != null) {
+
+					return EnumColorUtil.getColorByPrefix(((ScorePlayerTeam)player.getTeam()).getColorPrefix()).hex;					
+				}
+			}
+			
+			return EnumColorUtil.AQUA.hex;
+		}
+		
+		return 0x00FFFFFF;
+	}
+	
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack is, int overlay) {
 				
@@ -74,7 +97,7 @@ public class ItemArmorBase extends ItemArmor {
 			return EnumColorUtil.AQUA.hex;
 		}
 		
-		return 0x00FFFFFF;		
+		return 0x00FFFFFF;
 	}
 	
 	@Override
@@ -106,9 +129,14 @@ public class ItemArmorBase extends ItemArmor {
 	public boolean hasColor(ItemStack is) {
 		return hasOverlay;
 	}
-	
+		
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
+		
+		if (type == "overlay") {
+			return Reference.MOD_ID + ":textures/models/armor/overlays/armor_overlay_" + (armorType == 2 ? 2 : 1) + ".png";
+		}
+		
 		return Reference.MOD_ID + ":textures/models/armor/" + imageKey + "_" + (armorType == 2 ? 2 : 1) + ".png";
 	}
 	
