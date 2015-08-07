@@ -257,7 +257,6 @@ public class InitRecipes {
 		if (!FWConfig.disableHighTierWeaponRecipes) GameRegistry.addShapelessRecipe(new ItemStack(InitItems.fusion_gatling_gun), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.hyper_chip});	
 		if (!FWConfig.disableHighTierWeaponRecipes) GameRegistry.addShapelessRecipe(new ItemStack(InitItems.rocket_launcher), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.gun_handle, InitItems.hyper_chip, InitItems.hyper_chip});
 		
-<<<<<<< HEAD
 		//#-#-#-#-#-SCUBA GEAR-#-#-#-#-#\\
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.scuba_helmet), new Object[] {
 			"SSS", "SBS", "   ", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip
@@ -272,14 +271,8 @@ public class InitRecipes {
 			"   ", "S S", "S S", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip
 		});
 		
-		
-		//#-#-#-#-#-TOOLS-#-#-#-#-#\\
-					
-			
-=======
 		//#-#-#-#-#-TOOLS-#-#-#-#-#\\
 							
->>>>>>> origin/master
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.fusion_matter_deconstructor), new Object[] {
 			"III", " E ", " S ", 'I', InitItems.infused_steel_ingot, 'E', InitItems.evaporation_cell, 'S', InitItems.sturdy_handle
 		});		
