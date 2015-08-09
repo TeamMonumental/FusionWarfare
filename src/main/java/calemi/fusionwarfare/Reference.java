@@ -61,5 +61,4 @@ public class Reference {
 	
 	public static int guiIDSupplyCrate = nextGuiID++;
 	
-	public static int guiIDRFConverter = nextGuiID++;
 }

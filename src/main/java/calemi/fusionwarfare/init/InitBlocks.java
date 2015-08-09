@@ -8,11 +8,11 @@ import calemi.fusionwarfare.block.BlockNetworkCable;
 import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.block.BlockNetworkGate;
 import calemi.fusionwarfare.block.BlockOreBase;
-import calemi.fusionwarfare.block.BlockSteelCasing;
 import calemi.fusionwarfare.block.BlockReactorCoolingUnit;
 import calemi.fusionwarfare.block.BlockReinforceable;
 import calemi.fusionwarfare.block.BlockReinforceableGlass;
 import calemi.fusionwarfare.block.BlockReinforcedDoor;
+import calemi.fusionwarfare.block.BlockSteelCasing;
 import calemi.fusionwarfare.block.BlockSupplyCrate;
 import calemi.fusionwarfare.block.BlockTwoInputs;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
@@ -36,7 +36,6 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
-import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import net.minecraft.block.Block;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -108,8 +107,6 @@ public class InitBlocks {
 	public static Block energy_transmitter;
 	public static Block energy_receiver;
 	
-	public static Block rf_converter;
-		
 	//#-#-#-#-#-MISC-#-#-#-#-#\\
 		
 	public static Block charged_plant;
@@ -183,8 +180,6 @@ public class InitBlocks {
 		
 		energy_transmitter = new BlockBasicMachineBase("energy_transmitter",TileEntityEnergyTransmitter.class, Reference.guiIDEnergyTransmitter, false, "energy_transmitter_side");	
 		energy_receiver = new BlockBasicMachineBase("energy_receiver", TileEntityEnergyReceiver.class, Reference.guiIDEnergyReceiver, false, "energy_receiver_side");		
-		
-		rf_converter = new BlockBasicMachineBase("rf_converter", TileEntityRFConverter.class, Reference.guiIDRFConverter, false, true, "mech_top_1", "steel_casing", "rf_converter_side");
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		

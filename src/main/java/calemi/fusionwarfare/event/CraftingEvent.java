@@ -4,6 +4,7 @@ import java.util.List;
 
 import sun.net.www.content.text.plain;
 import calemi.fusionwarfare.block.BlockNetworkController;
+import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemBattery;
 import calemi.fusionwarfare.item.ItemBlockEnergyBase;
 import calemi.fusionwarfare.item.tool.ItemArmorBase;
@@ -61,9 +62,11 @@ public class CraftingEvent {
 				}
 			}
 			
-			if (event.crafting != null && event.crafting.getItem() instanceof ItemScubaGear) {
+			if (event.crafting != null && event.crafting.getItem() == InitItems.scuba_helmet) {
 				
-				event.crafting.addEnchantment(Enchantment.aquaAffinity, 5);
+				if (!event.crafting.isItemEnchanted()) {
+					event.crafting.addEnchantment(Enchantment.aquaAffinity, 5);
+				}			
 			}
 		}
 	}

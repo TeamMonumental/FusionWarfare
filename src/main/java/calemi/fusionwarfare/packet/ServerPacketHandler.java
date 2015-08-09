@@ -1,31 +1,18 @@
 package calemi.fusionwarfare.packet;
 
 import calemi.fusionwarfare.FusionWarfare;
-import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.item.ItemFusionGatlingGun;
 import calemi.fusionwarfare.item.ItemFusionGun;
-import calemi.fusionwarfare.recipe.TwoInputRecipe;
-import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
-import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.GunUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
-import io.netty.buffer.ByteBuf;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 
 public class ServerPacketHandler implements IMessage {
 
@@ -110,18 +97,6 @@ public class ServerPacketHandler implements IMessage {
 				
 				if (tileEntity.sprayMode) tileEntity.sprayMode = false;
 				else tileEntity.sprayMode = true;
-			}
-			
-			if (data[0].equalsIgnoreCase("output.mode")) {
-				
-				int x = Integer.parseInt(data[1]);
-				int y = Integer.parseInt(data[2]);
-				int z = Integer.parseInt(data[3]);
-				
-				TileEntityRFConverter tileEntity = (TileEntityRFConverter)player.worldObj.getTileEntity(x, y, z);
-								
-				if (tileEntity.outputFusion) tileEntity.outputFusion = false;
-				else tileEntity.outputFusion = true;
 			}
 			
 			if (data[0].equalsIgnoreCase("shoot")) {

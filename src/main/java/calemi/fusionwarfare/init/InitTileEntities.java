@@ -11,8 +11,8 @@ import calemi.fusionwarfare.tileentity.gen.TileEntitySolarGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityAdvancedHydroReactorCore;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityCapsuleCore;
-import calemi.fusionwarfare.tileentity.gen.reactor.TileEntitySteelCasing;
 import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCore;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntitySteelCasing;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
@@ -24,7 +24,6 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
-import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkCable;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
@@ -67,8 +66,6 @@ public class InitTileEntities {
 		
 		GameRegistry.registerTileEntity(TileEntityEnergyTransmitter.class, Reference.MOD_ID + ":tileEntityEnergyTransmitter");
 		GameRegistry.registerTileEntity(TileEntityEnergyReceiver.class, Reference.MOD_ID + ":tileEntityEnergyReceiver");
-		
-		GameRegistry.registerTileEntity(TileEntityRFConverter.class, Reference.MOD_ID + ":tileEntityRFConverter");
 		
 		GameRegistry.registerTileEntity(TileEntitySupplyCrate.class, Reference.MOD_ID + ":tileEntitySupplyCrate");		
 		GameRegistry.registerTileEntity(TileEntityReinforcedDoor.class, Reference.MOD_ID + ":tileEntityReinforcedDoor");

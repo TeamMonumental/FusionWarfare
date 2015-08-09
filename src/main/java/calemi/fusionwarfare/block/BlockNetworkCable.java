@@ -3,6 +3,7 @@ package calemi.fusionwarfare.block;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkCable;
+import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -30,21 +31,24 @@ public class BlockNetworkCable extends BlockBasicMachineBase {
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
 
-		TileEntityNetworkCable cable = (TileEntityNetworkCable) world.getTileEntity(x, y, z);
+		if (world.getTileEntity(x, y, z) instanceof TileEntityNetworkCable) {
+			
+			TileEntityNetworkCable cable = (TileEntityNetworkCable) world.getTileEntity(x, y, z);
 
-		if (cable != null) {
+			if (cable != null) {
 
-			float minX = 11 * pixel / 2 - (cable.connections[5] != null ? (11 * pixel / 2) : 0);
-			float maxX = 1 - 11 * pixel / 2 + (cable.connections[3] != null ? (11 * pixel / 2) : 0);
+				float minX = 11 * pixel / 2 - (cable.connections[5] != null ? (11 * pixel / 2) : 0);
+				float maxX = 1 - 11 * pixel / 2 + (cable.connections[3] != null ? (11 * pixel / 2) : 0);
 
-			float minY = 11 * pixel / 2 - (cable.connections[1] != null ? (11 * pixel / 2) : 0);
-			float maxY = 1 - 11 * pixel / 2 + (cable.connections[0] != null ? (11 * pixel / 2) : 0);
+				float minY = 11 * pixel / 2 - (cable.connections[1] != null ? (11 * pixel / 2) : 0);
+				float maxY = 1 - 11 * pixel / 2 + (cable.connections[0] != null ? (11 * pixel / 2) : 0);
 
-			float minZ = 11 * pixel / 2 - (cable.connections[2] != null ? (11 * pixel / 2) : 0);
-			float maxZ = 1 - 11 * pixel / 2 + (cable.connections[4] != null ? (11 * pixel / 2) : 0);
+				float minZ = 11 * pixel / 2 - (cable.connections[2] != null ? (11 * pixel / 2) : 0);
+				float maxZ = 1 - 11 * pixel / 2 + (cable.connections[4] != null ? (11 * pixel / 2) : 0);
 
-			setBlockBounds(minX, minY, minZ, maxX, maxY, maxZ);
-		}
+				setBlockBounds(minX, minY, minZ, maxX, maxY, maxZ);
+			}
+		}	
 
 		return AxisAlignedBB.getBoundingBox(x + minX, y + minY, z + minZ, x + maxX, y + maxY, z + maxZ);
 	}
@@ -52,20 +56,23 @@ public class BlockNetworkCable extends BlockBasicMachineBase {
 	@Override
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
 
-		TileEntityNetworkCable cable = (TileEntityNetworkCable) world.getTileEntity(x, y, z);
+		if (world.getTileEntity(x, y, z) instanceof TileEntityNetworkCable) {
+			
+			TileEntityNetworkCable cable = (TileEntityNetworkCable) world.getTileEntity(x, y, z);
 
-		if (cable != null) {
+			if (cable != null) {
 
-			float minX = 11 * pixel / 2 - (cable.connections[5] != null ? (11 * pixel / 2) : 0);
-			float maxX = 1 - 11 * pixel / 2 + (cable.connections[3] != null ? (11 * pixel / 2) : 0);
+				float minX = 11 * pixel / 2 - (cable.connections[5] != null ? (11 * pixel / 2) : 0);
+				float maxX = 1 - 11 * pixel / 2 + (cable.connections[3] != null ? (11 * pixel / 2) : 0);
 
-			float minY = 11 * pixel / 2 - (cable.connections[1] != null ? (11 * pixel / 2) : 0);
-			float maxY = 1 - 11 * pixel / 2 + (cable.connections[0] != null ? (11 * pixel / 2) : 0);
+				float minY = 11 * pixel / 2 - (cable.connections[1] != null ? (11 * pixel / 2) : 0);
+				float maxY = 1 - 11 * pixel / 2 + (cable.connections[0] != null ? (11 * pixel / 2) : 0);
 
-			float minZ = 11 * pixel / 2 - (cable.connections[2] != null ? (11 * pixel / 2) : 0);
-			float maxZ = 1 - 11 * pixel / 2 + (cable.connections[4] != null ? (11 * pixel / 2) : 0);
+				float minZ = 11 * pixel / 2 - (cable.connections[2] != null ? (11 * pixel / 2) : 0);
+				float maxZ = 1 - 11 * pixel / 2 + (cable.connections[4] != null ? (11 * pixel / 2) : 0);
 
-			setBlockBounds(minX, minY, minZ, maxX, maxY, maxZ);
+				setBlockBounds(minX, minY, minZ, maxX, maxY, maxZ);
+			}
 		}
 
 		return AxisAlignedBB.getBoundingBox(x + minX, y + minY, z + minZ, x + maxX, y + maxY, z + maxZ);

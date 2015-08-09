@@ -1,29 +1,16 @@
 package calemi.fusionwarfare.packet;
 
-import calemi.fusionwarfare.FusionWarfare;
-import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.inventory.ContainerBase;
-import calemi.fusionwarfare.inventory.ContainerRFConverter;
-import calemi.fusionwarfare.recipe.TwoInputRecipe;
-import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
-import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
-import calemi.fusionwarfare.util.EnergyUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 
 public class ClientPacketHandler implements IMessage {
 
@@ -74,18 +61,6 @@ public class ClientPacketHandler implements IMessage {
 					ContainerBase container = (ContainerBase)player.openContainer;	
 					
 					container.fusion.energy = energy;
-				}
-			}
-			
-			if (data[0].equalsIgnoreCase("sync.rf")) {
-				
-				int energy = Integer.parseInt(data[1]);
-				
-				if (player.openContainer instanceof ContainerRFConverter) {				
-					
-					ContainerRFConverter container = (ContainerRFConverter)player.openContainer;	
-					
-					container.tileEntityRF.storage.setEnergyStored(energy);
 				}
 			}
 			
