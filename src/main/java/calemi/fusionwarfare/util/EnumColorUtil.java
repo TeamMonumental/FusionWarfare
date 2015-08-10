@@ -49,7 +49,7 @@ public enum EnumColorUtil {
 	
 	public static String getPrefixByColor(EnumColorUtil enumColor) {
 		
-		return "§" + enumColor.colorID;		
+		return "\u00a7" + enumColor.colorID;		
 	}
 }
 
