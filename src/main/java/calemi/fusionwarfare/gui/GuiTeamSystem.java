@@ -1,6 +1,7 @@
 package calemi.fusionwarfare.gui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.vecmath.Color3f;
@@ -23,7 +24,6 @@ import net.minecraft.scoreboard.Team;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.Constants.NBT;
-import scala.actors.threadpool.Arrays;
 
 public class GuiTeamSystem extends GuiScreenBase {
 
