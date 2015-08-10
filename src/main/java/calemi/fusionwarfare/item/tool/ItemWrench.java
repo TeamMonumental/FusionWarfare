@@ -12,6 +12,7 @@ import calemi.fusionwarfare.item.ItemBlockEnergyBase;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntityReinforcedDoor;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntitySteelCasing;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
@@ -52,6 +53,16 @@ public class ItemWrench extends ItemBase {
 	public boolean onItemUse(ItemStack is, EntityPlayer p, World w, int x, int y, int z, int m, float f1, float f2, float f3) {
 		
 		if (!w.isRemote && p.isSneaking()) {
+			
+			if (w.getTileEntity(x, y, z) instanceof TileEntitySteelCasing) {
+				
+				Block block = w.getBlock(x, y, z);
+		
+				w.setBlockToAir(x, y, z);
+				block.dropBlockAsItem(w, x, y, z, m, 2);
+				
+				return true;
+			}
 			
 			if (w.getTileEntity(x, y, z) instanceof TileEntityBase && !(w.getTileEntity(x, y, z) instanceof TileEntityReinforcedDoor)) {				
 				
