@@ -7,14 +7,17 @@ import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.entity.EntityFallingSupplyCrate;
 import calemi.fusionwarfare.packet.ClientPacketHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
@@ -25,16 +28,14 @@ public class SupplyCrateEvent {
 
 	Random rand = new Random();
 
-	@SubscribeEvent(priority = EventPriority.NORMAL)
-	public void onPlayerTick(PlayerTickEvent event) {
+	@SubscribeEvent
+	public void onWorldTick(TickEvent.WorldTickEvent event) {
 	
-		if (!event.player.worldObj.isRemote && event.player.dimension == 0) {
+		if (!event.world.isRemote && event.world.provider.dimensionId == 0) {
 			
-			//System.out.println(canCallSpawn);
-
 			if (!FWConfig.disableFallingCrates) {
 
-				World world = event.player.worldObj;
+				World world = event.world;
 				
 				if (canCallSpawn && world.getCurrentMoonPhaseFactor() == 1.0F && (world.getWorldTime() % 24000) > 18000) {
 
@@ -57,17 +58,19 @@ public class SupplyCrateEvent {
 					
 					world.spawnEntityInWorld(entityCrate);
 
-					//System.out.println(entityCrate.posX + " " + entityCrate.posZ);
+					System.out.println(entityCrate.posX + " " + entityCrate.posZ);
 
-					for (Object o : world.playerEntities) {
-
-						FusionWarfare.network.sendTo(new ClientPacketHandler("broadcast.supplycrates%" + meta + "%" + randX + "%" + randZ), (EntityPlayerMP) o);
-					}					
+					world.playBroadcastSound(1013, randX, 60, randZ, 0);
+					
+					if (meta == 0) MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentText(EnumChatFormatting.AQUA + "A blue supply crate is falling at x" + randX + ", z" + randZ + "!"));
+					if (meta == 1) MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentText(EnumChatFormatting.GOLD + "An orange supply crate is falling at x" + randX + ", z" + randZ + "!!"));
+					if (meta == 2) MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentText(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "A red supply crate is falling at x" + randX + ", z" + randZ + "!!!"));
+									
+					//FusionWarfare.network.sendTo(new ClientPacketHandler("broadcast.supplycrates%" + meta + "%" + randX + "%" + randZ), (EntityPlayerMP) o);
 				}
 
 				if (canCallSpawn == false && world.getCurrentMoonPhaseFactor() < 1.0F && (world.getWorldTime() % 24000) >= 18000) {
 					canCallSpawn = true;
-					//System.out.println("reset");
 				}
 			}
 		}
