@@ -62,12 +62,12 @@ public class CraftingEvent {
 				}
 			}
 			
-			if (event.crafting != null && event.crafting.getItem() == InitItems.scuba_helmet) {
+			/*if (event.crafting != null && event.crafting.getItem() == InitItems.scuba_helmet) {
 				
 				if (!event.crafting.isItemEnchanted()) {
 					event.crafting.addEnchantment(Enchantment.aquaAffinity, 5);
 				}			
-			}
+			}*/
 		}
 	}
 }
