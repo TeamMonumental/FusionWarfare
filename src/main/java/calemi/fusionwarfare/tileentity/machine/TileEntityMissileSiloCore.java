@@ -12,7 +12,7 @@ import calemi.fusionwarfare.item.ItemMissile;
 import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
-import calemi.fusionwarfare.tileentity.gen.reactor.TileEntitySteelCasing;
+import calemi.fusionwarfare.tileentity.reactor.TileEntitySteelCasing;
 import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;

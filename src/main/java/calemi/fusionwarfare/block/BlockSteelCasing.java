@@ -8,8 +8,8 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitCreativeTabs;
-import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCore;
-import calemi.fusionwarfare.tileentity.gen.reactor.TileEntitySteelCasing;
+import calemi.fusionwarfare.tileentity.reactor.TileEntityReactorCore;
+import calemi.fusionwarfare.tileentity.reactor.TileEntitySteelCasing;
 
 public class BlockSteelCasing extends BlockBasicMachineBase {
 

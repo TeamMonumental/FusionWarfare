@@ -36,6 +36,7 @@ import calemi.fusionwarfare.renderer.RenderTurret;
 import calemi.fusionwarfare.renderer.item.ItemRenderEMPTower;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionAutoPistol;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionGatlingGun;
+import calemi.fusionwarfare.renderer.item.ItemRenderGrenade;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionMatterDeconstructor;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionPistol;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionSMG;
@@ -99,6 +100,10 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_gatling_gun, new ItemRenderFusionGatlingGun());
 		
 		MinecraftForgeClient.registerItemRenderer(InitItems.rocket_launcher, new ItemRenderRocketLauncher());
+		
+		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_grenade, new ItemRenderGrenade("fusion"));
+		//MinecraftForgeClient.registerItemRenderer(InitItems.flash_grenade, new ItemRenderFusionGrenade("flash"));
+		//MinecraftForgeClient.registerItemRenderer(InitItems.chemical_grenade, new ItemRenderFusionGrenade("chemical"));
 		
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.network_cable), new ItemRenderNetworkCable(new RenderNetworkCable(), new TileEntityNetworkCable()));
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.missile_launcher), new ItemRenderMissileLauncher());
