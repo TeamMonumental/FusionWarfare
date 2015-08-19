@@ -1,4 +1,4 @@
-package calemi.fusionwarfare.tileentity.gen.reactor;
+package calemi.fusionwarfare.tileentity.reactor;
 
 import java.util.Random;
 

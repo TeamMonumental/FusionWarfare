@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.model.ModelFusionGrenade;
+import calemi.fusionwarfare.model.ModelGrenade;
 import calemi.fusionwarfare.model.ModelFusionSniperRifle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 @SideOnly(Side.CLIENT)
 public class RenderFusionGrenade extends Render {
 
-	private final ModelFusionGrenade model = new ModelFusionGrenade();
+	private final ModelGrenade model = new ModelGrenade();
 	private ResourceLocation texture;
 	
 	public RenderFusionGrenade(String image) {
