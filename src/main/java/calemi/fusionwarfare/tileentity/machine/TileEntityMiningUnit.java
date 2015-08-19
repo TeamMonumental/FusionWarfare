@@ -48,8 +48,13 @@ public class TileEntityMiningUnit extends TileEntityBase {
 
 	private boolean isOre(ItemStack stack) {
 		
-		String name = OreDictionary.getOreName(OreDictionary.getOreID(stack));		
-		return name.startsWith("ore");
+		for (int id : OreDictionary.getOreIDs(stack)) {
+			
+			String name = OreDictionary.getOreName(id);
+			return name.startsWith("ore");
+		}		
+		
+		return false;		
 	}
 	
 	private Location findBlock() {
@@ -81,8 +86,10 @@ public class TileEntityMiningUnit extends TileEntityBase {
 				return true;
 			}
 			
+			System.out.println(slots[i].isItemEqual(stack));
+			
 			if (slots[i].isItemEqual(stack) && getSpace(i) >= 1) {				
-				slots[i].stackSize++;
+				slots[i].stackSize++;				
 				return true;
 			}		
 		}	
@@ -96,7 +103,7 @@ public class TileEntityMiningUnit extends TileEntityBase {
 
 	private void breakBlock(Location location) {
 
-		ItemStack stack = new ItemStack(location.getBlock());
+		ItemStack stack = new ItemStack(location.getBlock(), 1, location.getBlockMetadata());
 
 		if (!addItemToInv(stack)) {
 

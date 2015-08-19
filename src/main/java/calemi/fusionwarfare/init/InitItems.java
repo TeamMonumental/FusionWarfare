@@ -5,6 +5,7 @@ import calemi.fusionwarfare.item.ItemBase;
 import calemi.fusionwarfare.item.ItemBattery;
 import calemi.fusionwarfare.item.ItemChargedSeeds;
 import calemi.fusionwarfare.item.ItemCreativeBattery;
+import calemi.fusionwarfare.item.ItemEnergyConsumable;
 import calemi.fusionwarfare.item.ItemFoodBase;
 import calemi.fusionwarfare.item.ItemFusionGatlingGun;
 import calemi.fusionwarfare.item.ItemFusionGun;
@@ -30,9 +31,9 @@ public class InitItems {
 	//#-#-#-#-#-RESOURCES-#-#-#-#-#\\
 	
 	public static Item infused_crystal;	
-	public static Item infused_catalyst;
-	public static Item advanced_infused_catalyst;			
 	public static Item infused_azurite;
+	public static Item infused_catalyst;	
+	public static Item advanced_infused_catalyst;	
 	public static Item fusion_fish;	
 	public static Item cooked_fusion_fish;
 	public static Item charged_seeds;
@@ -127,10 +128,11 @@ public class InitItems {
 
 		//#-#-#-#-#-RESOURCES-#-#-#-#-#\\
 		
-		infused_crystal = new ItemBase("infused_crystal");
-		infused_catalyst = new ItemBase("infused_catalyst");
+		infused_crystal = new ItemEnergyConsumable("infused_crystal", 100, false);
+		infused_azurite = new ItemEnergyConsumable("infused_azurite", 50, false);
+		infused_catalyst = new ItemEnergyConsumable("infused_catalyst", 1500, false);
 		advanced_infused_catalyst = new ItemBase("advanced_infused_catalyst", true, true).setMaxDamage(10000).setMaxStackSize(1);	
-		infused_azurite = new ItemBase("infused_azurite");
+		
 		fusion_fish = new ItemBase("fusion_fish");	
 		cooked_fusion_fish = new ItemFoodBase("cooked_fusion_fish", 10, 0.7F, false);
 		charged_seeds = new ItemChargedSeeds();

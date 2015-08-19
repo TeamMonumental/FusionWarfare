@@ -4,22 +4,27 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.item.ItemRocketLauncher;
 import calemi.fusionwarfare.proxy.ClientProxy;
 import calemi.fusionwarfare.renderer.RenderNetworkCable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -34,7 +39,8 @@ public class ItemScubaGear extends ItemArmorBase {
 	}
 
 	@Override
-	public boolean hasEffect(ItemStack p_77636_1_) {
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack par1ItemStack, int pass) {
 		return false;
 	}
 
@@ -56,88 +62,91 @@ public class ItemScubaGear extends ItemArmorBase {
 			}
 		}
 
-		if (hasFullSuit) {
+		if (hasFullSuit && player.isInWater()) {
 
-			if (player.isInWater()) {
+			boolean nonePressed = true;
 
-				boolean nonePressed = true;
+			float rotationPitch = player.rotationPitch;
+			float rotationYaw = player.rotationYaw;
 
-				float rotationPitch = player.rotationPitch;
-				float rotationYaw = player.rotationYaw;
+			if (world.isRemote) {
 
-				if (world.isRemote) {
-					
-					if (Minecraft.getMinecraft().currentScreen == null) {
+				if (Minecraft.getMinecraft().currentScreen == null) {
 
-						if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindForward.getKeyCode())) {
+					if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindForward.getKeyCode())) {
 
-							double motionX = (double) (-MathHelper.sin(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
-							double motionZ = (double) (MathHelper.cos(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
+						double motionX = (double) (-MathHelper.sin(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
+						double motionZ = (double) (MathHelper.cos(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
 
-							motionX *= 0.01F;
-							motionZ *= 0.01F;
+						motionX *= 0.01F;
+						motionZ *= 0.01F;
 
-							player.addVelocity(motionX, 0, motionZ);
-						}
-
-						if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindLeft.getKeyCode())) {
-
-							rotationYaw -= 90;
-
-							double motionX = (double) (-MathHelper.sin(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
-							double motionZ = (double) (MathHelper.cos(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
-
-							motionX *= 0.01F;
-							motionZ *= 0.01F;
-
-							player.addVelocity(motionX, 0, motionZ);
-						}
-
-						if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindRight.getKeyCode())) {
-
-							rotationYaw += 90;
-
-							double motionX = (double) (-MathHelper.sin(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
-							double motionZ = (double) (MathHelper.cos(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
-
-							motionX *= 0.01F;
-							motionZ *= 0.01F;
-
-							player.addVelocity(motionX, 0, motionZ);
-						}
-
-						if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindBack.getKeyCode())) {
-
-							double motionX = (double) (-MathHelper.sin(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
-							double motionZ = (double) (MathHelper.cos(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
-
-							motionX *= 0.01F;
-							motionZ *= 0.01F;
-
-							player.addVelocity(-motionX, 0, -motionZ);
-						}
-
-						if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump.getKeyCode())) {
-
-							player.setVelocity(player.motionX, 0.3F, player.motionZ);
-							nonePressed = false;
-						}
-
-						if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.getKeyCode())) {
-
-							player.setVelocity(player.motionX, -0.3F, player.motionZ);
-							nonePressed = false;
-						}
+						player.addVelocity(motionX, 0, motionZ);
 					}
 
-					if (nonePressed) {
-						player.setVelocity(player.motionX, 0, player.motionZ);
+					if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindLeft.getKeyCode())) {
+
+						rotationYaw -= 90;
+
+						double motionX = (double) (-MathHelper.sin(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
+						double motionZ = (double) (MathHelper.cos(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
+
+						motionX *= 0.01F;
+						motionZ *= 0.01F;
+
+						player.addVelocity(motionX, 0, motionZ);
+					}
+
+					if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindRight.getKeyCode())) {
+
+						rotationYaw += 90;
+
+						double motionX = (double) (-MathHelper.sin(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
+						double motionZ = (double) (MathHelper.cos(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
+
+						motionX *= 0.01F;
+						motionZ *= 0.01F;
+
+						player.addVelocity(motionX, 0, motionZ);
+					}
+
+					if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindBack.getKeyCode())) {
+
+						double motionX = (double) (-MathHelper.sin(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
+						double motionZ = (double) (MathHelper.cos(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
+
+						motionX *= 0.01F;
+						motionZ *= 0.01F;
+
+						player.addVelocity(-motionX, 0, -motionZ);
+					}
+
+					if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump.getKeyCode())) {
+
+						player.setVelocity(player.motionX, 0.3F, player.motionZ);
+						nonePressed = false;
+					}
+
+					if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.getKeyCode())) {
+
+						player.setVelocity(player.motionX, -0.3F, player.motionZ);
+						nonePressed = false;
 					}
 				}
-			}
 
+				if (nonePressed) {
+					player.setVelocity(player.motionX, 0, player.motionZ);
+				}
+				
+				
+			}		
+		}
+		
+		if (hasFullSuit && player.isInsideOfMaterial(Material.water)) {
+			
 			canRemove = true;
 
+			player.addPotionEffect(new PotionEffect(3, 20, 2, true));
 			player.addPotionEffect(new PotionEffect(13, 20, 0, true));
 			player.addPotionEffect(new PotionEffect(16, 300, 0, true));
 		}
@@ -146,15 +155,27 @@ public class ItemScubaGear extends ItemArmorBase {
 
 			canRemove = false;
 
+			player.removePotionEffect(3);
 			player.removePotionEffect(13);
 			player.removePotionEffect(16);
 		}
 	}
-
+	
+	@Override
+	public void onUpdate(ItemStack is, World w, Entity e, int i, boolean b) {		
+		super.onUpdate(is, w, e, i, b);
+		
+		/*if (is.getItem() == InitItems.scuba_helmet && !getNBT(is).hasKey("enchanted")) {
+			
+			is.addEnchantment(Enchantment.aquaAffinity, 5);
+			getNBT(is).setBoolean("enchanted", true);
+		}*/
+	}
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase e, ItemStack is, int armorSlot) {
-
+	
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 

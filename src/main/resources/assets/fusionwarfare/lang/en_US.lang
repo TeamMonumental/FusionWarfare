@@ -3,9 +3,9 @@
 #-#-#-#-#-RESOURCES-#-#-#-#-#
 
 item.infused_crystal.name=Infused Crystal
+item.infused_azurite.name=Infused Azurite
 item.infused_catalyst.name=Infused Catalyst
 item.advanced_infused_catalyst.name=Advanced Infused Catalyst
-item.infused_azurite.name=Infused Azurite
 item.sulfur_dust.name=Sulfur Dust
 item.fusion_fish.name=Fusion Fish
 item.cooked_fusion_fish.name=Cooked Fusion Fish

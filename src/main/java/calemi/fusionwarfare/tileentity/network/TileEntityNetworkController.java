@@ -8,6 +8,7 @@ import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.IEnergyItem;
 import calemi.fusionwarfare.item.ItemEnergyBase;
+import calemi.fusionwarfare.item.ItemEnergyConsumable;
 import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.IEnergy;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
@@ -16,6 +17,7 @@ import calemi.fusionwarfare.util.EnergyItemUtil;
 import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.Location;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -46,8 +48,6 @@ public class TileEntityNetworkController extends TileEntityBase {
 		
 		// Slots
 		
-		int amount = 10;
-		
 		int transferRate = 5 + (slots[0] == null ? 0 : slots[0].stackSize * 5);
 
 		if (!worldObj.isRemote) {
@@ -56,18 +56,24 @@ public class TileEntityNetworkController extends TileEntityBase {
 			
 				// Discharge
 				if (getStackInSlot(1).getItem() instanceof IEnergyItem) {
-
-					ItemStack stack = getStackInSlot(1);
-					IEnergyItem energyItem = (IEnergyItem) stack.getItem();
 					
-					EnergyItemUtil.transferEnergyToBlock(stack, this, transferRate);
-				}
-				
-				if (getStackInSlot(1).getItem() == InitItems.infused_crystal && EnergyUtil.canAddEnergy(this, 100)) {
-					EnergyUtil.addEnergy(this, 100);
+					if (getStackInSlot(1).getItem() instanceof ItemEnergyConsumable) {
 					
-					decrStackSize(1, 1);					
-				}
+						IEnergyItem energyItem = (IEnergyItem)getStackInSlot(1).getItem();
+					
+						if (EnergyUtil.canAddEnergy(this, energyItem.getMaxEnergy())) {
+							EnergyUtil.addEnergy(this, energyItem.getMaxEnergy());
+							decrStackSize(1, 1);
+						}								
+					}
+					
+					else {
+						ItemStack stack = getStackInSlot(1);
+						IEnergyItem energyItem = (IEnergyItem) stack.getItem();
+					
+						EnergyItemUtil.transferEnergyToBlock(stack, this, transferRate);
+					}					
+				}			
 			}
 
 			// Charge
