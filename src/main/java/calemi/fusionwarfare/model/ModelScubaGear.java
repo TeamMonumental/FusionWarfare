@@ -75,8 +75,8 @@ public class ModelScubaGear extends ModelBiped {
         
         this.bipedLeftLeg.addChild(flipper1);
         this.bipedRightLeg.addChild(flipper2);
-    }
-
+    }   
+    
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
