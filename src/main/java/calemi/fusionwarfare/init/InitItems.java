@@ -196,9 +196,9 @@ public class InitItems {
 		
 		rocket_launcher = new ItemRocketLauncher();
 		
-		fusion_grenade = new ItemGrenade("fusion_grenade", new FusionGrenadeBlastEvent());
-		flash_grenade = new ItemGrenade("flash_grenade", new FlashGrenadeBlastEvent());
-		chemical_grenade = new ItemGrenade("chemical_grenade", new ChemicalGrenadeBlastEvent());
+		//fusion_grenade = new ItemGrenade("fusion_grenade", new FusionGrenadeBlastEvent());
+		//flash_grenade = new ItemGrenade("flash_grenade", new FlashGrenadeBlastEvent());
+		//chemical_grenade = new ItemGrenade("chemical_grenade", new ChemicalGrenadeBlastEvent());
 		
 		//#-#-#-#-#-MISSILES-#-#-#-#-#\\
 		

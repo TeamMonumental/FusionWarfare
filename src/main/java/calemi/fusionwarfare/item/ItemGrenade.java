@@ -3,6 +3,7 @@ package calemi.fusionwarfare.item;
 import java.util.List;
 
 import calemi.fusionwarfare.entity.EntityFusionBullet;
+import calemi.fusionwarfare.entity.EntityGrenade;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.util.explosion.GrenadeBlastEvent;
@@ -29,9 +30,10 @@ public class ItemGrenade extends ItemBase {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player) {
-
-		if (world.isRemote) {			
 			
+		if (!world.isRemote) {				
+			EntityGrenade grenade = new EntityGrenade(world, player, this);	
+			world.spawnEntityInWorld(grenade);
 		}
 		
 		if (!player.capabilities.isCreativeMode) is.stackSize--;

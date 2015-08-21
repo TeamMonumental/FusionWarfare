@@ -26,20 +26,20 @@ public class GuiOverlay extends GuiScreen {
 	
 	public void render(RenderGameOverlayEvent event) {
 		
-		GL11.glPushMatrix();
-		
-		GL11.glDisable(GL11.GL_LIGHTING);
-		
-		GL11.glEnable(GL11.GL_BLEND);
-		
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glScalef(1F, 1F, 0);
-
-		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-
 		if(Minecraft.getMinecraft().currentScreen == null) {
+			
+			GL11.glPushMatrix();
+		
+			GL11.glDisable(GL11.GL_LIGHTING);
+		
+			GL11.glEnable(GL11.GL_BLEND);
+		
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+			GL11.glScalef(1F, 1F, 0);	
+			
+			Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 			
 			ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
 			int width = scaledresolution.getScaledWidth();
@@ -47,11 +47,11 @@ public class GuiOverlay extends GuiScreen {
 			Minecraft.getMinecraft().entityRenderer.setupOverlayRendering();
 			
 			drawTexturedQuad(0, 0, width, height, 0, 0, 256, 128, 256, 256, 0);
+			
+			GL11.glEnable(GL11.GL_LIGHTING);
+		
+			GL11.glPopMatrix();
 		}		
-		
-		GL11.glEnable(GL11.GL_LIGHTING);
-		
-		GL11.glPopMatrix();
 	}
 	
 	public static void drawTexturedQuad(int x, int y, int width, int height, int u, int v, int uSize, int vSize, int texWidth, int texHeight, float zLevel) {

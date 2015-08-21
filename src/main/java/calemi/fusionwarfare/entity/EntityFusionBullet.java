@@ -33,7 +33,7 @@ public class EntityFusionBullet extends EntityThrowable implements IEntityAdditi
 	}
 
 	public EntityFusionBullet(World world, EntityPlayer player, int damage, int accuracy, float gravityVelocity) {
-		super(world);
+		super(world, player);
 
 		this.damage = damage;
 		this.gravityVelocity = gravityVelocity;
@@ -42,10 +42,6 @@ public class EntityFusionBullet extends EntityThrowable implements IEntityAdditi
 
 		this.shooter = player;
 		
-		posX = player.posX;
-		posY = player.posY + 1.5;
-		posZ = player.posZ;
-
 		float randomPitch = accuracy == 0 ? 0 : rand.nextInt(accuracy * 2) - accuracy;
 		float randomYaw = accuracy == 0 ? 0 : rand.nextInt(accuracy * 2) - accuracy;
 		
@@ -65,14 +61,13 @@ public class EntityFusionBullet extends EntityThrowable implements IEntityAdditi
 		
 		if (mop.entityHit != null && mop.entityHit != shooter) {
 			
-			if (mop.entityHit instanceof EntityPlayer && shooter instanceof EntityPlayer) {
-				mop.entityHit.attackEntityFrom(new DamageSourceBullets((EntityPlayer)mop.entityHit, (EntityPlayer)shooter), damage);
+			if (mop.entityHit instanceof EntityPlayer) {
+				mop.entityHit.attackEntityFrom(new DamageSourceCustom(((EntityPlayer)mop.entityHit).getDisplayName() + " was pummeled by Fusion Bullets from " + shooter.getDisplayName()), damage);
 			}
 			
 			else {
 				mop.entityHit.attackEntityFrom(DamageSource.magic, damage);
-			}
-			
+			}			
 						
 			setDead();
 		}
