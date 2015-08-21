@@ -3,20 +3,20 @@ package calemi.fusionwarfare.renderer.item;
 import org.lwjgl.opengl.GL11;
 
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.model.ModelGrenade;
+import calemi.fusionwarfare.model.ModelFusionGrenade;
 import calemi.fusionwarfare.model.ModelFusionPistol;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
-public class ItemRenderGrenade implements IItemRenderer {
+public class ItemRenderFusionGrenade implements IItemRenderer {
 
-	private final ModelGrenade model = new ModelGrenade();
+	private final ModelFusionGrenade model = new ModelFusionGrenade();
 	private ResourceLocation texture;
 	
-	public ItemRenderGrenade(String image) {
-		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/grenade_" + image + ".png");
+	public ItemRenderFusionGrenade(String image) {
+		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/fusion_grenade_" + image + ".png");
 	}
 	
 	@Override

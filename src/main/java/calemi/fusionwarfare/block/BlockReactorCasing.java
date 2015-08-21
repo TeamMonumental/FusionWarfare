@@ -6,7 +6,7 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.init.InitCreativeTabs;
-import calemi.fusionwarfare.tileentity.reactor.TileEntityReactorCasing;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCasing;
 
 public class BlockReactorCasing extends BlockBasicMachineBase {
 

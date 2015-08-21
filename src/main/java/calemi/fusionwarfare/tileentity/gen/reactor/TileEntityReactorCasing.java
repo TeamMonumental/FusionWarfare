@@ -1,4 +1,4 @@
-package calemi.fusionwarfare.tileentity.reactor;
+package calemi.fusionwarfare.tileentity.gen.reactor;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

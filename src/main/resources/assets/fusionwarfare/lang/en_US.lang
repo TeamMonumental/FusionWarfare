@@ -47,7 +47,7 @@ item.hyper_battery.name=Hyper Battery
 
 item.creative_battery.name=Creative Battery
 
-#-#-#-#-#-INFANTRY-#-#-#-#-#
+#-#-#-#-#-GUNS-#-#-#-#-#
 
 item.fusion_ammo.name=Fusion Ammo
 item.rocket.name=Rocket
@@ -60,10 +60,6 @@ item.fusion_sniper_rifle.name=Fusion Sniper Rifle
 item.fusion_gatling_gun.name=Alt-F4
  
 item.rocket_launcher.name=Rocket Launcher
- 
-item.fusion_grenade.name=Fusion Grenade
-item.flash_grenade.name=Flash Grenade
-item.chemical_grenade.name=Chemical Grenade
  
 #-#-#-#-#-MISSILES-#-#-#-#-#
 

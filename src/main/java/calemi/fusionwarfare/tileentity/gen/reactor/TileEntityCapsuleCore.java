@@ -1,4 +1,4 @@
-package calemi.fusionwarfare.tileentity.reactor;
+package calemi.fusionwarfare.tileentity.gen.reactor;
 
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.tileentity.EnumIO;

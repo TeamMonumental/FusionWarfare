@@ -9,6 +9,10 @@ import calemi.fusionwarfare.tileentity.gen.TileEntityAquaGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityGeothermalGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntitySolarGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityAdvancedHydroReactorCore;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityCapsuleCore;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityReactorCore;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntitySteelCasing;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
@@ -24,10 +28,6 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkCable;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkGate;
-import calemi.fusionwarfare.tileentity.reactor.TileEntityAdvancedHydroReactorCore;
-import calemi.fusionwarfare.tileentity.reactor.TileEntityCapsuleCore;
-import calemi.fusionwarfare.tileentity.reactor.TileEntityReactorCore;
-import calemi.fusionwarfare.tileentity.reactor.TileEntitySteelCasing;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class InitTileEntities {

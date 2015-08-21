@@ -10,7 +10,7 @@ import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerNetworkController;
 import calemi.fusionwarfare.inventory.ContainerReactorCore;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
-import calemi.fusionwarfare.tileentity.reactor.TileEntityAdvancedHydroReactorCore;
+import calemi.fusionwarfare.tileentity.gen.reactor.TileEntityAdvancedHydroReactorCore;
 
 public class GuiReactorCore extends GuiContainerBase {
 
