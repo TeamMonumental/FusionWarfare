@@ -5,7 +5,9 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.model.ModelFusionGrenade;
+import calemi.fusionwarfare.entity.EntityGrenade;
+import calemi.fusionwarfare.item.ItemGrenade;
+import calemi.fusionwarfare.model.ModelGrenade;
 import calemi.fusionwarfare.model.ModelFusionSniperRifle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
@@ -13,15 +15,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
-public class RenderFusionGrenade extends Render {
+public class RenderGrenade extends Render {
 
-	private final ModelFusionGrenade model = new ModelFusionGrenade();
-	private ResourceLocation texture;
-	
-	public RenderFusionGrenade(String image) {
-		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/fusion_grenade_" + image + ".png");
-	}
-	
+	private final ModelGrenade model = new ModelGrenade();
+		
 	@Override
 	public void doRender(Entity e, double x, double y, double z, float p_76986_8_, float p_76986_9_) {
 		
@@ -29,15 +26,17 @@ public class RenderFusionGrenade extends Render {
 		
 		GL11.glTranslated(x, y + 1.5, z);	
 		GL11.glRotatef(180, 1, 0, 0);
-		Minecraft.getMinecraft().renderEngine.bindTexture(texture);		
-		model.render(e, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+		
+		if (((EntityGrenade)e).grenade!= null) {
+			Minecraft.getMinecraft().renderEngine.bindTexture(getEntityTexture(e));
+			model.render(e, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+		}	
 		
 		GL11.glPopMatrix();
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
-		return null;
+	protected ResourceLocation getEntityTexture(Entity e) {
+		return new ResourceLocation(Reference.MOD_ID + ":textures/models/grenade_" + ((ItemGrenade)((EntityGrenade)e).grenade).event.getTextureName() + ".png");
 	}
-
 }

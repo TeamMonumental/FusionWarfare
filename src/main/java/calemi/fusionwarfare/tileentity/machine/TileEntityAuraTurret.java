@@ -31,8 +31,7 @@ public class TileEntityAuraTurret extends TileEntitySecurity {
 		int energyCost = 500;		
 		int range = 5;
 		
-		if (!isDone() && EnergyUtil.canSubtractEnergy(this, energyCost)) {
-			
+		if (!isDone() && EnergyUtil.canSubtractEnergy(this, energyCost)) {			
 			progress++;
 		}
 			

@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelFusionGrenade extends ModelBase {
+public class ModelGrenade extends ModelBase {
 
 	ModelRenderer Shape1;
 	ModelRenderer Shape2;
@@ -15,7 +15,8 @@ public class ModelFusionGrenade extends ModelBase {
 	ModelRenderer Shape4;
 	ModelRenderer Shape5;
 
-	public ModelFusionGrenade() {
+	public ModelGrenade() {
+		
 		textureWidth = 64;
 		textureHeight = 32;
 
@@ -72,14 +73,18 @@ public class ModelFusionGrenade extends ModelBase {
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		
+		if (entity == null) {		
+			Shape4.render(f5);
+			Shape5.render(f5);
+		}
+		
 		Shape1.render(f5);
 		Shape2.render(f5);
 		Shape6.render(f5);
 		Shape7.render(f5);
 		Shape8.render(f5);
-		Shape3.render(f5);
-		Shape4.render(f5);
-		Shape5.render(f5);
+		Shape3.render(f5);		
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z) {
@@ -91,5 +96,4 @@ public class ModelFusionGrenade extends ModelBase {
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
 	}
-
 }

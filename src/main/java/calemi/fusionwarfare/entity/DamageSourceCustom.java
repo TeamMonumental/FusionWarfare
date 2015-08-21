@@ -11,18 +11,19 @@ import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.StatCollector;
 
-public class DamageSourceBullets extends DamageSource {
+public class DamageSourceCustom extends DamageSource {
 	
-	private EntityPlayer target, source;
+	private String text;
 
-	public DamageSourceBullets(EntityPlayer target, EntityPlayer source) {
+	public DamageSourceCustom(String text) {
 		super("turret");
-		this.target = target;
-		this.source = source;
+		this.text = text;
 	}
 	
 	public IChatComponent func_151519_b(EntityLivingBase entity) {
 	   
-		return new ChatComponentText(target.getDisplayName() + " was pummeled by Fusion Bullets from " + source.getDisplayName());
+		return new ChatComponentText(text);
+		
+		//return new ChatComponentText(target.getDisplayName() + " was pummeled by Fusion Bullets from " + source.getDisplayName());
 	}
 }

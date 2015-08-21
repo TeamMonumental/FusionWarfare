@@ -8,6 +8,7 @@ import calemi.fusionwarfare.item.ItemCreativeBattery;
 import calemi.fusionwarfare.item.ItemEnergyConsumable;
 import calemi.fusionwarfare.item.ItemFoodBase;
 import calemi.fusionwarfare.item.ItemFusionGatlingGun;
+import calemi.fusionwarfare.item.ItemGrenade;
 import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.item.ItemMissile;
 import calemi.fusionwarfare.item.ItemMissileModule;
@@ -22,6 +23,9 @@ import calemi.fusionwarfare.item.tool.ItemScubaGear;
 import calemi.fusionwarfare.item.tool.ItemSprayer;
 import calemi.fusionwarfare.item.tool.ItemWrench;
 import calemi.fusionwarfare.util.ToolSet;
+import calemi.fusionwarfare.util.explosion.ChemicalGrenadeBlastEvent;
+import calemi.fusionwarfare.util.explosion.FlashGrenadeBlastEvent;
+import calemi.fusionwarfare.util.explosion.FusionGrenadeBlastEvent;
 import calemi.fusionwarfare.util.missile.MissileTypeRegistry;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
@@ -73,7 +77,7 @@ public class InitItems {
 	public static Item hyper_battery;
 	public static Item creative_battery;
 	
-	//#-#-#-#-#-GUNS-#-#-#-#-#\\
+	//#-#-#-#-#-INFANTRY-#-#-#-#-#\\
 	
 	public static Item fusion_ammo;
 	public static Item rocket;
@@ -86,6 +90,10 @@ public class InitItems {
 	public static Item fusion_gatling_gun;
 	
 	public static Item rocket_launcher;
+	
+	public static Item fusion_grenade;
+	public static Item flash_grenade;
+	public static Item chemical_grenade;
 	
 	//#-#-#-#-#-MISSILES-#-#-#-#-#\\
 	
@@ -187,6 +195,10 @@ public class InitItems {
 		fusion_gatling_gun = new ItemFusionGatlingGun("fusion_gatling_gun", 1, 20, 1, 0.06F);
 		
 		rocket_launcher = new ItemRocketLauncher();
+		
+		//fusion_grenade = new ItemGrenade("fusion_grenade", new FusionGrenadeBlastEvent());
+		//flash_grenade = new ItemGrenade("flash_grenade", new FlashGrenadeBlastEvent());
+		//chemical_grenade = new ItemGrenade("chemical_grenade", new ChemicalGrenadeBlastEvent());
 		
 		//#-#-#-#-#-MISSILES-#-#-#-#-#\\
 		
