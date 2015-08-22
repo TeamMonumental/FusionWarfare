@@ -59,7 +59,7 @@ public class ItemSwordBase extends ItemSword {
 							
 				EntityPlayer player = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(getNBT(is).getString("player"));
 				
-				if (player.getTeam() != null) {
+				if (player != null && player.getTeam() != null) {
 
 					return EnumColorUtil.getColorByPrefix(((ScorePlayerTeam)player.getTeam()).getColorPrefix()).hex;					
 				}
