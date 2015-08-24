@@ -54,11 +54,11 @@ public class SupplyCrateEvent {
 					else if (randomInt < 40) meta = 1;
 					else meta = 0;
 
-					EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(meta, world, randX, randZ);
-					world.joinEntityInSurroundings(entityCrate);
-					
+					EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(meta, world, world.getSpawnPoint().posX, world.getSpawnPoint().posZ);
+									
 					world.spawnEntityInWorld(entityCrate);
-
+					entityCrate.setPosition(randX, 256, randZ);	
+					
 					System.out.println(entityCrate.posX + " " + entityCrate.posZ);
 
 					world.playBroadcastSound(1013, randX, 60, randZ, 0);
@@ -67,7 +67,6 @@ public class SupplyCrateEvent {
 					if (meta == 1) MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentText(EnumChatFormatting.GOLD + "An orange supply crate is falling at x" + randX + ", z" + randZ + "!!"));
 					if (meta == 2) MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentText(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "A red supply crate is falling at x" + randX + ", z" + randZ + "!!!"));
 									
-					//FusionWarfare.network.sendTo(new ClientPacketHandler("broadcast.supplycrates%" + meta + "%" + randX + "%" + randZ), (EntityPlayerMP) o);
 				}
 
 				if (canCallSpawn == false && world.getCurrentMoonPhaseFactor() < 1.0F && (world.getWorldTime() % 24000) >= 18000) {
