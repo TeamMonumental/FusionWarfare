@@ -8,11 +8,26 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 
 public class TileEntitySupplyCrate extends TileEntityBase {
 
+	public TileEntitySupplyCrate() {
+		maxProgress = 36000; //30min
+	}
+	
 	public boolean isEmpty = false;
 	
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		
+		progress++;
+		
+		if (isDone()) {
+			
+			for (ItemStack slot : slots) {				
+				slot.stackSize = 0;				
+			}
+			
+			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+		}
 		
 		if (isEmpty()) {
 			
