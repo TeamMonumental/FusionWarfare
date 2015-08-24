@@ -106,20 +106,6 @@ public class TooltipEvent {
 				}
 			}	
 		}
-		
-		/*boolean b1 = Keyboard.isKeyDown(KeyBindings.recipeButton.getKeyCode());
-		boolean b2 = Minecraft.getMinecraft().currentScreen != null;
-		boolean b3 = Minecraft.getMinecraft().currentScreen instanceof GuiContainerCreative;
-		boolean b4 = b3 ? ((GuiContainerCreative)Minecraft.getMinecraft().currentScreen).func_147056_g() != CreativeTabs.tabAllSearch.getTabIndex() : false;
-		
-		if (b1 && b2) {
-					
-			if (!b3 && !b4 || b3 && b4) {
-				checkThroughRecipes(event);
-			}
-			
-			return;			
-		}*/
 	}
 		
 	private void checkThroughRecipes(ItemTooltipEvent event) {

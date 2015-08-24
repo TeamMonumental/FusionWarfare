@@ -55,6 +55,7 @@ public class SupplyCrateEvent {
 					else meta = 0;
 
 					EntityFallingSupplyCrate entityCrate = new EntityFallingSupplyCrate(meta, world, randX, randZ);
+					world.joinEntityInSurroundings(entityCrate);
 					
 					world.spawnEntityInWorld(entityCrate);
 

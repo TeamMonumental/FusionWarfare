@@ -51,23 +51,7 @@ public class CraftingEvent {
 						((ItemBlockEnergyBase)event.crafting.getItem()).setEnergy(energy, event.crafting);
 					}
 				}
-				
-				if (stack.getItem() instanceof ItemFusionMatterDeconstructor) {
-					
-					int energy = ((ItemFusionMatterDeconstructor)stack.getItem()).getNBT(stack).getInteger("energy");
-				
-					if (event.crafting != null) {
-						((ItemFusionMatterDeconstructor)event.crafting.getItem()).getNBT(event.crafting).setInteger("energy", energy);
-					}
-				}
 			}
-			
-			/*if (event.crafting != null && event.crafting.getItem() == InitItems.scuba_helmet) {
-				
-				if (!event.crafting.isItemEnchanted()) {
-					event.crafting.addEnchantment(Enchantment.aquaAffinity, 5);
-				}			
-			}*/
 		}
 	}
 }
