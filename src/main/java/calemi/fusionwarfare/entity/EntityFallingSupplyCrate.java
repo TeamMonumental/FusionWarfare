@@ -32,10 +32,8 @@ public class EntityFallingSupplyCrate extends Entity implements IEntityAdditiona
 
 	public EntityFallingSupplyCrate(int meta, World world, int x, int z) {
 		super(world);
+		setPosition(x, 256, x);
 		this.meta = meta;
-		this.posX = x - 1;
-		this.posY = 256;
-		this.posZ = z - 1;
 		motionY -= 0.1F;
 	}
 	
