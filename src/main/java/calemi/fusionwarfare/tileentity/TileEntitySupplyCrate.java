@@ -23,7 +23,10 @@ public class TileEntitySupplyCrate extends TileEntityBase {
 		if (isDone()) {
 			
 			for (ItemStack slot : slots) {				
-				slot.stackSize = 0;				
+				
+				if (slot != null) {
+					slot.stackSize = 0;
+				}					
 			}
 			
 			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
