@@ -32,7 +32,7 @@ public class EntityFallingSupplyCrate extends Entity implements IEntityAdditiona
 
 	public EntityFallingSupplyCrate(int meta, World world, int x, int z) {
 		super(world);
-		setPosition(x, 256, x);
+		setPosition(x, 256, z);
 		this.meta = meta;
 		motionY -= 0.1F;
 	}
@@ -41,21 +41,18 @@ public class EntityFallingSupplyCrate extends Entity implements IEntityAdditiona
 	public void onUpdate() {
 		super.onUpdate();
 		
-		posX += motionX;
-		posY += motionY;
-		posZ += motionZ;
+		moveEntity(motionX, motionY, motionZ);
 					
 		if (!worldObj.isRemote) {
 			
 			if (posY < 0) {
 				setDead();
 			}
-		
 			
-			if (!worldObj.isAirBlock((int)posX, (int)posY, (int)posZ)) {
+			if (!isDead && onGround) {
 				
-				setDead();
 				checkForAir((int)posX, (int)posY, (int)posZ);
+				setDead();
 			}
 		}
 	}
