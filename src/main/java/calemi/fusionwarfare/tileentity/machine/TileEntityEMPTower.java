@@ -61,7 +61,7 @@ public class TileEntityEMPTower extends TileEntityBase {
 	
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[0];
+		return new int[]{};
 	}
 
 	@Override

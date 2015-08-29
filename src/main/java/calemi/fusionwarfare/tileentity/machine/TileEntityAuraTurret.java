@@ -73,7 +73,7 @@ public class TileEntityAuraTurret extends TileEntitySecurity {
 	
 	@Override
 	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
-		return null;
+		return new int[]{};
 	}
 
 	@Override
