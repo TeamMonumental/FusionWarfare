@@ -12,7 +12,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-public class EntityBlock extends EntityThrowable implements IEntityAdditionalSpawnData {
+public class EntityBlock extends Entity implements IEntityAdditionalSpawnData {
 
 	public Block block;
 	public int meta;
@@ -26,20 +26,12 @@ public class EntityBlock extends EntityThrowable implements IEntityAdditionalSpa
 		super(world);
 
 		setSize(0.2F, 0.2F);
-
-		this.posX = x;
-		this.posY = y;
-		this.posZ = z;
+		setPosition(x, y, z);
 
 		this.motionY = 0.5F;
 		
 		this.block = block;
 		this.meta = meta;
-	}
-
-	@Override
-	protected float getGravityVelocity() {
-		return 0;
 	}
 	
 	@Override
@@ -49,25 +41,6 @@ public class EntityBlock extends EntityThrowable implements IEntityAdditionalSpa
 		if (ticksExisted > deathTime) setDead(); 
 	}
 	
-	/*private void setBlock() {
-
-		if (!worldObj.isRemote) {
-
-			int x = MathHelper.floor_double(posX);
-			int y = MathHelper.floor_double(posY);
-			int z = MathHelper.floor_double(posZ);
-
-			worldObj.setBlock(x, y, z, block, meta, 2);
-
-			if (!worldObj.getBlock(x, y - 1, z).isNormalCube()) {
-				worldObj.setBlockToAir(x, y, z);
-				worldObj.setBlock(x, y - 1, z, block, meta, 2);
-			}
-		}
-
-		setDead();
-	}*/
-
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbt) {
 		block = Block.getBlockById(nbt.getInteger("block"));
@@ -100,13 +73,5 @@ public class EntityBlock extends EntityThrowable implements IEntityAdditionalSpa
 	@Override
 	public boolean canBeCollidedWith() {
 		return true;
-	}
-
-	@Override
-	protected void onImpact(MovingObjectPosition mop) {
-
-		/*if (ticksExisted > 20) {
-			setBlock();
-		}*/
 	}
 }

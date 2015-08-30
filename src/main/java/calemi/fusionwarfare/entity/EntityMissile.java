@@ -26,9 +26,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 	public EntityMissile(World world, int x, int y, int z, int targetX, int targetZ, ItemMissile missileType) {
 		super(world);
 		this.missileType = missileType;
-		this.posX = x + 0.5F;
-		this.posY = y + 0.1F;
-		this.posZ = z + 0.5F;
+		setPosition(x + 0.5, y + 0.1F, z + 0.5F);
 		this.targetX = targetX;
 		this.targetZ = targetZ;		
 		canExplode = false;
@@ -38,10 +36,10 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 	public void onUpdate() {
 		super.onUpdate();
 		
-		posX += motionX;
-		posY += motionY;
-		posZ += motionZ;
-			
+		noClip = !canExplode;
+		
+		moveEntity(motionX, motionY, motionZ);
+		
 		for (int i = 0; i < 10; i++) {
 
 			double randX = MathHelper.getRandomDoubleInRange(rand, -0.1D, 0.1D);
@@ -71,32 +69,18 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 			
 			if (posY > 300) {
 				
-				posX = targetX + 0.5F;
-				posZ = targetZ + 0.5F;
+				setPosition(targetX + 0.5F, 300, targetZ + 0.5F);
 				motionY = -2;
 				canExplode = true;
 			}
 			
-			if (canExplode && isAreaSolid()) {
+			if (canExplode && onGround) {
 				missileType.missileType.event.detonate(worldObj, (int)posX, (int)posY, (int)posZ);
 				setDead();
 			}
 		}
 	}
-	
-	private boolean isAreaSolid() {
-	
-		boolean b1 = !worldObj.isAirBlock((int)posX, (int)posY, (int)posZ);
-		boolean b2 = !worldObj.isAirBlock((int)posX, (int)posY + 1, (int)posZ);
-		boolean b3 = !worldObj.isAirBlock((int)posX, (int)posY + 2, (int)posZ);
 		
-		boolean b4 = !(worldObj.getBlock((int)posX, (int)posY, (int)posZ) instanceof BlockLiquid);
-		boolean b5 = !(worldObj.getBlock((int)posX, (int)posY + 1, (int)posZ) instanceof BlockLiquid);
-		boolean b6 = !(worldObj.getBlock((int)posX, (int)posY + 2, (int)posZ) instanceof BlockLiquid);
-		
-		return (b1 || b2 || b3) && (b4 || b5 || b6);
-	}
-	
 	@Override
 	protected void entityInit() {}
 

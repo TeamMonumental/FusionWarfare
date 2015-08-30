@@ -38,19 +38,15 @@ public class EntityDesignatorOrb extends EntityThrowable {
 		super(world);
 	}
 
-	public EntityDesignatorOrb(World world, EntityLivingBase entity) {
-		super(world);
+	public EntityDesignatorOrb(World world, EntityPlayer player) {
+		super(world, player);
 
 		setSize(0.5F, 0.5F);
 
-		posX = entity.posX;
-		posY = entity.posY + 1.5;
-		posZ = entity.posZ;
-
-		rotationPitch = entity.rotationPitch;
-		rotationYaw = entity.rotationYaw;
+		rotationPitch = player.rotationPitch;
+		rotationYaw = player.rotationYaw;
 		
-		shooter = entity;
+		shooter = player;
 
 		motionX = (double) (-MathHelper.sin(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);
 		motionZ = (double) (MathHelper.cos(rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float) Math.PI) * 2);

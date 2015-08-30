@@ -1,15 +1,28 @@
 package calemi.fusionwarfare.util;
 
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.init.Blocks;
+
+import java.util.Random;
+
 import calemi.fusionwarfare.block.BlockReinforceable;
 import calemi.fusionwarfare.entity.EntityBlock;
 
 public class BlockUtil {
-
+	
+	private static Random rand = new Random();
+	
 	public static void spawnGhostBlock(Location loc) {
-		EntityBlock ghostBlock = new EntityBlock(loc.world, loc.x, loc.y, loc.z, loc.getBlock(), loc.getBlockMetadata());
-		loc.world.spawnEntityInWorld(ghostBlock);
-		loc.breakBlock();
+			
+		if (loc.getBlock() != Blocks.air) {	
+			
+			if (rand.nextInt(3) == 0) {	
+				
+				EntityBlock ghostBlock = new EntityBlock(loc.world, loc.x, loc.y, loc.z, loc.getBlock(), loc.getBlockMetadata());
+				loc.world.spawnEntityInWorld(ghostBlock);
+				loc.breakBlock();
+			}
+		}			
 	}
 	
 	public static void degradeBlock(Location loc, int degrade, boolean breakNormalBlocks, boolean spawnGhostBlocks) {

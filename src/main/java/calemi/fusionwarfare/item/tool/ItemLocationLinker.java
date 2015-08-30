@@ -14,6 +14,7 @@ import calemi.fusionwarfare.tileentity.reactor.TileEntitySteelCasing;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
@@ -66,7 +67,8 @@ public class ItemLocationLinker extends ItemBase {
 					((TileEntityMissileLauncher)world.getTileEntity(x, y, z)).targetX = getNBT(is).getInteger("X");
 					((TileEntityMissileLauncher)world.getTileEntity(x, y, z)).targetZ = getNBT(is).getInteger("Z");
 					((TileEntityMissileLauncher)world.getTileEntity(x, y, z)).update();
-					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);	
+					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);
+					player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Missile Launcher's coords set to " + x + ", " + y + ", " + z));
 					return true;
 				}
 				
@@ -79,7 +81,8 @@ public class ItemLocationLinker extends ItemBase {
 						tileEntity.targetX = getNBT(is).getInteger("X");
 						tileEntity.targetZ = getNBT(is).getInteger("Z");
 						tileEntity.update();
-						player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);							
+						player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);
+						player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Missile Silo's coords set to " + x + ", " + y + ", " + z));
 						return true;
 					}				
 				}
@@ -90,6 +93,7 @@ public class ItemLocationLinker extends ItemBase {
 					((TileEntityMissileSiloCore)world.getTileEntity(x, y, z)).targetZ = getNBT(is).getInteger("Z");
 					((TileEntityMissileSiloCore)world.getTileEntity(x, y, z)).update();
 					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);	
+					player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Missile Silo's coords set to " + x + ", " + y + ", " + z));
 					return true;
 				}
 				
@@ -100,6 +104,7 @@ public class ItemLocationLinker extends ItemBase {
 					((TileEntityEnergyTransmitter)world.getTileEntity(x, y, z)).targetZ = getNBT(is).getInteger("Z");
 					((TileEntityEnergyTransmitter)world.getTileEntity(x, y, z)).update();
 					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);	
+					player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Energy Transmitter's coords set to " + x + ", " + y + ", " + z));
 					return true;
 				}
 			}
@@ -107,7 +112,8 @@ public class ItemLocationLinker extends ItemBase {
 			getNBT(is).setInteger("X", x);	
 			getNBT(is).setInteger("Y", y);
 			getNBT(is).setInteger("Z", z);
-			player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);
+			player.worldObj.playSoundAtEntity(player, "random.click", 1F, 1F);
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Coords set to " + x + ", " + y + ", " + z));
 			return true;					
 		}	
 		

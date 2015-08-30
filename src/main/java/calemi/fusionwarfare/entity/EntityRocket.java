@@ -33,10 +33,8 @@ public class EntityRocket extends Entity implements IEntityAdditionalSpawnData {
 
 		shooter = entity;
 		
-		posX = entity.posX;
-		posY = entity.posY + 1.5;
-		posZ = entity.posZ;
-
+		setPosition(entity.posX, entity.posY + 1.5F, entity.posZ);
+		
 		rotationPitch = entity.rotationPitch;
 		rotationYaw = entity.rotationYaw;
 
@@ -46,16 +44,14 @@ public class EntityRocket extends Entity implements IEntityAdditionalSpawnData {
 	
 		motionX *= 0.5F;
 		motionY *= 0.5F;
-		motionZ *= 0.5F;
+		motionZ *= 0.5F;		
 	}
 	
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		
-		posX += motionX;
-		posY += motionY;
-		posZ += motionZ;
+				
+		moveEntity(motionX, motionY, motionZ);
 		
 		if (ticksExisted > 20 * 60) {			
 			setDead();			
