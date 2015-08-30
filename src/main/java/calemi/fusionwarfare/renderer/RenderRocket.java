@@ -38,7 +38,7 @@ public class RenderRocket extends Render {
 
 		GL11.glPushMatrix();
 		
-		GL11.glTranslated(x, y, z);
+		GL11.glTranslated(x, y + 0.35F, z);
 		GL11.glRotatef(180, 1, 0, 0);
 		GL11.glScalef(1.5F, 1.5F, 1.5F);
 		

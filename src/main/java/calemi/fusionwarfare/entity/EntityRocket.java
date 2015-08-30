@@ -5,6 +5,8 @@ import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,25 +15,27 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 
 public class EntityRocket extends Entity implements IEntityAdditionalSpawnData {
-
+	
 	public EntityPlayer shooter;
 	
 	public EntityRocket(World world) {
-		super(world);
+		super(world);		
+		setSize(0.6F, 0.6F);
 	}
 
 	public EntityRocket(World world, EntityPlayer entity) {
 		super(world);
-
-		setSize(0.5F, 0.5F);
-
+			
 		shooter = entity;
+				
+		setSize(0.6F, 0.6F);
 		
 		setPosition(entity.posX, entity.posY + 1.5F, entity.posZ);
 		
@@ -46,7 +50,7 @@ public class EntityRocket extends Entity implements IEntityAdditionalSpawnData {
 		motionY *= 0.5F;
 		motionZ *= 0.5F;		
 	}
-	
+			
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
@@ -59,14 +63,13 @@ public class EntityRocket extends Entity implements IEntityAdditionalSpawnData {
 			
 		for (int i = 0; i < 10; i++) {
 
-			worldObj.spawnParticle("smoke", posX - motionX, posY - motionY, posZ - motionZ, 0, 0, 0);				
-			if (i % 10 == 0) worldObj.spawnParticle("flame", posX - motionX, posY - motionY, posZ - motionZ, 0, 0, 0);
+			worldObj.spawnParticle("smoke", posX - motionX, (posY - motionY) + 0.35F, posZ - motionZ, 0, 0, 0);				
+			if (i % 10 == 0) worldObj.spawnParticle("flame", posX - motionX, (posY - motionY) + 0.35F, posZ - motionZ, 0, 0, 0);
 		}
 		
 		if (!worldObj.isRemote) {
 			
-			if (worldObj.getBlock((int)posX, (int)posY, (int)posZ) != Blocks.air) {
-			
+			if (isCollided) {			
 				explode();
 				return;
 			}
@@ -106,15 +109,13 @@ public class EntityRocket extends Entity implements IEntityAdditionalSpawnData {
 	protected void entityInit() {}
 
 	@Override
-	public void readEntityFromNBT(NBTTagCompound nbt) {
-		
-		shooter = worldObj.getPlayerEntityByName(nbt.getString("shooter"));
+	public void readEntityFromNBT(NBTTagCompound nbt) {		
+		shooter = (EntityPlayer) worldObj.getEntityByID(nbt.getInteger("shooter"));
 	}
 	
 	@Override
-	public void writeEntityToNBT(NBTTagCompound nbt) {
-		
-		nbt.setString("shooter", ((EntityPlayer)shooter).getDisplayName());
+	public void writeEntityToNBT(NBTTagCompound nbt) {		
+		nbt.setInteger("shooter", shooter.getEntityId());
 	}
 	
 	@Override
@@ -125,10 +126,8 @@ public class EntityRocket extends Entity implements IEntityAdditionalSpawnData {
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
 		
-		NBTTagCompound nbt = new NBTTagCompound();
-		
-		writeEntityToNBT(nbt);
-		
+		NBTTagCompound nbt = new NBTTagCompound();		
+		writeEntityToNBT(nbt);		
 		ByteBufUtils.writeTag(buffer, nbt);
 	}
 }
