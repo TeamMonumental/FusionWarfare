@@ -17,7 +17,7 @@ public class TileEntityFusionMatterReinforcer extends TileEntityBase {
 	private int energyCost = 50;
 
 	public TileEntityFusionMatterReinforcer() {
-		maxEnergy = 5000;
+		maxEnergy = 10000;
 		maxProgress = 50;
 	}
 
