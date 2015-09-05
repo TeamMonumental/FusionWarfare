@@ -21,14 +21,14 @@ import calemi.fusionwarfare.util.EnergyUtil;
 public class TileEntityAuraTurret extends TileEntitySecurity {
 
 	public TileEntityAuraTurret() {
-		maxEnergy = 10000;
+		maxEnergy = 15000;
 		maxProgress = 20;
 	}
 	
 	@Override
 	public void updateEntity() {
 
-		int energyCost = 500;		
+		int energyCost = 1000;		
 		int range = 5;
 		
 		if (!isDone() && EnergyUtil.canSubtractEnergy(this, energyCost)) {			

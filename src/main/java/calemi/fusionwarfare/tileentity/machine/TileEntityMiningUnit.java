@@ -11,10 +11,10 @@ import calemi.fusionwarfare.util.Location;
 
 public class TileEntityMiningUnit extends TileEntityBase {
 
-	private int energyCost = 35;
+	private int energyCost = 50;
 
 	public TileEntityMiningUnit() {
-		maxEnergy = 5000;
+		maxEnergy = 10000;
 		maxProgress = 30;
 	}
 

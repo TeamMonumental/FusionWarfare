@@ -33,6 +33,11 @@ public class InitInfusionTableRecipes {
 				new ItemStack(InitItems.steel_ingot), 
 				5, 60));
 		
+		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.gold_plate), 
+				new ItemStack(Items.gold_ingot), 				
+				new ItemStack(Items.gold_ingot), 
+				5, 60));
+		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.basic_chip), 
 				new ItemStack(Items.diamond), 				
 				new ItemStack(InitItems.infused_circuit),
@@ -64,7 +69,7 @@ public class InitInfusionTableRecipes {
 				60 * 2, 3000));
 		
 		TwoInputRecipeRegistry.register(EnumRecipeType.INFUSION_TABLE, new TwoInputRecipe(new ItemStack(InitItems.evaporation_cell), 
-				new ItemStack(InitItems.infused_crystal, 4), 				
+				new ItemStack(InitItems.infused_circuit), 				
 				new ItemStack(Blocks.obsidian), 
 				30, 200));
 			

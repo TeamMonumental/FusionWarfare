@@ -53,7 +53,8 @@ public class InitItems {
 	public static Item steel_mixture;
 	public static Item evaporation_cell;
 	public static Item infused_circuit;
-	public static Item steel_plate;	
+	public static Item steel_plate;
+	public static Item gold_plate;
 	public static Item lightning_rod;
 	public static Item sturdy_handle;
 	public static Item solar_panel;	
@@ -155,7 +156,8 @@ public class InitItems {
 		
 		steel_mixture = new ItemBase("steel_mixture");
 		evaporation_cell = new ItemBase("evaporation_cell");
-		steel_plate = new ItemBase("steel_plate");		
+		steel_plate = new ItemBase("steel_plate");
+		gold_plate = new ItemBase("gold_plate");
 		lightning_rod = new ItemBase("lightning_rod");
 		sturdy_handle = new ItemBase("sturdy_handle");
 		solar_panel = new ItemBase("solar_panel");
@@ -189,7 +191,7 @@ public class InitItems {
 		
 		fusion_pistol = new ItemFusionGun("fusion_pistol", 10, 1, 12, 1, 0.08F, false);
 		fusion_auto_pistol = new ItemFusionGun("fusion_auto_pistol", 0, 1, 10, 3, 0.08F, false);
-		fusion_shotgun = new ItemFusionGun("fusion_shotgun", 30, 6, 30, 8, 0.09F, false);
+		fusion_shotgun = new ItemFusionGun("fusion_shotgun", 50, 6, 30, 8, 0.09F, false);
 		fusion_smg = new ItemFusionGun("fusion_smg", 0, 1, 10, 2, 0.04F, false);
 		fusion_sniper_rifle = new ItemFusionGun("fusion_sniper_rifle", 100, 1, 60, 0, 0.002F, true);	
 		fusion_gatling_gun = new ItemFusionGatlingGun("fusion_gatling_gun", 1, 20, 1, 0.06F);

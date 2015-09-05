@@ -20,15 +20,15 @@ public class InitRecipes {
 	public static void init() {
 
 		//#-#-#-#-#-BLOCKS-#-#-#-#-#\\
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.black_brick, 16), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.black_brick, 8), new Object[] {
 			"BSB", "SBS", "BSB", 'S', InitItems.steel_ingot, 'B', Blocks.brick_block,
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.blue_brick, 16), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.blue_brick, 8), new Object[] {
 			"BIB", "IBI", "BIB", 'I', InitItems.infused_crystal, 'B', Blocks.brick_block,
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.red_brick, 16), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.red_brick, 8), new Object[] {
 			"BRB", "RBR", "BRB", 'R', Items.redstone, 'B', Blocks.brick_block,
 		});
 		
@@ -194,7 +194,7 @@ public class InitRecipes {
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.infused_circuit), new Object[] {
-			"RIR", "IGI", "RIR", 'I', InitItems.infused_crystal, 'G', Items.gold_ingot, 'R', Items.redstone
+			"RIR", "IGI", "RIR", 'I', InitItems.infused_crystal, 'G', InitItems.gold_plate, 'R', Items.redstone
 		});
 		
 		//Guns Parts
