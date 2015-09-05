@@ -91,10 +91,12 @@ public class ItemFusionGun extends ItemBase {
 			if (is != ((EntityPlayer) entity).inventory.getCurrentItem()) {
 				getNBT(is).setFloat("Scoping", 0);
 			}
-
-			if (getCurrentProgress(is) < getMaxDamage()) {
-				is.damageItem(-1, (EntityLivingBase) entity);
-			}
+			
+			else {
+				if (getCurrentProgress(is) < getMaxDamage()) {
+					is.damageItem(-1, (EntityLivingBase) entity);
+				}				
+			}		
 		}
 	}
 
