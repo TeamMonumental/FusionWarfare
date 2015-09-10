@@ -1,6 +1,6 @@
 package calemi.fusionwarfare.tileentity.gen;
 
-import calemi.fusionwarfare.tileentity.EnumIO;
+import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.EnergyUtil;
 import cpw.mods.fml.relauncher.Side;

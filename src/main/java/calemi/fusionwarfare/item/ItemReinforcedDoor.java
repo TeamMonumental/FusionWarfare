@@ -45,7 +45,7 @@ public class ItemReinforcedDoor extends ItemBase {
 					
 					if (!world.isRemote) {
 						if (player.getTeam() != null) {
-							tileEntity.teamName = player.getTeam().getRegisteredName();
+							tileEntity.setTeam(player.getTeam());
 						}
 					
 						else {

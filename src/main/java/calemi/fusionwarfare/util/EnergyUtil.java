@@ -1,6 +1,6 @@
 package calemi.fusionwarfare.util;
 
-import calemi.fusionwarfare.tileentity.IEnergy;
+import calemi.fusionwarfare.api.IEnergy;
 
 public class EnergyUtil {
 

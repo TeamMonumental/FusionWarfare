@@ -1,41 +1,46 @@
 package calemi.fusionwarfare.tileentity;
 
+import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.api.ISecurity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.scoreboard.Team;
+import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityReinforcedDoor extends TileEntitySecurity {
+public class TileEntityReinforcedDoor extends TileEntity implements ISecurity {
+
+	private String teamName;
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
-		return new int[]{};
+	public boolean isSameTeam(Team team) {
+		return geTeam() != null && geTeam().isSameTeam(team);
 	}
 
 	@Override
-	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
-		return false;
-	}
-
-	@Override
-	public int getSizeInventory() {
-		return 0;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
-		return false;
-	}
-
-	@Override
-	public EnumIO getIOType() {
-		return null;
+	public void setTeam(Team team) {
+		teamName = team.getRegisteredName();
 	}
 	
 	@Override
-	public ItemStack getOverclockingSlot() {
-		return null;
+	public Team geTeam() {
+		return worldObj.getScoreboard().getTeam(teamName);
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		
+		if (teamName != null) {
+			nbt.setString("team", teamName);
+		}
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		
+		if (nbt.hasKey("team")) {
+			teamName = nbt.getString("team");
+		}
 	}
 }

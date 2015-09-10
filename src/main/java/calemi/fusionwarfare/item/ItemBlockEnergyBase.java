@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
+import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.init.InitCreativeTabs;
-import calemi.fusionwarfare.tileentity.EnumIO;
-import calemi.fusionwarfare.tileentity.IEnergy;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;

@@ -1,7 +1,7 @@
 package calemi.fusionwarfare.tileentity.reactor;
 
+import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.init.InitBlocks;
-import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.Location;

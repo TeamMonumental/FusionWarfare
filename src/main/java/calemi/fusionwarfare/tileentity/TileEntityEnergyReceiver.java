@@ -1,5 +1,6 @@
 package calemi.fusionwarfare.tileentity;
 
+import calemi.fusionwarfare.api.EnumIO;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;

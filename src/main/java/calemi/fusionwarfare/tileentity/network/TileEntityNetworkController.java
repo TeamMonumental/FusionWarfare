@@ -3,14 +3,14 @@ package calemi.fusionwarfare.tileentity.network;
 import java.util.ArrayList;
 import java.util.List;
 
+import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.block.BlockBasicMachineBase;
 import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.IEnergyItem;
 import calemi.fusionwarfare.item.ItemEnergyBase;
 import calemi.fusionwarfare.item.ItemEnergyConsumable;
-import calemi.fusionwarfare.tileentity.EnumIO;
-import calemi.fusionwarfare.tileentity.IEnergy;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.BlockScanUtil;
 import calemi.fusionwarfare.util.EnergyItemUtil;

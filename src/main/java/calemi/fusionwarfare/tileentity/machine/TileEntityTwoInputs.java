@@ -1,9 +1,9 @@
 package calemi.fusionwarfare.tileentity.machine;
 
+import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
-import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.EnergyUtil;
 import net.minecraft.item.ItemStack;

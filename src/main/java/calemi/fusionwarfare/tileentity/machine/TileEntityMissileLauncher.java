@@ -3,9 +3,9 @@ package calemi.fusionwarfare.tileentity.machine;
 import java.util.Random;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.entity.EntityMissile;
 import calemi.fusionwarfare.item.ItemMissile;
-import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 import calemi.fusionwarfare.util.EnergyUtil;

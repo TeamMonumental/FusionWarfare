@@ -1,7 +1,7 @@
 package calemi.fusionwarfare.tileentity.machine;
 
+import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.entity.EntityMissile;
-import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.item.ItemStack;

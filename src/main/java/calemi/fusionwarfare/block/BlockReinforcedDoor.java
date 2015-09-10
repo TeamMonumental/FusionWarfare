@@ -135,7 +135,7 @@ public class BlockReinforcedDoor extends BlockContainerBase {
 		
 			TileEntityReinforcedDoor tileEntity = (TileEntityReinforcedDoor)world.getTileEntity(x, y - (b ? 1 : 0), z);
 		
-			if (tileEntity.isSameTeam(player)) {
+			if (tileEntity.isSameTeam(player.getTeam())) {
 				openDoor(world, x, y, z, player);
 			}			
 		}

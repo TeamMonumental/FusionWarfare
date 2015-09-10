@@ -3,9 +3,9 @@ package calemi.fusionwarfare.tileentity.reactor;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.block.BlockContainerBase;
-import calemi.fusionwarfare.tileentity.EnumIO;
-import calemi.fusionwarfare.tileentity.IEnergy;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 
 public class TileEntitySteelCasing extends TileEntity implements IEnergy {

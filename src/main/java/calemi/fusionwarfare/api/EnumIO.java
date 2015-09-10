@@ -1,4 +1,4 @@
-package calemi.fusionwarfare.tileentity;
+package calemi.fusionwarfare.api;
 
 public enum EnumIO {
 

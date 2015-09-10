@@ -1,7 +1,7 @@
 package calemi.fusionwarfare.tileentity.network;
 
-import calemi.fusionwarfare.tileentity.EnumIO;
-import calemi.fusionwarfare.tileentity.IEnergy;
+import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

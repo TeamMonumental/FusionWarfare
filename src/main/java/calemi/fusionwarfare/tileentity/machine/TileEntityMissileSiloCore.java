@@ -6,10 +6,10 @@ import java.util.Random;
 import javax.vecmath.AxisAngle4f;
 import javax.vecmath.Vector3f;
 
+import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.entity.EntityMissile;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.item.ItemMissile;
-import calemi.fusionwarfare.tileentity.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 import calemi.fusionwarfare.tileentity.reactor.TileEntitySteelCasing;

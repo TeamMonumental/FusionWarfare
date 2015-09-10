@@ -3,7 +3,7 @@ package calemi.fusionwarfare.tileentity.machine;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import calemi.fusionwarfare.tileentity.EnumIO;
+import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.EnergyUtil;
 
