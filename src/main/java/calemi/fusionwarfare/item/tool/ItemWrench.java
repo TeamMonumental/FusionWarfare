@@ -90,7 +90,7 @@ public class ItemWrench extends ItemBase {
 					
 					TileEntitySecurity tileEntitySecurity = (TileEntitySecurity)w.getTileEntity(x, y, z);
 					
-					if (tileEntitySecurity.isSameTeam(p)) {					
+					if (tileEntitySecurity.isSameTeam(p.getTeam())) {					
 						
 						w.setBlockToAir(x, y, z);
 						block.dropBlockAsItem(w, x, y, z, m, 2);

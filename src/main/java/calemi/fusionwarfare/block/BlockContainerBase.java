@@ -102,7 +102,7 @@ public abstract class BlockContainerBase extends BlockContainer {
 			
 			if (tileEntity instanceof TileEntitySecurity) {	
 	
-				if (((TileEntitySecurity)tileEntity).isSameTeam(p)) {
+				if (((TileEntitySecurity)tileEntity).isSameTeam(p.getTeam())) {
 						
 					FMLNetworkHandler.openGui(p, FusionWarfare.instance, getGuiID(), w, x, y, z);
 				}

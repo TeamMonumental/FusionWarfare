@@ -61,7 +61,7 @@ public class GuiOverclockedEnergyTank extends GuiContainerBase {
 			drawInfoTextBar("Target Y: " + tileEntityTransmitter.targetY, 1);
 			drawInfoTextBar("Target Z: " + tileEntityTransmitter.targetZ, 2);		
 			
-			if (tileEntityReciever == null || tileEntityTransmitter.target == null || !tileEntityTransmitter.compare(tileEntityReciever)) {
+			if (tileEntityReciever == null || tileEntityTransmitter.target == null || !tileEntityTransmitter.isSameTeam(tileEntityReciever.getTeam())) {
 				drawInfoTextBar(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "Receiver Not Found!", 3);
 			}
 			

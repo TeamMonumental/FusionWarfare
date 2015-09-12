@@ -1,5 +1,6 @@
 package calemi.fusionwarfare.tileentity;
 
+import calemi.fusionwarfare.api.ISecurity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,36 +14,21 @@ import net.minecraft.scoreboard.Team;
 import net.minecraft.stats.ObjectiveStat;
 import net.minecraft.tileentity.TileEntity;
 
-public abstract class TileEntitySecurity extends TileEntityBase {
+public abstract class TileEntitySecurity extends TileEntityBase implements ISecurity {
 
 	public String teamName;
-	public boolean running;
-	
-	public boolean isSameTeam(EntityPlayer player) {
-		
-		if (getTeam() != null) {
-			return getTeam().isSameTeam(player.getTeam());
-		}
-		
-		return true;
+
+	@Override
+	public boolean isSameTeam(Team team) {
+		return team != null && getTeam() != null && getTeam().isSameTeam(team);
 	}
 	
-	public boolean compare(TileEntitySecurity tileEntity) {
-		
-		if (getTeam() == null && tileEntity.getTeam() == null) {
-			return true;
-		}
-		
-		if (getTeam() != null && tileEntity.getTeam() != null) {
-			
-			if (getTeam().isSameTeam(tileEntity.getTeam())) {
-				return true;
-			}
-		}
-		
-		return false;
+	@Override
+	public void setTeam(Team team) {
+		teamName = team.getRegisteredName();
 	}
 	
+	@Override
 	public Team getTeam() {
 		return worldObj.getScoreboard().getTeam(teamName);
 	}
@@ -53,9 +39,7 @@ public abstract class TileEntitySecurity extends TileEntityBase {
 		
 		if (teamName != null) {
 			nbt.setString("team", teamName);
-		}		
-					
-		nbt.setBoolean("running", running);
+		}
 	}
 	
 	@Override
@@ -64,8 +48,6 @@ public abstract class TileEntitySecurity extends TileEntityBase {
 		
 		if (nbt.hasKey("team")) {
 			teamName = nbt.getString("team");
-		}		
-			
-		running = nbt.getBoolean("running");
+		}
 	}	
 }

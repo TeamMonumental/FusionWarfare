@@ -15,6 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.api.ISecurity;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
@@ -147,7 +148,7 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 			if (w.getTileEntity(x, y, z) instanceof TileEntitySecurity) {
 				
 				if (player.getTeam() != null) {
-					((TileEntitySecurity)w.getTileEntity(x, y, z)).teamName = player.getTeam().getRegisteredName();
+					((ISecurity)w.getTileEntity(x, y, z)).setTeam(player.getTeam());
 				}
 				
 				else {

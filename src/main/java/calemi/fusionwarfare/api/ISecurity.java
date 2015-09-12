@@ -8,5 +8,5 @@ public interface ISecurity {
 	
 	public void setTeam(Team team);
 	
-	public Team geTeam();
+	public Team getTeam();
 }

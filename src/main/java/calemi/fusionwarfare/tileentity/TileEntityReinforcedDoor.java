@@ -13,7 +13,7 @@ public class TileEntityReinforcedDoor extends TileEntity implements ISecurity {
 
 	@Override
 	public boolean isSameTeam(Team team) {
-		return geTeam() != null && geTeam().isSameTeam(team);
+		return getTeam() != null && getTeam().isSameTeam(team);
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class TileEntityReinforcedDoor extends TileEntity implements ISecurity {
 	}
 	
 	@Override
-	public Team geTeam() {
+	public Team getTeam() {
 		return worldObj.getScoreboard().getTeam(teamName);
 	}
 	

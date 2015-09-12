@@ -41,7 +41,7 @@ public class TileEntityAuraTurret extends TileEntitySecurity {
 				
 				EntityPlayer player = (EntityPlayer)o;
 				
-				if (!player.capabilities.isCreativeMode && !isSameTeam(player) && player.hurtResistantTime == 0) {
+				if (!player.capabilities.isCreativeMode && !isSameTeam(player.getTeam()) && player.hurtResistantTime == 0) {
 						
 					resetProgress();	
 						

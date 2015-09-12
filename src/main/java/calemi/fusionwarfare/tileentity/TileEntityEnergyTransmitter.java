@@ -34,7 +34,7 @@ public class TileEntityEnergyTransmitter extends TileEntitySecurity {
 					
 			if (!worldObj.isRemote) {
 				
-				if (compare(tileEntity)) {
+				if (isSameTeam(tileEntity.getTeam())) {
 					EnergyUtil.transferEnergy(this, tileEntity, transferRate);
 				}
 			}

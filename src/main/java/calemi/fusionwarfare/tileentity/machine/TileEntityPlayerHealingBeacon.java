@@ -42,7 +42,7 @@ public class TileEntityPlayerHealingBeacon extends TileEntitySecurity {
 						
 						EntityPlayer player = (EntityPlayer)o;
 												
-						if (!player.capabilities.isCreativeMode && isSameTeam(player) && player.getDistance(xCoord, yCoord, zCoord) <= 32 && player.getHealth() < player.getMaxHealth()) {
+						if (!player.capabilities.isCreativeMode && isSameTeam(player.getTeam()) && player.getDistance(xCoord, yCoord, zCoord) <= 32 && player.getHealth() < player.getMaxHealth()) {
 							
 							if (EnergyUtil.canSubtractEnergy(this, energyCost)) {
 								EnergyUtil.subtractEnergy(this, energyCost);
