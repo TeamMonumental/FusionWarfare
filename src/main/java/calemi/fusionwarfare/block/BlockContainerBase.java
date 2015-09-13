@@ -99,7 +99,7 @@ public abstract class BlockContainerBase extends BlockContainer {
 		
 		if(!w.isRemote) {
 			
-			TileEntity tileEntity = w.getTileEntity(x, y, z);
+			/*TileEntity tileEntity = w.getTileEntity(x, y, z);
 			
 			if (tileEntity instanceof ISecurity) {	
 	
@@ -113,9 +113,9 @@ public abstract class BlockContainerBase extends BlockContainer {
 				}
 			}
 			
-			else {
+			else {*/
 				FMLNetworkHandler.openGui(p, FusionWarfare.instance, getGuiID(), w, x, y, z);
-			}
+			//}
 		}
 		
 		return true;	

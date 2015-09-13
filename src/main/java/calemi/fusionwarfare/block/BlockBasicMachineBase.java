@@ -1,30 +1,17 @@
 package calemi.fusionwarfare.block;
 
+import calemi.fusionwarfare.Reference;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import calemi.fusionwarfare.FusionWarfare;
-import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.api.ISecurity;
-import calemi.fusionwarfare.api.SecurityUtils;
-import calemi.fusionwarfare.init.InitCreativeTabs;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
-import calemi.fusionwarfare.tileentity.TileEntitySecurity;
-import calemi.fusionwarfare.tileentity.TileEntitySupplyCrate;
-import calemi.fusionwarfare.tileentity.network.TileEntityNetworkCable;
-import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockBasicMachineBase extends BlockContainerBase {
 
@@ -141,11 +128,6 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 	}
 
 	public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase e, ItemStack is) {
-		
-		if (!w.isRemote && e instanceof EntityPlayer) {
-			
-			SecurityUtils.placeBlock(x, y, z, w, (EntityPlayer) e);		
-		}
 		
 		int l = MathHelper.floor_double((double) (e.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
 		

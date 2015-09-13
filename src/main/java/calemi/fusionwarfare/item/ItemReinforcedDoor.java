@@ -1,17 +1,12 @@
 package calemi.fusionwarfare.item;
 
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.api.SecurityUtils;
 import calemi.fusionwarfare.init.InitBlocks;
-import calemi.fusionwarfare.tileentity.TileEntityReinforcedDoor;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -40,11 +35,7 @@ public class ItemReinforcedDoor extends ItemBase {
 				
 				else {
 					int i1 = MathHelper.floor_double((double) ((player.rotationYaw + 180.0F) * 4.0F / 360.0F) - 0.5D) & 3;
-					ItemDoor.placeDoorBlock(world, x, y, z, i1, block);
-					
-					if (!world.isRemote) {
-						SecurityUtils.placeBlock(x, y, z, world, player);
-					}										
+					ItemDoor.placeDoorBlock(world, x, y, z, i1, block);									
 					
 					--itemStack.stackSize;
 					return true;

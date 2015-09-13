@@ -1,5 +1,6 @@
 package calemi.fusionwarfare;
 
+import calemi.fusionwarfare.api.SecurityEvent;
 import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.event.CraftingEvent;
 import calemi.fusionwarfare.event.EntitySpawnEvent;
@@ -57,6 +58,8 @@ public class FusionWarfare {
 		
 		MinecraftForge.EVENT_BUS.register(new EntitySpawnEvent());
 		MinecraftForge.EVENT_BUS.register(new OnPlayerJoinEvent());
+		
+		MinecraftForge.EVENT_BUS.register(new SecurityEvent());	
 		
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		FWConfig.syncConfig();
