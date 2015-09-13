@@ -7,11 +7,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenOcean;
+import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
-import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
 

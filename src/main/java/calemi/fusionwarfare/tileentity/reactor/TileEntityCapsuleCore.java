@@ -1,9 +1,9 @@
 package calemi.fusionwarfare.tileentity.reactor;
 
+import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
-import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
 import net.minecraft.init.Blocks;

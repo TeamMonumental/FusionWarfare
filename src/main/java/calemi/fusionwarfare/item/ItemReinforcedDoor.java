@@ -1,6 +1,7 @@
 package calemi.fusionwarfare.item;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.api.SecurityUtils;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.tileentity.TileEntityReinforcedDoor;
 import net.minecraft.block.Block;
@@ -41,16 +42,8 @@ public class ItemReinforcedDoor extends ItemBase {
 					int i1 = MathHelper.floor_double((double) ((player.rotationYaw + 180.0F) * 4.0F / 360.0F) - 0.5D) & 3;
 					ItemDoor.placeDoorBlock(world, x, y, z, i1, block);
 					
-					TileEntityReinforcedDoor tileEntity = (TileEntityReinforcedDoor)world.getTileEntity(x, y, z);
-					
 					if (!world.isRemote) {
-						if (player.getTeam() != null) {
-							tileEntity.setTeam(player.getTeam());
-						}
-					
-						else {
-							player.addChatMessage(new ChatComponentText("You are not on a team. No security will be added"));	
-						}
+						SecurityUtils.placeBlock(x, y, z, world, player);
 					}										
 					
 					--itemStack.stackSize;

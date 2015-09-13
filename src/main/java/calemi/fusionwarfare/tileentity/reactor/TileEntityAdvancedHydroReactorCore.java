@@ -12,11 +12,11 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.world.biome.BiomeGenOcean;
 import net.minecraftforge.common.util.ForgeDirection;
+import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
-import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
 

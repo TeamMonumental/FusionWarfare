@@ -1,10 +1,10 @@
 package calemi.fusionwarfare.packet;
 
 import calemi.fusionwarfare.FusionWarfare;
+import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
-import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.GunUtil;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

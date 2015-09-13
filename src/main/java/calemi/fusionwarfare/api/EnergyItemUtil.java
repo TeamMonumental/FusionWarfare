@@ -1,7 +1,6 @@
-package calemi.fusionwarfare.util;
+package calemi.fusionwarfare.api;
 
 import net.minecraft.item.ItemStack;
-import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.item.IEnergyItem;
 
 public class EnergyItemUtil {

@@ -20,7 +20,7 @@ public abstract class TileEntitySecurity extends TileEntityBase implements ISecu
 
 	@Override
 	public boolean isSameTeam(Team team) {
-		return team != null && getTeam() != null && getTeam().isSameTeam(team);
+		return getTeam() == null || (team != null && getTeam().isSameTeam(team));
 	}
 	
 	@Override

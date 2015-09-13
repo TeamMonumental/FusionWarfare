@@ -3,6 +3,8 @@ package calemi.fusionwarfare.tileentity.network;
 import java.util.ArrayList;
 import java.util.List;
 
+import calemi.fusionwarfare.api.EnergyItemUtil;
+import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.block.BlockBasicMachineBase;
@@ -13,8 +15,6 @@ import calemi.fusionwarfare.item.ItemEnergyBase;
 import calemi.fusionwarfare.item.ItemEnergyConsumable;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.BlockScanUtil;
-import calemi.fusionwarfare.util.EnergyItemUtil;
-import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.Location;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

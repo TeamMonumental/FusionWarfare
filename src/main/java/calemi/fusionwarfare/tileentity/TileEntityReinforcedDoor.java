@@ -13,7 +13,7 @@ public class TileEntityReinforcedDoor extends TileEntity implements ISecurity {
 
 	@Override
 	public boolean isSameTeam(Team team) {
-		return getTeam() != null && getTeam().isSameTeam(team);
+		return getTeam() == null || (team != null && getTeam().isSameTeam(team));
 	}
 
 	@Override

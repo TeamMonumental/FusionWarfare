@@ -4,11 +4,11 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.block.BlockReinforceable;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
-import calemi.fusionwarfare.util.EnergyUtil;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
 

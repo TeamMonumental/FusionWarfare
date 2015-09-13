@@ -4,6 +4,7 @@ import java.util.Random;
 
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.api.ISecurity;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
@@ -100,9 +101,9 @@ public abstract class BlockContainerBase extends BlockContainer {
 			
 			TileEntity tileEntity = w.getTileEntity(x, y, z);
 			
-			if (tileEntity instanceof TileEntitySecurity) {	
+			if (tileEntity instanceof ISecurity) {	
 	
-				if (((TileEntitySecurity)tileEntity).isSameTeam(p.getTeam())) {
+				if (((ISecurity)tileEntity).isSameTeam(p.getTeam())) {
 						
 					FMLNetworkHandler.openGui(p, FusionWarfare.instance, getGuiID(), w, x, y, z);
 				}

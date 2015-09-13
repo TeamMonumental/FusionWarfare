@@ -10,13 +10,13 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.block.BlockContainerBase;
 import calemi.fusionwarfare.entity.DamageSourceTurret;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
-import calemi.fusionwarfare.util.EnergyUtil;
 
 public class TileEntityAuraTurret extends TileEntitySecurity {
 

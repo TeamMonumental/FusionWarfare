@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.api.ISecurity;
+import calemi.fusionwarfare.api.SecurityUtils;
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
@@ -143,23 +144,14 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 		
 		if (!w.isRemote && e instanceof EntityPlayer) {
 			
-			EntityPlayer player = (EntityPlayer)e;
-			
-			if (w.getTileEntity(x, y, z) instanceof TileEntitySecurity) {
-				
-				if (player.getTeam() != null) {
-					((ISecurity)w.getTileEntity(x, y, z)).setTeam(player.getTeam());
-				}
-				
-				else {
-					player.addChatMessage(new ChatComponentText("You are not on a team. No security will be added"));	
-				}
-			}			
+			SecurityUtils.placeBlock(x, y, z, w, (EntityPlayer) e);		
 		}
 		
 		int l = MathHelper.floor_double((double) (e.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
-		if (isDirectional)
+		
+		if (isDirectional) {
 			w.setBlockMetadataWithNotify(x, y, z, l, 2);
+		}
 	}
 
 	@SideOnly(Side.CLIENT)

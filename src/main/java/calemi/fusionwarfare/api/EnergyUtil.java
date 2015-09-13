@@ -1,6 +1,4 @@
-package calemi.fusionwarfare.util;
-
-import calemi.fusionwarfare.api.IEnergy;
+package calemi.fusionwarfare.api;
 
 public class EnergyUtil {
 

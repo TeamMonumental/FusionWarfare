@@ -3,8 +3,8 @@ package calemi.fusionwarfare.item;
 import java.util.List;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.api.EnergyItemUtil;
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.util.EnergyItemUtil;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;

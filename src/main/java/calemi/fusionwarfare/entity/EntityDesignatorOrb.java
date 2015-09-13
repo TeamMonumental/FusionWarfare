@@ -3,11 +3,11 @@ package calemi.fusionwarfare.entity;
 import java.util.List;
 
 import calemi.fusionwarfare.FusionWarfare;
+import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.item.tool.ItemDesignator;
 import calemi.fusionwarfare.packet.ClientPacketHandler;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
-import calemi.fusionwarfare.util.EnergyUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
