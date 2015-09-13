@@ -49,7 +49,7 @@ public class ItemWrench extends ItemBase {
 		return true;
 	}
 	
-	@Override
+	/*@Override
 	public boolean onItemUse(ItemStack is, EntityPlayer p, World w, int x, int y, int z, int m, float f1, float f2, float f3) {
 		
 		if (!w.isRemote && p.isSneaking()) {
@@ -113,5 +113,5 @@ public class ItemWrench extends ItemBase {
 		}	
 		
 		return false;
-	}
+	}*/
 }

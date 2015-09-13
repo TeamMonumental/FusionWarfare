@@ -1,9 +1,16 @@
-package calemi.fusionwarfare.api;
+package calemi.fusionwarfare.api.events;
 
+import calemi.fusionwarfare.api.ISecurity;
+import calemi.fusionwarfare.event.CraftingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.scoreboard.Team;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.entity.player.PlayerOpenContainerEvent;
@@ -53,5 +60,36 @@ public class SecurityEvent {
 				}
 			}
 		}
+	}
+	
+	private Team getTeamFromItem(ItemStack stack, World world) {
+		
+		NBTTagCompound nbt = getNBT(stack);
+		
+		Team team = null;
+		
+		if (nbt.hasKey("team")) {
+			team = world.getScoreboard().getTeam(nbt.getString("team"));
+		}
+		
+		return team;
+	}
+	
+	private void setTeamToItem(ItemStack stack, Team team) {
+		
+		NBTTagCompound nbt = getNBT(stack);
+		
+		if (team != null) {
+			nbt.setString("team", team.getRegisteredName());
+		}
+	}
+	
+	private NBTTagCompound getNBT(ItemStack stack) {
+		
+		if (stack.getTagCompound() == null) {
+			stack.setTagCompound(new NBTTagCompound());
+		}
+		
+		return stack.getTagCompound();
 	}
 }
