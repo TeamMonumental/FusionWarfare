@@ -38,37 +38,6 @@ public class EnergyEvent {
 		}	
 	}
 	
-	@SubscribeEvent
-	public void onPlayerInteract(PlayerInteractEvent event) {
-		
-		if (!event.world.isRemote && event.action == Action.RIGHT_CLICK_BLOCK) {
-			
-			EntityPlayer player = event.entityPlayer;
-			Location loc = new Location(event.world, event.x, event.y, event.z);
-			TileEntity tileEntity = loc.getTileEntity();
-			
-			if (player.isSneaking() && player.inventory.getCurrentItem().getItem() == InitItems.wrench) {
-				
-				if (tileEntity instanceof IEnergy) {
-					
-					ItemStack stack = new ItemStack(Item.getItemFromBlock(loc.getBlock()), 1, loc.getBlockMetadata());
-					
-					NBTTagCompound nbt = getNBT(stack);
-					
-					nbt.setInteger("energy", ((IEnergy)tileEntity).getEnergy());
-				
-					EntityItem entityItem = new EntityItem(event.world, event.x, event.y, event.z);
-					
-					entityItem.setEntityItemStack(stack);
-					
-					event.world.spawnEntityInWorld(entityItem);
-					
-					loc.breakBlock();
-				}				
-			}			
-		}		
-	}
-	
 	private NBTTagCompound getNBT(ItemStack stack) {
 		
 		if (stack.getTagCompound() == null) {
