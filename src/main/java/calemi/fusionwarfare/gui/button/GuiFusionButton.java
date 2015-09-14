@@ -13,6 +13,8 @@ public class GuiFusionButton extends GuiButton {
 
 	private static final ResourceLocation buttonTexture = new ResourceLocation(Reference.MOD_ID + ":textures/gui/fusion_button.png");
 
+	public boolean clicked = false;
+	
 	public GuiFusionButton(int buttonId, int x, int y, int widthIn, String text) {
 
 		super(buttonId, x, y, widthIn, 16, "");
@@ -36,8 +38,8 @@ public class GuiFusionButton extends GuiButton {
 			GL11.glEnable(GL11.GL_BLEND);
 			OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, (k * 16), this.width / 2, this.height);
-			this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, (k * 16), this.width / 2, this.height);
+			this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, clicked ? 0 : (k * 16), this.width / 2, this.height);
+			this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, clicked ? 0 : (k * 16), this.width / 2, this.height);
 			this.mouseDragged(mc, mouseX, mouseY);
 			int l = 14737632;
 

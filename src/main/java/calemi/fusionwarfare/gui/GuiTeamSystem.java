@@ -42,7 +42,11 @@ public class GuiTeamSystem extends GuiScreenBase {
 	private GuiFusionButton subButton1, subButton2;
 	private GuiFusionButton upButton1, upButton2;
 	private GuiFusionButton downButton1, downButton2;
+	private GuiFusionButton joinButton;
 	private GuiFusionButton doneButton;
+		
+	//Team Options
+	private GuiFusionButton friendlyFireButton;
 	private GuiFusionButton colorButton;
 	private GuiFusionButton addColorButton;
 	
@@ -65,7 +69,7 @@ public class GuiTeamSystem extends GuiScreenBase {
 
 	@Override
 	public int getGuiSizeY() {
-		return 176;
+		return 209;
 	}
 	
 	@Override
@@ -112,14 +116,22 @@ public class GuiTeamSystem extends GuiScreenBase {
 		downButton2 = new GuiFusionButton(nextButtonID++, getScreenX() + offsetX + otherSideOffsetX, getScreenY() + 114, 16, "\\/");
 		buttonList.add(downButton2);
 		
+		joinButton = new GuiFusionButton(nextButtonID++, getScreenX() + offsetX + 18, getScreenY() + 94, 38, "Join");
+		buttonList.add(joinButton);
+		
 		doneButton = new GuiFusionButton(nextButtonID++, getScreenX() + offsetX, getScreenY() + 152, 74, "Done");
 		buttonList.add(doneButton);
 		
-		colorButton = new GuiFusionButton(nextButtonID++, getScreenX() + offsetX, getScreenY() + 133, 48, EnumColorUtil.getPrefixByColor(getSelectedColor()) + "Color");
-		buttonList.add(colorButton);
+		//Team Options
 		
-		addColorButton = new GuiFusionButton(nextButtonID++, getScreenX() + offsetX + otherSideOffsetX, getScreenY() + 133, 16, "+");
+		colorButton = new GuiFusionButton(nextButtonID++, getScreenX() + 130, getScreenY() + 188, 48, EnumColorUtil.getPrefixByColor(getSelectedColor()) + "Color");
+		buttonList.add(colorButton);		
+		
+		addColorButton = new GuiFusionButton(nextButtonID++, getScreenX() + 130 + otherSideOffsetX, getScreenY() + 188, 16, "+");
 		buttonList.add(addColorButton);
+		
+		friendlyFireButton = new GuiFusionButton(nextButtonID++, getScreenX() + 51, getScreenY() + 188, 74, "Friendly Fire");
+		buttonList.add(friendlyFireButton);
 	}
 	
 	@Override
@@ -152,12 +164,21 @@ public class GuiTeamSystem extends GuiScreenBase {
 				}		
 			}
 		}
+		
+		if (getSelectedTeam() != null) {
+			friendlyFireButton.clicked = getSelectedTeam().getAllowFriendlyFire();
+		}
+		
+		colorButton.enabled = (getSelectedTeam() != null);
+		addColorButton.enabled = (getSelectedTeam() != null);	
+		friendlyFireButton.enabled = (getSelectedTeam() != null);
 	}
 	
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
 		drawCenteredStringWithoutShadow("Teams", 47, 6);
 		drawCenteredStringWithoutShadow("Players", 207, 6);	
+		drawCenteredStringWithoutShadow("Team Options", getGuiSizeX() / 2, 178);
 		teamNameField.drawTextBox();
 		playerNameField.drawTextBox();
 	}
@@ -207,12 +228,6 @@ public class GuiTeamSystem extends GuiScreenBase {
 	@Override
 	protected void actionPerformed(GuiButton button) {
 		
-		if (colorButton.id == button.id) currentColorIndex++;
-		
-		if (addColorButton.id == button.id && getSelectedTeam() != null) {
-			((EntityClientPlayerMP)player).sendChatMessage("/scoreboard teams option " + getSelectedTeam().getRegisteredName() + " color " + getSelectedColor().toString().toLowerCase());	
-		}
-		
 		if (upButton1.id == button.id) currentTeamIndex--;
 		if (downButton1.id == button.id) currentTeamIndex++;
 		
@@ -253,9 +268,35 @@ public class GuiTeamSystem extends GuiScreenBase {
 			}
 		}
 		
+		if (joinButton.id == button.id) {
+			
+			if (getSelectedTeam() != null) {			
+				
+				((EntityClientPlayerMP)player).sendChatMessage("/scoreboard teams join " + getSelectedTeam().getRegisteredName() + " " + player.getDisplayName());	
+			}
+		}
+		
 		if (doneButton.id == button.id) {
 			player.closeScreen();
 		}	
+				
+		//Team Options
+		
+		if (colorButton.id == button.id) currentColorIndex++;
+		
+		if (addColorButton.id == button.id && getSelectedTeam() != null) {
+			((EntityClientPlayerMP)player).sendChatMessage("/scoreboard teams option " + getSelectedTeam().getRegisteredName() + " color " + getSelectedColor().toString().toLowerCase());	
+		}
+		
+		if (friendlyFireButton.id == button.id) {
+			
+			if (getSelectedTeam() != null) {			
+				
+				((EntityClientPlayerMP)player).sendChatMessage("/scoreboard teams option " + getSelectedTeam().getRegisteredName() + " friendlyFire " + !(getSelectedTeam().getAllowFriendlyFire()));	
+			}
+		}
+		
+		//-----------
 		
 		if (teams.size() != 0) {
 			
@@ -400,7 +441,7 @@ public class GuiTeamSystem extends GuiScreenBase {
 		
 		if (playerNames.size() == 1) {
 			currentPlayerIndex = 0;
-		}
+		}	
 	}
 
 	@Override
