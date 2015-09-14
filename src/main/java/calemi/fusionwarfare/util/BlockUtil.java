@@ -16,12 +16,12 @@ public class BlockUtil {
 			
 		if (loc.getBlock() != Blocks.air) {	
 			
-			if (rand.nextInt(3) == 0) {	
-				
+			if (rand.nextInt(1) == 0) {					
 				EntityBlock ghostBlock = new EntityBlock(loc.world, loc.x, loc.y, loc.z, loc.getBlock(), loc.getBlockMetadata());
-				loc.world.spawnEntityInWorld(ghostBlock);
-				loc.breakBlock();
+				loc.world.spawnEntityInWorld(ghostBlock);				
 			}
+			
+			loc.breakBlock();
 		}			
 	}
 	
@@ -32,7 +32,7 @@ public class BlockUtil {
 			if ((loc.getBlockMetadata() - degrade) < 0) {			
 				
 				if (spawnGhostBlocks) {
-					BlockUtil.spawnGhostBlock(loc);				
+					BlockUtil.spawnGhostBlock(loc);		
 				}
 				
 				else loc.world.setBlockToAir(loc.x, loc.y, loc.z);

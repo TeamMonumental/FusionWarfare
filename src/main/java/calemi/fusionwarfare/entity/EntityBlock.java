@@ -38,6 +38,8 @@ public class EntityBlock extends Entity implements IEntityAdditionalSpawnData {
 	public void onUpdate() {
 		super.onUpdate();
 		
+		moveEntity(0, motionY, 0);
+		
 		if (ticksExisted > deathTime) setDead(); 
 	}
 	
@@ -67,11 +69,5 @@ public class EntityBlock extends Entity implements IEntityAdditionalSpawnData {
 	}
 
 	@Override
-	protected void entityInit() {
-	}
-
-	@Override
-	public boolean canBeCollidedWith() {
-		return true;
-	}
+	protected void entityInit() {}
 }
