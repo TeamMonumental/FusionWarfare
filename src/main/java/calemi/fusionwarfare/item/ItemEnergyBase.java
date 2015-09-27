@@ -19,7 +19,7 @@ public abstract class ItemEnergyBase extends ItemBase implements IEnergyItem {
 	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List l, boolean b) {
-		l.add(EnumChatFormatting.GOLD + "Energy: " + EnumChatFormatting.AQUA + getEnergy(stack) + "/" + getMaxEnergy());
+		l.add(EnumChatFormatting.GOLD + "FE: " + EnumChatFormatting.AQUA + getEnergy(stack) + "/" + getMaxEnergy());
 	}
 
 	@Override

@@ -2,28 +2,17 @@ package calemi.fusionwarfare.gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import javax.vecmath.Color3f;
 import org.lwjgl.input.Keyboard;
-import com.mojang.realmsclient.gui.ChatFormatting;
+
 import calemi.fusionwarfare.gui.button.GuiFusionButton;
-import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import calemi.fusionwarfare.util.EnumColorUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.command.server.CommandListPlayers;
-import net.minecraft.command.server.CommandScoreboard;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayer.EnumChatVisibility;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Team;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.common.util.Constants.NBT;
 
 public class GuiTeamSystem extends GuiScreenBase {
 

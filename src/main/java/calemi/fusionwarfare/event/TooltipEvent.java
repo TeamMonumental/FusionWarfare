@@ -94,7 +94,7 @@ public class TooltipEvent {
 						
 						ItemFusionMatterDeconstructor itemFusionTool = (ItemFusionMatterDeconstructor) event.itemStack.getItem();
 						event.toolTip.add(EnumChatFormatting.GOLD + "Sharpness: " + EnumChatFormatting.AQUA + (4.0F + Item.ToolMaterial.valueOf(itemTool.getToolMaterialName()).getDamageVsEntity()));
-						event.toolTip.add(EnumChatFormatting.GOLD + "Energy: " + EnumChatFormatting.AQUA + itemFusionTool.getEnergy(event.itemStack) + "/" + itemFusionTool.getMaxEnergy());
+						event.toolTip.add(EnumChatFormatting.GOLD + "FE: " + EnumChatFormatting.AQUA + itemFusionTool.getEnergy(event.itemStack) + "/" + itemFusionTool.getMaxEnergy());
 					}
 					
 					else {

@@ -4,7 +4,7 @@ public class Reference {
 	
 	public static final String MOD_ID = "FusionWarfare";
 	public static final String MOD_NAME = "Fusion Warfare";
-	public static final String VERSION = "1.7.10-1.1.1";
+	public static final String VERSION = "1.7.10-1.2.0";
 	public static final String CLIENT_PROXY_CLASS = "calemi.fusionwarfare.proxy.ClientProxy";
 	public static final String SERVER_PROXY_CLASS = "calemi.fusionwarfare.proxy.ServerProxy";
 	public static final String GUI_FACTORY = "calemi.fusionwarfare.gui.GuiFactory";
@@ -59,6 +59,5 @@ public class Reference {
 	public static int guiIDEnergyTransmitter = nextGuiID++;
 	public static int guiIDEnergyReceiver = nextGuiID++;		
 	
-	public static int guiIDSupplyCrate = nextGuiID++;
-	
+	public static int guiIDSupplyCrate = nextGuiID++;	
 }

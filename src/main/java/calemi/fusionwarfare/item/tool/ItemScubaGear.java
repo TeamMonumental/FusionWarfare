@@ -32,8 +32,6 @@ import net.minecraft.world.World;
 
 public class ItemScubaGear extends ItemArmorBase {
 
-	private boolean canRemove = false;
-
 	public ItemScubaGear(String imagePath, String imageKey, ArmorMaterial armorMaterial, int renderIndex, int armorType) {
 		super(imagePath, imageKey, "", armorMaterial, renderIndex, armorType, false);
 	}
@@ -144,16 +142,12 @@ public class ItemScubaGear extends ItemArmorBase {
 		
 		if (hasFullSuit && player.isInsideOfMaterial(Material.water)) {
 			
-			canRemove = true;
-
 			player.addPotionEffect(new PotionEffect(3, 20, 2, true));
 			player.addPotionEffect(new PotionEffect(13, 20, 0, true));
 			player.addPotionEffect(new PotionEffect(16, 300, 0, true));
 		}
 
-		else if (canRemove) {
-
-			canRemove = false;
+		else {
 
 			player.removePotionEffect(3);
 			player.removePotionEffect(13);
