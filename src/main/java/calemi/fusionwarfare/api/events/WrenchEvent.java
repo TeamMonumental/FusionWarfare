@@ -3,6 +3,7 @@ package calemi.fusionwarfare.api.events;
 import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.api.ISecurity;
 import calemi.fusionwarfare.init.InitItems;
+import calemi.fusionwarfare.item.ItemBattery;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
@@ -61,7 +62,7 @@ public class WrenchEvent {
 		
 		NBTTagCompound nbt = getNBT(event.itemStack);
 		
-		if (nbt.hasKey("energy")) {
+		if (nbt.hasKey("energy") && !(event.itemStack.getItem() instanceof ItemBattery)) {
 			event.toolTip.add(EnumChatFormatting.GOLD + "FE: " + EnumChatFormatting.AQUA + nbt.getInteger("energy") + (nbt.hasKey("maxEnergy") ? "/" + nbt.getInteger("maxEnergy") : ""));
 		}
 	}

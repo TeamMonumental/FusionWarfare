@@ -23,9 +23,9 @@ public class ItemWrench extends ItemBase {
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
 				
-			l.add("Drops machines that are");
-			l.add("right-clicked and also holds energy");
-			l.add("from Network Controllers.");
+			l.add("Right-click:");
+			l.add("Drops and holds energy");
+			l.add("from machines.");
 				
 		} else {
 			l.add("Press " + EnumChatFormatting.GOLD + "SHIFT" + EnumChatFormatting.RESET + EnumChatFormatting.GRAY + " for more info");
