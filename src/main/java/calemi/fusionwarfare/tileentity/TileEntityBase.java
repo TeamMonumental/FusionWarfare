@@ -49,6 +49,11 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 		return maxEnergy;
 	}
 	
+	@Override
+	public void setMaxEnergy(int energy) {
+		this.maxEnergy = energy;
+	}
+	
 	@SideOnly(Side.CLIENT)
 	public int getCurrentEnergyScaled(int i) {
 		return this.energy * i / maxEnergy;

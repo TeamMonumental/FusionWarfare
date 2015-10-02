@@ -1,33 +1,24 @@
 package calemi.fusionwarfare.block;
 
+import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.init.InitCreativeTabs;
+import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.init.InitCreativeTabs;
-import calemi.fusionwarfare.item.ItemBlockEnergyBase;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
-import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlockNetworkController extends BlockBasicMachineBase {
 
 	public int tier;
 	
 	public BlockNetworkController(int tier) {
-		super("network_controller_" + tier, null, Reference.guiIDNetworkController, false, false, "mech_top_" + tier, "steel_casing", "network_controller_" + tier + "_side");
+		super("network_controller_" + tier, null, Reference.guiIDNetworkController, false, true, "mech_top_" + tier, "steel_casing", "network_controller_" + tier + "_side");
 		this.tier = tier;
 		setCreativeTab(InitCreativeTabs.creativeTabMachines);
-		GameRegistry.registerBlock(this, ItemBlockEnergyBase.class, imagePath);
 	}
-	
-	@Override
-	public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase e, ItemStack is) {
 		
-		((TileEntityBase)w.getTileEntity(x, y, z)).setEnergy(((ItemBlockEnergyBase)is.getItem()).getEnergy(is));
-	}
-	
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
 			

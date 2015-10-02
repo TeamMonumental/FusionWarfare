@@ -35,7 +35,12 @@ public class TileEntityReactorCasing extends TileEntity implements IEnergy {
 	public int getMaxEnergy() {
 		return getMaster() == null ? 0 : getMaster().getMaxEnergy();
 	}
-
+	
+	@Override
+	public void setMaxEnergy(int energy) {
+		if (getMaster() != null) getMaster().setMaxEnergy(energy);
+	}
+	
 	@Override
 	public EnumIO getIOType() {
 		return EnumIO.OUTPUT;
