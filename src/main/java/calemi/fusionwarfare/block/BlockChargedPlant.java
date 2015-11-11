@@ -6,6 +6,7 @@ import java.util.Random;
 
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.init.InitItems;
+import calemi.fusionwarfare.item.ItemBlockChargePlant;
 import calemi.fusionwarfare.item.ItemBlockMeta;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -28,7 +29,7 @@ import net.minecraft.world.World;
 
 public class BlockChargedPlant extends BlockBase {
 
-	private static final String[] textureNames = new String[] { "growing_grass", "tallgrass", "fern", "growing_deadbush", "deadbush" };
+	private static final String[] textureNames = new String[] {"growing_grass", "tallgrass", "fern", "growing_deadbush", "deadbush"};
 	
 	@SideOnly(Side.CLIENT)
 	public static IIcon[] icons;
@@ -42,7 +43,7 @@ public class BlockChargedPlant extends BlockBase {
 		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
 		
 		setTickRandomly(true);
-		GameRegistry.registerBlock(this, ItemBlockMeta.class, imagePath);
+		GameRegistry.registerBlock(this, ItemBlockChargePlant.class, imagePath);
 	}
 	
 	@Override

@@ -205,6 +205,12 @@ tile.energy_receiver.name=Energy Receiver
 
 #-#-#-#-#-MISC-#-#-#-#-#
 
+tile.charged_plant.growing_grass.name=Growing Tall Grass
+tile.charged_plant.tallgrass.name=Tall Grass
+tile.charged_plant.fern.name=Fern
+tile.charged_plant.growing_deadbush.name=Growing Dead Bush
+tile.charged_plant.deadbush.name=Dead Bush
+
 tile.supply_crate.name=Supply Crate
 
 #-#-#-#-#-KEYS-#-#-#-#-#
