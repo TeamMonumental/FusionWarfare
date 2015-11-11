@@ -2,6 +2,7 @@ package calemi.fusionwarfare.api.events;
 
 import calemi.fusionwarfare.api.ISecurity;
 import calemi.fusionwarfare.event.CraftingEvent;
+import calemi.fusionwarfare.tileentity.TileEntityReinforcedDoor;
 import calemi.fusionwarfare.util.Location;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
@@ -40,8 +41,7 @@ public class SecurityEvent {
 					
 				} else {
 					
-					security.setTeam(event.player.getTeam());
-					
+					security.setTeam(event.player.getTeam());					
 				}
 			}
 		}
@@ -57,6 +57,11 @@ public class SecurityEvent {
 			if (tileEntity instanceof ISecurity) {
 				
 				ISecurity security = (ISecurity) tileEntity;
+				
+				if (event.world.getTileEntity(event.x, event.y - 1, event.z) instanceof TileEntityReinforcedDoor) {
+										
+					onPlayerInteract(new PlayerInteractEvent(event.entityPlayer, event.action, event.x, event.y - 1, event.z, event.face, event.world));
+				}
 				
 				if (!security.isSameTeam(event.entityPlayer.getTeam())) {
 					

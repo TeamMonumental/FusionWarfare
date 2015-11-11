@@ -2,8 +2,12 @@ package calemi.fusionwarfare.api.events;
 
 import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.api.ISecurity;
+import calemi.fusionwarfare.block.BlockReinforcedDoor;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemBattery;
+import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.TileEntityReinforcedDoor;
+import calemi.fusionwarfare.util.Location;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
@@ -13,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -23,46 +28,69 @@ public class WrenchEvent {
 
 	@SubscribeEvent
 	public void onWrenchBlock(PlayerInteractEvent event) {
+
 		if (!event.world.isRemote && event.action == Action.RIGHT_CLICK_BLOCK) {
 
 			EntityPlayer player = event.entityPlayer;
 			ItemStack itemInHand = player.getCurrentEquippedItem();
 
 			if (player.isSneaking() && itemInHand != null && itemInHand.getItem() == InitItems.wrench) {
-				wrenchBlock(event.world, event.x, event.y, event.z, player);
+				wrenchBlock(new Location(event.world, event.x, event.y, event.z), player);
 			}
 		}
 	}
 
-	private void wrenchBlock(World world, int x, int y, int z, EntityPlayer entityPlayer) {
+	private void wrenchBlock(Location loc, EntityPlayer player) {
 
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
+		TileEntity tileEntity = loc.getTileEntity();
 
-		ItemStack drop = new ItemStack(world.getBlock(x, y, z), 1, world.getBlockMetadata(x, y, z));
+		ItemStack drop = new ItemStack(loc.getBlock(), 1, loc.getBlockMetadata());
 		NBTTagCompound dropTag = getNBT(drop);
-		
-		if (tileEntity instanceof IEnergy) {
+
+		if (loc.getBlock().hasTileEntity(loc.getBlockMetadata()) || tileEntity instanceof ISecurity) {
+				
+			if (loc.world.getTileEntity(loc.x, loc.y - 1, loc.z) instanceof TileEntityReinforcedDoor) {
+				
+				if (((ISecurity)loc.world.getTileEntity(loc.x, loc.y - 1, loc.z)).isSameTeam(player.getTeam())) {
+					wrenchBlock(new Location(loc.world, loc.x, loc.y - 1, loc.z), player);	
+				}
+			}
 			
-			IEnergy energy = (IEnergy) tileEntity;
+			else if (tileEntity instanceof TileEntityReinforcedDoor) {
+				
+				loc.getBlock().breakBlock(loc.world, loc.x, loc.y, loc.z, loc.getBlock(), loc.getBlockMetadata());
+				loc.breakBlock();
+
+				EntityItem entityItem = new EntityItem(loc.world, loc.x, loc.y, loc.z, new ItemStack(InitItems.reinforced_door));
+				loc.world.spawnEntityInWorld(entityItem);	
+			}
 			
-			dropTag.setInteger("energy", energy.getEnergy());
-			dropTag.setInteger("maxEnergy", energy.getMaxEnergy());
+			else {
+				
+				if (tileEntity instanceof IEnergy) {
+
+					IEnergy energy = (IEnergy) tileEntity;
+
+					dropTag.setInteger("energy", energy.getEnergy());
+					dropTag.setInteger("maxEnergy", energy.getMaxEnergy());
+				}
+
+				loc.getBlock().breakBlock(loc.world, loc.x, loc.y, loc.z, loc.getBlock(), loc.getBlockMetadata());
+				loc.breakBlock();
+
+				EntityItem entityItem = new EntityItem(loc.world, loc.x, loc.y, loc.z, drop);
+				loc.world.spawnEntityInWorld(entityItem);		
+			}
 		}
-		
-		Block block = world.getBlock(x, y, z);
-		block.breakBlock(world, x, y, z, block, world.getBlockMetadata(x, y, z));
-		world.setBlockToAir(x, y, z);
-		
-		EntityItem entityItem = new EntityItem(world, x, y, z, drop);
-		world.spawnEntityInWorld(entityItem);
 	}
-	
+
 	@SubscribeEvent
 	public void addLore(ItemTooltipEvent event) {
-		
+
 		NBTTagCompound nbt = getNBT(event.itemStack);
-		
+
 		if (nbt.hasKey("energy") && !(event.itemStack.getItem() instanceof ItemBattery)) {
+
 			event.toolTip.add(EnumChatFormatting.GOLD + "FE: " + EnumChatFormatting.AQUA + nbt.getInteger("energy") + (nbt.hasKey("maxEnergy") ? "/" + nbt.getInteger("maxEnergy") : ""));
 		}
 	}
