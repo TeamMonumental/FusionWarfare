@@ -30,21 +30,24 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 
 	public boolean outputFE = false;
 
+	public static final int FERatio = 5;
+	public static final int RFRatio = 500;
+	
 	public TileEntityRFConverter() {
 		maxEnergy = 5000;
 	}
 
 	@Override
 	public void updateEntity() {
-
+				
 		if (!worldObj.isRemote) {
 			
 			if (outputFE) {
 
-				if (EnergyUtil.canAddEnergy(this, 5) && storage.getEnergyStored() >= 1000) {
+				if (EnergyUtil.canAddEnergy(this, FERatio) && storage.getEnergyStored() >= RFRatio) {
 
-					EnergyUtil.addEnergy(this, 5);
-					storage.extractEnergy(1000, false);
+					EnergyUtil.addEnergy(this, FERatio);
+					storage.extractEnergy(RFRatio, false);
 				}
 			}
 
@@ -52,10 +55,10 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 				
 				
 
-				if (EnergyUtil.canSubtractEnergy(this, 5) && (storage.getMaxEnergyStored() - storage.getEnergyStored()) >= 1000) {
+				if (EnergyUtil.canSubtractEnergy(this, FERatio) && (storage.getMaxEnergyStored() - storage.getEnergyStored()) >= RFRatio) {
 
-					EnergyUtil.subtractEnergy(this, 5);
-					storage.receiveEnergy(1000, false);
+					EnergyUtil.subtractEnergy(this, FERatio);
+					storage.receiveEnergy(RFRatio, false);
 				}
 				
 				for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
