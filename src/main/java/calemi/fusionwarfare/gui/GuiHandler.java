@@ -8,6 +8,7 @@ import calemi.fusionwarfare.inventory.ContainerMissileSiloCore;
 import calemi.fusionwarfare.inventory.ContainerNetworkController;
 import calemi.fusionwarfare.inventory.ContainerOneInput;
 import calemi.fusionwarfare.inventory.ContainerOverclockedEnergyTank;
+import calemi.fusionwarfare.inventory.ContainerRFConverter;
 import calemi.fusionwarfare.inventory.ContainerReactorCore;
 import calemi.fusionwarfare.inventory.ContainerSupplyCrate;
 import calemi.fusionwarfare.inventory.ContainerTwoInputs;
@@ -29,6 +30,7 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
+import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
 import calemi.fusionwarfare.tileentity.reactor.TileEntityAdvancedHydroReactorCore;
@@ -129,6 +131,10 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerEnergyTank(player, (TileEntityEnergyReceiver) tileentity);
 		}
 		
+		if (ID == Reference.guiIDRFConverter) {
+			return new ContainerRFConverter(player, (TileEntityRFConverter) tileentity);
+		}
+		
 		if (ID == Reference.guiIDSupplyCrate) {
 			return new ContainerSupplyCrate(player, (TileEntitySupplyCrate) tileentity);
 		}
@@ -223,6 +229,10 @@ public class GuiHandler implements IGuiHandler {
 
 		if (ID == Reference.guiIDEnergyReceiver) {
 			return new GuiEnergyTank(player, (TileEntityEnergyReceiver) tileentity, "Energy Receiver", false);
+		}
+		
+		if (ID == Reference.guiIDRFConverter) {
+			return new GuiRFConverter(player, (TileEntityRFConverter) tileentity);
 		}
 		
 		if (ID == Reference.guiIDSupplyCrate) {

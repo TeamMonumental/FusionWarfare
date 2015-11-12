@@ -203,6 +203,8 @@ tile.player_healing_beacon.name=Player Healing Beacon
 tile.energy_transmitter.name=Energy Transmitter
 tile.energy_receiver.name=Energy Receiver
 
+tile.rf_converter.name=RF Converter
+
 #-#-#-#-#-MISC-#-#-#-#-#
 
 tile.charged_plant.growing_grass.name=Growing Tall Grass

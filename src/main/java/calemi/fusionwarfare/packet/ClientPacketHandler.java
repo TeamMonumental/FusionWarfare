@@ -1,6 +1,7 @@
 package calemi.fusionwarfare.packet;
 
 import calemi.fusionwarfare.inventory.ContainerBase;
+import calemi.fusionwarfare.inventory.ContainerRFConverter;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -61,6 +62,18 @@ public class ClientPacketHandler implements IMessage {
 					ContainerBase container = (ContainerBase)player.openContainer;	
 					
 					container.fusion.energy = energy;
+				}
+			}
+			
+			if (data[0].equalsIgnoreCase("sync.rf")) {
+				
+				int rf = Integer.parseInt(data[1]);
+				
+				if (player.openContainer instanceof ContainerBase) {				
+					
+					ContainerRFConverter container = (ContainerRFConverter)player.openContainer;	
+					
+					container.tileEntityRF.storage.setEnergyStored(rf);
 				}
 			}
 						

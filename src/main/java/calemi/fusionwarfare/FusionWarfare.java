@@ -58,16 +58,16 @@ public class FusionWarfare {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {	
 		
+		config = new Configuration(event.getSuggestedConfigurationFile());
+		FWConfig.syncConfig();
+		
 		MinecraftForge.EVENT_BUS.register(new EntitySpawnEvent());
 		MinecraftForge.EVENT_BUS.register(new OnPlayerJoinEvent());
 		
 		MinecraftForge.EVENT_BUS.register(new SecurityEvent());
 		MinecraftForge.EVENT_BUS.register(new EnergyEvent());
 		MinecraftForge.EVENT_BUS.register(new WrenchEvent());
-		
-		config = new Configuration(event.getSuggestedConfigurationFile());
-		FWConfig.syncConfig();
-		
+			
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());	
 		FMLCommonHandler.instance().bus().register(new SupplyCrateEvent());	
 		FMLCommonHandler.instance().bus().register(new FWConfig());
@@ -98,8 +98,10 @@ public class FusionWarfare {
 	public void init(FMLInitializationEvent event) {	
 		
 		proxy.registerRenders();
+		
 		InitEntities.init();		
 		InitTileEntities.init();
+		
 		GameRegistry.registerWorldGenerator(worldGenOre, 1);
 	}
 	

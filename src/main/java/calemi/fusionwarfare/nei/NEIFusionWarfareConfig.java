@@ -14,11 +14,12 @@ public class NEIFusionWarfareConfig implements IConfigureNEI {
 
 	@Override
 	public void loadConfig() {
+		
 		API.hideItem(new ItemStack(InitBlocks.reinforced_door));
 		
 		for (int i = 0; i < BlockChargedPlant.icons.length; i++) {
 			API.hideItem(new ItemStack(InitBlocks.charged_plant, 1, i));
-		}	
+		}
 		
 		API.registerRecipeHandler(new InfusionTableRecipeHandler());
 		API.registerUsageHandler(new InfusionTableRecipeHandler());

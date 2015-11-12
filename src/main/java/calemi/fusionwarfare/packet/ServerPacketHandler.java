@@ -5,6 +5,7 @@ import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
+import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import calemi.fusionwarfare.util.GunUtil;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -104,6 +105,16 @@ public class ServerPacketHandler implements IMessage {
 				ItemFusionGun item = (ItemFusionGun)player.getCurrentEquippedItem().getItem();
 				
 				GunUtil.shootBullet(player.worldObj, player.getCurrentEquippedItem(), player);
+			}
+			
+			if (data[0].equalsIgnoreCase("toggle")) {
+				
+				int x = Integer.parseInt(data[1]);
+				int y = Integer.parseInt(data[2]);
+				int z = Integer.parseInt(data[3]);
+				
+				TileEntityRFConverter tileEntity = (TileEntityRFConverter)player.worldObj.getTileEntity(x, y, z);
+				tileEntity.toggle();
 			}
 
 			return null;
