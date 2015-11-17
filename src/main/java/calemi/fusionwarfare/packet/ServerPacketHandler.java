@@ -3,6 +3,7 @@ package calemi.fusionwarfare.packet;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.item.ItemFusionGun;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
@@ -107,13 +108,23 @@ public class ServerPacketHandler implements IMessage {
 				GunUtil.shootBullet(player.worldObj, player.getCurrentEquippedItem(), player);
 			}
 			
-			if (data[0].equalsIgnoreCase("toggle")) {
+			if (data[0].equalsIgnoreCase("toggle.converter")) {
 				
 				int x = Integer.parseInt(data[1]);
 				int y = Integer.parseInt(data[2]);
 				int z = Integer.parseInt(data[3]);
 				
 				TileEntityRFConverter tileEntity = (TileEntityRFConverter)player.worldObj.getTileEntity(x, y, z);
+				tileEntity.toggle();
+			}
+			
+			if (data[0].equalsIgnoreCase("toggle.aura")) {
+				
+				int x = Integer.parseInt(data[1]);
+				int y = Integer.parseInt(data[2]);
+				int z = Integer.parseInt(data[3]);
+				
+				TileEntityAuraBase tileEntity = (TileEntityAuraBase)player.worldObj.getTileEntity(x, y, z);
 				tileEntity.toggle();
 			}
 

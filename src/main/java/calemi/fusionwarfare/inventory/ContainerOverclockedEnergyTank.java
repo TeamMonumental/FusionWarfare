@@ -13,7 +13,7 @@ public class ContainerOverclockedEnergyTank extends ContainerBase {
 		super(player, tileentity);		
 		
 		//Overclocking
-		addSlotToContainer(new SlotOverclocking(tileentity, 0, 143, 64, 10));
+		addSlotToContainer(new SlotOverclocking(tileentity, 0, 143, 64, overClockNumber));
 	
 		addPlayerInv(8, 99);
 		addHotbar(8, 157);

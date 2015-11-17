@@ -59,7 +59,7 @@ public class WrenchEvent {
 			else if (tileEntity instanceof TileEntityReinforcedDoor) {
 				
 				loc.getBlock().breakBlock(loc.world, loc.x, loc.y, loc.z, loc.getBlock(), loc.getBlockMetadata());
-				loc.breakBlock();
+				loc.setBlockToAir();
 
 				EntityItem entityItem = new EntityItem(loc.world, loc.x, loc.y, loc.z, new ItemStack(InitItems.reinforced_door));
 				loc.world.spawnEntityInWorld(entityItem);	
@@ -76,7 +76,7 @@ public class WrenchEvent {
 				}
 
 				loc.getBlock().breakBlock(loc.world, loc.x, loc.y, loc.z, loc.getBlock(), loc.getBlockMetadata());
-				loc.breakBlock();
+				loc.setBlockToAir();
 
 				EntityItem entityItem = new EntityItem(loc.world, loc.x, loc.y, loc.z, drop);
 				loc.world.spawnEntityInWorld(entityItem);		

@@ -12,6 +12,7 @@ import calemi.fusionwarfare.inventory.ContainerRFConverter;
 import calemi.fusionwarfare.inventory.ContainerReactorCore;
 import calemi.fusionwarfare.inventory.ContainerSupplyCrate;
 import calemi.fusionwarfare.inventory.ContainerTwoInputs;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
 import calemi.fusionwarfare.tileentity.TileEntityEnergyReceiver;
 import calemi.fusionwarfare.tileentity.TileEntityEnergyTransmitter;
 import calemi.fusionwarfare.tileentity.TileEntitySupplyCrate;
@@ -19,17 +20,17 @@ import calemi.fusionwarfare.tileentity.gen.TileEntityAquaGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityGeothermalGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntitySolarGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
-import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
-import calemi.fusionwarfare.tileentity.machine.TileEntityAuraTurret;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMobTurret;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
-import calemi.fusionwarfare.tileentity.machine.TileEntityFusionMatterReinforcer;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMiningUnit;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
-import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerHealer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
@@ -47,8 +48,12 @@ public class GuiHandler implements IGuiHandler {
 
 		TileEntity tileentity = world.getTileEntity(x, y, z);
 				
+		if (tileentity instanceof ITileEntityGuiHandler) {
+			return ((ITileEntityGuiHandler) tileentity).getTileContainer(player);
+		}
+		
 		if (ID == Reference.guiIDNetworkController) {
-			return new ContainerNetworkController(player, (TileEntityNetworkController) tileentity);
+			//return new ContainerNetworkController(player, (TileEntityNetworkController) tileentity);
 		}
 
 		if (ID == Reference.guiIDEnergeticFurnace) {
@@ -108,19 +113,19 @@ public class GuiHandler implements IGuiHandler {
 		}
 		
 		if (ID == Reference.guiIDAuraTurret) {
-			return new ContainerEnergyTank(player, (TileEntityAuraTurret) tileentity);
+			return new ContainerOverclockedEnergyTank(player, (TileEntityAuraPlayerTurret) tileentity, 15);
 		}
 
-		if (ID == Reference.guiIDFusionMatterReinforcer) {
-			return new ContainerOverclockedEnergyTank(player, (TileEntityFusionMatterReinforcer) tileentity, 15);
+		if (ID == Reference.guiIDAuraMatterReinforcer) {
+			return new ContainerOverclockedEnergyTank(player, (TileEntityAuraMatterReinforcer) tileentity, 15);
 		}
 
-		if (ID == Reference.guiIDAntiMobBeacon) {
-			return new ContainerEnergyTank(player, (TileEntityAntiMobBeacon) tileentity);
+		if (ID == Reference.guiIDAuraMobTurret) {
+			return new ContainerOverclockedEnergyTank(player, (TileEntityAuraMobTurret) tileentity, 15);
 		}
 
-		if (ID == Reference.guiIDPlayerHealingBeacon) {
-			return new ContainerEnergyTank(player, (TileEntityPlayerHealingBeacon) tileentity);
+		if (ID == Reference.guiIDAuraPlayerHealer) {
+			return new ContainerOverclockedEnergyTank(player, (TileEntityAuraPlayerHealer) tileentity, 15);
 		}
 
 		if (ID == Reference.guiIDEnergyTransmitter) {
@@ -147,8 +152,12 @@ public class GuiHandler implements IGuiHandler {
 
 		TileEntity tileentity = world.getTileEntity(x, y, z);
 
+		if (tileentity instanceof ITileEntityGuiHandler) {
+			return ((ITileEntityGuiHandler) tileentity).getTileGuiContainer(player);
+		}
+		
 		if (ID == Reference.guiIDNetworkController) {
-			return new GuiNetworkController(player, (TileEntityNetworkController) tileentity);
+			//return new GuiNetworkController(player, (TileEntityNetworkController) tileentity);
 		}
 
 		if (ID == Reference.guiIDEnergeticFurnace) {
@@ -208,19 +217,19 @@ public class GuiHandler implements IGuiHandler {
 		}
 		
 		if (ID == Reference.guiIDAuraTurret) {
-			return new GuiEnergyTank(player, (TileEntityAuraTurret) tileentity, "Aura Turret", true);
+			return new GuiAuraBase(player, (TileEntityAuraPlayerTurret) tileentity, "Aura Player Turret");
 		}
 		
-		if (ID == Reference.guiIDFusionMatterReinforcer) {
-			return new GuiOverclockedEnergyTank(player, (TileEntityFusionMatterReinforcer) tileentity, "Fusion Matter Reinforcer", 10, true);
+		if (ID == Reference.guiIDAuraMatterReinforcer) {
+			return new GuiAuraBase(player, (TileEntityAuraMatterReinforcer) tileentity, "Aura Matter Reinforcer");
 		}
 
-		if (ID == Reference.guiIDAntiMobBeacon) {
-			return new GuiEnergyTank(player, (TileEntityAntiMobBeacon) tileentity, "Anti-Mob Beacon", true);
+		if (ID == Reference.guiIDAuraMobTurret) {
+			return new GuiAuraBase(player, (TileEntityAuraMobTurret) tileentity, "Aura Mob Turret");
 		}
 
-		if (ID == Reference.guiIDPlayerHealingBeacon) {
-			return new GuiEnergyTank(player, (TileEntityPlayerHealingBeacon) tileentity, "Player Healing Beacon", true);
+		if (ID == Reference.guiIDAuraPlayerHealer) {
+			return new GuiAuraBase(player, (TileEntityAuraPlayerHealer) tileentity, "Aura Player Healer");
 		}
 
 		if (ID == Reference.guiIDEnergyTransmitter) {

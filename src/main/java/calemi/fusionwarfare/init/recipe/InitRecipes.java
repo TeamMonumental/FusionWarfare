@@ -136,20 +136,20 @@ public class InitRecipes {
 			"ISI", "HSH", "ISI", 'S', InitItems.steel_plate, 'I', InitItems.infused_steel_ingot, 'H', InitItems.hyper_chip
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aura_turret), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aura_player_turret), new Object[] {
 			" L ", "SLS", "SHS", 'L', InitItems.lightning_rod, 'S', InitItems.steel_plate, 'H', InitItems.hyper_chip
 		});
 				
 		//BEACONS		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.fusion_matter_reinforcer), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aura_matter_reinforcer), new Object[] {
 			"ILI", "IXI", "SCS", 'I', InitItems.infused_steel_ingot, 'L', InitItems.lightning_rod, 'S', InitItems.steel_plate, 'C', InitItems.hyper_chip, 'X', Blocks.anvil
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.player_healing_beacon), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aura_player_healer), new Object[] {
 			"ILI", "IXI", "SCS", 'I', InitItems.infused_steel_ingot, 'L', InitItems.lightning_rod, 'S', InitItems.steel_plate, 'C', InitItems.hyper_chip, 'X', Items.golden_apple
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.anti_mob_beacon), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aura_mob_turret), new Object[] {
 			"ILI", "IXI", "SCS", 'I', InitItems.infused_steel_ingot, 'L', InitItems.lightning_rod, 'S', InitItems.steel_plate, 'C', InitItems.hyper_chip, 'X', InitItems.infused_steel.sword
 		});
 		

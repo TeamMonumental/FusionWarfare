@@ -1,16 +1,21 @@
 package calemi.fusionwarfare.model;
 
+import org.lwjgl.opengl.GL11;
+
+import calemi.fusionwarfare.util.EnumColorUtil;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelTurret extends ModelBase {
+public class ModelAuraBase extends ModelBase {
+	
     public ModelRenderer base;
     public ModelRenderer top;
     public ModelRenderer ball;
     public ModelRenderer middle;
 
-    public ModelTurret() {
+    public ModelAuraBase() {
+    	
         this.textureWidth = 64;
         this.textureHeight = 32;
         this.top = new ModelRenderer(this, 30, 0);
@@ -28,11 +33,21 @@ public class ModelTurret extends ModelBase {
         this.ball.addBox(-2.0F, -2.0F, -2.0F, 4, 4, 4, 0.0F);
     }
 
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, float r) { 
-        this.top.render(f5);
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, float r, int red, int green, int blue, boolean layer) { 
+       
         this.middle.render(f5);
-        this.base.render(f5);
-        this.ball.render(f5);
+        this.base.render(f5);                
+ 
+        GL11.glPushMatrix();
+                
+        float s = 1.0F / 255.0F;
+        
+        if (layer) GL11.glColor3f(s * red, s * green, s * blue);
+        this.ball.render(f5); 
+        this.top.render(f5);
+        
+        GL11.glPopMatrix();
+        
         ball.rotateAngleY = (float) Math.toRadians(r);
         ball.rotateAngleX = (float) Math.toRadians(r / 2);
     }

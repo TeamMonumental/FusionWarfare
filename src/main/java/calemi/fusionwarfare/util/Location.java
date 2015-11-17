@@ -3,6 +3,8 @@ package calemi.fusionwarfare.util;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -21,6 +23,17 @@ public class Location {
 		this.z = z;		
 	}
 	
+	public Location(TileEntity entity) {
+		world = entity.getWorldObj();
+		x = entity.xCoord;
+		y = entity.yCoord;
+		z = entity.zCoord; 
+	}
+	
+	public Location(World world) {		
+		this(world, 0, 0, 0);
+	}
+	
 	public boolean compareBlocks(Block... blocks) {
 		
 		for (Block block : blocks) {
@@ -32,10 +45,6 @@ public class Location {
 		}
 		
 		return false;
-	}
-	
-	public Location(World world) {		
-		this(world, 0, 0, 0);
 	}
 	
 	public Block getBlock() {
@@ -58,11 +67,10 @@ public class Location {
 	}
 	
 	public List<ItemStack> getDrops() {
-		
 		return getBlock().getDrops(world, x, y, z, getBlockMetadata(), 0);		
 	}
 	
-	public void breakBlock() {
+	public void setBlockToAir() {
 		world.setBlockToAir(x, y, z);
 	}
 
@@ -70,22 +78,44 @@ public class Location {
 		world.setBlockMetadataWithNotify(x, y, z, meta, 2);
 	}
 	
-	public Location add(int x, int y, int z) {		
-		return new Location(world, this.x + x, this.y + y, this.z + z);	
+	public Location add(int xa, int ya, int za) {		
+		return new Location(world, x + xa, y + ya, z + za);	
 	}
 	
 	public Location add(ForgeDirection dir) {		
-		return new Location(world, x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);	
+		return add(dir.offsetX, dir.offsetY, dir.offsetZ);	
 	}
 	
 	public Location add(ForgeDirection dir, int distance) {	
+		return add(dir.offsetX * distance, dir.offsetY * distance, dir.offsetZ * distance);	
+	}
+	
+	public EntityItem dropItem(ItemStack stack) {
+		EntityItem entityItem = new EntityItem(world, x, y, z, stack);
+		world.spawnEntityInWorld(entityItem);
+		return entityItem;
+	}
+	
+	public void breakBlock() {
 		
-		Location loc = new Location(world, x, y, z);
-
-		loc.x += dir.offsetX * distance;
-		loc.y += dir.offsetY * distance;
-		loc.z += dir.offsetZ * distance;
+		List<ItemStack> drops = getDrops();
 		
-		return loc;	
+		for (ItemStack is : drops) {
+			dropItem(is);
+		}
+		
+		TileEntity entity = getTileEntity();
+		
+		if (entity != null && entity instanceof IInventory) {
+			
+			IInventory inv = (IInventory) entity;
+			
+			for (int i = 0 ; i < inv.getSizeInventory(); i++) {
+				
+				dropItem(inv.getStackInSlot(i));
+			}
+		}
+		
+		setBlockToAir();
 	}
 }

@@ -22,17 +22,17 @@ import calemi.fusionwarfare.tileentity.gen.TileEntityAquaGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityGeothermalGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntitySolarGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
-import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
-import calemi.fusionwarfare.tileentity.machine.TileEntityAuraTurret;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMobTurret;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
-import calemi.fusionwarfare.tileentity.machine.TileEntityFusionMatterReinforcer;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMiningUnit;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
-import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerHealer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import calemi.fusionwarfare.tileentity.reactor.TileEntityAdvancedHydroReactorCore;
 import calemi.fusionwarfare.tileentity.reactor.TileEntityCapsuleCore;
@@ -99,11 +99,10 @@ public class InitBlocks {
 	public static Block exp_fabricator;	
 	public static Block emp_tower;
 		
-	public static Block aura_turret;
-	
-	public static Block fusion_matter_reinforcer;
-	public static Block anti_mob_beacon;
-	public static Block player_healing_beacon;
+	public static Block aura_player_turret;	
+	public static Block aura_matter_reinforcer;
+	public static Block aura_mob_turret;
+	public static Block aura_player_healer;
 	
 	public static Block energy_transmitter;
 	public static Block energy_receiver;
@@ -175,11 +174,10 @@ public class InitBlocks {
 		exp_fabricator = new BlockBasicMachineBase("exp_fabricator", TileEntityEXPFabricator.class, Reference.guiIDEXPFabricator, false, true, "exp_fabricator_top", "steel_casing", "exp_fabricator_side");
 		emp_tower = new BlockBasicMachineBase("emp_tower", "mech_particle", TileEntityEMPTower.class, Reference.guiIDEMPTower, 2, 0, 2, 14, 16, 14);
 		
-		aura_turret = new BlockBasicMachineBase("aura_turret", "mech_particle", TileEntityAuraTurret.class, Reference.guiIDAuraTurret, 3, 0, 3, 13, 12, 13).setHardness(50F);
-		
-		fusion_matter_reinforcer = new BlockBasicMachineBase("fusion_matter_reinforcer", TileEntityFusionMatterReinforcer.class, Reference.guiIDFusionMatterReinforcer, false, "fusion_matter_reinforcer_side");	
-		anti_mob_beacon = new BlockBasicMachineBase("anti_mob_beacon", TileEntityAntiMobBeacon.class, Reference.guiIDAntiMobBeacon, false, "anti_mob_beacon_side");	
-		player_healing_beacon = new BlockBasicMachineBase("player_healing_beacon", TileEntityPlayerHealingBeacon.class, Reference.guiIDPlayerHealingBeacon, false, "player_healing_beacon_side");	
+		aura_player_turret = new BlockBasicMachineBase("aura_player_turret", "mech_particle", TileEntityAuraPlayerTurret.class, Reference.guiIDAuraTurret, 3, 0, 3, 13, 12, 13).setHardness(50F);
+		aura_matter_reinforcer = new BlockBasicMachineBase("aura_matter_reinforcer", "mech_particle", TileEntityAuraMatterReinforcer.class, Reference.guiIDAuraMatterReinforcer, 3, 0, 3, 13, 12, 13);	
+		aura_mob_turret = new BlockBasicMachineBase("aura_mob_turret", "mech_particle", TileEntityAuraMobTurret.class, Reference.guiIDAuraMobTurret, 3, 0, 3, 13, 12, 13);	
+		aura_player_healer = new BlockBasicMachineBase("aura_player_healer", "mech_particle", TileEntityAuraPlayerHealer.class, Reference.guiIDAuraPlayerHealer, 3, 0, 3, 13, 12, 13);	
 		
 		energy_transmitter = new BlockBasicMachineBase("energy_transmitter",TileEntityEnergyTransmitter.class, Reference.guiIDEnergyTransmitter, false, "energy_transmitter_side");	
 		energy_receiver = new BlockBasicMachineBase("energy_receiver", TileEntityEnergyReceiver.class, Reference.guiIDEnergyReceiver, false, "energy_receiver_side");		

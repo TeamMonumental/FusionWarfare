@@ -9,14 +9,20 @@ import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.block.BlockBasicMachineBase;
 import calemi.fusionwarfare.block.BlockNetworkController;
+import calemi.fusionwarfare.gui.GuiNetworkController;
 import calemi.fusionwarfare.init.InitItems;
+import calemi.fusionwarfare.inventory.ContainerNetworkController;
 import calemi.fusionwarfare.item.IEnergyItem;
 import calemi.fusionwarfare.item.ItemEnergyBase;
 import calemi.fusionwarfare.item.ItemEnergyConsumable;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.util.BlockScanUtil;
 import calemi.fusionwarfare.util.Location;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,7 +32,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityNetworkController extends TileEntityBase {
+public class TileEntityNetworkController extends TileEntityBase implements ITileEntityGuiHandler {
 
 	public List<IEnergy> mechs = new ArrayList<IEnergy>();
 	public int tier;
@@ -206,5 +212,15 @@ public class TileEntityNetworkController extends TileEntityBase {
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return true;
+	}
+
+	@Override
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerNetworkController(player, this);
+	}
+
+	@Override
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiNetworkController(player, this);
 	}
 }

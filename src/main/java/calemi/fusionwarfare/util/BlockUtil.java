@@ -21,7 +21,7 @@ public class BlockUtil {
 				loc.world.spawnEntityInWorld(ghostBlock);				
 			}
 			
-			loc.breakBlock();
+			loc.setBlockToAir();
 		}			
 	}
 	

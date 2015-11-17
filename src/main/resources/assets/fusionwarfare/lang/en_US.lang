@@ -194,11 +194,10 @@ tile.missile_factory.name=Missile Factory
 tile.exp_fabricator.name=EXP Fabricator
 tile.emp_tower.name=EMP Tower
 
-tile.aura_turret.name=Aura Turret
-
-tile.fusion_matter_reinforcer.name=Fusion Matter Reinforcer
-tile.anti_mob_beacon.name=Anti-Mob Beacon
-tile.player_healing_beacon.name=Player Healing Beacon
+tile.aura_player_turret.name=Aura Player Turret
+tile.aura_matter_reinforcer.name=Aura Matter Reinforcer
+tile.aura_mob_turret.name=Aura Mob Turret
+tile.aura_player_healer.name=Aura Player Healer
 
 tile.energy_transmitter.name=Energy Transmitter
 tile.energy_receiver.name=Energy Receiver

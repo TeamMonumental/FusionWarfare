@@ -12,9 +12,44 @@ import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 
-public class TileEntityPlayerHealingBeacon extends TileEntitySecurity {
+public class TileEntityAuraPlayerHealer extends TileEntityAuraBase {
+
+	@Override
+	public int getEnergyCost() {
+		return 500;
+	}
+
+	@Override
+	public int getMaxEnergy() {
+		return 5000;
+	}
+
+	@Override
+	public int getProgressTime() {
+		return 20;
+	}
+
+	@Override
+	public boolean onAction() {
+		
+		for (Object o : entitiesInAura) {
+			
+			if (o instanceof EntityPlayer) {
+				
+				EntityPlayer player = (EntityPlayer)o;
+										
+				if (!player.capabilities.isCreativeMode && isSameTeam(player.getTeam()) && player.getHealth() < player.getMaxHealth()) {
+					
+					player.heal(2);
+					return true;										
+				}
+			}
+		}
+		
+		return false;
+	}
 	
-	private int energyCost = 500;
+	/*private int energyCost = 500;
 	
 	public TileEntityPlayerHealingBeacon() {
 		maxEnergy = 5000;
@@ -111,5 +146,5 @@ public class TileEntityPlayerHealingBeacon extends TileEntitySecurity {
 	@Override
 	public ItemStack getOverclockingSlot() {
 		return null;
-	}
+	}*/
 }

@@ -41,7 +41,7 @@ public class GuiRFConverter extends GuiContainerBase {
 
 		if (button.id == 0) {
 			tileEntityRF.toggle();
-			FusionWarfare.network.sendToServer(new ServerPacketHandler("toggle%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
+			FusionWarfare.network.sendToServer(new ServerPacketHandler("toggle.converter%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
 		}
 	}
 	

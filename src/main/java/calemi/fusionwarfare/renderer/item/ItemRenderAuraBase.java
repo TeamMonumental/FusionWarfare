@@ -10,15 +10,19 @@ import org.lwjgl.opengl.GL11;
 
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.model.ModelMissileLauncher;
-import calemi.fusionwarfare.model.ModelTurret;
+import calemi.fusionwarfare.util.EnumColorUtil;
+import javafx.scene.paint.Color;
+import calemi.fusionwarfare.model.ModelAuraBase;
 
-public class ItemRenderTurret implements IItemRenderer {
+public class ItemRenderAuraBase implements IItemRenderer {
 
-	private final ModelTurret model = new ModelTurret();
-	public final ResourceLocation texture;
+	private final ModelAuraBase model = new ModelAuraBase();
+	private int red, green, blue;
 
-	public ItemRenderTurret(String name) {
-		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/" + name + "_turret.png");
+	public ItemRenderAuraBase(int red, int green, int blue) {
+		this.red = red;
+		this.green = green;
+		this.blue = blue;
 	}
 
 	@Override
@@ -59,16 +63,22 @@ public class ItemRenderTurret implements IItemRenderer {
 						
 		render();		
 	}
-
+	
 	private void render() {
 
 		GL11.glPushMatrix();
 
 		GL11.glRotatef(180, 1, 0, 0);
 	
-		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-
-		model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, 0);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/models/aura_base.png"));
+		model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, 0, red, green, blue, false);
+		
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/models/aura_base_overlay.png"));
+		model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0624F, 0, red, green, blue, true);
+		
 		GL11.glPopMatrix();
 	}
 }

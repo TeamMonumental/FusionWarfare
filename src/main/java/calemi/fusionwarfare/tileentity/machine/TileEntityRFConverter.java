@@ -51,9 +51,7 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 				}
 			}
 
-			else {
-				
-				
+			else {		
 
 				if (EnergyUtil.canSubtractEnergy(this, FERatio) && (storage.getMaxEnergyStored() - storage.getEnergyStored()) >= RFRatio) {
 

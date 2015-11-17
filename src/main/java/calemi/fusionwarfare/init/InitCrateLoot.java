@@ -28,12 +28,7 @@ public class InitCrateLoot {
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.steel.sword, 1, 1, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, Item.getItemFromBlock(InitBlocks.fusion_torch), 32, 64, false));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, Item.getItemFromBlock(Blocks.iron_block), 2, 4, false, true));
-		
-		
-		
-		
-		
-		
+			
 		//BLUE_CRITICAL\\
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, Item.getItemFromBlock(InitBlocks.network_controller_2), 1, 1, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.BLUE, InitItems.pyroblast_missile, 1, 1, true));
@@ -66,10 +61,10 @@ public class InitCrateLoot {
 		
 		
 		//ORANGE_CRITICAL\\
-		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, Item.getItemFromBlock(InitBlocks.player_healing_beacon), 1, 1, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, Item.getItemFromBlock(InitBlocks.aura_player_healer), 1, 1, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, Item.getItemFromBlock(InitBlocks.mining_unit), 1, 1, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, Item.getItemFromBlock(InitBlocks.emp_tower), 1, 1, true));
-		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, Item.getItemFromBlock(InitBlocks.aura_turret), 1, 1, true));
+		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, Item.getItemFromBlock(InitBlocks.aura_player_turret), 1, 1, true));
 		
 		//RED_NORMAL\\
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.fusion_ammo, 100, 128, false));

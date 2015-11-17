@@ -11,7 +11,7 @@ import calemi.fusionwarfare.entity.EntityFusionBullet;
 import calemi.fusionwarfare.entity.EntityGrenade;
 import calemi.fusionwarfare.entity.EntityMissile;
 import calemi.fusionwarfare.entity.EntityRocket;
-import calemi.fusionwarfare.event.FOVEvent;
+import calemi.fusionwarfare.event.HUDEvent;
 import calemi.fusionwarfare.event.GunRenderEvent;
 import calemi.fusionwarfare.event.TooltipEvent;
 import calemi.fusionwarfare.init.InitBlocks;
@@ -34,7 +34,7 @@ import calemi.fusionwarfare.renderer.RenderMissileSilo;
 import calemi.fusionwarfare.renderer.RenderNetworkCable;
 import calemi.fusionwarfare.renderer.RenderRocket;
 import calemi.fusionwarfare.renderer.RenderTurbine;
-import calemi.fusionwarfare.renderer.RenderTurret;
+import calemi.fusionwarfare.renderer.RenderAuraBase;
 import calemi.fusionwarfare.renderer.item.ItemRenderEMPTower;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionAutoPistol;
 import calemi.fusionwarfare.renderer.item.ItemRenderFusionGatlingGun;
@@ -48,18 +48,19 @@ import calemi.fusionwarfare.renderer.item.ItemRenderMissileLauncher;
 import calemi.fusionwarfare.renderer.item.ItemRenderNetworkCable;
 import calemi.fusionwarfare.renderer.item.ItemRenderRocket;
 import calemi.fusionwarfare.renderer.item.ItemRenderRocketLauncher;
-import calemi.fusionwarfare.renderer.item.ItemRenderTurret;
+import calemi.fusionwarfare.renderer.item.ItemRenderAuraBase;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
-import calemi.fusionwarfare.tileentity.machine.TileEntityAntiMobBeacon;
-import calemi.fusionwarfare.tileentity.machine.TileEntityAuraTurret;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMobTurret;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
-import calemi.fusionwarfare.tileentity.machine.TileEntityFusionMatterReinforcer;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
-import calemi.fusionwarfare.tileentity.machine.TileEntityPlayerHealingBeacon;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerHealer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkCable;
+import calemi.fusionwarfare.util.EnumColorUtil;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -83,7 +84,7 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new TooltipEvent());
 		MinecraftForge.EVENT_BUS.register(new GunRenderEvent());
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
-		MinecraftForge.EVENT_BUS.register(new FOVEvent());
+		MinecraftForge.EVENT_BUS.register(new HUDEvent());
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityFusionBullet.class, new RenderFusionBullet());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDesignatorOrb.class, new RenderDesignatorOrb());
@@ -112,16 +113,20 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.missile_launcher), new ItemRenderMissileLauncher());
 		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_matter_deconstructor, new ItemRenderFusionMatterDeconstructor());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.emp_tower), new ItemRenderEMPTower());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.aura_turret), new ItemRenderTurret("aura"));
+		
+		//Auras
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.aura_player_turret), new ItemRenderAuraBase(0, 148, 255));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.aura_matter_reinforcer), new ItemRenderAuraBase(0, 255, 0));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.aura_mob_turret), new ItemRenderAuraBase(255, 0, 0));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.aura_player_healer), new ItemRenderAuraBase(255, 0, 255));
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetworkCable.class, new RenderNetworkCable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMissileLauncher.class, new RenderMissileLauncher());
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFusionMatterReinforcer.class, new RenderBeacon("fusion_matter_reinforcer"));
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntiMobBeacon.class, new RenderBeacon("anti_mob_beacon"));
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlayerHealingBeacon.class, new RenderBeacon("player_healing_beacon"));
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAuraTurret.class, new RenderTurret("aura"));
+	
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAuraPlayerTurret.class, new RenderAuraBase(0, 148, 255));
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAuraMatterReinforcer.class, new RenderAuraBase(0, 255, 0));
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAuraMobTurret.class, new RenderAuraBase(255, 0, 0));
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAuraPlayerHealer.class, new RenderAuraBase(255, 0, 255));
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindTurbine.class, new RenderTurbine());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEXPFabricator.class, new RenderFloatingItem(new ItemStack(Items.experience_bottle), 0.5F, 1.1F, 0.5F, 1F));

@@ -10,31 +10,40 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.GLU;
+import org.lwjgl.util.glu.Sphere;
 
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.model.ModelTurret;
+import calemi.fusionwarfare.model.ModelAuraBase;
 import calemi.fusionwarfare.model.ModelMissileLauncher;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraBase;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
+import calemi.fusionwarfare.util.EnumColorUtil;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderTurret extends TileEntitySpecialRenderer {
+public class RenderAuraBase extends TileEntitySpecialRenderer {
 
-	private static ResourceLocation texture;
-
-	ModelTurret model = new ModelTurret();
+	ModelAuraBase model = new ModelAuraBase();
 	
 	private long lastTime;
 	private long targetTime = 10;
 	private float rot;
 	
-	public RenderTurret(String name) {
-		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/" + name + "_turret.png");
+	private int red, green, blue;
+	
+	public RenderAuraBase(int red, int green, int blue) {
+		this.red = red;
+		this.green = green;
+		this.blue = blue;
 	}
 	
 	@Override
 	public void renderTileEntityAt(TileEntity entity, double x, double y, double z, float f) {
+		
+		TileEntityAuraBase tileEntityAuraBase = (TileEntityAuraBase)entity;
 		
 		GL11.glPushMatrix();
 		
@@ -47,8 +56,12 @@ public class RenderTurret extends TileEntitySpecialRenderer {
 			rot %= 360;
 		}
 				
-		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-		model.render(null, 0, 0, 0, 0, 0, 0.0625F, rot);		
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/models/aura_base.png"));
+		model.render(null, 0, 0, 0, 0, 0, 0.0625F, rot, red, green, blue, false);		
+		
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/models/aura_base_overlay.png"));
+		model.render(null, 0, 0, 0, 0, 0, 0.0624F, rot, red, green, blue, true);	
+		
 		GL11.glPopMatrix();
 	}
 }

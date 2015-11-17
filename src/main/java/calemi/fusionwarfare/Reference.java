@@ -52,9 +52,9 @@ public class Reference {
 		
 	public static int guiIDAuraTurret = nextGuiID++;
 	
-	public static int guiIDFusionMatterReinforcer = nextGuiID++;
-	public static int guiIDAntiMobBeacon = nextGuiID++;
-	public static int guiIDPlayerHealingBeacon = nextGuiID++;
+	public static int guiIDAuraMatterReinforcer = nextGuiID++;
+	public static int guiIDAuraMobTurret = nextGuiID++;
+	public static int guiIDAuraPlayerHealer = nextGuiID++;
 	
 	public static int guiIDEnergyTransmitter = nextGuiID++;
 	public static int guiIDEnergyReceiver = nextGuiID++;		
