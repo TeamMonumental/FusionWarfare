@@ -1,0 +1,36 @@
+#################################################
+=============[ FUSION WARFARE TODO ]=============
+#################################################
+
+- More Missiles
+- Jetpack
+- Teleporter
+- Grenades And Grenade Launcher
+- Fission Matter
+- Refine Reactors
+- Merge Energy Reciever and Transmitter
+- Refine Explosion Effects
+- Refine Multiblocks
+
+#################################################
+====================[ DONE ]=====================
+#################################################
+
+- RF Converter
+- Change Beacons to Auras
+
+#################################################
+==================[ MISSILES ]===================
+#################################################
+
+- Quake Missile
+- Posion Gas Missile
+- Fission Missile
+- Rouge Missile
+
+==============[ MAYBE ]==============
+
+- Orbital Strike Missile
+- Zero-Gravity Missile
+- Air Strike Missile
+- Flood Missile
