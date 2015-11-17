@@ -2,33 +2,37 @@
 =============[ FUSION WARFARE TODO ]=============
 #################################################
 
-- More Missiles
+==============[ v1.3("RF IS HERE!") ]==============
+
+==============[ v1.4("Tier 4 Update") ]==============
+
+- Fission Projector
+- Fission Stabilizer
+
+- Rouge Missile
+- Quake Missile
+
+- Posion Gas Missile (Tier 4)
+- Fission Missile (Tier 4)
+- Blackout Missile (Tier 4)
+
+==============[ Future Updates ]==============
+
 - Jetpack
 - Teleporter
 - Grenades And Grenade Launcher
-- Fission Matter
 - Refine Reactors
 - Merge Energy Reciever and Transmitter
 - Refine Explosion Effects
-- Refine Multiblocks
+- Refine Multiblocks (Transparant block map)
 
 #################################################
-====================[ DONE ]=====================
+===============[ BUGS & TWEAKS ]================
 #################################################
 
-- RF Converter
-- Change Beacons to Auras
+- Missile Sile Core will still work when placed on every side.
 
-#################################################
-==================[ MISSILES ]===================
-#################################################
-
-- Quake Missile
-- Posion Gas Missile
-- Fission Missile
-- Rouge Missile
-
-==============[ MAYBE ]==============
+==============[ Possible Additions ]==============
 
 - Orbital Strike Missile
 - Zero-Gravity Missile
