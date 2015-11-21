@@ -53,9 +53,12 @@ public abstract class TileEntityAuraBase extends TileEntitySecurity implements I
 		
 		int range = 5 + overclockedDifference();
 		
-		if ((isActive || worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) && !isDone() && EnergyUtil.canSubtractEnergy(this, getEnergyCost())) {			
-			progress++;
-		}
+		if (!worldObj.isRemote) {			
+		
+			if ((isActive || worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) && !isDone() && EnergyUtil.canSubtractEnergy(this, getEnergyCost())) {			
+				progress++;
+			}
+		}	
 			
 		if (isDone()) {
 			
