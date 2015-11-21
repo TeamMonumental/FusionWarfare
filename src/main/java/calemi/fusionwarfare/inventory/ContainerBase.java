@@ -1,33 +1,19 @@
 package calemi.fusionwarfare.inventory;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import calemi.fusionwarfare.FusionWarfare;
-import calemi.fusionwarfare.packet.ClientPacketHandler;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.entity.EntityClientPlayerMP;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityInventoryBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityFurnace;
 
 public class ContainerBase extends Container {
 
-	public TileEntityBase fusion;
+	public TileEntityInventoryBase tileEntity;
 	public EntityPlayer player;
-
-	private int lastProgressTime;
 	
-	public ContainerBase(EntityPlayer player, TileEntityBase tileEntity) {
-		this.fusion = tileEntity;
+	public ContainerBase(EntityPlayer player, TileEntityInventoryBase tileEntity) {
+		this.tileEntity = tileEntity;
 		this.player = player;
 	}
 	
@@ -49,41 +35,51 @@ public class ContainerBase extends Container {
 		}
 	}
 
-	public void addCraftingToCrafters(ICrafting craft) {
-		super.addCraftingToCrafters(craft);
-
-		craft.sendProgressBarUpdate(this, 1, fusion.progress);
-	}
-	
-	public void detectAndSendChanges() {
-		super.detectAndSendChanges();
-
-		if (player instanceof EntityPlayerMP) {
-			FusionWarfare.network.sendTo(new ClientPacketHandler("sync.fusion%" + fusion.energy), (EntityPlayerMP) player);
-		}
-		
-		for (int i = 0; i < this.crafters.size(); ++i) {
-			
-			ICrafting craft = (ICrafting) this.crafters.get(i);
-			
-			if (this.lastProgressTime != fusion.progress) {
-				craft.sendProgressBarUpdate(this, 1, fusion.progress);
-			}
-		}
-		
-		lastProgressTime = fusion.progress;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void updateProgressBar(int i, int i2) {
-		
-		if (i == 0) fusion.energy = i2;		
-		if (i == 1) fusion.progress = i2;
-	}
-
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer p, int i) {
-		return null;
+	public ItemStack transferStackInSlot(EntityPlayer player, int slotId) {
+		
+		ItemStack itemstack = null;
+		Slot slot = (Slot)this.inventorySlots.get(slotId);
+			
+		if (slot != null && slot.getHasStack()) {
+			
+			ItemStack itemstack1 = slot.getStack();
+			itemstack = itemstack1.copy();
+					
+			if (slotId < 27) {
+				
+				if (!this.mergeItemStack(itemstack1, 27, 35, false)) {
+					return null;
+				}
+
+				slot.onSlotChange(itemstack1, itemstack);
+			}
+			
+			else {
+				
+				if (!this.mergeItemStack(itemstack1, 0, 26, false)) {
+					return null;
+				}	
+				
+				slot.onSlotChange(itemstack1, itemstack);
+			}
+			
+			if (itemstack1.stackSize == 0) {				
+				slot.putStack((ItemStack)null);
+			}
+			
+			else {				
+				slot.onSlotChanged();
+			}
+
+			if (itemstack1.stackSize == itemstack.stackSize) {
+				return null;
+			}
+
+			slot.onPickupFromSlot(player, itemstack1);
+		}
+		
+		return itemstack;
 	}
 
 	@Override

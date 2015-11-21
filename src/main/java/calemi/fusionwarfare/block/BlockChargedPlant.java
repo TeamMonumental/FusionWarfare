@@ -6,7 +6,7 @@ import java.util.Random;
 
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.item.ItemBlockChargePlant;
+import calemi.fusionwarfare.item.ItemBlockChargedPlant;
 import calemi.fusionwarfare.item.ItemBlockMeta;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -43,7 +43,7 @@ public class BlockChargedPlant extends BlockBase {
 		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
 		
 		setTickRandomly(true);
-		GameRegistry.registerBlock(this, ItemBlockChargePlant.class, imagePath);
+		GameRegistry.registerBlock(this, ItemBlockChargedPlant.class, imagePath);
 	}
 	
 	@Override

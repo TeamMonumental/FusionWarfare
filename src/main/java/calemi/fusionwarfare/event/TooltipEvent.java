@@ -3,27 +3,15 @@ package calemi.fusionwarfare.event;
 import org.lwjgl.input.Keyboard;
 
 import calemi.fusionwarfare.config.FWConfig;
-import calemi.fusionwarfare.gui.GuiTwoInputsRecipe;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
-import calemi.fusionwarfare.key.KeyBindings;
-import calemi.fusionwarfare.recipe.EnumRecipeType;
-import calemi.fusionwarfare.recipe.TwoInputRecipe;
-import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainerCreative;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class TooltipEvent {
 
@@ -106,33 +94,5 @@ public class TooltipEvent {
 				}
 			}	
 		}
-	}
-		
-	private void checkThroughRecipes(ItemTooltipEvent event) {
-		
-		for (TwoInputRecipe currentRecipe : TwoInputRecipeRegistry.getRecipes(EnumRecipeType.INFUSION_TABLE)) {
-				
-			if (checkAndOpenGui(currentRecipe, event.entityPlayer, event.itemStack)) {
-				break;
-			}
-		}
-			
-		for (TwoInputRecipe currentRecipe : TwoInputRecipeRegistry.getRecipes(EnumRecipeType.MISSILE_FACTORY)) {
-				
-			if (checkAndOpenGui(currentRecipe, event.entityPlayer, event.itemStack)) {
-				break;
-			}				
-		}
-	}
-	
-	private boolean checkAndOpenGui(TwoInputRecipe recipe, EntityPlayer player, ItemStack itemStack) {
-		
-		if (itemStack.getItem() == recipe.output.getItem()) {
-		
-			FMLClientHandler.instance().displayGuiScreen(player, new GuiTwoInputsRecipe(player, recipe.recipeType, TwoInputRecipeRegistry.getRecipeIndex(recipe.recipeType, recipe)));
-			return true;
-		}		
-		
-		return false;
 	}
 }

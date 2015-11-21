@@ -1,15 +1,21 @@
 package calemi.fusionwarfare.tileentity.machine;
 
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.gui.GuiMiningUnit;
+import calemi.fusionwarfare.inventory.ContainerMiningUnit;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.Location;
 
-public class TileEntityMiningUnit extends TileEntityBase {
+public class TileEntityMiningUnit extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 
 	private int energyCost = 50;
 
@@ -20,17 +26,14 @@ public class TileEntityMiningUnit extends TileEntityBase {
 
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
 
 		if (!worldObj.isRemote) {
 
-			if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && energy >= energyCost) {
+			if (!isDone() && EnergyUtil.canSubtractEnergy(this, energyCost) && worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
 				progress++;
 			}
 
-			else {
-				resetProgress();
-			}
+			else resetProgress();
 
 			if (isDone()) {
 
@@ -86,8 +89,6 @@ public class TileEntityMiningUnit extends TileEntityBase {
 				return true;
 			}
 			
-			System.out.println(slots[i].isItemEqual(stack));
-			
 			if (slots[i].isItemEqual(stack) && getSpace(i) >= 1) {				
 				slots[i].stackSize++;				
 				return true;
@@ -117,18 +118,6 @@ public class TileEntityMiningUnit extends TileEntityBase {
 		worldObj.setBlock(location.x, location.y, location.z, Blocks.stone);
 	}
 
-	// -----------------------------------------------------------------------------------------------
-
-	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[] {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-	}
-
-	@Override
-	public boolean canInsertItem(int slot, ItemStack item, int side) {
-		return false;
-	}
-
 	@Override
 	public boolean canExtractItem(int slot, ItemStack item, int side) {		
 		return (slot != 21 && side == 0);
@@ -152,5 +141,15 @@ public class TileEntityMiningUnit extends TileEntityBase {
 	@Override
 	public ItemStack getOverclockingSlot() {
 		return slots[21];
+	}
+
+	@Override
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerMiningUnit(player, this);
+	}
+
+	@Override
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiMiningUnit(player, this);
 	}
 }

@@ -5,8 +5,8 @@ import org.lwjgl.input.Keyboard;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.inventory.ContainerMissileLauncher;
 import calemi.fusionwarfare.inventory.ContainerOneInput;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
@@ -20,7 +20,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiMissileLauncher extends GuiContainerBase {
 
-	public GuiMissileLauncher(EntityPlayer player, TileEntityBase tileEntity) {
+	public GuiMissileLauncher(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(new ContainerMissileLauncher(player, tileEntity), player, tileEntity);
 	}
 
@@ -36,8 +36,8 @@ public class GuiMissileLauncher extends GuiContainerBase {
 
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
-		drawInfoTextBar("Target X: " + ((TileEntityMissileLauncher)tileEntity).targetX, 0);
-		drawInfoTextBar("Target Z: " + ((TileEntityMissileLauncher)tileEntity).targetZ, 1);
+		drawInfoTextBar("Target X: " + ((TileEntityMissileLauncher)tileEntityEnergy).targetX, 0);
+		drawInfoTextBar("Target Z: " + ((TileEntityMissileLauncher)tileEntityEnergy).targetZ, 1);
 		drawSmallFuelBar(8, 65);
 		drawLongProgBar(7, 71);
 	}

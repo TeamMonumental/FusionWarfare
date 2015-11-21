@@ -20,7 +20,7 @@ public class RenderMissile extends Render {
 	
 		GL11.glPushMatrix();
 		
-		GL11.glTranslated(x, y + 1.5, z);	
+		GL11.glTranslated(x, y + 1.15F, z);	
 		
 		GL11.glRotatef(180, 1, 0, 0);
 		GL11.glRotatef(45, 0, 1, 0);

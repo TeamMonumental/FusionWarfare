@@ -1,17 +1,23 @@
 package calemi.fusionwarfare.tileentity;
 
 import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.gui.GuiSupplyCrate;
+import calemi.fusionwarfare.inventory.ContainerSupplyCrate;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityInventoryBase;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 
-public class TileEntitySupplyCrate extends TileEntityBase {
+public class TileEntitySupplyCrate extends TileEntityInventoryBase implements ITileEntityGuiHandler {
 
-	public TileEntitySupplyCrate() {
-		maxProgress = 36000; //30min
-	}
+	private int time;
+	private int maxTime = 36000; //30min
 	
 	public boolean isEmpty = false;
 	
@@ -19,9 +25,9 @@ public class TileEntitySupplyCrate extends TileEntityBase {
 	public void updateEntity() {
 		super.updateEntity();
 		
-		progress++;
+		time++;
 		
-		if (isDone()) {
+		if (time >= maxTime) {
 			
 			for (ItemStack slot : slots) {				
 				
@@ -56,64 +62,29 @@ public class TileEntitySupplyCrate extends TileEntityBase {
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);	
-		nbt.setBoolean("isEmpty", isEmpty);	
+	public void writeSyncNBT(NBTTagCompound nbt) {
+		super.writeSyncNBT(nbt);	
+		nbt.setInteger("time", time);	
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);	
-		isEmpty = nbt.getBoolean("isEmpty");
+	public void readSyncNBT(NBTTagCompound nbt) {
+		super.readSyncNBT(nbt);	
+		time = nbt.getInteger("time");
 	}
 	
-	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound syncData = new NBTTagCompound();
-	
-		writeToNBT(syncData);
-
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-
-		readFromNBT(pkt.func_148857_g());
-	}
-	
-	@Override
-	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
-		return new int[]{};
-	}
-
-	@Override
-	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
-		return false;
-	}
-
 	@Override
 	public int getSizeInventory() {
 		return 27;
 	}
-
-	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
-		return false;
-	}
-
-	@Override
-	public EnumIO getIOType() {
-		return EnumIO.NONE;
-	}
 	
 	@Override
-	public ItemStack getOverclockingSlot() {
-		return null;
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerSupplyCrate(player, this);
+	}
+
+	@Override
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiSupplyCrate(player, this);
 	}
 }

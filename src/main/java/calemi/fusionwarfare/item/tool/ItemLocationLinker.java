@@ -6,8 +6,6 @@ import org.lwjgl.input.Keyboard;
 
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.item.ItemBase;
-import calemi.fusionwarfare.tileentity.TileEntityEnergyReceiver;
-import calemi.fusionwarfare.tileentity.TileEntityEnergyTransmitter;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.reactor.TileEntitySteelCasing;
@@ -45,8 +43,7 @@ public class ItemLocationLinker extends ItemBase {
 			list.add(EnumChatFormatting.GOLD + "Y: " + EnumChatFormatting.AQUA + getNBT(is).getInteger("Y"));		
 			list.add(EnumChatFormatting.GOLD + "Z: " + EnumChatFormatting.AQUA + getNBT(is).getInteger("Z"));
 			list.add("");
-			list.add("Binds locations to");
-			list.add("Missile Launcher/Silo and Energy Transmitter.");
+			list.add("Binds locations to Missile Launcher/Silo");
 			list.add("Sneak Right-click to send coords to machine.");
 			list.add("Right-click to link a location.");
 			
@@ -94,17 +91,6 @@ public class ItemLocationLinker extends ItemBase {
 					((TileEntityMissileSiloCore)world.getTileEntity(x, y, z)).update();
 					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);	
 					player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Missile Silo's coords set to " + x + ", " + y + ", " + z));
-					return true;
-				}
-				
-				if (world.getTileEntity(x, y, z) instanceof TileEntityEnergyTransmitter) {
-					
-					((TileEntityEnergyTransmitter)world.getTileEntity(x, y, z)).targetX = getNBT(is).getInteger("X");
-					((TileEntityEnergyTransmitter)world.getTileEntity(x, y, z)).targetY = getNBT(is).getInteger("Y");
-					((TileEntityEnergyTransmitter)world.getTileEntity(x, y, z)).targetZ = getNBT(is).getInteger("Z");
-					((TileEntityEnergyTransmitter)world.getTileEntity(x, y, z)).update();
-					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);	
-					player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Energy Transmitter's coords set to " + x + ", " + y + ", " + z));
 					return true;
 				}
 			}

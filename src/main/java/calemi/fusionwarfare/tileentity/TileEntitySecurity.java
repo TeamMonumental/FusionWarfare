@@ -1,6 +1,7 @@
 package calemi.fusionwarfare.tileentity;
 
 import calemi.fusionwarfare.api.ISecurity;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,7 +15,7 @@ import net.minecraft.scoreboard.Team;
 import net.minecraft.stats.ObjectiveStat;
 import net.minecraft.tileentity.TileEntity;
 
-public abstract class TileEntitySecurity extends TileEntityBase implements ISecurity {
+public abstract class TileEntitySecurity extends TileEntityEnergyBase implements ISecurity {
 
 	public String teamName;
 
@@ -34,8 +35,8 @@ public abstract class TileEntitySecurity extends TileEntityBase implements ISecu
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
+	public void writeSyncNBT(NBTTagCompound nbt) {
+		super.writeSyncNBT(nbt);
 		
 		if (teamName != null) {
 			nbt.setString("team", teamName);
@@ -43,11 +44,11 @@ public abstract class TileEntitySecurity extends TileEntityBase implements ISecu
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
+	public void readSyncNBT(NBTTagCompound nbt) {
+		super.readSyncNBT(nbt);
 		
 		if (nbt.hasKey("team")) {
 			teamName = nbt.getString("team");
 		}
-	}	
+	}
 }

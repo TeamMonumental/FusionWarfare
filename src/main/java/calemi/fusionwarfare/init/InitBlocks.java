@@ -1,9 +1,10 @@
 package calemi.fusionwarfare.init;
 
-import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.block.BlockAuraBase;
 import calemi.fusionwarfare.block.BlockBasicMachineBase;
 import calemi.fusionwarfare.block.BlockChargedPlant;
 import calemi.fusionwarfare.block.BlockFusionTorch;
+import calemi.fusionwarfare.block.BlockNetworkBeacon;
 import calemi.fusionwarfare.block.BlockNetworkCable;
 import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.block.BlockNetworkGate;
@@ -16,23 +17,21 @@ import calemi.fusionwarfare.block.BlockSteelCasing;
 import calemi.fusionwarfare.block.BlockSupplyCrate;
 import calemi.fusionwarfare.block.BlockTwoInputs;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
-import calemi.fusionwarfare.tileentity.TileEntityEnergyReceiver;
-import calemi.fusionwarfare.tileentity.TileEntityEnergyTransmitter;
 import calemi.fusionwarfare.tileentity.gen.TileEntityAquaGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityGeothermalGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntitySolarGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMobTurret;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerHealer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
-import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMiningUnit;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
-import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerHealer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import calemi.fusionwarfare.tileentity.reactor.TileEntityAdvancedHydroReactorCore;
 import calemi.fusionwarfare.tileentity.reactor.TileEntityCapsuleCore;
@@ -70,6 +69,7 @@ public class InitBlocks {
 	public static Block network_controller_3;
 	public static Block network_cable;	
 	public static Block network_gate;
+	public static Block network_beacon;
 	
 	//#-#-#-#-#-GENERATORS-#-#-#-#-#\\
 	
@@ -103,9 +103,6 @@ public class InitBlocks {
 	public static Block aura_matter_reinforcer;
 	public static Block aura_mob_turret;
 	public static Block aura_player_healer;
-	
-	public static Block energy_transmitter;
-	public static Block energy_receiver;
 	
 	public static Block rf_converter;
 	
@@ -144,45 +141,43 @@ public class InitBlocks {
 		network_controller_3 = new BlockNetworkController(3);
 		network_cable = new BlockNetworkCable();
 		network_gate = new BlockNetworkGate();
+		network_beacon = new BlockNetworkBeacon();
 		
 		//#-#-#-#-#-GENERATORS-#-#-#-#-#\\
 		
-		aqua_generator = new BlockBasicMachineBase("aqua_generator", TileEntityAquaGenerator.class, Reference.guiIDAquaGenerator, false, "aqua_generator_side");
-		solar_generator = new BlockBasicMachineBase("solar_generator", TileEntitySolarGenerator.class, Reference.guiIDSolarGenerator, false, true, "solar_generator_top", "steel_casing", "mech_side");		
-		geothermal_generator = new BlockBasicMachineBase("geothermal_generator", TileEntityGeothermalGenerator.class, Reference.guiIDGeothermalGenerator, false, true, "mech_top_3", "steel_casing", "geothermal_generator_side");
-		wind_turbine = new BlockBasicMachineBase("wind_turbine", TileEntityWindTurbine.class, Reference.guiIDWindTurbine, true, true, "mech_top_1", "steel_casing", "wind_turbine_side");		
+		aqua_generator = new BlockBasicMachineBase("aqua_generator", TileEntityAquaGenerator.class).setAllFourSideImages();
+		solar_generator = new BlockBasicMachineBase("solar_generator", TileEntitySolarGenerator.class).setTopImage();		
+		geothermal_generator = new BlockBasicMachineBase("geothermal_generator", TileEntityGeothermalGenerator.class).setTopImage("mech_top_3").setAllFourSideImages();
+		wind_turbine = new BlockBasicMachineBase("wind_turbine", TileEntityWindTurbine.class).setDirectional();		
 		
 		//#-#-#-#-#-REACTORS-#-#-#-#-#\\
 		
-		reactor_core = new BlockBasicMachineBase("reactor_core", TileEntityReactorCore.class, Reference.guiIDReactorCore, false, true, "reactor_core_side", "reactor_core_side", "reactor_core_side");
+		reactor_core = new BlockBasicMachineBase("reactor_core", TileEntityReactorCore.class).setAllSideImages();
 		reactor_cooling_unit = new BlockReactorCoolingUnit();
 		
-		advanced_hydro_reactor_core = new BlockBasicMachineBase("advanced_hydro_reactor_core", TileEntityAdvancedHydroReactorCore.class, Reference.guiIDAdvancedHydroReactorCore, false, true, "advanced_hydro_reactor_core_top", "steel_casing", "advanced_hydro_reactor_core_side");
-		capsule_core = new BlockBasicMachineBase("capsule_core", TileEntityCapsuleCore.class, 0, false, true, "capsule_core_side", "capsule_core_side", "capsule_core_side");
-		
+		advanced_hydro_reactor_core = new BlockBasicMachineBase("advanced_hydro_reactor_core", TileEntityAdvancedHydroReactorCore.class).setTopImage().setAllFourSideImages();
+		capsule_core = new BlockBasicMachineBase("capsule_core", TileEntityCapsuleCore.class).setAllSideImages();
+	
 		//#-#-#-#-#-MACHINES-#-#-#-#-#\\
 		
-		infusion_table = new BlockTwoInputs("infusion_table", EnumRecipeType.INFUSION_TABLE, Reference.guiIDTwoInputs, "table_top", "infusion_table_side");	
-		infusion_foundry = new BlockTwoInputs("infusion_foundry", EnumRecipeType.INFUSION_FOUNDRY, Reference.guiIDTwoInputs, "mech_top_1", "mech_side");	
-		missile_factory = new BlockTwoInputs("missile_factory", EnumRecipeType.MISSILE_FACTORY, Reference.guiIDTwoInputs, "missile_factory_top", "missile_factory_side");	
+		infusion_table = new BlockTwoInputs("infusion_table", EnumRecipeType.INFUSION_TABLE).setTopImage().setAllFourSideImages();	
+		infusion_foundry = new BlockTwoInputs("infusion_foundry", EnumRecipeType.INFUSION_FOUNDRY);	
+		missile_factory = new BlockTwoInputs("missile_factory", EnumRecipeType.MISSILE_FACTORY).setTopImage().setAllFourSideImages();	
 		
-		energetic_furnace = new BlockBasicMachineBase("energetic_furnace", TileEntityEnergeticFurnace.class, Reference.guiIDEnergeticFurnace, true);
-		ore_enricher = new BlockBasicMachineBase("ore_enricher", TileEntityOreEnricher.class, Reference.guiIDOreEnricher, true);			
-		mining_unit = new BlockBasicMachineBase("mining_unit", TileEntityMiningUnit.class, Reference.guiIDMiningUnit, false, true, "mech_top_1", "mining_unit_bottom", "mining_unit_side");	
-		missile_launcher = new BlockBasicMachineBase("missile_launcher", "mech_particle", TileEntityMissileLauncher.class, Reference.guiIDMissileLauncher, 1, 0, 1, 15, 4, 15);
-		missile_silo_core = new BlockBasicMachineBase("missile_silo_core", TileEntityMissileSiloCore.class, Reference.guiIDMissileSiloCore, false, true, "steel_casing", "steel_casing", "missile_silo_core");
-		exp_fabricator = new BlockBasicMachineBase("exp_fabricator", TileEntityEXPFabricator.class, Reference.guiIDEXPFabricator, false, true, "exp_fabricator_top", "steel_casing", "exp_fabricator_side");
-		emp_tower = new BlockBasicMachineBase("emp_tower", "mech_particle", TileEntityEMPTower.class, Reference.guiIDEMPTower, 2, 0, 2, 14, 16, 14);
+		energetic_furnace = new BlockBasicMachineBase("energetic_furnace", TileEntityEnergeticFurnace.class).setDirectional();
+		ore_enricher = new BlockBasicMachineBase("ore_enricher", TileEntityOreEnricher.class).setDirectional();			
+		mining_unit = new BlockBasicMachineBase("mining_unit", TileEntityMiningUnit.class).setBottomImage().setAllFourSideImages();	
+		missile_launcher = new BlockBasicMachineBase("missile_launcher", TileEntityMissileLauncher.class).setHasCustomModel().setBounds(1, 0, 1, 15, 4, 15);
+		missile_silo_core = new BlockBasicMachineBase("missile_silo_core", TileEntityMissileSiloCore.class).setAllFourSideImages();
+		exp_fabricator = new BlockBasicMachineBase("exp_fabricator", TileEntityEXPFabricator.class).setTopImage().setAllFourSideImages();
+		emp_tower = new BlockBasicMachineBase("emp_tower", TileEntityEMPTower.class).setHasCustomModel().setBounds(2, 0, 2, 14, 16, 14);
 		
-		aura_player_turret = new BlockBasicMachineBase("aura_player_turret", "mech_particle", TileEntityAuraPlayerTurret.class, Reference.guiIDAuraTurret, 3, 0, 3, 13, 12, 13).setHardness(50F);
-		aura_matter_reinforcer = new BlockBasicMachineBase("aura_matter_reinforcer", "mech_particle", TileEntityAuraMatterReinforcer.class, Reference.guiIDAuraMatterReinforcer, 3, 0, 3, 13, 12, 13);	
-		aura_mob_turret = new BlockBasicMachineBase("aura_mob_turret", "mech_particle", TileEntityAuraMobTurret.class, Reference.guiIDAuraMobTurret, 3, 0, 3, 13, 12, 13);	
-		aura_player_healer = new BlockBasicMachineBase("aura_player_healer", "mech_particle", TileEntityAuraPlayerHealer.class, Reference.guiIDAuraPlayerHealer, 3, 0, 3, 13, 12, 13);	
+		aura_player_turret = new BlockAuraBase("player_turret", TileEntityAuraPlayerTurret.class).setHardness(50F);
+		aura_matter_reinforcer = new BlockAuraBase("matter_reinforcer", TileEntityAuraMatterReinforcer.class);
+		aura_mob_turret = new BlockAuraBase("mob_turret", TileEntityAuraMobTurret.class);
+		aura_player_healer = new BlockAuraBase("player_healer", TileEntityAuraPlayerHealer.class);
 		
-		energy_transmitter = new BlockBasicMachineBase("energy_transmitter",TileEntityEnergyTransmitter.class, Reference.guiIDEnergyTransmitter, false, "energy_transmitter_side");	
-		energy_receiver = new BlockBasicMachineBase("energy_receiver", TileEntityEnergyReceiver.class, Reference.guiIDEnergyReceiver, false, "energy_receiver_side");		
-		
-		rf_converter = new BlockBasicMachineBase("rf_converter", TileEntityRFConverter.class, Reference.guiIDRFConverter, false, "rf_converter_side");
+		rf_converter = new BlockBasicMachineBase("rf_converter", TileEntityRFConverter.class).setAllFourSideImages();
 		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		

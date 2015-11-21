@@ -42,31 +42,26 @@ public class BlockFusionTorch extends BlockTorch {
 		if (metadata == 1) {
 			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityFusionParticleFX(world, "blue_flame", d0 - d4, d1 + d3, d2));
 			world.spawnParticle("smoke", d0 - d4, d1 + d3, d2, 0.0D, 0.0D, 0.0D);
-			//world.spawnParticle("flame", d0 - d4, d1 + d3, d2, 0.0D, 0.0D, 0.0D);
 		} 
 		
 		else if (metadata == 2) {
 			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityFusionParticleFX(world, "blue_flame", d0 + d4, d1 + d3, d2));
 			world.spawnParticle("smoke", d0 + d4, d1 + d3, d2, 0.0D, 0.0D, 0.0D);
-			//world.spawnParticle("flame", d0 + d4, d1 + d3, d2, 0.0D, 0.0D, 0.0D);
 		} 
 		
 		else if (metadata == 3) {
 			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityFusionParticleFX(world, "blue_flame", d0, d1 + d3, d2 - d4));
 			world.spawnParticle("smoke", d0, d1 + d3, d2 - d4, 0.0D, 0.0D, 0.0D);
-			//world.spawnParticle("flame", d0, d1 + d3, d2 - d4, 0.0D, 0.0D, 0.0D);
 		} 
 		
 		else if (metadata == 4) {
 			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityFusionParticleFX(world, "blue_flame", d0, d1 + d3, d2 + d4));
 			world.spawnParticle("smoke", d0, d1 + d3, d2 + d4, 0.0D, 0.0D, 0.0D);
-			//world.spawnParticle("flame", d0, d1 + d3, d2 + d4, 0.0D, 0.0D, 0.0D);
 		} 
 		
 		else {
 			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityFusionParticleFX(world, "blue_flame", d0, d1, d2));
 			world.spawnParticle("smoke", d0, d1, d2, 0.0D, 0.0D, 0.0D);
-			//world.spawnParticle("flame", d0, d1, d2, 0.0D, 0.0D, 0.0D);
 		}
 	}
 

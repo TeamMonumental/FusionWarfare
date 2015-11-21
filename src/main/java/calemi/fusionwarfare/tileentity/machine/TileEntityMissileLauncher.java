@@ -6,10 +6,16 @@ import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.entity.EntityMissile;
+import calemi.fusionwarfare.gui.GuiMissileLauncher;
+import calemi.fusionwarfare.inventory.ContainerMissileLauncher;
 import calemi.fusionwarfare.item.ItemMissile;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.explosion.VelocityEvent;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -19,7 +25,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 
-public class TileEntityMissileLauncher extends TileEntitySecurity {
+public class TileEntityMissileLauncher extends TileEntitySecurity implements ITileEntityGuiHandler {
 
 	public int targetX;
 	public int targetZ;
@@ -35,8 +41,9 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
 		
+		System.out.println(slots[0]);
+				
 		if (canLaunch()) {
 
 			progress++;
@@ -58,9 +65,7 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 			}
 		}
 
-		else {
-			resetProgress();
-		}
+		else resetProgress();
 
 		if (isDone()) {
 
@@ -100,13 +105,6 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 		return AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1).expand(0, 5, 0);
 	}
 
-	// ------------------------------------------------------------------------
-
-	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[]{0};
-	}
-
 	@Override
 	public boolean canInsertItem(int p_102007_1_, ItemStack stack, int p_102007_3_) {
 		return true;
@@ -136,37 +134,30 @@ public class TileEntityMissileLauncher extends TileEntitySecurity {
 	public ItemStack getOverclockingSlot() {
 		return null;
 	}
+	
+	@Override
+	public void readSyncNBT(NBTTagCompound nbt) {
+		super.readSyncNBT(nbt);
+		forceLaunch = nbt.getBoolean("forceLaunch");
+		targetX = nbt.getInteger("targetX");
+		targetZ = nbt.getInteger("targetZ");
+	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-
+	public void writeSyncNBT(NBTTagCompound nbt) {
+		super.writeSyncNBT(nbt);
+		nbt.setBoolean("forceLaunch", forceLaunch);
 		nbt.setInteger("targetX", targetX);
 		nbt.setInteger("targetZ", targetZ);
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-
-		targetX = nbt.getInteger("targetX");
-		targetZ = nbt.getInteger("targetZ");
-	}
-
-	// -------------------------------------------------Packets
-
-	@Override
-	public Packet getDescriptionPacket() {
-		
-		NBTTagCompound syncData = new NBTTagCompound();
-
-		writeToNBT(syncData);
-		
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerMissileLauncher(player, this);
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		readFromNBT(pkt.func_148857_g());
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiMissileLauncher(player, this);
 	}
 }

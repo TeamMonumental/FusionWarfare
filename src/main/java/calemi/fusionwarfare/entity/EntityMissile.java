@@ -83,26 +83,30 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		
 	@Override
 	protected void entityInit() {}
-
+	
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag) {
+		targetX = tag.getInteger("targetX");
+		targetZ = tag.getInteger("targetZ");
 		missileType = (ItemMissile) Item.getItemById(tag.getInteger("type"));
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tag) {
+		tag.setInteger("targetX", targetX);
+		tag.setInteger("targetZ", targetZ);
 		tag.setInteger("type", Item.getIdFromItem(missileType));
 	}
-
+	
+	@Override
+	public void readSpawnData(ByteBuf buffer) {		
+		readEntityFromNBT(ByteBufUtils.readTag(buffer));
+	}
+	
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
 		NBTTagCompound tag = new NBTTagCompound();
 		writeEntityToNBT(tag);
 		ByteBufUtils.writeTag(buffer, tag);
-	}
-
-	@Override
-	public void readSpawnData(ByteBuf buffer) {		
-		readEntityFromNBT(ByteBufUtils.readTag(buffer));
 	}
 }

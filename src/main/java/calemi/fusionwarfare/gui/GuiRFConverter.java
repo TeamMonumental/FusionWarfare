@@ -2,11 +2,10 @@ package calemi.fusionwarfare.gui;
 
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerRFConverter;
 import calemi.fusionwarfare.packet.ServerPacketHandler;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import codechicken.nei.recipe.GuiCraftingRecipe;
@@ -22,7 +21,7 @@ public class GuiRFConverter extends GuiContainerBase {
 	
 	private TileEntityRFConverter tileEntityRF;
 	
-	public GuiRFConverter(EntityPlayer player, TileEntityBase tileEntity) {
+	public GuiRFConverter(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(new ContainerRFConverter(player, tileEntity), player, tileEntity);
 		
 		tileEntityRF = (TileEntityRFConverter)tileEntity;
@@ -41,7 +40,7 @@ public class GuiRFConverter extends GuiContainerBase {
 
 		if (button.id == 0) {
 			tileEntityRF.toggle();
-			FusionWarfare.network.sendToServer(new ServerPacketHandler("toggle.converter%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
+			FusionWarfare.network.sendToServer(new ServerPacketHandler("toggle.converter%" + tileEntityEnergy.xCoord + "%" + tileEntityEnergy.yCoord + "%" + tileEntityEnergy.zCoord));
 		}
 	}
 	

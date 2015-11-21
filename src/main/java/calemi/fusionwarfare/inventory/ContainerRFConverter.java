@@ -3,7 +3,7 @@ package calemi.fusionwarfare.inventory;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.packet.ClientPacketHandler;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -14,11 +14,11 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerRFConverter extends ContainerBase {
+public class ContainerRFConverter extends ContainerEnergyBase {
 
 	public TileEntityRFConverter tileEntityRF;
 	
-	public ContainerRFConverter(EntityPlayer player, TileEntityBase tileEntity) {
+	public ContainerRFConverter(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(player, tileEntity);
 		
 		tileEntityRF = (TileEntityRFConverter) tileEntity;

@@ -6,15 +6,15 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class GuiEnergyTank extends GuiContainerBase {
 
 	private String name;
 	boolean hasProgBar;
 	
-	public GuiEnergyTank(EntityPlayer player, TileEntityBase tileEntity, String name, boolean hasProgBar) {
+	public GuiEnergyTank(EntityPlayer player, TileEntityEnergyBase tileEntity, String name, boolean hasProgBar) {
 		super(new ContainerEnergyTank(player, tileEntity), player, tileEntity);
 		this.name = name;
 		this.hasProgBar = hasProgBar;

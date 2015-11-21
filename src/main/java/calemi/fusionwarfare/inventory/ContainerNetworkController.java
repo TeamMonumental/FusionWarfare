@@ -2,24 +2,24 @@ package calemi.fusionwarfare.inventory;
 
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.IEnergyItem;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerNetworkController extends ContainerBase {
+public class ContainerNetworkController extends ContainerEnergyBase {
 
 	private int[] slots = {0,1,2};
 	
-	public ContainerNetworkController(EntityPlayer player, TileEntityBase tileEntity) {
+	public ContainerNetworkController(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(player, tileEntity);		
 		
-		TileEntityNetworkController tileEntityNetworkController = (TileEntityNetworkController)tileEntity;
-		
+		TileEntityNetworkController tileEntityController = (TileEntityNetworkController)tileEntity;
+					
 		//Overclocking
-		addSlotToContainer(new SlotOverclocking(tileEntity, slots[0], 143, 64, tileEntityNetworkController.tier * 5));
+		addSlotToContainer(new SlotOverclocking(tileEntity, slots[0], 143, 64, tileEntityController.getTierFromEnergy() * 5));
 		//Discharge	
 		addSlotToContainer(new Slot(tileEntity, slots[1], 17, 23));
 		//Charge

@@ -4,7 +4,7 @@ import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.item.IEnergyItem;
 import calemi.fusionwarfare.item.ItemBattery;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraft.block.Block;

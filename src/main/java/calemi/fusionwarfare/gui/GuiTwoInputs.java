@@ -7,14 +7,13 @@ import org.lwjgl.opengl.GL11;
 
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.init.recipe.InitInfusionTableRecipes;
 import calemi.fusionwarfare.inventory.ContainerTwoInputs;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
 import calemi.fusionwarfare.inventory.ContainerOneInput;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
 import codechicken.nei.recipe.GuiCraftingRecipe;
 import codechicken.nei.recipe.GuiRecipe;
@@ -39,7 +38,7 @@ public class GuiTwoInputs extends GuiContainerBase {
 	private String name;
 	public EnumRecipeType recipeType;
 	
-	public GuiTwoInputs(EntityPlayer player, TileEntityBase tileEntity, EnumRecipeType recipeType) {
+	public GuiTwoInputs(EntityPlayer player, TileEntityEnergyBase tileEntity, EnumRecipeType recipeType) {
 		super(new ContainerTwoInputs(player, tileEntity), player, tileEntity);
 		this.recipeType = recipeType;
 	}
@@ -79,7 +78,7 @@ public class GuiTwoInputs extends GuiContainerBase {
 		drawSmallFuelBar(19, 69);
 		drawSmallProgBar(79, 38);
 		
-		TileEntityTwoInputs tileEntityTwoInputs = (TileEntityTwoInputs)tileEntity;
+		TileEntityTwoInputs tileEntityTwoInputs = (TileEntityTwoInputs)tileEntityEnergy;
 
 		if (tileEntityTwoInputs.currentRecipe != null) {
 			

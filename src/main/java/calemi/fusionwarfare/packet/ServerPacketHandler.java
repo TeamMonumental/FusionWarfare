@@ -3,10 +3,12 @@ package calemi.fusionwarfare.packet;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.item.ItemFusionGun;
+import calemi.fusionwarfare.item.tool.ItemScubaGear;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
+import calemi.fusionwarfare.tileentity.network.TileEntityNetworkBeacon;
 import calemi.fusionwarfare.util.GunUtil;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -126,6 +128,16 @@ public class ServerPacketHandler implements IMessage {
 				
 				TileEntityAuraBase tileEntity = (TileEntityAuraBase)player.worldObj.getTileEntity(x, y, z);
 				tileEntity.toggle();
+			}
+			
+			if (data[0].equalsIgnoreCase("code")) {
+				
+				int x = Integer.parseInt(data[1]);
+				int y = Integer.parseInt(data[2]);
+				int z = Integer.parseInt(data[3]);
+				
+				TileEntityNetworkBeacon tileEntity = (TileEntityNetworkBeacon)player.worldObj.getTileEntity(x, y, z);
+				tileEntity.setCode(Integer.parseInt(data[4]));
 			}
 
 			return null;

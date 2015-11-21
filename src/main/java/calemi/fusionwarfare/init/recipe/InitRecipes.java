@@ -32,8 +32,6 @@ public class InitRecipes {
 			"BRB", "RBR", "BRB", 'R', Items.redstone, 'B', Blocks.brick_block,
 		});
 		
-
-		
 		//#-#-#-#-#-BUILDING-#-#-#-#-#\\
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.fusion_torch, 4), new Object[] {
@@ -154,13 +152,13 @@ public class InitRecipes {
 		});
 		
 		//WIRELESS
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.energy_transmitter), new Object[] {
+		/*GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.energy_transmitter), new Object[] {
 			"ICI", "IEI", "ICI", 'I', InitItems.infused_steel_ingot, 'C', InitItems.advanced_chip, 'E', Items.ender_pearl
 		});
 				
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.energy_receiver), new Object[] {
 			"III", "CEC", "III", 'I', InitItems.infused_steel_ingot, 'C', InitItems.advanced_chip, 'E', Items.ender_pearl
-		});
+		});*/
 		
 		//EMP
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.emp_tower), new Object[] {

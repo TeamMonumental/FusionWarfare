@@ -1,4 +1,4 @@
-package calemi.fusionwarfare.gui.button;
+package calemi.fusionwarfare.gui;
 
 import org.lwjgl.opengl.GL11;
 

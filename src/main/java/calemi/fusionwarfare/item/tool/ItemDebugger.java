@@ -2,7 +2,7 @@ package calemi.fusionwarfare.item.tool;
 
 import calemi.fusionwarfare.init.InitCreativeTabs;
 import calemi.fusionwarfare.item.ItemBase;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,9 +20,9 @@ public class ItemDebugger extends ItemBase {
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
 		
-		if (world.getTileEntity(x, y, z) instanceof TileEntityBase) {
+		if (world.getTileEntity(x, y, z) instanceof TileEntityEnergyBase) {
 			
-			TileEntityBase tileEntity = (TileEntityBase)world.getTileEntity(x, y, z);
+			TileEntityEnergyBase tileEntity = (TileEntityEnergyBase)world.getTileEntity(x, y, z);
 			
 			world.markBlockForUpdate(x, y, z);
 			tileEntity.markDirty();

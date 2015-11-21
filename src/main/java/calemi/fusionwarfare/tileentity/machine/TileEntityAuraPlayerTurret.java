@@ -16,12 +16,17 @@ import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.block.BlockContainerBase;
 import calemi.fusionwarfare.entity.DamageSourceTurret;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import ibxm.Player;
 
 public class TileEntityAuraPlayerTurret extends TileEntityAuraBase {
 
+	@Override
+	public String getName() {
+		return "Aura Player Turret";
+	}
+	
 	@Override
 	public int getEnergyCost() {
 		return 1000;

@@ -2,12 +2,12 @@ package calemi.fusionwarfare.tileentity.network;
 
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityNetworkCable extends TileEntityBase {
+public class TileEntityNetworkCable extends TileEntityEnergyBase {
 
 	public ForgeDirection[] connections = new ForgeDirection[6];
 
@@ -90,27 +90,7 @@ public class TileEntityNetworkCable extends TileEntityBase {
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
-		return new int[]{};
-	}
-
-	@Override
-	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
-		return false;
-	}
-
-	@Override
 	public int getSizeInventory() {
 		return 0;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
-		return false;
 	}
 }

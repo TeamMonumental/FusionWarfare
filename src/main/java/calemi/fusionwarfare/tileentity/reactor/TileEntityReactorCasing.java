@@ -4,18 +4,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class TileEntityReactorCasing extends TileEntity implements IEnergy {
 
 	public int x, y, z;
 	
-	public TileEntityBase getMaster() {
+	public TileEntityEnergyBase getMaster() {
 		
 		TileEntity entity = worldObj.getTileEntity(x, y, z);
 		
-		if (entity instanceof TileEntityBase) {
-			return (TileEntityBase) entity;	
+		if (entity instanceof TileEntityEnergyBase) {
+			return (TileEntityEnergyBase) entity;	
 		}
 		
 		return null;

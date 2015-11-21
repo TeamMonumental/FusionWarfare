@@ -163,6 +163,7 @@ tile.network_controller_2.name=Advanced Network Controller
 tile.network_controller_3.name=Hyper Network Controller
 tile.network_cable.name=Network Cable
 tile.network_gate.name=Network Gate
+tile.network_beacon.name=Network Beacon
 
 #-#-#-#-#-GENERATORS-#-#-#-#-#
 

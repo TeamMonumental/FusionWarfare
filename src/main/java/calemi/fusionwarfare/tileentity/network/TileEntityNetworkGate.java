@@ -1,11 +1,11 @@
 package calemi.fusionwarfare.tileentity.network;
 
 import calemi.fusionwarfare.api.EnumIO;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityNetworkGate extends TileEntityBase {
+public class TileEntityNetworkGate extends TileEntityEnergyBase {
 
 	@Override
 	public void updateEntity() {
@@ -20,28 +20,8 @@ public class TileEntityNetworkGate extends TileEntityBase {
 	}
 	
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[]{};
-	}
-
-	@Override
-	public boolean canInsertItem(int slot, ItemStack stack, int side) {
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int slot, ItemStack stack, int side) {
-		return false;
-	}
-
-	@Override
 	public int getSizeInventory() {
 		return 0;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return false;
 	}
 
 	@Override

@@ -16,9 +16,8 @@ import net.minecraft.world.World;
 public class BlockBasicMachineBase extends BlockContainerBase {
 
 	public Class tileEntity;
-	public int guiID;
-	public boolean isDirectional;
-	public boolean hasCustomModel;
+	public boolean isDirectional = false;
+	public boolean hasCustomModel = false;
 
 	public String topImage, bottomImage, sideImage1, sideImage2, sideImage3, sideImage4;
 	public String particleImage;
@@ -28,40 +27,92 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 	@SideOnly(Side.CLIENT)
 	private IIcon block_top, block_bottom, block_front, block_side_2, block_side_3, block_side_4;
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, boolean isRegistered, String topImage, String bottomImage, String sideImage1, String sideImage2, String sideImage3, String sideImage4) {
-		super(imagePath, 2, Material.iron, 6F, 10F, Block.soundTypeMetal, isRegistered);
+	public BlockBasicMachineBase(String name, Class tileEntity) {
+		super(name, 2, Material.iron, 6F, 10F, Block.soundTypeMetal);
 		this.tileEntity = tileEntity;
-		this.guiID = guiID;
-		this.isDirectional = isDirectional;
-		this.hasCustomModel = false;
-		this.topImage = topImage;
-		this.bottomImage = bottomImage;
-		this.sideImage1 = sideImage1;
-		this.sideImage2 = sideImage2;
-		this.sideImage3 = sideImage3;
-		this.sideImage4 = sideImage4;
+		this.topImage = "mech_top_1";
+		this.bottomImage = "steel_casing";
+		this.sideImage1 = "mech_side";
+		this.sideImage2 = "mech_side";
+		this.sideImage3 = "mech_side";
+		this.sideImage4 = "mech_side";
+		this.particleImage = "steel_casing";
+	}
+		
+	public BlockBasicMachineBase setTopImage(String imageName) {	
+		topImage = imageName;
+		return this;		
 	}
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, boolean isRegistered, String topImage, String bottomImage, String sideImage) {
-		this(imagePath, tileEntity, guiID, isDirectional, isRegistered, topImage, bottomImage, sideImage, sideImage, sideImage, sideImage);
-		this.hasCustomModel = false;
+	public BlockBasicMachineBase setTopImage() {	
+		topImage = imagePath + "_top";
+		return this;		
 	}
 	
-	public BlockBasicMachineBase(String imagePath, String particleImage, Class tileEntity, int guiID, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd) {
-		this(imagePath, tileEntity, guiID, false, true, "", "", "");
-		this.hasCustomModel = true;
-		this.particleImage = particleImage;
+	public BlockBasicMachineBase setBottomImage(String imageName) {	
+		topImage = imageName;
+		return this;		
+	}
+	
+	public BlockBasicMachineBase setBottomImage() {	
+		topImage = imagePath + "_bottom";
+		return this;		
+	}
+	
+	public BlockBasicMachineBase setAllFourSideImages(String imageName) {	
+		sideImage1 = imageName;
+		sideImage2 = imageName;
+		sideImage3 = imageName;
+		sideImage4 = imageName;
+		return this;		
+	}
+	
+	public BlockBasicMachineBase setAllFourSideImages() {	
+		sideImage1 = imagePath + "_side";
+		sideImage2 = imagePath + "_side";
+		sideImage3 = imagePath + "_side";
+		sideImage4 = imagePath + "_side";
+		return this;		
+	}
+	
+	public BlockBasicMachineBase setAllSideImages(String imageName) {	
+		topImage = imageName;
+		bottomImage = imageName;
+		sideImage1 = imageName;
+		sideImage2 = imageName;
+		sideImage3 = imageName;
+		sideImage4 = imageName;
+		return this;		
+	}
+	
+	public BlockBasicMachineBase setAllSideImages() {	
+		topImage = imagePath + "_side";
+		bottomImage = imagePath + "_side";
+		sideImage1 = imagePath + "_side";
+		sideImage2 = imagePath + "_side";
+		sideImage3 = imagePath + "_side";
+		sideImage4 = imagePath + "_side";
+		return this;		
+	}	
+	
+	public BlockBasicMachineBase setParticleImage() {	
+		particleImage = imagePath + "_particle";
+		return this;		
+	}
+	
+	public BlockBasicMachineBase setBounds(float xStart, float yStart, float zStart, float xEnd, float yEnd, float zEnd) {
 		setBlockBounds(xStart * pixel, yStart * pixel, zStart * pixel, xEnd * pixel, yEnd * pixel, zEnd * pixel);
+		return this;
 	}
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional, String sideImage) {
-		this(imagePath, tileEntity, guiID, isDirectional, true, "mech_top_1", "steel_casing", sideImage);
-		this.hasCustomModel = false;
+	public BlockBasicMachineBase setDirectional() {		
+		isDirectional = true;
+		return this;
 	}
 	
-	public BlockBasicMachineBase(String imagePath, Class tileEntity, int guiID, boolean isDirectional) {
-		this(imagePath, tileEntity, guiID, isDirectional, true, "mech_top_1", "steel_casing", "mech_side");
-		this.hasCustomModel = false;
+	public BlockBasicMachineBase setHasCustomModel() {
+		hasCustomModel = true;
+		return this;
 	}
 	
 	public int getRenderType() {
@@ -87,7 +138,6 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 		if (isDirectional) {
 
 			if (meta == 0 && side == 3) {
-
 				return block_front;
 			}
 
@@ -139,8 +189,11 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconreg) {
 
-		if (!hasCustomModel) {
-			
+		if (hasCustomModel) {
+			this.blockIcon = iconreg.registerIcon(Reference.MOD_ID + ":" + particleImage);
+		}
+		
+		else {
 			this.block_top = iconreg.registerIcon(Reference.MOD_ID + ":" + topImage);
 			this.block_bottom = iconreg.registerIcon(Reference.MOD_ID + ":" + bottomImage);
 			if (isDirectional) this.block_front = iconreg.registerIcon(Reference.MOD_ID + ":" + imagePath + "_front");
@@ -149,15 +202,6 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 			this.block_side_4 = iconreg.registerIcon(Reference.MOD_ID + ":" + sideImage4);
 			this.blockIcon = iconreg.registerIcon(Reference.MOD_ID + ":" + sideImage1);
 		}
-		
-		else {
-			this.blockIcon = iconreg.registerIcon(Reference.MOD_ID + ":" + particleImage);
-		}	
-	}
-
-	@Override
-	public int getGuiID() {
-		return guiID;
 	}
 
 	@Override

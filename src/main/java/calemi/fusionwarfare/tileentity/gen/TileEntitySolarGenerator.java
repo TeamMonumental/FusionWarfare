@@ -2,13 +2,19 @@ package calemi.fusionwarfare.tileentity.gen;
 
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.gui.GuiEnergyTank;
+import calemi.fusionwarfare.inventory.ContainerEnergyTank;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.biome.BiomeGenDesert;
 import net.minecraft.world.biome.BiomeGenMesa;
 
-public class TileEntitySolarGenerator extends TileEntityBase {
+public class TileEntitySolarGenerator extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 
 	public TileEntitySolarGenerator() {
 		maxEnergy = 500;
@@ -38,31 +44,9 @@ public class TileEntitySolarGenerator extends TileEntityBase {
 		}
 	}
 
-	// --------------------------------------------------------------------------------
-
-	@Override
-	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
-		return new int[]{};
-	}
-
-	@Override
-	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
-		return false;
-	}
-
 	@Override
 	public int getSizeInventory() {
 		return 0;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
-		return false;
 	}
 
 	@Override
@@ -73,5 +57,15 @@ public class TileEntitySolarGenerator extends TileEntityBase {
 	@Override
 	public ItemStack getOverclockingSlot() {
 		return null;
+	}
+	
+	@Override
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerEnergyTank(player, this);
+	}
+
+	@Override
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiEnergyTank(player, this, "Solar Generator", false);
 	}
 }

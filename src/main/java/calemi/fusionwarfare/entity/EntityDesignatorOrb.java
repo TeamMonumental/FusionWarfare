@@ -105,6 +105,7 @@ public class EntityDesignatorOrb extends EntityThrowable {
 							launcher.targetZ = z;
 									
 							if (launcher.getStackInSlot(0) != null && EnergyUtil.canSubtractEnergy(launcher, 1000)) {
+								
 								worldObj.playSoundEffect(x, y, z, "mob.wither.spawn", 50, 1);
 								FusionWarfare.network.sendTo(new ClientPacketHandler("force.launch%" + launcher.xCoord + "%" + launcher.yCoord + "%" + launcher.zCoord), (EntityPlayerMP) player);
 								launcher.forceLaunch = true;

@@ -7,25 +7,31 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.api.ISecurity;
 import calemi.fusionwarfare.config.FWConfig;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityInventoryBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.ResourceLocation;
 
 public abstract class GuiContainerBase extends GuiContainer {
 	
-	TileEntityBase tileEntity;
+	TileEntityInventoryBase tileEntity;
+	TileEntityEnergyBase tileEntityEnergy;
+	
 	EntityPlayer player;
 	
-	public GuiContainerBase(Container container, EntityPlayer player, TileEntityBase tileEntity) {
+	public GuiContainerBase(Container container, EntityPlayer player, TileEntityInventoryBase tileEntity) {
 		super(container);
 		this.tileEntity = tileEntity;
+		this.tileEntityEnergy = (TileEntityEnergyBase)tileEntity;
 		this.player = player;
 		this.xSize = getGuiSizeX();
 		this.ySize = getGuiSizeY();
@@ -62,10 +68,16 @@ public abstract class GuiContainerBase extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		updateScreen();
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + getGuiTextures() + ".png"));
-		this.drawTexturedModalRect(getScreenX(), getScreenY(), 0, 0, getGuiSizeX(), getGuiSizeY());
-		if (tileEntity instanceof TileEntitySecurity && ((TileEntitySecurity)tileEntity).getTeam() != null) drawBottomStringBox(((TileEntitySecurity)tileEntity).teamName);
+		this.drawTexturedModalRect(getScreenX(), getScreenY(), 0, 0, getGuiSizeX(), getGuiSizeY());		
 		drawGuiBackground(mouseX, mouseY);
-		drawCenteredStringWithoutShadow(getGuiTitle(), 88, 6);
+		
+		if (tileEntityEnergy instanceof ISecurity && ((ISecurity)tileEntityEnergy).getTeam() != null) {
+			ISecurity tileEntitySecurity = (ISecurity)tileEntityEnergy;
+			
+			drawBottomStringBox(((ScorePlayerTeam)tileEntitySecurity.getTeam()).getColorPrefix() + tileEntitySecurity.getTeam().getRegisteredName());
+		}
+		
+		drawCenteredStringWithoutShadow(getGuiTitle(), getGuiSizeX() / 2, 6);
 	}
 	
 	@Override
@@ -130,7 +142,7 @@ public abstract class GuiContainerBase extends GuiContainer {
 		
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
 		
-		int scaledFuel = this.tileEntity.getCurrentEnergyScaled(50);
+		int scaledFuel = this.tileEntityEnergy.getCurrentEnergyScaled(50);
 			
 		this.drawTexturedModalRect(xPos, yPos - scaledFuel, 49, 57 - scaledFuel, 14, scaledFuel + 1);		
 	}
@@ -142,7 +154,7 @@ public abstract class GuiContainerBase extends GuiContainer {
 		
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
 		
-		int scaledFuel = this.tileEntity.getCurrentEnergyScaled(60);
+		int scaledFuel = this.tileEntityEnergy.getCurrentEnergyScaled(60);
 			
 		this.drawTexturedModalRect(xPos, yPos - scaledFuel, 0, 67 - scaledFuel, 49, scaledFuel + 1);	
 		this.drawTexturedModalRect(xPos, yPos - 56, 0, 67, 12, 51);
@@ -155,7 +167,7 @@ public abstract class GuiContainerBase extends GuiContainer {
 		
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
 		
-		int scaledProg = this.tileEntity.getCurrentProgressScaled(24);
+		int scaledProg = this.tileEntityEnergy.getCurrentProgressScaled(24);
 			
 		this.drawTexturedModalRect(xPos, yPos, 77, 7, scaledProg + 1, 12);
 	}
@@ -167,25 +179,25 @@ public abstract class GuiContainerBase extends GuiContainer {
 		
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
 		
-		int scaledProg = this.tileEntity.getCurrentProgressScaled(161);
+		int scaledProg = this.tileEntityEnergy.getCurrentProgressScaled(161);
 			
 		this.drawTexturedModalRect(xPos, yPos, 0, 0, scaledProg + 1, 7);
 	}
 	
 	public void drawSmallFuelBarTextBox(int x, int y, int mouseX, int mouseY) {
-		drawStringOverBox("FE: " + tileEntity.energy + "/" + tileEntity.maxEnergy, x, y - 50, 14, 50, mouseX, mouseY);
+		drawStringOverBox("FE: " + tileEntityEnergy.energy + "/" + tileEntityEnergy.maxEnergy, x, y - 50, 14, 50, mouseX, mouseY);
 	}
 	
 	public void drawLargeFuelBarTextBox(int x, int y, int mouseX, int mouseY) {
-		drawStringOverBox("FE: " + tileEntity.energy + "/" + tileEntity.maxEnergy, x, y - 60, 49, 60, mouseX, mouseY);
+		drawStringOverBox("FE: " + tileEntityEnergy.energy + "/" + tileEntityEnergy.maxEnergy, x, y - 60, 49, 60, mouseX, mouseY);
 	}
 	
 	public void drawSmallProgBarTextBox(int x, int y, int mouseX, int mouseY) {
-		drawStringOverBox("Progress: " + tileEntity.progress * 100 / tileEntity.getMaxProgress() + "%", x, y, 24, 12, mouseX, mouseY);
+		drawStringOverBox("Progress: " + tileEntityEnergy.progress * 100 / tileEntityEnergy.getMaxProgress() + "%", x, y, 24, 12, mouseX, mouseY);
 	}
 	
 	public void drawLongProgBarTextBox(int x, int y, int mouseX, int mouseY) {
-		drawStringOverBox("Progress: " + tileEntity.progress * 100 / tileEntity.getMaxProgress() + "%", x, y, 161, 7, mouseX, mouseY);
+		drawStringOverBox("Progress: " + tileEntityEnergy.progress * 100 / tileEntityEnergy.getMaxProgress() + "%", x, y, 161, 7, mouseX, mouseY);
 	}
 		
 	public void drawCenteredStringWithoutShadow(String text, int x, int y) {

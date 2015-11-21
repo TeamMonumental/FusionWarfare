@@ -2,7 +2,7 @@ package calemi.fusionwarfare.gui;
 
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.inventory.ContainerMiningUnit;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMiningUnit;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiMiningUnit extends GuiContainerBase {
 
-	public GuiMiningUnit(EntityPlayer player, TileEntityBase tileEntity) {
+	public GuiMiningUnit(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(new ContainerMiningUnit(player, tileEntity), player, tileEntity);
 	}
 	

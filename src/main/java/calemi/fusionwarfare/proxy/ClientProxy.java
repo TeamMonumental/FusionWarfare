@@ -31,6 +31,7 @@ import calemi.fusionwarfare.renderer.RenderGrenade;
 import calemi.fusionwarfare.renderer.RenderMissile;
 import calemi.fusionwarfare.renderer.RenderMissileLauncher;
 import calemi.fusionwarfare.renderer.RenderMissileSilo;
+import calemi.fusionwarfare.renderer.RenderNetworkBeacon;
 import calemi.fusionwarfare.renderer.RenderNetworkCable;
 import calemi.fusionwarfare.renderer.RenderRocket;
 import calemi.fusionwarfare.renderer.RenderTurbine;
@@ -48,6 +49,7 @@ import calemi.fusionwarfare.renderer.item.ItemRenderMissileLauncher;
 import calemi.fusionwarfare.renderer.item.ItemRenderNetworkCable;
 import calemi.fusionwarfare.renderer.item.ItemRenderRocket;
 import calemi.fusionwarfare.renderer.item.ItemRenderRocketLauncher;
+import calemi.fusionwarfare.renderer.item.ItemRenderNetworkBeacon;
 import calemi.fusionwarfare.renderer.item.ItemRenderAuraBase;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMobTurret;
@@ -59,6 +61,7 @@ import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerHealer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
+import calemi.fusionwarfare.tileentity.network.TileEntityNetworkBeacon;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkCable;
 import calemi.fusionwarfare.util.EnumColorUtil;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -69,6 +72,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -110,6 +114,8 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(InitItems.chemical_grenade, new ItemRenderGrenade("chemical"));
 		
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.network_cable), new ItemRenderNetworkCable(new RenderNetworkCable(), new TileEntityNetworkCable()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.network_beacon), new ItemRenderNetworkBeacon());
+		
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.missile_launcher), new ItemRenderMissileLauncher());
 		MinecraftForgeClient.registerItemRenderer(InitItems.fusion_matter_deconstructor, new ItemRenderFusionMatterDeconstructor());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.emp_tower), new ItemRenderEMPTower());
@@ -121,13 +127,14 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.aura_player_healer), new ItemRenderAuraBase(255, 0, 255));
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetworkCable.class, new RenderNetworkCable());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMissileLauncher.class, new RenderMissileLauncher());
-	
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNetworkBeacon.class, new RenderNetworkBeacon());
+			
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAuraPlayerTurret.class, new RenderAuraBase(0, 148, 255));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAuraMatterReinforcer.class, new RenderAuraBase(0, 255, 0));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAuraMobTurret.class, new RenderAuraBase(255, 0, 0));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAuraPlayerHealer.class, new RenderAuraBase(255, 0, 255));
 		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMissileLauncher.class, new RenderMissileLauncher());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindTurbine.class, new RenderTurbine());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEXPFabricator.class, new RenderFloatingItem(new ItemStack(Items.experience_bottle), 0.5F, 1.1F, 0.5F, 1F));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTwoInputs.class, new RenderFloatingItem(new ItemStack(InitItems.velocity_missile_T1), 0.5F, 1.1F, 0.5F, 0.7F));

@@ -2,7 +2,7 @@ package calemi.fusionwarfare.util.explosion;
 
 import java.util.Random;
 
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkCable;
 import calemi.fusionwarfare.util.Location;
@@ -27,9 +27,9 @@ public class EMPEvent extends BlastEvent {
 
 		for (Location loc : ShapeUtil.getSphere(world, x, y, z, r)) {
 			
-			if (loc.getTileEntity() instanceof TileEntityBase) {
+			if (loc.getTileEntity() instanceof TileEntityEnergyBase) {
 				
-				((TileEntityBase)loc.getTileEntity()).energy = 0;
+				((TileEntityEnergyBase)loc.getTileEntity()).energy = 0;
 			}			
 		}	
 	}

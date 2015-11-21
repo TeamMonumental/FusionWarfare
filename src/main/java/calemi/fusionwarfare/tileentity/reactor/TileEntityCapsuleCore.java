@@ -3,7 +3,7 @@ package calemi.fusionwarfare.tileentity.reactor;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.init.InitBlocks;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
 import net.minecraft.init.Blocks;
@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenOcean;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityCapsuleCore extends TileEntityBase {
+public class TileEntityCapsuleCore extends TileEntityEnergyBase {
 
 	public boolean isAssembled;
 
@@ -121,31 +121,9 @@ public class TileEntityCapsuleCore extends TileEntityBase {
 		return true;
 	}
 	
-	// ----------------------------------------------------------------\\
-
-	@Override
-	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
-		return new int[]{};
-	}
-
-	@Override
-	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
-		return false;
-	}
-
 	@Override
 	public int getSizeInventory() {
 		return 0;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
-		return false;
 	}
 
 	@Override

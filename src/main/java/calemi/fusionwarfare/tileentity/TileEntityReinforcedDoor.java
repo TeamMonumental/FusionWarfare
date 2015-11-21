@@ -2,12 +2,13 @@ package calemi.fusionwarfare.tileentity;
 
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.ISecurity;
+import calemi.fusionwarfare.tileentity.base.TileEntityBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityReinforcedDoor extends TileEntity implements ISecurity {
+public class TileEntityReinforcedDoor extends TileEntityBase implements ISecurity {
 
 	private String teamName;
 
@@ -27,17 +28,17 @@ public class TileEntityReinforcedDoor extends TileEntity implements ISecurity {
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-		
+	public void writeSyncNBT(NBTTagCompound nbt) {
+		super.writeSyncNBT(nbt);
+	
 		if (teamName != null) {
 			nbt.setString("team", teamName);
 		}
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
+	public void readSyncNBT(NBTTagCompound nbt) {
+		super.readSyncNBT(nbt);
 		
 		if (nbt.hasKey("team")) {
 			teamName = nbt.getString("team");

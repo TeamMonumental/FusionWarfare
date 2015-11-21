@@ -3,19 +3,24 @@ package calemi.fusionwarfare.tileentity.reactor;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenOcean;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.gui.GuiReactorCore;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.inventory.ContainerReactorCore;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
 
-public class TileEntityReactorCore extends TileEntityBase {
+public class TileEntityReactorCore extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 
 	private boolean isAssembled;
 
@@ -25,8 +30,6 @@ public class TileEntityReactorCore extends TileEntityBase {
 
 	@Override
 	public void updateEntity() {
-
-		Random rand = new Random();
 
 		int r = 2;
 
@@ -163,24 +166,14 @@ public class TileEntityReactorCore extends TileEntityBase {
 	public int getSizeInventory() {
 		return 6;
 	}
-
+	
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[] {};
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerReactorCore(player, this);
 	}
 
 	@Override
-	public boolean canInsertItem(int slot, ItemStack is, int side) {
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int slot, ItemStack is, int side) {
-		return false;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack is) {
-		return false;
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiReactorCore(player, this, "Reactor");
 	}
 }

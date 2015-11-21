@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import org.lwjgl.input.Keyboard;
 
-import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.util.EnumColorUtil;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;

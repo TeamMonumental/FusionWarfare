@@ -2,11 +2,10 @@ package calemi.fusionwarfare.gui;
 
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerOverclockedEnergyTank;
 import calemi.fusionwarfare.packet.ServerPacketHandler;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraBase;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,11 +15,11 @@ public class GuiAuraBase extends GuiContainerBase {
 
 	private GuiFusionButton button;
 	
-	private TileEntityAuraBase tileEntityAura = (TileEntityAuraBase)tileEntity;
+	private TileEntityAuraBase tileEntityAura = (TileEntityAuraBase)tileEntityEnergy;
 	
 	private String name;
 	
-	public GuiAuraBase(EntityPlayer player, TileEntityBase tileEntity, String name) {
+	public GuiAuraBase(EntityPlayer player, TileEntityEnergyBase tileEntity, String name) {
 		super(new ContainerOverclockedEnergyTank(player, tileEntity, 15), player, tileEntity);
 		this.name = name;
 	}
@@ -38,7 +37,7 @@ public class GuiAuraBase extends GuiContainerBase {
 
 		if (button.id == 0) {
 			tileEntityAura.toggle();
-			FusionWarfare.network.sendToServer(new ServerPacketHandler("toggle.aura%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
+			FusionWarfare.network.sendToServer(new ServerPacketHandler("toggle.aura%" + tileEntityEnergy.xCoord + "%" + tileEntityEnergy.yCoord + "%" + tileEntityEnergy.zCoord));
 		}
 	}
 	

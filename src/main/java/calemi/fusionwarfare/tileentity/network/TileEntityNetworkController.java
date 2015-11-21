@@ -16,7 +16,7 @@ import calemi.fusionwarfare.item.IEnergyItem;
 import calemi.fusionwarfare.item.ItemEnergyBase;
 import calemi.fusionwarfare.item.ItemEnergyConsumable;
 import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.BlockScanUtil;
 import calemi.fusionwarfare.util.Location;
 import net.minecraft.block.Block;
@@ -32,29 +32,31 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityNetworkController extends TileEntityBase implements ITileEntityGuiHandler {
+public class TileEntityNetworkController extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 
 	public List<IEnergy> mechs = new ArrayList<IEnergy>();
-	public int tier;
 	
 	private int ticks;
-
-	@Override
-	public EnumIO getIOType() {
-		return EnumIO.NONE;
+		
+	public TileEntityNetworkController() {
+		maxEnergy = 25000;
 	}
 	
-	@Override
-	public ItemStack getOverclockingSlot() {
-		return null;
-	}
+	public TileEntityNetworkController(int tier) {
 		
+		int energy = 25000;
+		if (tier == 2) energy = 50000; 
+		if (tier == 3) energy = 100000; 
+		
+		maxEnergy = energy;
+	}
+	
 	@Override
 	public void updateEntity() {
 		
 		// Slots
 		
-		int transferRate = 5 + (slots[0] == null ? 0 : slots[0].stackSize * 5);
+		int transferRate = overclockedDifference();
 
 		if (!worldObj.isRemote) {
 
@@ -115,6 +117,19 @@ public class TileEntityNetworkController extends TileEntityBase implements ITile
 			}
 		}	
 	}
+	
+	@Override
+	public int overclockedDifference() {
+		return 5 + (getOverclockingSlot() == null ? 0 : getOverclockingSlot().stackSize * 5);
+	}
+	
+	public int getTierFromEnergy() {
+		
+		int tier = 1;
+		if (maxEnergy == 50000) tier = 2; 
+		if (maxEnergy == 100000) tier = 3; 
+		return tier;
+	}
 
 	private IEnergy findLowestEnergy() {
 
@@ -133,45 +148,6 @@ public class TileEntityNetworkController extends TileEntityBase implements ITile
 		return currentLowest;
 	}
 	
-	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-	
-		nbt.setInteger("tier", tier);		
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-	
-		tier = nbt.getInteger("tier");	
-	}
-	
-	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound syncData = new NBTTagCompound();
-	
-		writeToNBT(syncData);
-
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-
-		readFromNBT(pkt.func_148857_g());
-	}
-	
-	//------------------------------------------------------------\\
-	
-	
-	// --------------------------------------------------------------------------------
-
-	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[]{1,2};
-	}
-
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int side) {
 		
@@ -212,6 +188,16 @@ public class TileEntityNetworkController extends TileEntityBase implements ITile
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return true;
+	}
+	
+	@Override
+	public EnumIO getIOType() {
+		return EnumIO.NONE;
+	}
+	
+	@Override
+	public ItemStack getOverclockingSlot() {
+		return slots[0];
 	}
 
 	@Override

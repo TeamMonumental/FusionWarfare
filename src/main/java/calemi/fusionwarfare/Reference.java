@@ -18,48 +18,5 @@ public class Reference {
 	public static int armorIDScuba;
 	public static int armorIDSteel;
 	public static int armorIDInfusedSteel;
-	public static int armorIDInfusedSteelRed;
-	
-	static int nextGuiID = 1;
-	
-	//#-#-#-#-#-NETWORK-#-#-#-#-#\\
-	
-	public static int guiIDNetworkController = nextGuiID++;
-	
-	//#-#-#-#-#-GENERATORS-#-#-#-#-#\\
-	
-	public static int guiIDAquaGenerator = nextGuiID++;
-	public static int guiIDGeothermalGenerator = nextGuiID++;
-	public static int guiIDSolarGenerator = nextGuiID++;
-	public static int guiIDWindTurbine = nextGuiID++;
-	
-	//#-#-#-#-#-REACTORS-#-#-#-#-#\\
-	
-	public static int guiIDReactorCore = nextGuiID++;
-	public static int guiIDAdvancedHydroReactorCore = nextGuiID++;
-	
-	//#-#-#-#-#-MACHINES-#-#-#-#-#\\
-	
-	public static int guiIDTwoInputs = nextGuiID++;
-	
-	public static int guiIDEnergeticFurnace = nextGuiID++;
-	public static int guiIDOreEnricher = nextGuiID++;	
-	public static int guiIDMiningUnit = nextGuiID++;
-	public static int guiIDMissileLauncher = nextGuiID++;
-	public static int guiIDMissileSiloCore = nextGuiID++;
-	public static int guiIDEXPFabricator = nextGuiID++;
-	public static int guiIDEMPTower = nextGuiID++;
-		
-	public static int guiIDAuraTurret = nextGuiID++;
-	
-	public static int guiIDAuraMatterReinforcer = nextGuiID++;
-	public static int guiIDAuraMobTurret = nextGuiID++;
-	public static int guiIDAuraPlayerHealer = nextGuiID++;
-	
-	public static int guiIDEnergyTransmitter = nextGuiID++;
-	public static int guiIDEnergyReceiver = nextGuiID++;		
-	
-	public static int guiIDRFConverter = nextGuiID++;
-	
-	public static int guiIDSupplyCrate = nextGuiID++;	
+	public static int armorIDInfusedSteelRed;	
 }

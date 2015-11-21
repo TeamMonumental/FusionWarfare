@@ -4,7 +4,9 @@
 
 ==============[ v1.3("RF IS HERE!") ]==============
 
-==============[ v1.4("Tier 4 Update") ]==============
+==============[ v1.4("War Day Update") ]==============
+
+- War Day mechanic
 
 - Fission Projector
 - Fission Stabilizer

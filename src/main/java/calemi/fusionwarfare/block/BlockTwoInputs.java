@@ -8,24 +8,16 @@ import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
 
 public class BlockTwoInputs extends BlockBasicMachineBase {
 
-	public EnumRecipeType recipeType;	
+	public final EnumRecipeType recipeType;	
 	
-	public BlockTwoInputs(String imagePath, EnumRecipeType recipeType, int guiID, String topImage, String sideImage1, String sideImage2, String sideImage3, String sideImage4) {
-		super(imagePath, null, guiID, recipeType == EnumRecipeType.INFUSION_FOUNDRY, true, topImage, "steel_casing", sideImage1, sideImage2, sideImage3, sideImage4);
+	public BlockTwoInputs(String imagePath, EnumRecipeType recipeType) {
+		super(imagePath, null);
 		this.recipeType = recipeType;
+		if (recipeType == EnumRecipeType.INFUSION_FOUNDRY) setDirectional();
 	}
-		
-	public BlockTwoInputs(String imagePath, EnumRecipeType recipeType, int guiID, String topImage, String sideImage) {
-		this(imagePath, recipeType, guiID, topImage, sideImage, sideImage, sideImage, sideImage);
-	}	
 	
 	@Override
-	public TileEntity createNewTileEntity(World world, int i) {
-			
-		TileEntityTwoInputs tileEntity = new TileEntityTwoInputs();
-		
-		tileEntity.recipeType = recipeType;
-		
-		return tileEntity;
+	public TileEntity createNewTileEntity(World world, int i) {			
+		return new TileEntityTwoInputs(recipeType);
 	}
 }

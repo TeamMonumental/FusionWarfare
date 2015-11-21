@@ -1,10 +1,9 @@
 package calemi.fusionwarfare.gui;
 
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.inventory.ContainerOneInput;
 import calemi.fusionwarfare.inventory.ContainerTwoInputs;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
 import codechicken.nei.recipe.GuiCraftingRecipe;
@@ -23,7 +22,7 @@ public class GuiOneInput extends GuiContainerBase {
 	private GuiFusionButton recipeButton;
 	private String name;
 	
-	public GuiOneInput(EntityPlayer player, TileEntityBase tileEntity, String name) {
+	public GuiOneInput(EntityPlayer player, TileEntityEnergyBase tileEntity, String name) {
 		super(new ContainerOneInput(player, tileEntity), player, tileEntity);
 		this.name = name;
 	}
@@ -43,11 +42,11 @@ public class GuiOneInput extends GuiContainerBase {
 
 		if (button.id == 0) {
 			
-			if (tileEntity instanceof TileEntityEnergeticFurnace) {
+			if (tileEntityEnergy instanceof TileEntityEnergeticFurnace) {
 				GuiCraftingRecipe.openRecipeGui("Energetic Furnace", new Object[0]);		
 			}
 			
-			if (tileEntity instanceof TileEntityOreEnricher) {
+			if (tileEntityEnergy instanceof TileEntityOreEnricher) {
 				GuiCraftingRecipe.openRecipeGui("Ore Enricher", new Object[0]);		
 			}				
 		}

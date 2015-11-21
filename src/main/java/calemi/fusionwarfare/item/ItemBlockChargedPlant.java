@@ -3,11 +3,11 @@ package calemi.fusionwarfare.item;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockChargePlant extends ItemBlockMeta {
+public class ItemBlockChargedPlant extends ItemBlockMeta {
 
 	private final static String[] SUBNAMES = new String[] {"growing_grass", "tallgrass", "fern", "growing_deadbush", "deadbush"};
 
-	public ItemBlockChargePlant(Block block) {
+	public ItemBlockChargedPlant(Block block) {
 		super(block);
 		setHasSubtypes(true);
 	}

@@ -1,14 +1,15 @@
 package calemi.fusionwarfare.gui;
 
 import calemi.fusionwarfare.inventory.ContainerSupplyCrate;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySupplyCrate;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityInventoryBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 
 public class GuiSupplyCrate extends GuiContainerBase {
 
-	public GuiSupplyCrate(EntityPlayer player, TileEntityBase tileEntity) {
+	public GuiSupplyCrate(EntityPlayer player, TileEntityInventoryBase tileEntity) {
 		super(new ContainerSupplyCrate(player, tileEntity), player, tileEntity);
 	}
 

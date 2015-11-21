@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,11 +15,11 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 
-public class ContainerTwoInputs extends ContainerBase {
+public class ContainerTwoInputs extends ContainerEnergyBase {
 
 	private int[] slots = {0,1,2,3};
 	
-	public ContainerTwoInputs(EntityPlayer player, TileEntityBase tileentity) {
+	public ContainerTwoInputs(EntityPlayer player, TileEntityEnergyBase tileentity) {
 		super(player, tileentity);	
 		
 		//new Slot(inv, id, x, y)

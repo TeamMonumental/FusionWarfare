@@ -2,11 +2,17 @@ package calemi.fusionwarfare.tileentity.machine;
 
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.gui.GuiOneInput;
+import calemi.fusionwarfare.inventory.ContainerOneInput;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
-public class TileEntityEnergeticFurnace extends TileEntityBase {
+public class TileEntityEnergeticFurnace extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 	
 	public static int energyCost = 10;
 	
@@ -17,17 +23,14 @@ public class TileEntityEnergeticFurnace extends TileEntityBase {
 	
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
 
 		if (!worldObj.isRemote) {
 			
-			if (EnergyUtil.hasEnergy(this, energyCost) && canSmelt()) {
+			if (!isDone() && EnergyUtil.canSubtractEnergy(this, energyCost) && canSmelt()) {
 				progress++;
 			}
 			
-			else {
-				resetProgress();
-			}
+			else resetProgress();
 
 			if (isDone()) {
 
@@ -100,5 +103,15 @@ public class TileEntityEnergeticFurnace extends TileEntityBase {
 		ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(is);
 		if (itemstack == null) return false;
 		return true;
+	}
+
+	@Override
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerOneInput(player, this);
+	}
+
+	@Override
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiOneInput(player, this, "Energetic Furnace");
 	}
 }

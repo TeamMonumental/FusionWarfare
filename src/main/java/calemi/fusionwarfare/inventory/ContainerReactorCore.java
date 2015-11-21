@@ -2,17 +2,17 @@ package calemi.fusionwarfare.inventory;
 
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemMissile;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerReactorCore extends ContainerBase {
+public class ContainerReactorCore extends ContainerEnergyBase {
 
 	private int[] slots = {0,1,2,3,4,5};
 	
-	public ContainerReactorCore(EntityPlayer player, TileEntityBase tileentity) {
+	public ContainerReactorCore(EntityPlayer player, TileEntityEnergyBase tileentity) {
 		super(player, tileentity);		
 		
 		//Charge					

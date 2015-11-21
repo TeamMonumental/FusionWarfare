@@ -5,18 +5,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.inventory.ContainerBase;
+import calemi.fusionwarfare.inventory.ContainerEnergyBase;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerNetworkController;
 import calemi.fusionwarfare.inventory.ContainerReactorCore;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.reactor.TileEntityAdvancedHydroReactorCore;
 
 public class GuiReactorCore extends GuiContainerBase {
 
 	private String name;
 	
-	public GuiReactorCore(EntityPlayer player, TileEntityBase tileEntity, String name) {
+	public GuiReactorCore(EntityPlayer player, TileEntityEnergyBase tileEntity, String name) {
 		super(new ContainerReactorCore(player, tileEntity), player, tileEntity);
 		this.name = name;
 	}
@@ -39,8 +39,8 @@ public class GuiReactorCore extends GuiContainerBase {
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
 		
-		if (tileEntity instanceof TileEntityAdvancedHydroReactorCore) {
-        	drawInfoTextBar("Capsules: " + ((TileEntityAdvancedHydroReactorCore)tileEntity).capsules + "/4", 0);
+		if (tileEntityEnergy instanceof TileEntityAdvancedHydroReactorCore) {
+        	drawInfoTextBar("Capsules: " + ((TileEntityAdvancedHydroReactorCore)tileEntityEnergy).capsules + "/4", 0);
         }		
 		
 		drawLargeFuelBar(99, 80);

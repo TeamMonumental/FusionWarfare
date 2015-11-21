@@ -360,9 +360,4 @@ public class BlockReinforcedDoor extends BlockContainerBase {
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileEntityReinforcedDoor();
 	}
-
-	@Override
-	public int getGuiID() {
-		return 0;
-	}
 }

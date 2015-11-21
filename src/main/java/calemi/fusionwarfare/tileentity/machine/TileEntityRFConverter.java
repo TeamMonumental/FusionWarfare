@@ -2,10 +2,13 @@ package calemi.fusionwarfare.tileentity.machine;
 
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.gui.GuiRFConverter;
+import calemi.fusionwarfare.inventory.ContainerRFConverter;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.Location;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyConnection;
@@ -15,6 +18,9 @@ import cofh.api.energy.IEnergyReceiver;
 import cofh.api.energy.IEnergyStorage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -24,14 +30,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityRFConverter extends TileEntityBase implements IEnergyHandler {
+public class TileEntityRFConverter extends TileEntityEnergyBase implements IEnergyHandler, ITileEntityGuiHandler {
 
-	public EnergyStorage storage = new EnergyStorage(500000, 5000, 5000);
+	public EnergyStorage storage = new EnergyStorage(500000, 25000, 25000);
 
 	public boolean outputFE = false;
 
 	public static final int FERatio = 5;
 	public static final int RFRatio = 500;
+	
+	private int overclock;
 	
 	public TileEntityRFConverter() {
 		maxEnergy = 5000;
@@ -41,23 +49,37 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 	public void updateEntity() {
 				
 		if (!worldObj.isRemote) {
-			
+					
 			if (outputFE) {
 
-				if (EnergyUtil.canAddEnergy(this, FERatio) && storage.getEnergyStored() >= RFRatio) {
+				overclock = getCurrentRFScaled(40);
+					
+				for (int i = 0; i <= overclock; i++) {
+									
+					if (EnergyUtil.canAddEnergy(this, FERatio) && storage.getEnergyStored() >= RFRatio) {
 
-					EnergyUtil.addEnergy(this, FERatio);
-					storage.extractEnergy(RFRatio, false);
+						EnergyUtil.addEnergy(this, FERatio);
+						storage.extractEnergy(RFRatio, false);
+					}
+					
+					else break;
 				}
 			}
 
-			else {		
+			else {
+								
+				overclock = getCurrentEnergyScaled(40);
+								
+				for (int i = 0; i <= overclock; i++) {
+					
+					if (EnergyUtil.canSubtractEnergy(this, FERatio) && (storage.getMaxEnergyStored() - storage.getEnergyStored()) >= RFRatio) {
 
-				if (EnergyUtil.canSubtractEnergy(this, FERatio) && (storage.getMaxEnergyStored() - storage.getEnergyStored()) >= RFRatio) {
-
-					EnergyUtil.subtractEnergy(this, FERatio);
-					storage.receiveEnergy(RFRatio, false);
-				}
+						EnergyUtil.subtractEnergy(this, FERatio);
+						storage.receiveEnergy(RFRatio, false);
+					}
+					
+					else break;
+				}			
 				
 				for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
 					
@@ -104,7 +126,6 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 		return true;
 	}
 
-	@SideOnly(Side.CLIENT)
 	public int getCurrentRFScaled(int i) {
 		return storage.getEnergyStored() * i / storage.getMaxEnergyStored();
 	}
@@ -114,44 +135,8 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-		outputFE = nbt.getBoolean("outputFE");
-		storage.readFromNBT(nbt);
-	}
-
-	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-		nbt.setBoolean("outputFE", outputFE);
-		storage.writeToNBT(nbt);
-	}
-
-	// --------------------------------------------------------------------------------------
-
-	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[] {};
-	}
-
-	@Override
-	public boolean canInsertItem(int slot, ItemStack is, int side) {
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int slot, ItemStack is, int side) {
-		return false;
-	}
-
-	@Override
 	public int getSizeInventory() {
 		return 0;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack is) {
-		return false;
 	}
 
 	@Override
@@ -164,28 +149,27 @@ public class TileEntityRFConverter extends TileEntityBase implements IEnergyHand
 		return null;
 	}
 	
-	//-------------------------------------------------Packets
-	
 	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound syncData = new NBTTagCompound();
-		
-		syncData.setInteger("FE", energy);
-		syncData.setInteger("progress", progress);
-		
-		storage.writeToNBT(syncData);
-		syncData.setBoolean("outputFE", outputFE);
-
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
+	public void readSyncNBT(NBTTagCompound nbt) {
+		super.readSyncNBT(nbt);
+		outputFE = nbt.getBoolean("outputFE");
+		storage.readFromNBT(nbt);
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-			
-		energy = pkt.func_148857_g().getInteger("FE");
-		progress = pkt.func_148857_g().getInteger("progress");
-		
-		storage.readFromNBT(pkt.func_148857_g());
-		outputFE = pkt.func_148857_g().getBoolean("outputFE");
+	public void writeSyncNBT(NBTTagCompound nbt) {
+		super.writeSyncNBT(nbt);
+		nbt.setBoolean("outputFE", outputFE);
+		storage.writeToNBT(nbt);
+	}
+	
+	@Override
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerRFConverter(player, this);
+	}
+
+	@Override
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiRFConverter(player, this);
 	}
 }

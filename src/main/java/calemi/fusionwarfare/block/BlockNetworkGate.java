@@ -17,7 +17,7 @@ public class BlockNetworkGate extends BlockBasicMachineBase {
 	private IIcon block_closed;	
 	
 	public BlockNetworkGate() {
-		super("network_gate", TileEntityNetworkGate.class, 0, false, true, "network_gate", "network_gate", "network_gate");
+		super("network_gate", TileEntityNetworkGate.class);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -26,8 +26,7 @@ public class BlockNetworkGate extends BlockBasicMachineBase {
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconreg) {
-		
+	public void registerBlockIcons(IIconRegister iconreg) {		
 		this.blockIcon = iconreg.registerIcon(Reference.MOD_ID + ":" + imagePath + "_open");
 		this.block_closed = iconreg.registerIcon(Reference.MOD_ID + ":" + imagePath + "_closed");
 	}

@@ -8,19 +8,25 @@ import java.util.Random;
 
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.gui.GuiOneInput;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.inventory.ContainerOneInput;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class TileEntityOreEnricher extends TileEntityBase {
+public class TileEntityOreEnricher extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 
 	public static Map<ItemStack, ItemStack> recipes = new HashMap<ItemStack, ItemStack>();
 	
@@ -70,7 +76,7 @@ public class TileEntityOreEnricher extends TileEntityBase {
 		
 		if (!worldObj.isRemote) {
 			
-			if (canSmelt()) progress++;
+			if (!isDone() && canSmelt()) progress++;
 			else resetProgress();
 			
 			if (isDone()) {
@@ -148,5 +154,15 @@ public class TileEntityOreEnricher extends TileEntityBase {
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack is) {		
 		return true;
+	}
+
+	@Override
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerOneInput(player, this);
+	}
+
+	@Override
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiOneInput(player, this, "Ore Enricher");
 	}
 }

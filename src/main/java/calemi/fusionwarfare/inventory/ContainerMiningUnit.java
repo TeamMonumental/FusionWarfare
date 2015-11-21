@@ -4,13 +4,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 
-public class ContainerMiningUnit extends ContainerBase {
+public class ContainerMiningUnit extends ContainerEnergyBase {
 
 	private int[] slots = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21};
 	
-	public ContainerMiningUnit(EntityPlayer player, TileEntityBase tileentity) {
+	public ContainerMiningUnit(EntityPlayer player, TileEntityEnergyBase tileentity) {
 		super(player, tileentity);
 		
 		for (int y = 0; y < 3; y++) {

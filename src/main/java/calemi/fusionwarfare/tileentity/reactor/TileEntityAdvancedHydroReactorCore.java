@@ -3,8 +3,10 @@ package calemi.fusionwarfare.tileentity.reactor;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -14,13 +16,16 @@ import net.minecraft.world.biome.BiomeGenOcean;
 import net.minecraftforge.common.util.ForgeDirection;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.gui.GuiReactorCore;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.inventory.ContainerReactorCore;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
 
-public class TileEntityAdvancedHydroReactorCore extends TileEntityBase {
+public class TileEntityAdvancedHydroReactorCore extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 
 	public int capsules;
 
@@ -109,39 +114,6 @@ public class TileEntityAdvancedHydroReactorCore extends TileEntityBase {
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-
-		nbt.setInteger("capsules", capsules);
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-
-		capsules = nbt.getInteger("capsules");
-	}
-
-	// -------------------------------------------------Packets
-
-	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound syncData = new NBTTagCompound();
-
-		syncData.setInteger("capsules", capsules);
-
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-
-		capsules = pkt.func_148857_g().getInteger("capsules");
-	}
-
-	// --------------------------------------------------------------------------------------\\
-
-	@Override
 	public EnumIO getIOType() {
 		return EnumIO.OUTPUT;
 	}
@@ -157,22 +129,26 @@ public class TileEntityAdvancedHydroReactorCore extends TileEntityBase {
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[] {};
+	public void writeSyncNBT(NBTTagCompound nbt) {
+		super.writeSyncNBT(nbt);
+
+		nbt.setInteger("capsules", capsules);
 	}
 
 	@Override
-	public boolean canInsertItem(int slot, ItemStack is, int side) {
-		return false;
+	public void readSyncNBT(NBTTagCompound nbt) {
+		super.readSyncNBT(nbt);
+
+		capsules = nbt.getInteger("capsules");
 	}
 
 	@Override
-	public boolean canExtractItem(int slot, ItemStack is, int side) {
-		return false;
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerReactorCore(player, this);
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack is) {
-		return false;
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiReactorCore(player, this, "Advanced Hydro Reactor");
 	}
 }

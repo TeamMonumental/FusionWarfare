@@ -1,20 +1,11 @@
 package calemi.fusionwarfare.gui;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.Container;
-import net.minecraft.util.ResourceLocation;
 import calemi.fusionwarfare.FusionWarfare;
-import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.packet.ServerPacketHandler;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
-import calemi.fusionwarfare.tileentity.TileEntityEnergyTransmitter;
-import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class GuiEXPFabricator extends GuiContainerBase {
 
@@ -24,7 +15,7 @@ public class GuiEXPFabricator extends GuiContainerBase {
 	
 	private GuiFusionButton[] buttons = new GuiFusionButton[]{button1, button2, button3};
 	
-	public GuiEXPFabricator(EntityPlayer player, TileEntityBase tileEntity) {
+	public GuiEXPFabricator(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(new ContainerEnergyTank(player, tileEntity), player, tileEntity);
 	}
 	
@@ -45,7 +36,7 @@ public class GuiEXPFabricator extends GuiContainerBase {
 		for (int i = 0; i < buttons.length; i++) {
 			
 			if (button.id == i) {
-				FusionWarfare.network.sendToServer(new ServerPacketHandler("addEXP%" + (30 + (i * 30)) + "%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
+				FusionWarfare.network.sendToServer(new ServerPacketHandler("addEXP%" + (30 + (i * 30)) + "%" + tileEntityEnergy.xCoord + "%" + tileEntityEnergy.yCoord + "%" + tileEntityEnergy.zCoord));
 			}			
 		}		
 	}

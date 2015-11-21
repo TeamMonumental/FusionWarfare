@@ -9,16 +9,22 @@ import javax.vecmath.Vector3f;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.entity.EntityMissile;
+import calemi.fusionwarfare.gui.GuiMissileSiloCore;
 import calemi.fusionwarfare.init.InitBlocks;
+import calemi.fusionwarfare.inventory.ContainerMissileSiloCore;
 import calemi.fusionwarfare.item.ItemMissile;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.reactor.TileEntitySteelCasing;
 import calemi.fusionwarfare.util.Location;
 import calemi.fusionwarfare.util.ShapeUtil;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -27,7 +33,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityMissileSiloCore extends TileEntitySecurity {
+public class TileEntityMissileSiloCore extends TileEntitySecurity implements ITileEntityGuiHandler {
 
 	private final ForgeDirection[] dirs = {ForgeDirection.NORTH, ForgeDirection.EAST, ForgeDirection.SOUTH, ForgeDirection.WEST};
 	
@@ -216,57 +222,8 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-	
-		nbt.setInteger("currentDelay", currentDelay);
-		nbt.setInteger("targetX", targetX);
-		nbt.setInteger("targetZ", targetZ);
-		
-		nbt.setBoolean("sprayMode", sprayMode);
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-	
-		currentDelay = nbt.getInteger("currentDelay");
-		targetX = nbt.getInteger("targetX");
-		targetZ = nbt.getInteger("targetZ");
-		
-		sprayMode = nbt.getBoolean("sprayMode");
-	}
-	
-	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound syncData = new NBTTagCompound();
-	
-		writeToNBT(syncData);
-
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-
-		readFromNBT(pkt.func_148857_g());
-	}
-	
-	//------------------------------------------------------------\\
-	
-	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[] {0,1,2,3,4,5,6,7,8};
-	}
-
-	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int side) {
 		return side > 1;
-	}
-
-	@Override
-	public boolean canExtractItem(int slot, ItemStack stack, int side) {
-		return false;
 	}
 
 	@Override
@@ -287,5 +244,33 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity {
 	@Override
 	public ItemStack getOverclockingSlot() {
 		return null;
+	}
+	
+	@Override
+	public void readSyncNBT(NBTTagCompound nbt) {
+		super.readSyncNBT(nbt);	
+		currentDelay = nbt.getInteger("currentDelay");
+		targetX = nbt.getInteger("targetX");
+		targetZ = nbt.getInteger("targetZ");		
+		sprayMode = nbt.getBoolean("sprayMode");
+	}
+	
+	@Override
+	public void writeSyncNBT(NBTTagCompound nbt) {
+		super.writeSyncNBT(nbt);	
+		nbt.setInteger("currentDelay", currentDelay);
+		nbt.setInteger("targetX", targetX);
+		nbt.setInteger("targetZ", targetZ);		
+		nbt.setBoolean("sprayMode", sprayMode);
+	}
+
+	@Override
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerMissileSiloCore(player, this);
+	}
+
+	@Override
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiMissileSiloCore(player, this);
 	}
 }

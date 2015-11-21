@@ -2,12 +2,18 @@ package calemi.fusionwarfare.tileentity.gen;
 
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.gui.GuiEnergyTank;
+import calemi.fusionwarfare.inventory.ContainerEnergyTank;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.Location;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 
-public class TileEntityGeothermalGenerator extends TileEntityBase {
+public class TileEntityGeothermalGenerator extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 
 	public TileEntityGeothermalGenerator() {
 		maxEnergy = 750;
@@ -15,7 +21,6 @@ public class TileEntityGeothermalGenerator extends TileEntityBase {
 
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
 
 		if (!worldObj.isRemote) {
 			
@@ -40,28 +45,8 @@ public class TileEntityGeothermalGenerator extends TileEntityBase {
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[]{};
-	}
-
-	@Override
-	public boolean canInsertItem(int slot, ItemStack stack, int side) {
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int slot, ItemStack stack, int side) {
-		return false;
-	}
-
-	@Override
 	public int getSizeInventory() {
 		return 0;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return false;
 	}
 
 	@Override
@@ -72,5 +57,15 @@ public class TileEntityGeothermalGenerator extends TileEntityBase {
 	@Override
 	public ItemStack getOverclockingSlot() {
 		return null;
+	}
+	
+	@Override
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerEnergyTank(player, this);
+	}
+
+	@Override
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiEnergyTank(player, this, "Geothermal Generator", false);
 	}
 }

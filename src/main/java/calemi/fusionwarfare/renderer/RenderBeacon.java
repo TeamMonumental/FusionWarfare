@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.model.ModelBeacon;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -26,7 +26,7 @@ public class RenderBeacon extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity entity, double x, double y, double z, float f) {
 		
-		TileEntityBase tileEntity = (TileEntityBase)entity;
+		TileEntityEnergyBase tileEntity = (TileEntityEnergyBase)entity;
 		
 		GL11.glPushMatrix();
 		

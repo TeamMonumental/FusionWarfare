@@ -1,15 +1,15 @@
 package calemi.fusionwarfare.inventory;
 
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerOverclockedEnergyTank extends ContainerBase {
+public class ContainerOverclockedEnergyTank extends ContainerEnergyBase {
 
-	public ContainerOverclockedEnergyTank(EntityPlayer player, TileEntityBase tileentity, int overClockNumber) {
+	public ContainerOverclockedEnergyTank(EntityPlayer player, TileEntityEnergyBase tileentity, int overClockNumber) {
 		super(player, tileentity);		
 		
 		//Overclocking

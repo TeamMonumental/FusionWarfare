@@ -5,14 +5,15 @@ import calemi.fusionwarfare.api.ISecurity;
 import calemi.fusionwarfare.block.BlockReinforcedDoor;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemBattery;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntityReinforcedDoor;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.Location;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.scoreboard.Team;
@@ -89,7 +90,7 @@ public class WrenchEvent {
 
 		NBTTagCompound nbt = getNBT(event.itemStack);
 
-		if (nbt.hasKey("energy") && !(event.itemStack.getItem() instanceof ItemBattery)) {
+		if (nbt.hasKey("energy") && Block.getBlockFromItem(event.itemStack.getItem()) instanceof Block) {
 
 			event.toolTip.add(EnumChatFormatting.GOLD + "FE: " + EnumChatFormatting.AQUA + nbt.getInteger("energy") + (nbt.hasKey("maxEnergy") ? "/" + nbt.getInteger("maxEnergy") : ""));
 		}

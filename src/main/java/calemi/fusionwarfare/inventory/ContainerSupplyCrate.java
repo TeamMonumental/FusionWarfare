@@ -1,7 +1,8 @@
 package calemi.fusionwarfare.inventory;
 
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityInventoryBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -10,7 +11,7 @@ public class ContainerSupplyCrate extends ContainerBase {
 
 	private int[] slots = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26};
 	
-	public ContainerSupplyCrate(EntityPlayer player, TileEntityBase tileEntity) {
+	public ContainerSupplyCrate(EntityPlayer player, TileEntityInventoryBase tileEntity) {
 		super(player, tileEntity);
 		
 		for (int i = 0; i < 3; i++) {

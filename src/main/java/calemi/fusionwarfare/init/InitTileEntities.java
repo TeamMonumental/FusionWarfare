@@ -1,27 +1,26 @@
 package calemi.fusionwarfare.init;
 
 import calemi.fusionwarfare.Reference;
-import calemi.fusionwarfare.tileentity.TileEntityEnergyReceiver;
-import calemi.fusionwarfare.tileentity.TileEntityEnergyTransmitter;
 import calemi.fusionwarfare.tileentity.TileEntityReinforcedDoor;
 import calemi.fusionwarfare.tileentity.TileEntitySupplyCrate;
 import calemi.fusionwarfare.tileentity.gen.TileEntityAquaGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityGeothermalGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntitySolarGenerator;
 import calemi.fusionwarfare.tileentity.gen.TileEntityWindTurbine;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMobTurret;
+import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerHealer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerTurret;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEMPTower;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEnergeticFurnace;
-import calemi.fusionwarfare.tileentity.machine.TileEntityAuraMatterReinforcer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMiningUnit;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityOreEnricher;
-import calemi.fusionwarfare.tileentity.machine.TileEntityAuraPlayerHealer;
 import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import calemi.fusionwarfare.tileentity.machine.TileEntityTwoInputs;
+import calemi.fusionwarfare.tileentity.network.TileEntityNetworkBeacon;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkCable;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkController;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkGate;
@@ -38,6 +37,7 @@ public class InitTileEntities {
 		GameRegistry.registerTileEntity(TileEntityNetworkController.class, Reference.MOD_ID + ":tileEntityNetworkController");
 		GameRegistry.registerTileEntity(TileEntityNetworkCable.class, Reference.MOD_ID + ":tileEntityNetworkCable");
 		GameRegistry.registerTileEntity(TileEntityNetworkGate.class, Reference.MOD_ID + ":tileEntityNetworkGate");
+		GameRegistry.registerTileEntity(TileEntityNetworkBeacon.class, Reference.MOD_ID + ":tileEntityNetworkBeacon");
 		
 		GameRegistry.registerTileEntity(TileEntityAquaGenerator.class, Reference.MOD_ID + ":tileEntityAquaGenerator");
 		GameRegistry.registerTileEntity(TileEntityGeothermalGenerator.class, Reference.MOD_ID + ":tileEntityGeothermalGenerator");
@@ -64,9 +64,6 @@ public class InitTileEntities {
 		GameRegistry.registerTileEntity(TileEntityAuraMatterReinforcer.class, Reference.MOD_ID + ":tileEntityFusionMatterReinforcer");		
 		GameRegistry.registerTileEntity(TileEntityAuraMobTurret.class, Reference.MOD_ID + ":tileEntityAntiMobBeacon");
 		GameRegistry.registerTileEntity(TileEntityAuraPlayerHealer.class, Reference.MOD_ID + ":tileEntityPlayerHealingBeacon");
-		
-		GameRegistry.registerTileEntity(TileEntityEnergyTransmitter.class, Reference.MOD_ID + ":tileEntityEnergyTransmitter");
-		GameRegistry.registerTileEntity(TileEntityEnergyReceiver.class, Reference.MOD_ID + ":tileEntityEnergyReceiver");
 		
 		GameRegistry.registerTileEntity(TileEntityRFConverter.class, Reference.MOD_ID + ":tileEntityRFConverter");
 		

@@ -28,7 +28,7 @@ public class BlockSupplyCrate extends BlockContainerBase {
 	private IIcon[] icons;
 	
 	public BlockSupplyCrate() {
-		super("supply_crate", 0, Material.wood, 2, 2, Block.soundTypeWood, false);
+		super("supply_crate", 0, Material.wood, 2, 2, Block.soundTypeWood, false);	
 		setBlockUnbreakable();
 		GameRegistry.registerBlock(this, ItemBlockCrate.class, imagePath);
 	}
@@ -65,10 +65,5 @@ public class BlockSupplyCrate extends BlockContainerBase {
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileEntitySupplyCrate();
-	}
-
-	@Override
-	public int getGuiID() {
-		return Reference.guiIDSupplyCrate;
 	}
 }

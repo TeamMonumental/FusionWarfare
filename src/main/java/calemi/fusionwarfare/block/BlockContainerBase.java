@@ -6,8 +6,8 @@ import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.api.ISecurity;
 import calemi.fusionwarfare.init.InitCreativeTabs;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -33,31 +33,31 @@ public abstract class BlockContainerBase extends BlockContainer {
 	public String imagePath;
 
 	public BlockContainerBase(String imagePath, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {
-
 		super(material);
 		setHarvestLevel("pickaxe", harvestLevel);
-		this.imagePath = imagePath;
-		if (isRegistered) setCreativeTab(InitCreativeTabs.creativeTabMachines);
+		this.imagePath = imagePath;		
 		setBlockName(imagePath);
 		setStepSound(stepSound);
 		setHardness(hardness);
 		setResistance(resistance);
-		if (isRegistered) GameRegistry.registerBlock(this, imagePath);
+		
+		if (isRegistered) {
+			setCreativeTab(InitCreativeTabs.creativeTabMachines);
+			GameRegistry.registerBlock(this, imagePath);
+		}
 	}
 	
 	public BlockContainerBase(String imagePath, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound) {
-		this(imagePath, harvestLevel, material, hardness, resistance, stepSound, true);
+		this(imagePath, harvestLevel, material, resistance, resistance, stepSound, true);
 	}
-	
-	public abstract int getGuiID();
 	
 	public void breakBlock(World world, int x, int y, int z, Block block, int i) {
 
-		if (!(world.getTileEntity(x, y, z) instanceof TileEntityBase)) {
+		if (!(world.getTileEntity(x, y, z) instanceof TileEntityEnergyBase)) {
 			return;
 		}
 		
-		TileEntityBase tileentity = (TileEntityBase) world.getTileEntity(x, y, z);
+		TileEntityEnergyBase tileentity = (TileEntityEnergyBase) world.getTileEntity(x, y, z);
 		
 		if (tileentity != null) {
 			for (int i1 = 0; i1 < tileentity.getSizeInventory(); ++i1) {
@@ -99,23 +99,7 @@ public abstract class BlockContainerBase extends BlockContainer {
 		
 		if(!w.isRemote) {
 			
-			/*TileEntity tileEntity = w.getTileEntity(x, y, z);
-			
-			if (tileEntity instanceof ISecurity) {	
-	
-				if (((ISecurity)tileEntity).isSameTeam(p.getTeam())) {
-						
-					FMLNetworkHandler.openGui(p, FusionWarfare.instance, getGuiID(), w, x, y, z);
-				}
-				
-				else {
-					p.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "This unit belongs to " + ((TileEntitySecurity)tileEntity).teamName));
-				}
-			}
-			
-			else {*/
-				FMLNetworkHandler.openGui(p, FusionWarfare.instance, getGuiID(), w, x, y, z);
-			//}
+			FMLNetworkHandler.openGui(p, FusionWarfare.instance, 0, w, x, y, z);	
 		}
 		
 		return true;	

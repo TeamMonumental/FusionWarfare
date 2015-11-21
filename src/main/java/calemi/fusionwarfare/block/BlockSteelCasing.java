@@ -14,8 +14,9 @@ import calemi.fusionwarfare.tileentity.reactor.TileEntitySteelCasing;
 public class BlockSteelCasing extends BlockBasicMachineBase {
 
 	public BlockSteelCasing() {
-		super("steel_casing", TileEntitySteelCasing.class, 0, false, true, "steel_casing", "steel_casing", "steel_casing");	
+		super("steel_casing", TileEntitySteelCasing.class);			
 		setCreativeTab(InitCreativeTabs.creativeTabCore);
+		setAllSideImages("steel_casing");
 	}
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int i, float f, float f2, float f3) {

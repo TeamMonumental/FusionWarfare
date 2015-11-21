@@ -2,10 +2,16 @@ package calemi.fusionwarfare.tileentity.machine;
 
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.gui.GuiTwoInputs;
+import calemi.fusionwarfare.inventory.ContainerTwoInputs;
 import calemi.fusionwarfare.recipe.EnumRecipeType;
 import calemi.fusionwarfare.recipe.TwoInputRecipe;
 import calemi.fusionwarfare.recipe.TwoInputRecipeRegistry;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
+import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -13,33 +19,34 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
-public class TileEntityTwoInputs extends TileEntityBase {
+public class TileEntityTwoInputs extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 
 	public TwoInputRecipe currentRecipe;
 	public EnumRecipeType recipeType;
 	
 	public TileEntityTwoInputs() {
-		maxEnergy = 10000;
 		maxProgress = 100;
+		maxEnergy = 25000;
+	}
+	
+	public TileEntityTwoInputs(EnumRecipeType recipeType) {
+		maxProgress = 100;
+		this.recipeType = recipeType;
+		maxEnergy = (recipeType == EnumRecipeType.INFUSION_TABLE ? 10000 : 5000);
 	}
 	
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
-			
-		maxEnergy = recipeType == EnumRecipeType.INFUSION_TABLE ? 10000 : 5000;
 		
 		checkForRecipe();
 		
 		if (!worldObj.isRemote) {
 			
-			if (currentRecipe != null && energy >= currentRecipe.energyCost) {				
+			if (!isDone() && currentRecipe != null && EnergyUtil.canSubtractEnergy(this, currentRecipe.energyCost)) {				
 				progress++;
 			} 
 			
-			else {
-				resetProgress();
-			}
+			else resetProgress();
 			
 			if (isDone()) {
 				
@@ -87,13 +94,6 @@ public class TileEntityTwoInputs extends TileEntityBase {
 		return AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1).expand(0, 1, 0);
 	}
 	
-	//--------------------------------------------------------------------
-	
-	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return new int[] {0,1,2};
-	}
-
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int side) {
 		return (side == 1 && slot == 0) || (side != 1 && side != 0 && slot == 1);
@@ -125,38 +125,12 @@ public class TileEntityTwoInputs extends TileEntityBase {
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-	
-		nbt.setString("recipeType", recipeType.toString());
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerTwoInputs(player, this);
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-	
-		recipeType = recipeType.valueOf(nbt.getString("recipeType"));
-	}
-	
-	//-----------------------------------------------------------
-	
-	@Override
-	public Packet getDescriptionPacket() {
-		
-		super.getDescriptionPacket();
-		
-		NBTTagCompound syncData = new NBTTagCompound();
-	
-		syncData.setString("recipeType", recipeType.toString());
-
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		
-		super.onDataPacket(net, pkt);
-		
-		recipeType = recipeType.valueOf(pkt.func_148857_g().getString("recipeType"));		
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiTwoInputs(player, this, recipeType);
 	}
 }

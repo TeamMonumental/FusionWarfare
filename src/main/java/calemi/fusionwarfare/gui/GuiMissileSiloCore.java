@@ -1,11 +1,10 @@
 package calemi.fusionwarfare.gui;
 
 import calemi.fusionwarfare.FusionWarfare;
-import calemi.fusionwarfare.gui.button.GuiFusionButton;
 import calemi.fusionwarfare.inventory.ContainerMissileSiloCore;
 import calemi.fusionwarfare.packet.ServerPacketHandler;
-import calemi.fusionwarfare.tileentity.TileEntityBase;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
+import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import net.minecraft.client.gui.GuiButton;
@@ -16,7 +15,7 @@ public class GuiMissileSiloCore extends GuiContainerBase {
 
 	private GuiFusionButton[] buttons = new GuiFusionButton[2];
 	
-	public GuiMissileSiloCore(EntityPlayer player, TileEntityBase tileEntity) {
+	public GuiMissileSiloCore(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(new ContainerMissileSiloCore(player, tileEntity), player, tileEntity);
 	}
 
@@ -24,7 +23,7 @@ public class GuiMissileSiloCore extends GuiContainerBase {
 	public void initGui() {
 		super.initGui();
 		
-		TileEntityMissileSiloCore tileEntityMissileSiloCore = (TileEntityMissileSiloCore)tileEntity;
+		TileEntityMissileSiloCore tileEntityMissileSiloCore = (TileEntityMissileSiloCore)tileEntityEnergy;
 		
 		buttons[0] = new GuiFusionButton(0, getScreenX() + 32, getScreenY() + 22, 130, "Delay: " + tileEntityMissileSiloCore.currentDelay);
 		buttonList.add(buttons[0]);
@@ -36,7 +35,7 @@ public class GuiMissileSiloCore extends GuiContainerBase {
 	@Override
 	public void updateScreen() {
 		
-		TileEntityMissileSiloCore tileEntityMissileSiloCore = (TileEntityMissileSiloCore)tileEntity;
+		TileEntityMissileSiloCore tileEntityMissileSiloCore = (TileEntityMissileSiloCore)tileEntityEnergy;
 		
 		buttons[0].displayString = "Delay: " + tileEntityMissileSiloCore.currentDelay;
 		buttons[1].displayString = "Spray Mode: " + tileEntityMissileSiloCore.sprayMode;
@@ -46,14 +45,14 @@ public class GuiMissileSiloCore extends GuiContainerBase {
 	protected void actionPerformed(GuiButton button) {		
 		super.actionPerformed(button);
 		
-		TileEntityMissileSiloCore tileEntityMissileSiloCore = (TileEntityMissileSiloCore)tileEntity;
+		TileEntityMissileSiloCore tileEntityMissileSiloCore = (TileEntityMissileSiloCore)tileEntityEnergy;
 		
 		if (button.id == buttons[0].id) {			
-			FusionWarfare.network.sendToServer(new ServerPacketHandler("currentDelay%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
+			FusionWarfare.network.sendToServer(new ServerPacketHandler("currentDelay%" + tileEntityEnergy.xCoord + "%" + tileEntityEnergy.yCoord + "%" + tileEntityEnergy.zCoord));
 		}
 		
 		if (button.id == buttons[1].id) {
-			FusionWarfare.network.sendToServer(new ServerPacketHandler("sprayMode%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
+			FusionWarfare.network.sendToServer(new ServerPacketHandler("sprayMode%" + tileEntityEnergy.xCoord + "%" + tileEntityEnergy.yCoord + "%" + tileEntityEnergy.zCoord));
 		}
 	}
 	
@@ -74,8 +73,8 @@ public class GuiMissileSiloCore extends GuiContainerBase {
 
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
-		drawInfoTextBar("Target X: " + ((TileEntityMissileSiloCore)tileEntity).targetX, 0);
-		drawInfoTextBar("Target Z: " + ((TileEntityMissileSiloCore)tileEntity).targetZ, 1);
+		drawInfoTextBar("Target X: " + ((TileEntityMissileSiloCore)tileEntityEnergy).targetX, 0);
+		drawInfoTextBar("Target Z: " + ((TileEntityMissileSiloCore)tileEntityEnergy).targetZ, 1);
 		drawSmallFuelBar(8, 68);
 	}
 

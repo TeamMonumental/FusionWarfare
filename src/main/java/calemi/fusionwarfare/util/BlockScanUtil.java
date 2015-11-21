@@ -5,6 +5,7 @@ import java.util.List;
 
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
+import calemi.fusionwarfare.tileentity.network.TileEntityNetworkBeacon;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -23,19 +24,51 @@ public class BlockScanUtil {
 	
 	private static void checkBlock(Location loc, List<IEnergy> list) {
 		
-		TileEntity entity = loc.getTileEntity();
+		TileEntity tileEntity = loc.getTileEntity();
 		
-		if (entity != null && entity instanceof IEnergy) {
-		
-			IEnergy energy = (IEnergy) entity;
+		if (tileEntity != null) {
 			
-			if (!list.contains(entity) && energy.getIOType() != EnumIO.REJECTED) {
+			if (tileEntity instanceof TileEntityNetworkBeacon) {
+							
+				TileEntityNetworkBeacon tileEntityBeacon = (TileEntityNetworkBeacon)tileEntity;
 				
-				list.add(energy);
+				if (list.contains(tileEntityBeacon)) return;
 				
-				for (ForgeDirection dir : ForgeDirection.values()) {
+				list.add(tileEntityBeacon);
+				
+				for (Object obj : loc.world.loadedTileEntityList) {
 					
-					checkBlock(loc.add(dir), list);
+					if (obj instanceof TileEntityNetworkBeacon) {
+						
+						TileEntityNetworkBeacon targetBeacon = (TileEntityNetworkBeacon)obj;
+						
+						if (tileEntityBeacon != targetBeacon && tileEntityBeacon.isSameTeam(targetBeacon.getTeam()) && tileEntityBeacon.code == targetBeacon.code) {
+							
+							System.out.println("found");
+							
+							list.add(targetBeacon);
+							
+							for (ForgeDirection dir : ForgeDirection.values()) {
+								
+								checkBlock(new Location(targetBeacon).add(dir), list);
+							}						
+						}
+					}
+				}
+			}
+			
+			else if (tileEntity instanceof IEnergy) {		
+		
+				IEnergy energy = (IEnergy) tileEntity;
+			
+				if (!list.contains(tileEntity) && energy.getIOType() != EnumIO.REJECTED) {
+				
+					list.add(energy);
+				
+					for (ForgeDirection dir : ForgeDirection.values()) {
+					
+						checkBlock(loc.add(dir), list);
+					}
 				}
 			}
 		}
