@@ -2,12 +2,14 @@ package calemi.fusionwarfare.tileentity.machine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.entity.DamageSourceTurret;
 import calemi.fusionwarfare.gui.GuiAuraBase;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
+import calemi.fusionwarfare.inventory.ContainerOverclockedEnergyTank;
 import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 import calemi.fusionwarfare.util.Location;
@@ -36,7 +38,7 @@ public abstract class TileEntityAuraBase extends TileEntitySecurity implements I
 	
 	public abstract boolean onAction();
 	
-	public static List<Entity> entitiesInAura = new ArrayList<Entity>();
+	public static CopyOnWriteArrayList<Entity> entitiesInAura = new CopyOnWriteArrayList<Entity>();
 	public static List<Location> blocksInAura = new ArrayList<Location>();
 	
 	public boolean isActive = false;
@@ -114,7 +116,7 @@ public abstract class TileEntityAuraBase extends TileEntitySecurity implements I
 	
 	@Override
 	public Container getTileContainer(EntityPlayer player) {
-		return new ContainerEnergyTank(player, this);
+		return new ContainerOverclockedEnergyTank(player, this, 15);
 	}
 	
 	@Override
