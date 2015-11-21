@@ -7,6 +7,8 @@ import calemi.fusionwarfare.gui.GuiEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
 import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -86,6 +88,7 @@ public class TileEntityEMPTower extends TileEntityEnergyBase implements ITileEnt
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiEnergyTank(player, this, "EMP Tower", true);
 	}

@@ -169,6 +169,7 @@ public class TileEntityRFConverter extends TileEntityEnergyBase implements IEner
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiRFConverter(player, this);
 	}

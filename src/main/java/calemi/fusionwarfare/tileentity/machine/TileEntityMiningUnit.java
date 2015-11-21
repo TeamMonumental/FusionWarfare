@@ -14,6 +14,8 @@ import calemi.fusionwarfare.inventory.ContainerMiningUnit;
 import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
 import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.Location;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityMiningUnit extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 
@@ -149,6 +151,7 @@ public class TileEntityMiningUnit extends TileEntityEnergyBase implements ITileE
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiMiningUnit(player, this);
 	}

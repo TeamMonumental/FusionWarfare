@@ -6,6 +6,8 @@ import calemi.fusionwarfare.gui.GuiOneInput;
 import calemi.fusionwarfare.inventory.ContainerOneInput;
 import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
 import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -111,6 +113,7 @@ public class TileEntityEnergeticFurnace extends TileEntityEnergyBase implements 
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiOneInput(player, this, "Energetic Furnace");
 	}

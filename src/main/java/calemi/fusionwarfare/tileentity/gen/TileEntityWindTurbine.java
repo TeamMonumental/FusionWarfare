@@ -77,6 +77,7 @@ public class TileEntityWindTurbine extends TileEntityEnergyBase implements ITile
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiEnergyTank(player, this, "Wind Generator", false);
 	}

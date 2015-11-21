@@ -12,6 +12,8 @@ import calemi.fusionwarfare.gui.GuiEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
 import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityEXPFabricator extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 	
@@ -45,6 +47,7 @@ public class TileEntityEXPFabricator extends TileEntityEnergyBase implements ITi
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiEnergyTank(player, this, "EXP Fabricator", false);
 	}

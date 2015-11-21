@@ -270,6 +270,7 @@ public class TileEntityMissileSiloCore extends TileEntitySecurity implements ITi
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiMissileSiloCore(player, this);
 	}

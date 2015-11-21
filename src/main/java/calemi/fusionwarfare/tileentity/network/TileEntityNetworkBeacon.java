@@ -8,6 +8,8 @@ import calemi.fusionwarfare.inventory.ContainerInventory;
 import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
 import calemi.fusionwarfare.tileentity.TileEntitySecurity;
 import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -59,6 +61,7 @@ public class TileEntityNetworkBeacon extends TileEntitySecurity implements ITile
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiNetworkBeacon(player, this);
 	}	

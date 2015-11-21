@@ -10,6 +10,5 @@ public interface ITileEntityGuiHandler {
 
 	public Container getTileContainer(EntityPlayer player);
 	
-	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player);
 }
