@@ -65,7 +65,7 @@ public class ItemLocationLinker extends ItemBase {
 					((TileEntityMissileLauncher)world.getTileEntity(x, y, z)).targetZ = getNBT(is).getInteger("Z");
 					((TileEntityMissileLauncher)world.getTileEntity(x, y, z)).update();
 					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);
-					player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Missile Launcher's coords set to " + x + ", " + y + ", " + z));
+					player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Missile Launcher's coords set to " + getNBT(is).getInteger("X") + ", " + getNBT(is).getInteger("Z")));
 					return true;
 				}
 				
@@ -79,7 +79,7 @@ public class ItemLocationLinker extends ItemBase {
 						tileEntity.targetZ = getNBT(is).getInteger("Z");
 						tileEntity.update();
 						player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);
-						player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Missile Silo's coords set to " + x + ", " + y + ", " + z));
+						player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Missile Silo's coords set to " + getNBT(is).getInteger("X") + ", " + getNBT(is).getInteger("Z")));
 						return true;
 					}				
 				}
@@ -90,7 +90,7 @@ public class ItemLocationLinker extends ItemBase {
 					((TileEntityMissileSiloCore)world.getTileEntity(x, y, z)).targetZ = getNBT(is).getInteger("Z");
 					((TileEntityMissileSiloCore)world.getTileEntity(x, y, z)).update();
 					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);	
-					player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Missile Silo's coords set to " + x + ", " + y + ", " + z));
+					player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Missile Silo's coords set to " + getNBT(is).getInteger("X") + ", " + getNBT(is).getInteger("Z")));
 					return true;
 				}
 			}
