@@ -55,8 +55,8 @@ public class BlockBasicMachineBase extends BlockContainerBase {
 	}
 	
 	public BlockBasicMachineBase setBottomImage() {	
-		topImage = imagePath + "_bottom";
-		return this;		
+		bottomImage = imagePath + "_bottom";
+		return this;
 	}
 	
 	public BlockBasicMachineBase setAllFourSideImages(String imageName) {	
