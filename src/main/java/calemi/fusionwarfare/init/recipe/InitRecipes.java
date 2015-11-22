@@ -46,7 +46,9 @@ public class InitRecipes {
 			"SSS", "SCS", "SSS", 'S', InitItems.steel_ingot, 'C', InitItems.infused_crystal
 		});
 		
-		//TODO Network Beacon Recipe
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_beacon), new Object[] {
+			"SHS", "SES", "SSS", 'S', InitItems.steel_plate, 'H', InitItems.hyper_chip, 'E', Items.ender_eye
+		});
 				
 		//#-#-#-#-#-GENERATORS-#-#-#-#-#\\
 		
@@ -147,8 +149,10 @@ public class InitRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aura_mob_turret), new Object[] {
 			"ILI", "IXI", "SCS", 'I', InitItems.infused_steel_ingot, 'L', InitItems.lightning_rod, 'S', InitItems.steel_plate, 'C', InitItems.hyper_chip, 'X', InitItems.infused_steel.sword
 		});
-				
-		//TODO RF Converter Recipe
+		
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.rf_converter), new Object[] {
+			"SSS", "BCR", "SSS", 'S', InitItems.steel_plate, 'B', InitItems.infused_steel_ingot, 'C', InitItems.infused_circuit, 'R', InitItems.infused_redstone
+		});
 		
 		//#-#-#-#-#-ITEMS-#-#-#-#-#\\
 		
