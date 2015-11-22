@@ -42,10 +42,7 @@ item.gun_handle.name=Gun Handle
 
 #-#-#-#-#-BATTERIES-#-#-#-#-#
 
-item.basic_battery.name=Basic Battery
-item.advanced_battery.name=Advanced Battery
-item.hyper_battery.name=Hyper Battery
-
+item.fe_battery.name=FE Battery
 item.creative_battery.name=Creative Battery
 
 #-#-#-#-#-INFANTRY-#-#-#-#-#

@@ -41,7 +41,6 @@ public class InitCrateLoot {
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.fusion_smg, 1, 1, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.fusion_ammo, 48, 64, false));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.charged_seeds, 48, 64, false));
-		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.advanced_battery, 1, 1, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.steel_plate, 10, 16, false));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.infused_circuit, 3, 5, false));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.ORANGE, InitItems.advanced_chip, 1, 2, false, true));
@@ -70,7 +69,6 @@ public class InitCrateLoot {
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.fusion_ammo, 100, 128, false));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.rocket, 3, 5, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.hyper_chip, 1, 2, false));
-		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.hyper_battery, 1, 1, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.lightning_rod, 1, 2, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.velocity_missile_T2, 2, 2, false, true));
 		CrateLootRegistry.add(new CrateLoot(EnumCrateRarity.RED, InitItems.emp_missile_T2, 2, 2, false, true));

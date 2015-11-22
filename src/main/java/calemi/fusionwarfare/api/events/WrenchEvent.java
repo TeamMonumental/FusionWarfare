@@ -90,7 +90,7 @@ public class WrenchEvent {
 
 		NBTTagCompound nbt = getNBT(event.itemStack);
 
-		if (nbt.hasKey("energy") && Block.getBlockFromItem(event.itemStack.getItem()) instanceof Block) {
+		if (nbt.hasKey("energy") && !(event.itemStack.getItem() instanceof Item)) {
 
 			event.toolTip.add(EnumChatFormatting.GOLD + "FE: " + EnumChatFormatting.AQUA + nbt.getInteger("energy") + (nbt.hasKey("maxEnergy") ? "/" + nbt.getInteger("maxEnergy") : ""));
 		}

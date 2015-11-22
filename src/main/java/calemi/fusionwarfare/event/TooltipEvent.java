@@ -22,7 +22,7 @@ public class TooltipEvent {
 			
 			if (event.itemStack.getItem() instanceof ItemArmor) {
 
-			ItemArmor itemArmor = (ItemArmor) event.itemStack.getItem();
+				ItemArmor itemArmor = (ItemArmor) event.itemStack.getItem();
 
 				if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
 

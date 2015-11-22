@@ -9,7 +9,6 @@ import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.item.ItemBattery;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
 import calemi.fusionwarfare.util.ToolSet;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -212,7 +211,7 @@ public class InitRecipes {
 			
 		//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitItems.basic_battery), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.fe_battery), new Object[] {
 			"SIS", "SBS", "SIS", 'S', InitItems.steel_ingot, 'I', InitItems.infused_steel_ingot, 'B', InitItems.basic_chip
 		});
 		

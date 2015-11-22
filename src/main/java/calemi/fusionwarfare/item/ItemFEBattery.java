@@ -69,8 +69,7 @@ public class ItemFEBattery extends ItemEnergyBase {
 				
 			for (ItemStack slot : entityPlayer.inventory.mainInventory) {			
 				
-				if (slot != null) {
-					
+				if (slot != null) {					
 					EnergyItemUtil.transferEnergy(is, slot, 5);
 				}
 			}
@@ -82,13 +81,7 @@ public class ItemFEBattery extends ItemEnergyBase {
 		
 		if (!world.isRemote) {	
 			
-			if (!getNBT(is).getBoolean("output")) {			
-				getNBT(is).setBoolean("output", true);
-			}
-			
-			else {
-				getNBT(is).setBoolean("output", false);
-			}	
+			getNBT(is).setBoolean("output", !getNBT(is).getBoolean("output"));
 			
 			player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);
 		}
