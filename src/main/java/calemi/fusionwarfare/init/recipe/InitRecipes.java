@@ -213,11 +213,8 @@ public class InitRecipes {
 		//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.basic_battery), new Object[] {
-			"SIS", "SIS", "SIS", 'S', InitItems.steel_ingot, 'I', InitItems.infused_steel_ingot
+			"SIS", "SBS", "SIS", 'S', InitItems.steel_ingot, 'I', InitItems.infused_steel_ingot, 'B', InitItems.basic_chip
 		});
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.advanced_battery), new Object[]{InitItems.basic_battery, InitItems.basic_chip});
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.hyper_battery), new Object[]{InitItems.advanced_battery, InitItems.advanced_chip});
 		
 		//#-#-#-#-#-AMMO-#-#-#-#-#\\
 		
