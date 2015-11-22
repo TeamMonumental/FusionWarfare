@@ -4,7 +4,6 @@ import calemi.fusionwarfare.api.events.EnergyEvent;
 import calemi.fusionwarfare.api.events.SecurityEvent;
 import calemi.fusionwarfare.api.events.WrenchEvent;
 import calemi.fusionwarfare.config.FWConfig;
-import calemi.fusionwarfare.event.CraftingEvent;
 import calemi.fusionwarfare.event.EntitySpawnEvent;
 import calemi.fusionwarfare.event.OnPlayerJoinEvent;
 import calemi.fusionwarfare.event.SupplyCrateEvent;
@@ -68,7 +67,6 @@ public class FusionWarfare {
 		MinecraftForge.EVENT_BUS.register(new EnergyEvent());
 		MinecraftForge.EVENT_BUS.register(new WrenchEvent());
 			
-		FMLCommonHandler.instance().bus().register(new CraftingEvent());
 		FMLCommonHandler.instance().bus().register(new SupplyCrateEvent());	
 		FMLCommonHandler.instance().bus().register(new FWConfig());
 		FMLCommonHandler.instance().bus().register(new OnPlayerJoinEvent());	

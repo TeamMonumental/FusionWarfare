@@ -2,7 +2,7 @@ package calemi.fusionwarfare.init;
 
 import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.item.ItemBase;
-import calemi.fusionwarfare.item.ItemBattery;
+import calemi.fusionwarfare.item.ItemFEBattery;
 import calemi.fusionwarfare.item.ItemChargedSeeds;
 import calemi.fusionwarfare.item.ItemCreativeBattery;
 import calemi.fusionwarfare.item.ItemEnergyConsumable;
@@ -74,9 +74,7 @@ public class InitItems {
 	
 	//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 	
-	public static Item basic_battery;
-	public static Item advanced_battery;
-	public static Item hyper_battery;
+	public static Item fe_battery;
 	public static Item creative_battery;
 	
 	//#-#-#-#-#-INFANTRY-#-#-#-#-#\\
@@ -184,10 +182,7 @@ public class InitItems {
 		
 		//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 			
-		basic_battery = new ItemBattery("basic", 5000);
-		advanced_battery = new ItemBattery("advanced", 10000);
-		hyper_battery = new ItemBattery("hyper", 20000);
-		
+		fe_battery = new ItemFEBattery();
 		creative_battery = new ItemCreativeBattery();	
 		
 		//#-#-#-#-#-GUNS-#-#-#-#-#\\

@@ -17,15 +17,12 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class ItemBattery extends ItemEnergyBase {
+public class ItemFEBattery extends ItemEnergyBase {
 
-	public int maxEnergy;
-	
 	private IIcon[] overlays = new IIcon[9];
 	
-	public ItemBattery(String type, int maxEnergy) {
-		super(type + "_battery");
-		this.maxEnergy = maxEnergy;
+	public ItemFEBattery() {
+		super("fe_battery");
 		setMaxStackSize(1);
 	}
 	
@@ -33,30 +30,7 @@ public class ItemBattery extends ItemEnergyBase {
 	public boolean requiresMultipleRenderPasses() {
 		return true;
 	}
-	
-	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack is, int overlay) {
-		
-		int energyScaled = getEnergy(is) * 8 / getMaxEnergy();
-		
-		if (overlay > 0 && energyScaled > 0) {
 			
-			if (is.getItem() == InitItems.basic_battery) {
-				return 0x110093FF;
-			}
-			
-			if (is.getItem() == InitItems.advanced_battery) {
-				return 0x11FA9600;
-			}	
-			
-			if (is.getItem() == InitItems.hyper_battery) {
-				return 0x11FA2A00;
-			}
-		}
-		
-		return 0x00FFFFFF;		
-	}
-		
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack is, int overlay) {
@@ -124,7 +98,7 @@ public class ItemBattery extends ItemEnergyBase {
 	
 	@Override
 	public int getMaxEnergy() {
-		return maxEnergy;
+		return 15000;
 	}
 	
 	@Override

@@ -4,7 +4,7 @@ import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.api.ISecurity;
 import calemi.fusionwarfare.block.BlockReinforcedDoor;
 import calemi.fusionwarfare.init.InitItems;
-import calemi.fusionwarfare.item.ItemBattery;
+import calemi.fusionwarfare.item.ItemFEBattery;
 import calemi.fusionwarfare.tileentity.TileEntityReinforcedDoor;
 import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.util.Location;
