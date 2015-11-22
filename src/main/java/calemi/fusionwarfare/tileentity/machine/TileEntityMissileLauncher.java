@@ -44,8 +44,6 @@ public class TileEntityMissileLauncher extends TileEntitySecurity implements ITi
 	@Override
 	public void updateEntity() {
 		
-		System.out.println(slots[0]);
-				
 		if (canLaunch()) {
 
 			progress++;
