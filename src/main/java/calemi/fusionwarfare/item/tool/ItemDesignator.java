@@ -46,9 +46,9 @@ public class ItemDesignator extends ItemBase {
 			list.add(EnumChatFormatting.GOLD + "Y: " + EnumChatFormatting.AQUA + getNBT(is).getInteger("unitY"));
 			list.add(EnumChatFormatting.GOLD + "Z: " + EnumChatFormatting.AQUA + getNBT(is).getInteger("unitZ"));
 			list.add("");
-			list.add("Calls a missile launching unit to fire at a");
-			list.add("location. Sneak Right-click to bind coords");
-			list.add("and right click to fire.");
+			list.add("Calls a missile launching unit to fire at a Location.");
+			list.add("Sneak Right-click: Grabs coords from launcher");
+			list.add("Right-click: Fires an orb.");
 			
 			if (is.getItemDamage() > 0) {
 				list.add("");

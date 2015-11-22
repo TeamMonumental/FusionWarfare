@@ -43,8 +43,8 @@ public class ItemLocationLinker extends ItemBase {
 			list.add(EnumChatFormatting.GOLD + "Z: " + EnumChatFormatting.AQUA + getNBT(is).getInteger("Z"));
 			list.add("");
 			list.add("Binds locations to Missile Launcher/Silo");
-			list.add("Sneak Right-click to send coords to machine.");
-			list.add("Right-click to link a location.");
+			list.add("Sneak Right-click: Sends coords to machine.");
+			list.add("Right-click: Links a location.");
 			
 		} else {
 			list.add("Press " + EnumChatFormatting.GOLD + "SHIFT" + EnumChatFormatting.RESET + EnumChatFormatting.GRAY + " for more info");
