@@ -31,7 +31,7 @@ public abstract class GuiContainerBase extends GuiContainer {
 	public GuiContainerBase(Container container, EntityPlayer player, TileEntityInventoryBase tileEntity) {
 		super(container);
 		this.tileEntity = tileEntity;
-		this.tileEntityEnergy = (TileEntityEnergyBase)tileEntity;
+		if (tileEntity instanceof TileEntityEnergyBase) this.tileEntityEnergy = (TileEntityEnergyBase)tileEntity;		
 		this.player = player;
 		this.xSize = getGuiSizeX();
 		this.ySize = getGuiSizeY();

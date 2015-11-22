@@ -27,7 +27,7 @@ public class GuiSupplyCrate extends GuiContainerBase {
 	public void updateScreen() {
 		super.updateScreen();
 		
-		if (((TileEntitySupplyCrate)tileEntity).isEmpty) {
+		if (((TileEntitySupplyCrate)tileEntity).isEmpty()) {
 			player.closeScreen();
 		}
 	}

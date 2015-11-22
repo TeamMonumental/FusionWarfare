@@ -40,7 +40,6 @@ public class ItemLocationLinker extends ItemBase {
 			
 			list.add(EnumChatFormatting.GOLD + "Block Location");
 			list.add(EnumChatFormatting.GOLD + "X: " + EnumChatFormatting.AQUA + getNBT(is).getInteger("X"));
-			list.add(EnumChatFormatting.GOLD + "Y: " + EnumChatFormatting.AQUA + getNBT(is).getInteger("Y"));		
 			list.add(EnumChatFormatting.GOLD + "Z: " + EnumChatFormatting.AQUA + getNBT(is).getInteger("Z"));
 			list.add("");
 			list.add("Binds locations to Missile Launcher/Silo");
@@ -96,10 +95,9 @@ public class ItemLocationLinker extends ItemBase {
 			}
 			
 			getNBT(is).setInteger("X", x);	
-			getNBT(is).setInteger("Y", y);
 			getNBT(is).setInteger("Z", z);
 			player.worldObj.playSoundAtEntity(player, "random.click", 1F, 1F);
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Coords set to " + x + ", " + y + ", " + z));
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Coords set to " + x + ", " + z));
 			return true;					
 		}	
 		

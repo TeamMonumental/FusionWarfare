@@ -125,14 +125,14 @@ item.infused_steel_red_chestplate.name=Red Infused Steel Chestplate
 item.infused_steel_red_leggings.name=Red Infused Steel Leggings
 item.infused_steel_red_boots.name=Red Infused Steel Boots
 
-#-#-#-#-#-TEAMS-#-#-#-#-#
+#-#-#-#-#-CHIPS-#-#-#-#-#
 
-item.team_card.name=Team Card
-
-#-#-#-#-#-MISC_ITEMS-#-#-#-#-#
-
-item.book.name=Fusion Warfare Book
 item.overclocking_chip.name=Overclocking Chip
+item.advanced_upgrade_chip.name=Advanced Upgrade Chip
+item.hyper_upgrade_chip.name=Hyper Upgrade Chip
+
+#-#-#-#-#-MISC-#-#-#-#-#
+
 item.reinforced_door_placer.name=Reinforced Door
 item.test.name=Supply Crate Spawner
 
@@ -224,4 +224,5 @@ keys.fusionwarfare.teamgui=Team Gui
 #-#-#-#-#-CONFIG-#-#-#-#-#
 
 category.general_options.name=General Options
+category.gui.name=GUI
 category.ores.name=Ores

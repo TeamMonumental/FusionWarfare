@@ -19,12 +19,9 @@ public class TileEntitySupplyCrate extends TileEntityInventoryBase implements IT
 	private int time;
 	private int maxTime = 36000; //30min
 	
-	public boolean isEmpty = false;
-	
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
-		
+
 		time++;
 		
 		if (time >= maxTime) {
@@ -44,12 +41,10 @@ public class TileEntitySupplyCrate extends TileEntityInventoryBase implements IT
 			if (!worldObj.isRemote) {
 				worldObj.setBlockToAir(xCoord, yCoord, zCoord);	
 			}
-			
-			isEmpty = true;
 		}
 	}
 	
-	private boolean isEmpty() {
+	public boolean isEmpty() {
 		
 		for (ItemStack slot : slots) {
 			

@@ -1,6 +1,5 @@
 package calemi.fusionwarfare.inventory;
 
-import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 import calemi.fusionwarfare.tileentity.base.TileEntityInventoryBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

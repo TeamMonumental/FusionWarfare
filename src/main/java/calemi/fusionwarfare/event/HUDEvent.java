@@ -3,6 +3,7 @@ package calemi.fusionwarfare.event;
 import org.lwjgl.opengl.GL11;
 
 import calemi.fusionwarfare.Reference;
+import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.util.HUDRenderer;
@@ -53,12 +54,12 @@ public class HUDEvent {
 		
 		if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) {
 			
-			if (stack != null && stack.getItem() == InitItems.fusion_sniper_rifle && ((ItemFusionGun)stack.getItem()).getNBT(stack).getFloat("Scoping") > 0) {
+			if (!FWConfig.disableScopeHUD && stack != null && stack.getItem() == InitItems.fusion_sniper_rifle && ((ItemFusionGun)stack.getItem()).getNBT(stack).getFloat("Scoping") > 0) {
 				
 				hud.renderTexture("scope_hud.png", 0, 0, 0, 0, 100, hud.width, hud.height * 2, hud.width, hud.height);
 			}
 		
-			if (event.type == ElementType.CHAT) {
+			if (!FWConfig.disableScubaHUD && event.type == ElementType.CHAT) {
 			
 				for (ItemStack armor : player.inventory.armorInventory) {
 			

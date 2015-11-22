@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.init.InitBlocks;
 import calemi.fusionwarfare.init.InitItems;
@@ -20,6 +21,7 @@ public class InitRecipes {
 	public static void init() {
 
 		//#-#-#-#-#-BLOCKS-#-#-#-#-#\\
+		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.black_brick, 8), new Object[] {
 			"BSB", "SBS", "BSB", 'S', InitItems.steel_ingot, 'B', Blocks.brick_block,
 		});
@@ -44,17 +46,7 @@ public class InitRecipes {
 			"SSS", "SCS", "SSS", 'S', InitItems.steel_ingot, 'C', InitItems.infused_crystal
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_controller_2), new Object[] {
-			"SAS", "ICI", "SSS", 'C', InitBlocks.network_controller_1, 'S', InitItems.steel_plate, 'A', InitItems.advanced_chip, 'I', InitItems.infused_steel_ingot
-		});
-		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_controller_3), new Object[] {
-			"SHS", "ICI", "SSS", 'C', InitBlocks.network_controller_2, 'S', InitItems.steel_plate, 'H', InitItems.hyper_chip, 'I', InitItems.infused_steel_ingot
-		});
-				
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_cable, 8), new Object[] {
-			"GSG", "GCG", "GSG", 'G', Blocks.glass, 'S', InitItems.steel_ingot, 'C', InitItems.infused_crystal
-		});
+		//TODO Network Beacon Recipe
 				
 		//#-#-#-#-#-GENERATORS-#-#-#-#-#\\
 		
@@ -134,11 +126,16 @@ public class InitRecipes {
 			"ISI", "HSH", "ISI", 'S', InitItems.steel_plate, 'I', InitItems.infused_steel_ingot, 'H', InitItems.hyper_chip
 		});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.emp_tower), new Object[] {
+			"SLS", "SCS", "SCS", 'S', InitItems.steel_plate, 'C', InitItems.hyper_chip, 'L', InitItems.lightning_rod
+		});
+		
+		
+		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aura_player_turret), new Object[] {
 			" L ", "SLS", "SHS", 'L', InitItems.lightning_rod, 'S', InitItems.steel_plate, 'H', InitItems.hyper_chip
 		});
-				
-		//BEACONS		
+		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aura_matter_reinforcer), new Object[] {
 			"ILI", "IXI", "SCS", 'I', InitItems.infused_steel_ingot, 'L', InitItems.lightning_rod, 'S', InitItems.steel_plate, 'C', InitItems.hyper_chip, 'X', Blocks.anvil
 		});
@@ -150,20 +147,8 @@ public class InitRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.aura_mob_turret), new Object[] {
 			"ILI", "IXI", "SCS", 'I', InitItems.infused_steel_ingot, 'L', InitItems.lightning_rod, 'S', InitItems.steel_plate, 'C', InitItems.hyper_chip, 'X', InitItems.infused_steel.sword
 		});
-		
-		//WIRELESS
-		/*GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.energy_transmitter), new Object[] {
-			"ICI", "IEI", "ICI", 'I', InitItems.infused_steel_ingot, 'C', InitItems.advanced_chip, 'E', Items.ender_pearl
-		});
 				
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.energy_receiver), new Object[] {
-			"III", "CEC", "III", 'I', InitItems.infused_steel_ingot, 'C', InitItems.advanced_chip, 'E', Items.ender_pearl
-		});*/
-		
-		//EMP
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.emp_tower), new Object[] {
-			"SLS", "SCS", "SCS", 'S', InitItems.steel_plate, 'C', InitItems.hyper_chip, 'L', InitItems.lightning_rod
-		});
+		//TODO RF Converter Recipe
 		
 		//#-#-#-#-#-ITEMS-#-#-#-#-#\\
 		
@@ -256,6 +241,7 @@ public class InitRecipes {
 		if (!FWConfig.disableHighTierWeaponRecipes) GameRegistry.addShapelessRecipe(new ItemStack(InitItems.rocket_launcher), new Object[]{InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_barrel, InitItems.gun_core, InitItems.gun_handle, InitItems.gun_handle, InitItems.hyper_chip, InitItems.hyper_chip});
 		
 		//#-#-#-#-#-SCUBA GEAR-#-#-#-#-#\\
+		
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.scuba_helmet), new Object[] {
 			"SSS", "SBS", "   ", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip
 		});
@@ -286,16 +272,15 @@ public class InitRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.sprayer), new Object[] {
 			"S  ", " SI", " II", 'I', InitItems.infused_steel_ingot, 'S', InitItems.steel_plate
 		});
+		
+		//#-#-#-#-#-CHIPS-#-#-#-#-#\\
+			
+		//TODO Upgrade Chips
 					
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitItems.reinforced_door), new Object[] {
 			"SS", "SS", "SS", 'S', InitBlocks.steel_casing
 		});
-		
-		//Teams
-		
-		//GameRegistry.addShapelessRecipe(new ItemStack(InitItems.team_card), new Object[]{Items.paper, Items.redstone});
-		//GameRegistry.addShapelessRecipe(new ItemStack(InitItems.team_card), new Object[]{InitItems.team_card, Items.paper});
 	}
 }

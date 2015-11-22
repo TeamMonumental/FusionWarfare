@@ -15,6 +15,7 @@ import calemi.fusionwarfare.item.ItemMissileModule;
 import calemi.fusionwarfare.item.ItemReinforcedDoor;
 import calemi.fusionwarfare.item.ItemRocketLauncher;
 import calemi.fusionwarfare.item.ItemTest;
+import calemi.fusionwarfare.item.ItemUpgradeChip;
 import calemi.fusionwarfare.item.tool.ItemDebugger;
 import calemi.fusionwarfare.item.tool.ItemDesignator;
 import calemi.fusionwarfare.item.tool.ItemFusionMatterDeconstructor;
@@ -127,10 +128,15 @@ public class InitItems {
 	public static Item sprayer;	
 	public static Item designator;
 		
+	//#-#-#-#-#-CHIPS-#-#-#-#-#\\
+	
+	public static Item overclocking_chip;	
+	public static Item advanced_upgrade_chip;
+	public static Item hyper_upgrade_chip;
+	
 	//#-#-#-#-#-MISC-#-#-#-#-#\\
 	
-	public static Item reinforced_door;
-	public static Item overclocking_chip;	
+	public static Item reinforced_door;	
 	public static Item test;
 	
 	public static void init() {
@@ -237,11 +243,15 @@ public class InitItems {
 		sprayer = new ItemSprayer();		
 		designator = new ItemDesignator();
 		
+		//#-#-#-#-#-CHIPS-#-#-#-#-#\\
+		
+		overclocking_chip = new ItemBase("overclocking_chip").setMaxStackSize(15);
+		advanced_upgrade_chip = new ItemUpgradeChip("advanced");
+		hyper_upgrade_chip = new ItemUpgradeChip("hyper");
+		
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		
-		//book = new ItemBook();
-		reinforced_door = new ItemReinforcedDoor();
-		overclocking_chip = new ItemBase("overclocking_chip").setMaxStackSize(15);
+		reinforced_door = new ItemReinforcedDoor();		
 		test = new ItemTest();		
 		
 		OreDictionary.registerOre("gemInfused", infused_crystal);

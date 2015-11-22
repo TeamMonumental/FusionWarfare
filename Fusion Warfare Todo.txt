@@ -4,6 +4,8 @@
 
 ==============[ v1.3("RF IS HERE!") ]==============
 
+Network Beacon and RF Converter Recipe
+
 ==============[ v1.4("War Day Update") ]==============
 
 - War Day mechanic

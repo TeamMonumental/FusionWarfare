@@ -68,7 +68,7 @@ public class FusionWarfare {
 		MinecraftForge.EVENT_BUS.register(new EnergyEvent());
 		MinecraftForge.EVENT_BUS.register(new WrenchEvent());
 			
-		FMLCommonHandler.instance().bus().register(new CraftingEvent());	
+		FMLCommonHandler.instance().bus().register(new CraftingEvent());
 		FMLCommonHandler.instance().bus().register(new SupplyCrateEvent());	
 		FMLCommonHandler.instance().bus().register(new FWConfig());
 		FMLCommonHandler.instance().bus().register(new OnPlayerJoinEvent());	
