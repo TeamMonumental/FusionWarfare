@@ -279,7 +279,13 @@ public class InitRecipes {
 		
 		//#-#-#-#-#-CHIPS-#-#-#-#-#\\
 			
-		//TODO Upgrade Chips
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.advanced_upgrade_chip), new Object[] {
+			"SIS", "IAI", "SIS", 'S', InitItems.steel_plate, 'I', InitItems.infused_crystal, 'A', InitItems.advanced_chip
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(InitItems.hyper_upgrade_chip), new Object[] {
+			"SIS", "IHI", "SIS", 'S', InitItems.steel_plate, 'I', InitItems.infused_steel_ingot, 'H', InitItems.hyper_chip
+		});
 					
 		//#-#-#-#-#-MISC-#-#-#-#-#\\
 		
