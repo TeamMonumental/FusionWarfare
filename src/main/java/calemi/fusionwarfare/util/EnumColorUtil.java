@@ -36,7 +36,7 @@ public enum EnumColorUtil {
 			
 			String colorID = colorPrefix.substring(1);
 			
-			for (EnumColorUtil color : EnumColorUtil.values()) {
+			for (EnumColorUtil color : values()) {
 			
 				if (colorID.equals(color.colorID)) {			
 					return color;

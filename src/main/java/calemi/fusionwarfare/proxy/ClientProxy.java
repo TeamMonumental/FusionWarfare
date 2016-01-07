@@ -84,6 +84,7 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenders() {
 		
 		ClientRegistry.registerKeyBinding(KeyBindings.teamGuiButton);
+		ClientRegistry.registerKeyBinding(KeyBindings.reloadButton);
 		
 		MinecraftForge.EVENT_BUS.register(new TooltipEvent());
 		MinecraftForge.EVENT_BUS.register(new GunRenderEvent());

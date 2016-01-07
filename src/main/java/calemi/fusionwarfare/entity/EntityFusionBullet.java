@@ -26,17 +26,19 @@ public class EntityFusionBullet extends EntityThrowable implements IEntityAdditi
 
 	private int damage;
 	private float gravityVelocity;
+	private int hurtTime;
 	private EntityPlayer shooter;
 
 	public EntityFusionBullet(World world) {
 		super(world);
 	}
 
-	public EntityFusionBullet(World world, EntityPlayer player, int damage, int accuracy, float gravityVelocity) {
+	public EntityFusionBullet(World world, EntityPlayer player, int damage, int accuracy, float gravityVelocity, int hurtTime) {
 		super(world, player);
 
 		this.damage = damage;
 		this.gravityVelocity = gravityVelocity;
+		this.hurtTime = hurtTime;
 		
 		setSize(0.5F, 0.5F);
 
@@ -67,7 +69,9 @@ public class EntityFusionBullet extends EntityThrowable implements IEntityAdditi
 			
 			else {
 				mop.entityHit.attackEntityFrom(DamageSource.magic, damage);
-			}			
+			}	
+			
+			if (hurtTime > 0) mop.entityHit.hurtResistantTime = hurtTime;
 						
 			setDead();
 		}

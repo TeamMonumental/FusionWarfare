@@ -7,6 +7,7 @@ import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemFEBattery;
 import calemi.fusionwarfare.tileentity.TileEntityReinforcedDoor;
 import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
+import calemi.fusionwarfare.tileentity.reactor.TileEntitySteelCasing;
 import calemi.fusionwarfare.util.Location;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
@@ -68,7 +69,7 @@ public class WrenchEvent {
 			
 			else {
 				
-				if (tileEntity instanceof IEnergy) {
+				if (tileEntity instanceof IEnergy && !(tileEntity instanceof TileEntitySteelCasing)) {
 
 					IEnergy energy = (IEnergy) tileEntity;
 

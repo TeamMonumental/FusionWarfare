@@ -7,6 +7,7 @@ import calemi.fusionwarfare.api.EnergyItemUtil;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
+import calemi.fusionwarfare.api.INetwork;
 import calemi.fusionwarfare.block.BlockBasicMachineBase;
 import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.gui.GuiNetworkController;
@@ -36,8 +37,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityNetworkController extends TileEntityEnergyBase implements ITileEntityGuiHandler {
 
-	public List<IEnergy> mechs = new ArrayList<IEnergy>();
-	
+	public List<INetwork> mechs = new ArrayList<INetwork>();
+		
 	private int ticks;
 		
 	public TileEntityNetworkController() {
@@ -110,11 +111,11 @@ public class TileEntityNetworkController extends TileEntityEnergyBase implements
 	
 			if (lowest != null)	EnergyUtil.transferEnergy(this, lowest, transferRate);
 				
-			for (IEnergy tempMech : mechs) {
+			for (INetwork tempMech : mechs) {
 				
-				if (tempMech.getIOType() == EnumIO.OUTPUT) {
+				if (tempMech instanceof IEnergy && tempMech.getIOType() == EnumIO.OUTPUT) {
 
-					EnergyUtil.transferEnergy(tempMech, this, transferRate);
+					EnergyUtil.transferEnergy((IEnergy) tempMech, this, transferRate);
 				}
 			}
 		}	
@@ -137,12 +138,17 @@ public class TileEntityNetworkController extends TileEntityEnergyBase implements
 
 		IEnergy currentLowest = null;
 
-		for (IEnergy tempBase : mechs) {
+		for (INetwork tempBase : mechs) {
 
-			if (tempBase.getIOType() == EnumIO.INPUT && tempBase.getEnergy() < tempBase.getMaxEnergy()) {
-
-				if (currentLowest == null || tempBase.getEnergy() < currentLowest.getEnergy()) {
-					currentLowest = tempBase;
+			if (tempBase instanceof IEnergy) {
+				
+				IEnergy tempEnergy = (IEnergy)tempBase;
+				
+				if (tempEnergy.getIOType() == EnumIO.INPUT && tempEnergy.getEnergy() < tempEnergy.getMaxEnergy()) {
+							
+					if (currentLowest == null || tempEnergy.getEnergy() < currentLowest.getEnergy()) {
+						currentLowest = tempEnergy;
+					}
 				}
 			}
 		}

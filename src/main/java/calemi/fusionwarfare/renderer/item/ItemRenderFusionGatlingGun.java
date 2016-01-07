@@ -9,8 +9,10 @@ import calemi.fusionwarfare.model.ModelFusionAutoPistol;
 import calemi.fusionwarfare.model.ModelFusionGatlingGun;
 import calemi.fusionwarfare.model.ModelFusionPistol;
 import calemi.fusionwarfare.model.ModelFusionSniperRifle;
+import calemi.fusionwarfare.util.gun.GunData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
@@ -33,6 +35,9 @@ public class ItemRenderFusionGatlingGun implements IItemRenderer {
 		return type == ItemRenderType.INVENTORY;
 	}
 
+	float rot = 0;
+	float acc = 0;
+	
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		
@@ -50,15 +55,25 @@ public class ItemRenderFusionGatlingGun implements IItemRenderer {
 		
 		if (type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON) {
 			
-			if (item.getTagCompound() != null && item.getTagCompound().hasKey("using") && item.getTagCompound().getBoolean("using")) {			
-				r++;
+			GunData gunData = new GunData(item);
+						
+			if (gunData.usingTicks > 0 && acc < 0.1F) {
+				acc += 0.001F;
 			}
+			
+			if (gunData.usingTicks == 0 && acc > 0) {
+				acc -= 0.001F;
+			}		
+			
+			gunData.flush();
+					
+			rot += acc;
 			
 			GL11.glTranslatef(1.2F, 3.5F, 1.5F);
 			GL11.glScalef(3.5F, 3.5F, 3.5F);
 			GL11.glRotatef(28, 0, 0, 1);
 			GL11.glRotatef(-10, 0, 1, 0);	
-			renderWithRotation(r);	
+			renderWithRotation(rot);	
 			return;
 		}
 
@@ -71,8 +86,6 @@ public class ItemRenderFusionGatlingGun implements IItemRenderer {
 					
 		render();			
 	}
-	
-	float r = 0;
 	
 	private void render() {
 			

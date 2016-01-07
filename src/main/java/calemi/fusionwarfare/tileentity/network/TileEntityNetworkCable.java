@@ -2,12 +2,11 @@ package calemi.fusionwarfare.tileentity.network;
 
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
-import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
+import calemi.fusionwarfare.api.INetwork;
+import calemi.fusionwarfare.tileentity.base.TileEntityBase;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityNetworkCable extends TileEntityEnergyBase {
+public class TileEntityNetworkCable extends TileEntityBase implements INetwork {
 
 	public ForgeDirection[] connections = new ForgeDirection[6];
 
@@ -17,11 +16,6 @@ public class TileEntityNetworkCable extends TileEntityEnergyBase {
 	}
 	
 	@Override
-	public ItemStack getOverclockingSlot() {
-		return null;
-	}
-
-	@Override
 	public void updateEntity() {
 		super.updateEntity();
 		this.updateConnections();
@@ -29,27 +23,27 @@ public class TileEntityNetworkCable extends TileEntityEnergyBase {
 
 	public void updateConnections() {
 		
-		if (this.worldObj.getTileEntity(xCoord, yCoord + 1, zCoord) instanceof IEnergy && ((IEnergy)worldObj.getTileEntity(xCoord, yCoord + 1, zCoord)).getIOType() != EnumIO.REJECTED)
+		if (this.worldObj.getTileEntity(xCoord, yCoord + 1, zCoord) instanceof INetwork && ((INetwork)worldObj.getTileEntity(xCoord, yCoord + 1, zCoord)).getIOType() != EnumIO.REJECTED)
 			connections[0] = ForgeDirection.UP;
 		else
 			connections[0] = null;
-		if (this.worldObj.getTileEntity(xCoord, yCoord - 1, zCoord) instanceof IEnergy && ((IEnergy)worldObj.getTileEntity(xCoord, yCoord - 1, zCoord)).getIOType() != EnumIO.REJECTED)
+		if (this.worldObj.getTileEntity(xCoord, yCoord - 1, zCoord) instanceof INetwork && ((INetwork)worldObj.getTileEntity(xCoord, yCoord - 1, zCoord)).getIOType() != EnumIO.REJECTED)
 			connections[1] = ForgeDirection.DOWN;
 		else
 			connections[1] = null;
-		if (this.worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof IEnergy && ((IEnergy)worldObj.getTileEntity(xCoord, yCoord, zCoord - 1)).getIOType() != EnumIO.REJECTED)
+		if (this.worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof INetwork && ((INetwork)worldObj.getTileEntity(xCoord, yCoord, zCoord - 1)).getIOType() != EnumIO.REJECTED)
 			connections[2] = ForgeDirection.NORTH;
 		else
 			connections[2] = null;
-		if (this.worldObj.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof IEnergy && ((IEnergy)worldObj.getTileEntity(xCoord + 1, yCoord , zCoord)).getIOType() != EnumIO.REJECTED)
+		if (this.worldObj.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof INetwork && ((INetwork)worldObj.getTileEntity(xCoord + 1, yCoord , zCoord)).getIOType() != EnumIO.REJECTED)
 			connections[3] = ForgeDirection.EAST;
 		else
 			connections[3] = null;
-		if (this.worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof IEnergy && ((IEnergy)worldObj.getTileEntity(xCoord, yCoord, zCoord + 1)).getIOType() != EnumIO.REJECTED)
+		if (this.worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof INetwork && ((INetwork)worldObj.getTileEntity(xCoord, yCoord, zCoord + 1)).getIOType() != EnumIO.REJECTED)
 			connections[4] = ForgeDirection.SOUTH;
 		else
 			connections[4] = null;
-		if (this.worldObj.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof IEnergy && ((IEnergy)worldObj.getTileEntity(xCoord - 1, yCoord, zCoord)).getIOType() != EnumIO.REJECTED)
+		if (this.worldObj.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof INetwork && ((INetwork)worldObj.getTileEntity(xCoord - 1, yCoord, zCoord)).getIOType() != EnumIO.REJECTED)
 			connections[5] = ForgeDirection.WEST;
 		else
 			connections[5] = null;
@@ -87,10 +81,5 @@ public class TileEntityNetworkCable extends TileEntityEnergyBase {
 			return true;
 
 		return false;
-	}
-
-	@Override
-	public int getSizeInventory() {
-		return 0;
 	}
 }

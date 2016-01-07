@@ -8,6 +8,7 @@ import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.util.HUDRenderer;
 import calemi.fusionwarfare.util.Timer;
+import calemi.fusionwarfare.util.gun.GunData;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.material.Material;
@@ -29,15 +30,19 @@ public class HUDEvent {
 	public void updateFOV(FOVUpdateEvent event) {
 		
 		ItemStack stack = event.entity.inventory.getCurrentItem();
-				
-		if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0 && stack != null && stack.getItem() == InitItems.fusion_sniper_rifle && ((ItemFusionGun)stack.getItem()).getNBT(stack).getFloat("Scoping") > 0) {
+						
+		if (stack != null && stack.getItem() == InitItems.fusion_sniper_rifle) {
 			
-			event.newfov = 1 - (((ItemFusionGun)stack.getItem()).getNBT(stack).getFloat("Scoping") / 2);		
+			GunData data = new GunData(stack);
+			
+			if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0 && data.scope > 0) {
+							
+				event.newfov = 1 - (float)data.scope / 3;	
+				return;
+			}
 		}
-		
-		else {
-			event.newfov = event.fov;
-		}
+				
+		event.newfov = event.fov;		
 	}
 	
 	private Timer timer = new Timer(20);
@@ -54,9 +59,14 @@ public class HUDEvent {
 		
 		if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) {
 			
-			if (!FWConfig.disableScopeHUD && stack != null && stack.getItem() == InitItems.fusion_sniper_rifle && ((ItemFusionGun)stack.getItem()).getNBT(stack).getFloat("Scoping") > 0) {
+			if (!FWConfig.disableScopeHUD) {
 				
-				hud.renderTexture("scope_hud.png", 0, 0, 0, 0, 100, hud.width, hud.height * 2, hud.width, hud.height);
+				if (stack != null && stack.getItem() == InitItems.fusion_sniper_rifle) {
+					
+					GunData data = new GunData(stack);
+					
+					if (data.scope > 0) hud.renderTexture("scope_hud.png", 0, 0, 0, 0, 100, hud.width, hud.height * 2, hud.width, hud.height);
+				}			
 			}
 		
 			if (!FWConfig.disableScubaHUD && event.type == ElementType.CHAT) {
@@ -93,8 +103,5 @@ public class HUDEvent {
 				}
 			}	
 		}	
-	}	
-	private int scale(float i, float max, float maxScale) {		
-		return (int) ((i * maxScale) / max);
 	}
 }

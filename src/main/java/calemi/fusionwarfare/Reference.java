@@ -9,10 +9,6 @@ public class Reference {
 	public static final String SERVER_PROXY_CLASS = "calemi.fusionwarfare.proxy.ServerProxy";
 	public static final String GUI_FACTORY = "calemi.fusionwarfare.gui.GuiFactory";
 	
-	public static final String KEY_CATAGORY = "keys.fusionwarfare.catagory";
-	public static final String KEY_RECIPE_NAME = "keys.fusionwarfare.recipe";
-	public static final String KEY_TEAM_GUI = "keys.fusionwarfare.teamgui";	
-	
 	//-------------------------------------------------------------------------\\
 	
 	public static int armorIDScuba;

@@ -6,7 +6,11 @@ import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.entity.EntityFusionBullet;
 import calemi.fusionwarfare.init.InitItems;
 import calemi.fusionwarfare.packet.ServerPacketHandler;
+import calemi.fusionwarfare.util.gun.GunData;
+import calemi.fusionwarfare.util.gun.GunProfile;
 import cpw.mods.fml.common.FMLCommonHandler;
+import javafx.scene.chart.PieChart.Data;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,50 +22,57 @@ import net.minecraft.world.World;
 
 public class ItemFusionGatlingGun extends ItemFusionGun {
 
-	public ItemFusionGatlingGun(String imagePath, int ammoCost, int hitDamage, int accuracy, float gravityVelocity) {
-		super(imagePath, 0, ammoCost, hitDamage, accuracy, gravityVelocity, false);
+	public ItemFusionGatlingGun() {
+		super("fusion_gatling_gun", new GunProfile(1, 1, 128, 1, 1, 0.06F, 0, true));
 	}
-	
-	@Override
-	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player) {
 		
-		player.setItemInUse(is, getMaxItemUseDuration(is));	
-		return is;
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase player, EntityLivingBase entity) {
+		return false;
 	}
 		
 	@Override
 	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack is) {
-		return false;
-	}
-
-	@Override
-	public void onUpdate(ItemStack is, World world, Entity entity, int i1, boolean b) {
-
-		EntityPlayer player = (EntityPlayer)entity;
-			
-		if (world.isRemote) {
-			
-			if (player.getCurrentEquippedItem() == is) {
-					
-				if (player.isUsingItem()) {
-										
-					getNBT(is).setBoolean("using", true);
-					
-					if (player.getItemInUseDuration() > 20) {
-				
-						FusionWarfare.network.sendToServer(new ServerPacketHandler("shoot"));
-					}	
-				}
-			
-				else {
-					getNBT(is).setBoolean("using", false);
-				}			
-			}	
-		}
+		return true;
 	}
 	
 	@Override
-	public int getMaxItemUseDuration(ItemStack p_77626_1_) {
+	public int getMaxItemUseDuration(ItemStack is) {
 		return 72000;
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player) {		
+		
+		GunData data = new GunData(is);
+		
+		data.usingTicks++;
+				
+		data.flush();
+			
+		return is;
+	}
+	
+	@Override
+	public void onUpdate(ItemStack is, World world, Entity entity, int slot, boolean b) {
+		super.onUpdate(is, world, entity, slot, b);
+		
+		GunData data = new GunData(is);
+		EntityPlayer player = (EntityPlayer)entity;
+		
+		if (world.isRemote) {
+			
+			if (Minecraft.getMinecraft().currentScreen != null || player.getCurrentEquippedItem() != is || !Minecraft.getMinecraft().gameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindUseItem)) {
+				data.usingTicks = 0;
+			}		
+			
+			FusionWarfare.network.sendToServer(new ServerPacketHandler("stop.use%" + data.usingTicks + "%" + slot));
+		}
+		
+		if (data.usingTicks > 5) {				
+			shootBullet(world, is, player, data, 5);
+		}	
+		
+		data.flush();
 	}
 }

@@ -3,13 +3,12 @@ package calemi.fusionwarfare.packet;
 import calemi.fusionwarfare.FusionWarfare;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.item.ItemFusionGun;
-import calemi.fusionwarfare.item.tool.ItemScubaGear;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileSiloCore;
 import calemi.fusionwarfare.tileentity.machine.TileEntityRFConverter;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkBeacon;
-import calemi.fusionwarfare.util.GunUtil;
+import calemi.fusionwarfare.util.gun.GunData;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -17,6 +16,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 
 public class ServerPacketHandler implements IMessage {
 
@@ -50,6 +50,31 @@ public class ServerPacketHandler implements IMessage {
 			
 			EntityPlayer player = ctx.getServerHandler().playerEntity;
 
+			if (data[0].equalsIgnoreCase("reload")) {
+				
+				ItemStack is = player.getCurrentEquippedItem();
+				
+				GunData gunData = new GunData(is);
+				
+				gunData.reloading = true;
+				gunData.flush();
+			}
+			
+			if (data[0].equalsIgnoreCase("stop.use")) {
+								
+				int ticks = Integer.parseInt(data[1]);
+				
+				ItemStack is = player.inventory.getStackInSlot(Integer.parseInt(data[2]));
+				
+				if (is != null) {
+					
+					GunData gunData = new GunData(is);
+				
+					gunData.usingTicks = ticks;
+					gunData.flush();
+				}				
+			}
+			
 			if (data[0].equalsIgnoreCase("addEXP")) {
 
 				int expAmount = Integer.parseInt(data[1]);	
@@ -101,13 +126,6 @@ public class ServerPacketHandler implements IMessage {
 				
 				if (tileEntity.sprayMode) tileEntity.sprayMode = false;
 				else tileEntity.sprayMode = true;
-			}
-			
-			if (data[0].equalsIgnoreCase("shoot")) {
-								
-				ItemFusionGun item = (ItemFusionGun)player.getCurrentEquippedItem().getItem();
-				
-				GunUtil.shootBullet(player.worldObj, player.getCurrentEquippedItem(), player);
 			}
 			
 			if (data[0].equalsIgnoreCase("toggle.converter")) {

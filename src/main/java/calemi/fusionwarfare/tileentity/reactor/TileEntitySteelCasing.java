@@ -6,9 +6,10 @@ import net.minecraft.tileentity.TileEntity;
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
 import calemi.fusionwarfare.block.BlockContainerBase;
+import calemi.fusionwarfare.tileentity.base.TileEntityBase;
 import calemi.fusionwarfare.tileentity.base.TileEntityEnergyBase;
 
-public class TileEntitySteelCasing extends TileEntity implements IEnergy {
+public class TileEntitySteelCasing extends TileEntityBase implements IEnergy {
 
 	public int x, y, z;
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import calemi.fusionwarfare.api.EnumIO;
 import calemi.fusionwarfare.api.IEnergy;
+import calemi.fusionwarfare.api.INetwork;
 import calemi.fusionwarfare.tileentity.network.TileEntityNetworkBeacon;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -12,8 +13,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockScanUtil {
 
-	public static List<IEnergy> scan(Location loc) {
-		List<IEnergy> tempList = new ArrayList<IEnergy>();
+	public static List<INetwork> scan(Location loc) {
+		List<INetwork> tempList = new ArrayList<INetwork>();
 		
 		for (ForgeDirection dir : ForgeDirection.values()) {
 			checkBlock(loc, tempList);
@@ -22,7 +23,7 @@ public class BlockScanUtil {
 		return tempList;
 	}
 	
-	private static void checkBlock(Location loc, List<IEnergy> list) {
+	private static void checkBlock(Location loc, List<INetwork> list) {
 		
 		TileEntity tileEntity = loc.getTileEntity();
 		
@@ -57,9 +58,9 @@ public class BlockScanUtil {
 				}
 			}
 			
-			else if (tileEntity instanceof IEnergy) {		
+			else if (tileEntity instanceof INetwork) {		
 		
-				IEnergy energy = (IEnergy) tileEntity;
+				INetwork energy = (INetwork) tileEntity;
 			
 				if (!list.contains(tileEntity) && energy.getIOType() != EnumIO.REJECTED) {
 				

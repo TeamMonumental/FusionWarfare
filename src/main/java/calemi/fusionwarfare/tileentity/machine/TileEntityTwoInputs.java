@@ -82,7 +82,7 @@ public class TileEntityTwoInputs extends TileEntityEnergyBase implements ITileEn
 			
 				if (recipe.isRecipe(slots[0], slots[1]) && canFit(recipe)) {					
 					currentRecipe = recipe;	
-					maxProgress = recipe.progressTime;
+					maxProgress = recipe.progressTime;				
 					return;
 				}			
 			}
@@ -124,6 +124,20 @@ public class TileEntityTwoInputs extends TileEntityEnergyBase implements ITileEn
 	@Override
 	public ItemStack getOverclockingSlot() {
 		return slots[3];
+	}
+	
+	@Override
+	public void readSyncNBT(NBTTagCompound nbt) {
+		super.readSyncNBT(nbt);
+		
+		recipeType = EnumRecipeType.getRecipeType(nbt.getInteger("recipe"));
+	}
+	
+	@Override
+	public void writeSyncNBT(NBTTagCompound nbt) {
+		super.writeSyncNBT(nbt);
+		
+		if (recipeType != null) nbt.setInteger("recipe", recipeType.index);
 	}
 	
 	@Override

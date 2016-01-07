@@ -27,6 +27,7 @@ import calemi.fusionwarfare.util.ToolSet;
 import calemi.fusionwarfare.util.explosion.ChemicalGrenadeBlastEvent;
 import calemi.fusionwarfare.util.explosion.FlashGrenadeBlastEvent;
 import calemi.fusionwarfare.util.explosion.FusionGrenadeBlastEvent;
+import calemi.fusionwarfare.util.gun.GunProfile;
 import calemi.fusionwarfare.util.missile.MissileTypeRegistry;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
@@ -190,12 +191,12 @@ public class InitItems {
 		fusion_ammo = new ItemBase("fusion_ammo").setCreativeTab(InitCreativeTabs.creativeTabInfantry);
 		rocket = new ItemBase("rocket", false, false).setCreativeTab(InitCreativeTabs.creativeTabInfantry);
 		
-		fusion_pistol = new ItemFusionGun("fusion_pistol", 10, 1, 12, 1, 0.08F, false);
-		fusion_auto_pistol = new ItemFusionGun("fusion_auto_pistol", 0, 1, 10, 3, 0.08F, false);
-		fusion_shotgun = new ItemFusionGun("fusion_shotgun", 50, 6, 30, 8, 0.09F, false);
-		fusion_smg = new ItemFusionGun("fusion_smg", 0, 1, 10, 2, 0.04F, false);
-		fusion_sniper_rifle = new ItemFusionGun("fusion_sniper_rifle", 100, 1, 60, 0, 0.002F, true);	
-		fusion_gatling_gun = new ItemFusionGatlingGun("fusion_gatling_gun", 1, 20, 1, 0.06F);
+		fusion_pistol = new ItemFusionGun("fusion_pistol", new GunProfile(12, 1, 16, 5, 1, 0.08F, 0, false));
+		fusion_auto_pistol = new ItemFusionGun("fusion_auto_pistol", new GunProfile(10, 1, 24, 3, 3, 0.08F, 0, true));
+		fusion_shotgun = new ItemFusionGun("fusion_shotgun", new GunProfile(30, 6, 4, 10, 8, 0.09F, 0, false));
+		fusion_smg = new ItemFusionGun("fusion_smg", new GunProfile(10, 1, 32, 3, 2, 0.04F, 0, true));
+		fusion_sniper_rifle = new ItemFusionGun("fusion_sniper_rifle", new GunProfile(60, 1, 3, 20, 0, 0.002F, 0, false));	
+		fusion_gatling_gun = new ItemFusionGatlingGun();
 		
 		rocket_launcher = new ItemRocketLauncher();
 		

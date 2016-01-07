@@ -48,6 +48,10 @@ public class InitRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_beacon), new Object[] {
 			"SHS", "SES", "SSS", 'S', InitItems.steel_plate, 'H', InitItems.hyper_chip, 'E', Items.ender_eye
 		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_cable, 8), new Object[] {
+			"GSG", "GCG", "GSG", 'G', Blocks.glass, 'S', InitItems.steel_ingot, 'C', InitItems.infused_crystal
+		});
 				
 		//#-#-#-#-#-GENERATORS-#-#-#-#-#\\
 		
