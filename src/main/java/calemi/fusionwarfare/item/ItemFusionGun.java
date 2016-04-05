@@ -14,17 +14,19 @@ import calemi.fusionwarfare.key.KeyBindings;
 import calemi.fusionwarfare.packet.ServerPacketHandler;
 import calemi.fusionwarfare.util.gun.GunData;
 import calemi.fusionwarfare.util.gun.GunProfile;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 public class ItemFusionGun extends ItemBase {
 
 	public GunProfile profile;
-
+	
 	public ItemFusionGun(String imagePath, GunProfile profile) {
 		super(imagePath, false, false);
 		this.profile = profile;
@@ -32,6 +34,14 @@ public class ItemFusionGun extends ItemBase {
 		setCreativeTab(InitCreativeTabs.creativeTabInfantry);
 	}
 
+	@Override
+	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean b) {
+		
+		GunData data = new GunData(is);
+		
+		list.add(EnumChatFormatting.GOLD + "Ammo: " + EnumChatFormatting.AQUA + data.ammo + "/" + profile.maxAmmo);
+	}
+	
 	@Override
 	public int getMaxItemUseDuration(ItemStack is) {
 		return 72000;
@@ -67,22 +77,29 @@ public class ItemFusionGun extends ItemBase {
 		
 		EntityPlayer player = (EntityPlayer)entity;
 		GunData data = new GunData(is);
-		
+			
 		if (player.getCurrentEquippedItem() == is) {
 			
 			if (world.isRemote) {	
-			
+						
+				if (Minecraft.getMinecraft().currentScreen != null || player.getCurrentEquippedItem() != is || !Minecraft.getMinecraft().gameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindUseItem)) {
+					data.usingTicks = 0;
+				}		
+				
+				FusionWarfare.network.sendToServer(new ServerPacketHandler("stop.use%" + data.usingTicks + "%" + slot));
+				
 				if (data.ammo < profile.maxAmmo) {
 				
-					if (Keyboard.isKeyDown(KeyBindings.reloadButton.getKeyCode())) {
+					if (Keyboard.isKeyDown(KeyBindings.reloadButton.getKeyCode()) && Minecraft.getMinecraft().currentScreen == null) {
+												
 						FusionWarfare.network.sendToServer(new ServerPacketHandler("reload"));
 						data.time = 0;
 					}
 				}			
 			}
 				
-			else {				
-							
+			else {					
+				
 				if (data.ammo < profile.maxAmmo && data.reloading && hasAmmo(player, profile.shotsPerFire)) {
 					
 					data.time++;
@@ -103,7 +120,7 @@ public class ItemFusionGun extends ItemBase {
 				else {					
 					data.reloading = false;
 				}
-			}			
+			}
 		}	
 		
 		else {
@@ -119,11 +136,17 @@ public class ItemFusionGun extends ItemBase {
 		
 		GunData data = new GunData(is);
 		
-		if (profile.isAuto || !player.isUsingItem()) {
-			shootBullet(world, is, player, data, 0);
+		if (is.getItem() != InitItems.fusion_gatling_gun) {
+			
+			if (profile.isAuto || data.usingTicks == 0) {
+				
+				shootBullet(world, is, player, data, 0);				
+			}
 		}		
 		
-		if (!profile.isAuto) player.setItemInUse(is, getMaxItemUseDuration(is));		
+		data.usingTicks++;
+				
+		data.flush();
 				
 		return is;
 	}
@@ -182,18 +205,14 @@ public class ItemFusionGun extends ItemBase {
 		
 		data.reloading = false;
 		
-		if (data.ammo > 0) {
-			
-			world.playSoundAtEntity(player, Reference.MOD_ID + ":gun_shot", 1, 1);
+		if (data.ammo > 0) {		
 
-			if (!world.isRemote) {
-
-				for (int i = 0; i < profile.shotsPerFire; i++) {
-					world.spawnEntityInWorld(new EntityFusionBullet(world, player, profile.damage, profile.accuracy, profile.gravityVelocity, hurtTime));
-				}			
-			}	
-			
-			data.ammo--;
+			if (world.isRemote) {
+				
+				FusionWarfare.network.sendToServer(new ServerPacketHandler("use.gun%" + profile.shotsPerFire + "%" + profile.damage + "%" + profile.accuracy + "%" + profile.gravityVelocity + "%" + hurtTime));
+				
+				player.rotationPitch -= profile.recoil;
+			}			
 		}
 			
 		else world.playSoundAtEntity(player, "random.click", 1, 0.5F);			

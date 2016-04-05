@@ -3,6 +3,7 @@ package calemi.fusionwarfare.packet;
 import calemi.fusionwarfare.inventory.ContainerEnergyBase;
 import calemi.fusionwarfare.inventory.ContainerRFConverter;
 import calemi.fusionwarfare.tileentity.machine.TileEntityMissileLauncher;
+import calemi.fusionwarfare.util.gun.GunData;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -10,6 +11,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -43,7 +45,7 @@ public class ClientPacketHandler implements IMessage {
 			String[] data = message.text.split("%");
 			
 			EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
-		
+			
 			if (data[0].equalsIgnoreCase("error")) {
 				
 				int energyLeft = Integer.parseInt(data[1]);
@@ -62,7 +64,7 @@ public class ClientPacketHandler implements IMessage {
 					
 					container.tileEntityEnergy.energy = energy;
 				}
-			}
+			}			
 			
 			if (data[0].equalsIgnoreCase("sync.rf")) {
 				

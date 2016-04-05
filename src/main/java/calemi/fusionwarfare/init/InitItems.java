@@ -191,11 +191,11 @@ public class InitItems {
 		fusion_ammo = new ItemBase("fusion_ammo").setCreativeTab(InitCreativeTabs.creativeTabInfantry);
 		rocket = new ItemBase("rocket", false, false).setCreativeTab(InitCreativeTabs.creativeTabInfantry);
 		
-		fusion_pistol = new ItemFusionGun("fusion_pistol", new GunProfile(12, 1, 16, 5, 1, 0.08F, 0, false));
-		fusion_auto_pistol = new ItemFusionGun("fusion_auto_pistol", new GunProfile(10, 1, 24, 3, 3, 0.08F, 0, true));
-		fusion_shotgun = new ItemFusionGun("fusion_shotgun", new GunProfile(30, 6, 4, 10, 8, 0.09F, 0, false));
-		fusion_smg = new ItemFusionGun("fusion_smg", new GunProfile(10, 1, 32, 3, 2, 0.04F, 0, true));
-		fusion_sniper_rifle = new ItemFusionGun("fusion_sniper_rifle", new GunProfile(60, 1, 3, 20, 0, 0.002F, 0, false));	
+		fusion_pistol = new ItemFusionGun("fusion_pistol", new GunProfile(12, 1, 16, 5, 1, 0.08F, 5, false));
+		fusion_auto_pistol = new ItemFusionGun("fusion_auto_pistol", new GunProfile(10, 1, 24, 3, 3, 0.08F, 1, true));
+		fusion_shotgun = new ItemFusionGun("fusion_shotgun", new GunProfile(30, 6, 4, 10, 8, 0.09F, 20, false));
+		fusion_smg = new ItemFusionGun("fusion_smg", new GunProfile(10, 1, 32, 3, 2, 0.04F, 2, true));
+		fusion_sniper_rifle = new ItemFusionGun("fusion_sniper_rifle", new GunProfile(60, 1, 3, 20, 0, 0.002F, 25, false));	
 		fusion_gatling_gun = new ItemFusionGatlingGun();
 		
 		rocket_launcher = new ItemRocketLauncher();
@@ -252,5 +252,7 @@ public class InitItems {
 		
 		OreDictionary.registerOre("gemInfused", infused_crystal);
 		OreDictionary.registerOre("gemInfusedAzurite", infused_azurite);
+		
+		OreDictionary.registerOre("ingotSteel", steel_ingot);
 	}
 }

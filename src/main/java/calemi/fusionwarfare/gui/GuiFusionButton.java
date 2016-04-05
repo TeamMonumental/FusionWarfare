@@ -30,6 +30,7 @@ public class GuiFusionButton extends GuiButton {
 	public void drawButton(Minecraft mc, int mouseX, int mouseY) {
 
 		if (this.visible) {
+			
 			FontRenderer fontrenderer = mc.fontRenderer;
 			mc.getTextureManager().bindTexture(buttonTexture);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -45,9 +46,13 @@ public class GuiFusionButton extends GuiButton {
 
 			if (packedFGColour != 0) {
 				l = packedFGColour;
-			} else if (!this.enabled) {
+			} 
+			
+			else if (!this.enabled) {
 				l = 10526880;
-			} else if (this.field_146123_n) {
+			} 
+			
+			else if (this.field_146123_n) {
 				l = 16777120;
 			}
 

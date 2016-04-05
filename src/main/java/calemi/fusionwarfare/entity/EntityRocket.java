@@ -114,7 +114,7 @@ public class EntityRocket extends Entity implements IEntityAdditionalSpawnData {
 	}
 	
 	@Override
-	public void writeEntityToNBT(NBTTagCompound nbt) {		
+	public void writeEntityToNBT(NBTTagCompound nbt) {
 		nbt.setInteger("shooter", shooter.getEntityId());
 	}
 	

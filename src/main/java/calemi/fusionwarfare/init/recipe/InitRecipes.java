@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import calemi.fusionwarfare.block.BlockNetworkController;
 import calemi.fusionwarfare.config.FWConfig;
 import calemi.fusionwarfare.init.InitBlocks;
@@ -14,16 +15,14 @@ import calemi.fusionwarfare.util.ToolSet;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class InitRecipes {
-	
-	public static final int WILDCARD_VALUE = Short.MAX_VALUE;
-	
+
 	public static void init() {
 
 		//#-#-#-#-#-BLOCKS-#-#-#-#-#\\
-		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.black_brick, 8), new Object[] {
-			"BSB", "SBS", "BSB", 'S', InitItems.steel_ingot, 'B', Blocks.brick_block,
-		});
+				
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.black_brick, 8), new Object[] {
+			"BSB", "SBS", "BSB", 'S', "ingotSteel", 'B', Blocks.brick_block,
+		}));
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.blue_brick, 8), new Object[] {
 			"BIB", "IBI", "BIB", 'I', InitItems.infused_crystal, 'B', Blocks.brick_block,
@@ -41,17 +40,17 @@ public class InitRecipes {
 		
 		//#-#-#-#-#-NETWORK-#-#-#-#-#\\
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_controller_1), new Object[] {
-			"SSS", "SCS", "SSS", 'S', InitItems.steel_ingot, 'C', InitItems.infused_crystal
-		});
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.network_controller_1), new Object[] {
+			"SSS", "SCS", "SSS", 'S', "ingotSteel", 'C', InitItems.infused_crystal
+		}));
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_beacon), new Object[] {
 			"SHS", "SES", "SSS", 'S', InitItems.steel_plate, 'H', InitItems.hyper_chip, 'E', Items.ender_eye
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.network_cable, 8), new Object[] {
-			"GSG", "GCG", "GSG", 'G', Blocks.glass, 'S', InitItems.steel_ingot, 'C', InitItems.infused_crystal
-		});
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.network_cable, 8), new Object[] {
+			"GSG", "GCG", "GSG", 'G', Blocks.glass, 'S', "ingotSteel", 'C', InitItems.infused_crystal
+		}));
 				
 		//#-#-#-#-#-GENERATORS-#-#-#-#-#\\
 		
@@ -103,17 +102,17 @@ public class InitRecipes {
 		
 		//#-#-#-#-#-MACHINES-#-#-#-#-#\\
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.energetic_furnace), new Object[] {
-			"SSS", "SFS", "SCS", 'S', InitItems.steel_ingot, 'F', Blocks.furnace, 'C', InitItems.infused_crystal
-		});
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.energetic_furnace), new Object[] {
+			"SSS", "SFS", "SCS", 'S', "ingotSteel", 'F', Blocks.furnace, 'C', InitItems.infused_crystal
+		}));
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.ore_enricher), new Object[] {
 			"SSS", "FCF", "SSS", 'S', InitItems.steel_plate, 'F', Blocks.furnace, 'C', InitItems.advanced_chip
 		});
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.infusion_table), new Object[] {
-			"TTT", "SCS", "SSS", 'S', InitItems.steel_ingot, 'T', Blocks.crafting_table, 'C', InitItems.infused_crystal
-		});
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.infusion_table), new Object[] {
+			"TTT", "SCS", "SSS", 'S', "ingotSteel", 'T', Blocks.crafting_table, 'C', InitItems.infused_crystal
+		}));
 		
 		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.infusion_foundry), new Object[] {
 			"SBS", "RRR", "SBS", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip, 'R', InitItems.infused_redstone
@@ -215,9 +214,9 @@ public class InitRecipes {
 			
 		//#-#-#-#-#-BATTERIES-#-#-#-#-#\\
 		
-		GameRegistry.addShapedRecipe(new ItemStack(InitItems.fe_battery), new Object[] {
-			"SIS", "SBS", "SIS", 'S', InitItems.steel_ingot, 'I', InitItems.infused_steel_ingot, 'B', InitItems.basic_chip
-		});
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.fe_battery), new Object[] {
+			"SIS", "SBS", "SIS", 'S', "ingotSteel", 'I', InitItems.infused_steel_ingot, 'B', InitItems.basic_chip
+		}));
 		
 		//#-#-#-#-#-AMMO-#-#-#-#-#\\
 		
@@ -225,9 +224,9 @@ public class InitRecipes {
 			"SSS", "ABA", "SSS", 'S', InitItems.steel_plate, 'B', InitItems.basic_chip, 'A', InitItems.infused_azurite
 		});
 				
-		GameRegistry.addShapedRecipe(new ItemStack(InitItems.fusion_ammo, 16), new Object[] {
-			"SAS", "SAS", "SAS", 'S', InitItems.steel_ingot, 'A', InitItems.infused_azurite
-		});
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.fusion_ammo, 16), new Object[] {
+			"SAS", "SAS", "SAS", 'S', "ingotSteel", 'A', InitItems.infused_azurite
+		}));
 		
 		//#-#-#-#-#-GUNS-#-#-#-#-#\\		
 		

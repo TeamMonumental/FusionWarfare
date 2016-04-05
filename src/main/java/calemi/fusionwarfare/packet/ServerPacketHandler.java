@@ -1,7 +1,9 @@
 package calemi.fusionwarfare.packet;
 
 import calemi.fusionwarfare.FusionWarfare;
+import calemi.fusionwarfare.Reference;
 import calemi.fusionwarfare.api.EnergyUtil;
+import calemi.fusionwarfare.entity.EntityFusionBullet;
 import calemi.fusionwarfare.item.ItemFusionGun;
 import calemi.fusionwarfare.tileentity.machine.TileEntityAuraBase;
 import calemi.fusionwarfare.tileentity.machine.TileEntityEXPFabricator;
@@ -50,6 +52,8 @@ public class ServerPacketHandler implements IMessage {
 			
 			EntityPlayer player = ctx.getServerHandler().playerEntity;
 
+			//GUN-START-----------------------------------------------
+			
 			if (data[0].equalsIgnoreCase("reload")) {
 				
 				ItemStack is = player.getCurrentEquippedItem();
@@ -74,6 +78,33 @@ public class ServerPacketHandler implements IMessage {
 					gunData.flush();
 				}				
 			}
+			
+			if (data[0].equalsIgnoreCase("use.gun")) {
+				
+				int shotsPerFire = Integer.parseInt(data[1]);
+				int damage = Integer.parseInt(data[2]);
+				int accuracy = Integer.parseInt(data[3]);
+				float gravityVelocity = Float.parseFloat(data[4]);
+				int hurtTime = Integer.parseInt(data[5]);
+				
+				ItemStack is = player.getCurrentEquippedItem();
+				
+				player.worldObj.playSoundAtEntity(player, Reference.MOD_ID + ":gun_shot", 1, 1);
+				
+				for (int i = 0; i < shotsPerFire; i++) {
+					player.worldObj.spawnEntityInWorld(new EntityFusionBullet(player.worldObj, player, damage, accuracy, gravityVelocity, hurtTime));
+				}
+								
+				if (is != null) {
+					
+					GunData gunData = new GunData(is);
+				
+					gunData.ammo--;
+					gunData.flush();
+				}	
+			}
+			
+			//GUN-END-----------------------------------------------
 			
 			if (data[0].equalsIgnoreCase("addEXP")) {
 

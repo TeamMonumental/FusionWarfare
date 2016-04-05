@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import calemi.fusionwarfare.api.EnergyUtil;
 import calemi.fusionwarfare.api.EnumIO;
+import calemi.fusionwarfare.gui.GuiEXPFabricator;
 import calemi.fusionwarfare.gui.GuiEnergyTank;
 import calemi.fusionwarfare.inventory.ContainerEnergyTank;
 import calemi.fusionwarfare.tileentity.ITileEntityGuiHandler;
@@ -49,6 +50,6 @@ public class TileEntityEXPFabricator extends TileEntityEnergyBase implements ITi
 	@Override
 	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
-		return new GuiEnergyTank(player, this, "EXP Fabricator", false);
+		return new GuiEXPFabricator(player, this);
 	}
 }

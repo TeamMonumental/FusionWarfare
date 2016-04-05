@@ -2,6 +2,7 @@ package calemi.fusionwarfare.util.gun;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 
 public class GunData {
 
@@ -26,9 +27,13 @@ public class GunData {
 	
 	public void flush() {
 		
-		getNBT().setInteger("Time", time);
-		getNBT().setInteger("Ammo", ammo);		
-		getNBT().setInteger("Scope", scope);
+		int clampedTime = MathHelper.clamp_int(time, 0, 512);
+		int clampedAmmo = MathHelper.clamp_int(ammo, 0, 512);
+		int clampedScope = MathHelper.clamp_int(scope, 0, 512);
+
+		getNBT().setInteger("Time", clampedTime);
+		getNBT().setInteger("Ammo", clampedAmmo);
+		getNBT().setInteger("Scope", clampedScope);
 		getNBT().setInteger("UsingTicks", usingTicks);
 		
 		getNBT().setBoolean("Reloading", reloading);
